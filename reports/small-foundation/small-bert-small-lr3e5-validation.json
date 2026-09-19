@@ -1,0 +1,606 @@
+{
+  "count": 96,
+  "accuracy": 0.6666666666666666,
+  "balanced_accuracy": 0.6666666666666666,
+  "brier": 0.2107442277956293,
+  "log_loss": 0.6041447019807614,
+  "by_family": {
+    "appointment": {
+      "count": 10,
+      "accuracy": 0.6
+    },
+    "appointment_intent": {
+      "count": 4,
+      "accuracy": 0.25
+    },
+    "boundary_budget": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "boundary_distance": {
+      "count": 2,
+      "accuracy": 0.0
+    },
+    "boundary_duration": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "boundary_ratio": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "boundary_stock": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "cancellation": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "coding_billing": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "coding_routing": {
+      "count": 8,
+      "accuracy": 0.875
+    },
+    "conditions": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "duplicate": {
+      "count": 8,
+      "accuracy": 0.875
+    },
+    "duplicate_issue": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 4,
+      "accuracy": 0.75
+    },
+    "everyday": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "mixed_intent": {
+      "count": 4,
+      "accuracy": 0.75
+    },
+    "negation": {
+      "count": 4,
+      "accuracy": 0.75
+    },
+    "permission": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "reference": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "refund": {
+      "count": 10,
+      "accuracy": 0.6
+    },
+    "refund_intent": {
+      "count": 4,
+      "accuracy": 0.75
+    },
+    "reported_speech": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "request_routing": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "temporal": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "urgency": {
+      "count": 8,
+      "accuracy": 0.75
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 6.60560408141464,
+  "p95_ms": 7.999229535926133,
+  "predictions": [
+    {
+      "id": "seed-v1-refund-033",
+      "label": 1,
+      "p_yes": 0.7629312514090149
+    },
+    {
+      "id": "seed-v1-refund-034",
+      "label": 0,
+      "p_yes": 0.1400329421103972
+    },
+    {
+      "id": "seed-v1-refund-035",
+      "label": 1,
+      "p_yes": 0.6808436340752261
+    },
+    {
+      "id": "seed-v1-refund-036",
+      "label": 0,
+      "p_yes": 0.8004416631879012
+    },
+    {
+      "id": "seed-v1-refund-037",
+      "label": 1,
+      "p_yes": 0.12229121634613832
+    },
+    {
+      "id": "seed-v1-refund-038",
+      "label": 0,
+      "p_yes": 0.16266992189286414
+    },
+    {
+      "id": "seed-v1-refund-039",
+      "label": 1,
+      "p_yes": 0.503240797012874
+    },
+    {
+      "id": "seed-v1-refund-040",
+      "label": 0,
+      "p_yes": 0.5752180084216011
+    },
+    {
+      "id": "seed-v1-urgency-033",
+      "label": 1,
+      "p_yes": 0.6896045744157578
+    },
+    {
+      "id": "seed-v1-urgency-034",
+      "label": 0,
+      "p_yes": 0.5984549281944687
+    },
+    {
+      "id": "seed-v1-urgency-035",
+      "label": 1,
+      "p_yes": 0.15844542676109227
+    },
+    {
+      "id": "seed-v1-urgency-036",
+      "label": 0,
+      "p_yes": 0.1425270617121634
+    },
+    {
+      "id": "seed-v1-urgency-037",
+      "label": 1,
+      "p_yes": 0.8192219860895472
+    },
+    {
+      "id": "seed-v1-urgency-038",
+      "label": 0,
+      "p_yes": 0.10056188226463895
+    },
+    {
+      "id": "seed-v1-urgency-039",
+      "label": 1,
+      "p_yes": 0.656139005959135
+    },
+    {
+      "id": "seed-v1-urgency-040",
+      "label": 0,
+      "p_yes": 0.12119343334891952
+    },
+    {
+      "id": "seed-v1-duplicate-033",
+      "label": 1,
+      "p_yes": 0.9089180501206151
+    },
+    {
+      "id": "seed-v1-duplicate-034",
+      "label": 0,
+      "p_yes": 0.262123309694565
+    },
+    {
+      "id": "seed-v1-duplicate-035",
+      "label": 1,
+      "p_yes": 0.9181386094436772
+    },
+    {
+      "id": "seed-v1-duplicate-036",
+      "label": 0,
+      "p_yes": 0.8963018425260864
+    },
+    {
+      "id": "seed-v1-duplicate-037",
+      "label": 1,
+      "p_yes": 0.9131564681501478
+    },
+    {
+      "id": "seed-v1-duplicate-038",
+      "label": 0,
+      "p_yes": 0.1695763860046553
+    },
+    {
+      "id": "seed-v1-duplicate-039",
+      "label": 1,
+      "p_yes": 0.9255370100706672
+    },
+    {
+      "id": "seed-v1-duplicate-040",
+      "label": 0,
+      "p_yes": 0.13699714521119447
+    },
+    {
+      "id": "seed-v1-coding_routing-033",
+      "label": 1,
+      "p_yes": 0.9290658931706406
+    },
+    {
+      "id": "seed-v1-coding_routing-034",
+      "label": 0,
+      "p_yes": 0.09079859681274426
+    },
+    {
+      "id": "seed-v1-coding_routing-035",
+      "label": 1,
+      "p_yes": 0.9160802306073008
+    },
+    {
+      "id": "seed-v1-coding_routing-036",
+      "label": 0,
+      "p_yes": 0.09595738290645103
+    },
+    {
+      "id": "seed-v1-coding_routing-037",
+      "label": 1,
+      "p_yes": 0.358759985200105
+    },
+    {
+      "id": "seed-v1-coding_routing-038",
+      "label": 0,
+      "p_yes": 0.09504529176880487
+    },
+    {
+      "id": "seed-v1-coding_routing-039",
+      "label": 1,
+      "p_yes": 0.9253140181482611
+    },
+    {
+      "id": "seed-v1-coding_routing-040",
+      "label": 0,
+      "p_yes": 0.09869809077193645
+    },
+    {
+      "id": "seed-v1-appointment-033",
+      "label": 1,
+      "p_yes": 0.4959661955429909
+    },
+    {
+      "id": "seed-v1-appointment-034",
+      "label": 0,
+      "p_yes": 0.7452784259589914
+    },
+    {
+      "id": "seed-v1-appointment-035",
+      "label": 1,
+      "p_yes": 0.7412975041567769
+    },
+    {
+      "id": "seed-v1-appointment-036",
+      "label": 0,
+      "p_yes": 0.13331086709394796
+    },
+    {
+      "id": "seed-v1-appointment-037",
+      "label": 1,
+      "p_yes": 0.45534398356296446
+    },
+    {
+      "id": "seed-v1-appointment-038",
+      "label": 0,
+      "p_yes": 0.06314294274693912
+    },
+    {
+      "id": "seed-v1-appointment-039",
+      "label": 1,
+      "p_yes": 0.7342727619623789
+    },
+    {
+      "id": "seed-v1-appointment-040",
+      "label": 0,
+      "p_yes": 0.31330498511866245
+    },
+    {
+      "id": "plain-v1-refund_intent-009-1",
+      "label": 1,
+      "p_yes": 0.1408633540180036
+    },
+    {
+      "id": "plain-v1-refund_intent-009-0",
+      "label": 0,
+      "p_yes": 0.07163027364637332
+    },
+    {
+      "id": "plain-v1-refund_intent-010-1",
+      "label": 1,
+      "p_yes": 0.643565106684822
+    },
+    {
+      "id": "plain-v1-refund_intent-010-0",
+      "label": 0,
+      "p_yes": 0.48337359233595295
+    },
+    {
+      "id": "plain-v1-appointment_intent-009-1",
+      "label": 1,
+      "p_yes": 0.8933766962854034
+    },
+    {
+      "id": "plain-v1-appointment_intent-009-0",
+      "label": 0,
+      "p_yes": 0.6496107027302389
+    },
+    {
+      "id": "plain-v1-appointment_intent-010-1",
+      "label": 1,
+      "p_yes": 0.4007096839518435
+    },
+    {
+      "id": "plain-v1-appointment_intent-010-0",
+      "label": 0,
+      "p_yes": 0.5435563477254444
+    },
+    {
+      "id": "plain-v1-request_routing-009-1",
+      "label": 1,
+      "p_yes": 0.5576707026708267
+    },
+    {
+      "id": "plain-v1-request_routing-009-0",
+      "label": 0,
+      "p_yes": 0.25272137502881836
+    },
+    {
+      "id": "plain-v1-request_routing-010-1",
+      "label": 1,
+      "p_yes": 0.708609876232333
+    },
+    {
+      "id": "plain-v1-request_routing-010-0",
+      "label": 0,
+      "p_yes": 0.07853635058843522
+    },
+    {
+      "id": "plain-v1-duplicate_reports-009-1",
+      "label": 1,
+      "p_yes": 0.18358621961940172
+    },
+    {
+      "id": "plain-v1-duplicate_reports-009-0",
+      "label": 0,
+      "p_yes": 0.259638306584852
+    },
+    {
+      "id": "plain-v1-duplicate_reports-010-1",
+      "label": 1,
+      "p_yes": 0.7457378287426716
+    },
+    {
+      "id": "plain-v1-duplicate_reports-010-0",
+      "label": 0,
+      "p_yes": 0.4526253799463852
+    },
+    {
+      "id": "expansion-v2-091-1",
+      "label": 1,
+      "p_yes": 0.34214933937374686
+    },
+    {
+      "id": "expansion-v2-091-0",
+      "label": 0,
+      "p_yes": 0.37820470336443207
+    },
+    {
+      "id": "expansion-v2-092-1",
+      "label": 1,
+      "p_yes": 0.9355431021010167
+    },
+    {
+      "id": "expansion-v2-092-0",
+      "label": 0,
+      "p_yes": 0.49343098581343053
+    },
+    {
+      "id": "expansion-v2-093-1",
+      "label": 1,
+      "p_yes": 0.2770724417574771
+    },
+    {
+      "id": "expansion-v2-093-0",
+      "label": 0,
+      "p_yes": 0.21992459240934192
+    },
+    {
+      "id": "expansion-v2-094-1",
+      "label": 1,
+      "p_yes": 0.4654882143702875
+    },
+    {
+      "id": "expansion-v2-094-0",
+      "label": 0,
+      "p_yes": 0.37140597861573493
+    },
+    {
+      "id": "expansion-v2-095-1",
+      "label": 1,
+      "p_yes": 0.917396210100088
+    },
+    {
+      "id": "expansion-v2-095-0",
+      "label": 0,
+      "p_yes": 0.8152221692014122
+    },
+    {
+      "id": "expansion-v2-096-1",
+      "label": 1,
+      "p_yes": 0.6829539282368707
+    },
+    {
+      "id": "expansion-v2-096-0",
+      "label": 0,
+      "p_yes": 0.5564290651339382
+    },
+    {
+      "id": "expansion-v2-097-1",
+      "label": 1,
+      "p_yes": 0.6629724749657306
+    },
+    {
+      "id": "expansion-v2-097-0",
+      "label": 0,
+      "p_yes": 0.4780063661062521
+    },
+    {
+      "id": "expansion-v2-098-1",
+      "label": 1,
+      "p_yes": 0.6879978432913407
+    },
+    {
+      "id": "expansion-v2-098-0",
+      "label": 0,
+      "p_yes": 0.632285640037851
+    },
+    {
+      "id": "expansion-v2-099-1",
+      "label": 1,
+      "p_yes": 0.3353895908904615
+    },
+    {
+      "id": "expansion-v2-099-0",
+      "label": 0,
+      "p_yes": 0.40508480430745225
+    },
+    {
+      "id": "expansion-v2-100-1",
+      "label": 1,
+      "p_yes": 0.29786993175483645
+    },
+    {
+      "id": "expansion-v2-100-0",
+      "label": 0,
+      "p_yes": 0.21461442562925348
+    },
+    {
+      "id": "expansion-v2-101-1",
+      "label": 1,
+      "p_yes": 0.3238796666364693
+    },
+    {
+      "id": "expansion-v2-101-0",
+      "label": 0,
+      "p_yes": 0.389140133539866
+    },
+    {
+      "id": "expansion-v2-102-1",
+      "label": 1,
+      "p_yes": 0.796001190758411
+    },
+    {
+      "id": "expansion-v2-102-0",
+      "label": 0,
+      "p_yes": 0.7918560529630978
+    },
+    {
+      "id": "expansion-v2-103-1",
+      "label": 1,
+      "p_yes": 0.5900101535301154
+    },
+    {
+      "id": "expansion-v2-103-0",
+      "label": 0,
+      "p_yes": 0.542303565933459
+    },
+    {
+      "id": "expansion-v2-104-1",
+      "label": 1,
+      "p_yes": 0.761712759185821
+    },
+    {
+      "id": "expansion-v2-104-0",
+      "label": 0,
+      "p_yes": 0.7413026947849835
+    },
+    {
+      "id": "expansion-v2-105-1",
+      "label": 1,
+      "p_yes": 0.612178060488197
+    },
+    {
+      "id": "expansion-v2-105-0",
+      "label": 0,
+      "p_yes": 0.4646646811966032
+    },
+    {
+      "id": "expansion-v2-106-1",
+      "label": 1,
+      "p_yes": 0.692481661764452
+    },
+    {
+      "id": "expansion-v2-106-0",
+      "label": 0,
+      "p_yes": 0.45940817710421455
+    },
+    {
+      "id": "expansion-v2-107-1",
+      "label": 1,
+      "p_yes": 0.4292455467188474
+    },
+    {
+      "id": "expansion-v2-107-0",
+      "label": 0,
+      "p_yes": 0.5360028999861244
+    },
+    {
+      "id": "expansion-v2-108-1",
+      "label": 1,
+      "p_yes": 0.34582099419584256
+    },
+    {
+      "id": "expansion-v2-108-0",
+      "label": 0,
+      "p_yes": 0.49133272270984324
+    },
+    {
+      "id": "expansion-v2-109-1",
+      "label": 1,
+      "p_yes": 0.6928306990289337
+    },
+    {
+      "id": "expansion-v2-109-0",
+      "label": 0,
+      "p_yes": 0.6910110863718815
+    },
+    {
+      "id": "expansion-v2-110-1",
+      "label": 1,
+      "p_yes": 0.5909846983155838
+    },
+    {
+      "id": "expansion-v2-110-0",
+      "label": 0,
+      "p_yes": 0.6592792782417483
+    }
+  ],
+  "split": "validation",
+  "temperature": 0.8511380382023767,
+  "bundle": "models/small-bert-small-lr3e5",
+  "model_sha256": "b8e6eb4abc4bfcab15a5571dea1adaa5d04e8f59d9ec1a908e71dd26e74fedd4",
+  "data_sha256": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

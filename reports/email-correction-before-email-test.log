@@ -1,0 +1,26 @@
+{
+  "count": 40,
+  "accuracy": 0.65,
+  "balanced_accuracy": 0.6499999999999999,
+  "brier": 0.27413802992279096,
+  "log_loss": 0.897407641060423,
+  "by_family": {
+    "email_address_presence": {
+      "count": 40,
+      "accuracy": 0.65
+    }
+  },
+  "split": "test",
+  "temperature": 1.1350108156723155,
+  "bundle": "released/macos-arm64",
+  "model_sha256": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+  "data_sha256": {
+    "data/email-address-test.jsonl": "07f685dd065d8e70283ec031751df84c35cec71720b8e2da54521d36ec20ee87"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 10.989937582053244,
+  "p95_ms": 13.09712257934734,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

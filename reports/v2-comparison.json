@@ -1,0 +1,106 @@
+{
+  "original": {
+    "both_questions_correct": 5,
+    "pairs": 20,
+    "by_family": {
+      "appointment_intent": {
+        "count": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "cancellation_intent": {
+        "count": 7,
+        "accuracy": 0.5714285714285714
+      },
+      "coding_billing": {
+        "count": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "duplicate_reports": {
+        "count": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "eligibility": {
+        "count": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "events": {
+        "count": 7,
+        "accuracy": 0.2857142857142857
+      },
+      "negation": {
+        "count": 5,
+        "accuracy": 0.6
+      },
+      "numeric_criteria": {
+        "count": 11,
+        "accuracy": 0.5454545454545454
+      },
+      "permissions": {
+        "count": 8,
+        "accuracy": 0.625
+      },
+      "quoted_instructions": {
+        "count": 5,
+        "accuracy": 0.8
+      },
+      "refund_intent": {
+        "count": 9,
+        "accuracy": 0.5555555555555556
+      }
+    }
+  },
+  "candidate": {
+    "both_questions_correct": 9,
+    "pairs": 20,
+    "by_family": {
+      "appointment_intent": {
+        "count": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "cancellation_intent": {
+        "count": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "coding_billing": {
+        "count": 7,
+        "accuracy": 0.7142857142857143
+      },
+      "duplicate_reports": {
+        "count": 7,
+        "accuracy": 0.8571428571428571
+      },
+      "eligibility": {
+        "count": 7,
+        "accuracy": 0.42857142857142855
+      },
+      "events": {
+        "count": 7,
+        "accuracy": 1.0
+      },
+      "negation": {
+        "count": 5,
+        "accuracy": 0.4
+      },
+      "numeric_criteria": {
+        "count": 11,
+        "accuracy": 0.6363636363636364
+      },
+      "permissions": {
+        "count": 8,
+        "accuracy": 0.875
+      },
+      "quoted_instructions": {
+        "count": 5,
+        "accuracy": 0.6
+      },
+      "refund_intent": {
+        "count": 9,
+        "accuracy": 0.8888888888888888
+      }
+    }
+  },
+  "paired_changes": {
+    "fixed": 30,
+    "regressed": 13
+  }
+}

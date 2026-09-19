@@ -1,0 +1,132 @@
+{
+  "count": 404,
+  "accuracy": 0.8960396039603961,
+  "balanced_accuracy": 0.8960396039603961,
+  "brier": 0.07093878142629165,
+  "log_loss": 0.23148765352248074,
+  "by_family": {
+    "appointment": {
+      "count": 42,
+      "accuracy": 0.9761904761904762
+    },
+    "appointment_boundary": {
+      "count": 6,
+      "accuracy": 0.6666666666666666
+    },
+    "appointment_intent": {
+      "count": 16,
+      "accuracy": 1.0
+    },
+    "billing_boundary": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "cancellation": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "capacity_boundary": {
+      "count": 8,
+      "accuracy": 0.625
+    },
+    "coding_billing": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "coding_routing": {
+      "count": 32,
+      "accuracy": 1.0
+    },
+    "conditions": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "duplicate": {
+      "count": 32,
+      "accuracy": 0.90625
+    },
+    "duplicate_issue": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 16,
+      "accuracy": 1.0
+    },
+    "everyday": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "mixed_intent": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "negation": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "permission": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "quantity_boundary": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "reference": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "refund": {
+      "count": 42,
+      "accuracy": 0.7857142857142857
+    },
+    "refund_boundary": {
+      "count": 6,
+      "accuracy": 0.3333333333333333
+    },
+    "refund_intent": {
+      "count": 16,
+      "accuracy": 1.0
+    },
+    "reported_speech": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "request_routing": {
+      "count": 16,
+      "accuracy": 1.0
+    },
+    "temporal": {
+      "count": 10,
+      "accuracy": 1.0
+    },
+    "time_boundary": {
+      "count": 6,
+      "accuracy": 0.6666666666666666
+    },
+    "urgency": {
+      "count": 32,
+      "accuracy": 0.8125
+    },
+    "urgency_boundary": {
+      "count": 8,
+      "accuracy": 0.5
+    }
+  },
+  "split": "train",
+  "temperature": 1.1350108156723155,
+  "bundle": "models/v2-nli-expanded",
+  "model_sha256": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+  "data_sha256": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 20.060749375261366,
+  "p95_ms": 114.19517946196717,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

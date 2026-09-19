@@ -1,0 +1,109 @@
+{
+  "count": 96,
+  "accuracy": 0.5,
+  "balanced_accuracy": 0.5,
+  "brier": 0.2500333548137596,
+  "log_loss": 0.6932138945544071,
+  "by_family": {
+    "appointment": {
+      "count": 10,
+      "accuracy": 0.5
+    },
+    "appointment_intent": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "boundary_budget": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "boundary_distance": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "boundary_duration": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "boundary_ratio": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "boundary_stock": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "cancellation": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "coding_billing": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "coding_routing": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "conditions": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "duplicate": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "duplicate_issue": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "duplicate_reports": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "everyday": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "mixed_intent": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "negation": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "permission": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "reference": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "refund": {
+      "count": 10,
+      "accuracy": 0.5
+    },
+    "refund_intent": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "reported_speech": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "request_routing": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "temporal": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "urgency": {
+      "count": 8,
+      "accuracy": 0.5
+    }
+  }
+}

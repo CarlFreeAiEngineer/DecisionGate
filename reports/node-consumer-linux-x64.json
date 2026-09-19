@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "node": "v26.7.0",
+  "pYes": 0.9666111806483961,
+  "retry": true,
+  "esm": true,
+  "cjs": true,
+  "offline": true,
+  "platform": "linux-x64",
+  "typescript_compilation": true,
+  "browser_subpath_import": true,
+  "network_denied": true,
+  "network_isolation": "Linux network namespace (loopback only)",
+  "original_native_bundle_reads_denied": false,
+  "tarball": "/home/ace/DecisionGate-build-20260917-1813/released/node/decisiongate-0.2.0-linux-x64.tgz",
+  "tarball_sha256": "943ca90dd73e8b2abe4e5a46f00cacc7adee437b934fb8bfe89ed0c9c60bad29"
+}

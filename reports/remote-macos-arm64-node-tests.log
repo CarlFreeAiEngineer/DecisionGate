@@ -1,0 +1,14 @@
+✔ concurrent first use, probability, inclusive boundaries, and event loop responsiveness (2246.551792ms)
+✔ criteria, Unicode, changing working directory (28.883583ms)
+✔ invalid input never becomes a negative answer (3.8135ms)
+✔ bounded queue (513.716292ms)
+✔ addon boundary rejects invalid direct calls (0.528834ms)
+✔ worker environments finish native work and exit cleanly (48.451583ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2923.253541

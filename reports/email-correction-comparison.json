@@ -1,0 +1,27 @@
+{
+  "accepted_as_default": false,
+  "reason": "Original 52-case test lost one correct answer; predefined no-regression gate failed.",
+  "evaluations": {
+    "email": {
+      "count": 40,
+      "before_correct": 26,
+      "after_correct": 32,
+      "before_brier": 0.27413802992279096,
+      "after_brier": 0.16871203434149656
+    },
+    "general": {
+      "count": 80,
+      "before_correct": 59,
+      "after_correct": 61,
+      "before_brier": 0.18097695010156903,
+      "after_brier": 0.16529492154155992
+    },
+    "original": {
+      "count": 52,
+      "before_correct": 38,
+      "after_correct": 37,
+      "before_brier": 0.18881705089505682,
+      "after_brier": 0.17860893579195652
+    }
+  }
+}

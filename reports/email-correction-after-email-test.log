@@ -1,0 +1,26 @@
+{
+  "count": 40,
+  "accuracy": 0.8,
+  "balanced_accuracy": 0.8,
+  "brier": 0.16871203434149656,
+  "log_loss": 0.5356780668283695,
+  "by_family": {
+    "email_address_presence": {
+      "count": 40,
+      "accuracy": 0.8
+    }
+  },
+  "split": "test",
+  "temperature": 1.4791083881682083,
+  "bundle": "models/email-correction-v1",
+  "model_sha256": "ea0f9ff3e75970a8fec8b88f10ee85f53f6753c55f6476c536ea83cc97912cfe",
+  "data_sha256": {
+    "data/email-address-test.jsonl": "07f685dd065d8e70283ec031751df84c35cec71720b8e2da54521d36ec20ee87"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 31.97656257543713,
+  "p95_ms": 54.95624114992094,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

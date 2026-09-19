@@ -1,0 +1,58 @@
+{
+  "format_version": 1,
+  "template_version": 2,
+  "model_id": "decisionmodel-0.2.0-nli-experimental",
+  "max_tokens": 256,
+  "base_model": "cross-encoder/nli-MiniLM2-L6-H768",
+  "base_revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+  "calibration": "temperature scaling on synthetic calibration split; not a reliability guarantee",
+  "checkpoint_sha256": "b1b1e9b033190f37916f6f0db378594dbfd4c5bacd1bdb500bdcb64ee53c5e76",
+  "sha256": {
+    "model.onnx": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+    "tokenizer.json": "7b62d797c95d1563d3467f48daad0eca3e150f2d587e7e687b557c9ef1b25473",
+    "ort-wasm-simd-threaded.wasm": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4",
+    "ort-wasm-simd-threaded.mjs": "30dd851d9c00622940500f71ddd2ff8820c5cb65270816080175b958705385a8"
+  },
+  "training": {
+    "base": "cross-encoder/nli-MiniLM2-L6-H768",
+    "revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+    "template_version": 2,
+    "nli_head": true,
+    "start": null,
+    "seed": 42,
+    "batch_size": 16,
+    "learning_rate": 0.00001,
+    "device": "mps",
+    "max_tokens": 256,
+    "data": {
+      "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+      "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+      "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e"
+    },
+    "parameter_count": 82119938,
+    "torch": "2.8.0",
+    "epochs": 10,
+    "pipeline_sha256": "afe20a50ac84ff46a6703df75ef47e2596617b18e01902d9d51bedb337ff99ad",
+    "uv_lock_sha256": "c1091d7ad88644225ff2e376617f3f25db99677194ca38c130a6e108c9d60522",
+    "start_sha256": null
+  },
+  "pipeline_sha256": "9279b756e9d961543d6c66bd8a3331ccae6332d180b9aadaa3e0c4a2150ecb46",
+  "uv_lock_sha256": "c1091d7ad88644225ff2e376617f3f25db99677194ca38c130a6e108c9d60522",
+  "temperature": 1.1350108156723155,
+  "calibration_data": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e"
+  },
+  "licenses": {
+    "base_and_derived_weights": "Apache-2.0",
+    "project_code": "MIT",
+    "project_data": "CC0-1.0"
+  },
+  "build": {
+    "target": "browser-wasm",
+    "onnxruntime": "1.22.0",
+    "tokenizer": "@huggingface/tokenizers@0.2.0",
+    "threads": 1
+  }
+}

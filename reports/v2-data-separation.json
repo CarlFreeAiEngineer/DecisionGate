@@ -1,0 +1,7 @@
+{
+  "fresh_sha256": "ffda37e4ea80042a0a78c5be266c836c1ff3b6f13bffebe20c07553e0d1fb528",
+  "fresh_count": 80,
+  "exact_duplicate_checks": "passed",
+  "content_similarity_over_085": [],
+  "note": "Character similarity screening cannot prove semantic independence."
+}

@@ -1,0 +1,60 @@
+{
+  "format_version": 1,
+  "template_version": 2,
+  "model_id": "decisionmodel-0.2.0-nli-experimental",
+  "max_tokens": 256,
+  "base_model": "cross-encoder/nli-MiniLM2-L6-H768",
+  "base_revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+  "calibration": "temperature scaling on synthetic calibration split; not a reliability guarantee",
+  "checkpoint_sha256": "b1b1e9b033190f37916f6f0db378594dbfd4c5bacd1bdb500bdcb64ee53c5e76",
+  "sha256": {
+    "model.onnx": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+    "tokenizer.json": "7b62d797c95d1563d3467f48daad0eca3e150f2d587e7e687b557c9ef1b25473",
+    "libdecisiongate.dylib": "32dd8e70b00bc4b033e7652de7e8ef1c46a63d5694164c6ba54470e829a3c8d1",
+    "libonnxruntime.dylib": "637c0aed2688fe886ea69adbb260bbad8af9bdd40ea45b879f692d0bd0c1e459",
+    "decisiongate.h": "71fb7bfe894355de751e626fc3ac3b884135f6298ceb0e7ff201b73399b1a678"
+  },
+  "training": {
+    "base": "cross-encoder/nli-MiniLM2-L6-H768",
+    "revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+    "template_version": 2,
+    "nli_head": true,
+    "start": null,
+    "seed": 42,
+    "batch_size": 16,
+    "learning_rate": 1e-05,
+    "device": "mps",
+    "max_tokens": 256,
+    "data": {
+      "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+      "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+      "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e"
+    },
+    "parameter_count": 82119938,
+    "torch": "2.8.0",
+    "epochs": 10,
+    "pipeline_sha256": "afe20a50ac84ff46a6703df75ef47e2596617b18e01902d9d51bedb337ff99ad",
+    "uv_lock_sha256": "c1091d7ad88644225ff2e376617f3f25db99677194ca38c130a6e108c9d60522",
+    "start_sha256": null
+  },
+  "pipeline_sha256": "9279b756e9d961543d6c66bd8a3331ccae6332d180b9aadaa3e0c4a2150ecb46",
+  "uv_lock_sha256": "c1091d7ad88644225ff2e376617f3f25db99677194ca38c130a6e108c9d60522",
+  "temperature": 1.1350108156723155,
+  "calibration_data": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e"
+  },
+  "licenses": {
+    "base_and_derived_weights": "Apache-2.0",
+    "project_code": "MIT",
+    "project_data": "CC0-1.0"
+  },
+  "build": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+    "cargo_lock_sha256": "cb1bea2b89e328227050ab1adf0195f67cd0e64dff0cdb0fd07b979d0fd8dd93",
+    "onnxruntime": "1.22.1",
+    "status": "experimental local prototype"
+  }
+}

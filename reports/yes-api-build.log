@@ -1,0 +1,23 @@
+   Compiling decisionmodel v0.1.0 (/Users/ace/Desktop/prjx/DecisionModel/code)
+    Finished `release` profile [optimized] target(s) in 7.66s
+     Running unittests src/lib.rs (code/target/release/deps/decisionmodel-1c2c849bf98d0ab4)
+
+running 6 tests
+test tests::unsupported_templates_and_empty_criteria_are_rejected ... ok
+test tests::errors_can_be_copied_without_being_cleared ... ok
+test tests::invalid_abi_inputs_do_not_write_probability ... ok
+test tests::invalid_text_and_missing_bundle_are_rejected ... ok
+test tests::template_versions_preserve_pair_order_and_criteria ... ok
+test tests::panic_is_contained_at_boundary ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests decisionmodel
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `release` profile [optimized] target(s) in 0.06s
+/Users/ace/Desktop/prjx/DecisionModel/models/yes-api-macos/libdecisionmodel.dylib: replacing existing signature
+Bundle: /Users/ace/Desktop/prjx/DecisionModel/models/yes-api-macos

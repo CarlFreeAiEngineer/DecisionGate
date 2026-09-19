@@ -1,0 +1,188 @@
+{
+  "count": 32,
+  "accuracy": 0.4375,
+  "balanced_accuracy": 0.4375,
+  "brier": 0.47997231112063865,
+  "log_loss": 1.7811105849346545,
+  "by_family": {
+    "spam_marketing_comment": {
+      "count": 32,
+      "accuracy": 0.4375
+    }
+  },
+  "split": "test",
+  "temperature": 1.1350108156723155,
+  "bundle": "released/macos-arm64",
+  "model_sha256": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+  "data_sha256": {
+    "data/spam-comments-test.jsonl": "bedc56db7877d5824c86366913dfaf715d398301dfa390eb50cb9448096a7fd2"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 14.205708517692983,
+  "p95_ms": 40.756866394076496,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark.",
+  "predictions": [
+    {
+      "id": "spam-comments-test-001",
+      "label": 1,
+      "p_yes": 0.06531358476543511
+    },
+    {
+      "id": "spam-comments-test-002",
+      "label": 0,
+      "p_yes": 0.8721681707066089
+    },
+    {
+      "id": "spam-comments-test-003",
+      "label": 1,
+      "p_yes": 0.09161641724165065
+    },
+    {
+      "id": "spam-comments-test-004",
+      "label": 0,
+      "p_yes": 0.5049085293209532
+    },
+    {
+      "id": "spam-comments-test-005",
+      "label": 1,
+      "p_yes": 0.019608376408834803
+    },
+    {
+      "id": "spam-comments-test-006",
+      "label": 0,
+      "p_yes": 0.7189883551520654
+    },
+    {
+      "id": "spam-comments-test-007",
+      "label": 1,
+      "p_yes": 0.005985528729166384
+    },
+    {
+      "id": "spam-comments-test-008",
+      "label": 0,
+      "p_yes": 0.0028107497192547386
+    },
+    {
+      "id": "spam-comments-test-009",
+      "label": 1,
+      "p_yes": 0.008701857002826047
+    },
+    {
+      "id": "spam-comments-test-010",
+      "label": 0,
+      "p_yes": 0.014929769393416054
+    },
+    {
+      "id": "spam-comments-test-011",
+      "label": 1,
+      "p_yes": 0.5485754949810939
+    },
+    {
+      "id": "spam-comments-test-012",
+      "label": 0,
+      "p_yes": 0.2098802968523844
+    },
+    {
+      "id": "spam-comments-test-013",
+      "label": 1,
+      "p_yes": 0.020581063788341045
+    },
+    {
+      "id": "spam-comments-test-014",
+      "label": 0,
+      "p_yes": 0.01275445068027618
+    },
+    {
+      "id": "spam-comments-test-015",
+      "label": 1,
+      "p_yes": 0.1570026740801185
+    },
+    {
+      "id": "spam-comments-test-016",
+      "label": 0,
+      "p_yes": 0.005348847576969054
+    },
+    {
+      "id": "spam-comments-test-017",
+      "label": 1,
+      "p_yes": 0.005216609151940351
+    },
+    {
+      "id": "spam-comments-test-018",
+      "label": 0,
+      "p_yes": 0.10885222363428038
+    },
+    {
+      "id": "spam-comments-test-019",
+      "label": 1,
+      "p_yes": 0.9348008557449123
+    },
+    {
+      "id": "spam-comments-test-020",
+      "label": 0,
+      "p_yes": 0.11956332203501899
+    },
+    {
+      "id": "spam-comments-test-021",
+      "label": 1,
+      "p_yes": 0.01644279482800166
+    },
+    {
+      "id": "spam-comments-test-022",
+      "label": 0,
+      "p_yes": 0.004471575358924115
+    },
+    {
+      "id": "spam-comments-test-023",
+      "label": 1,
+      "p_yes": 0.0298857650915505
+    },
+    {
+      "id": "spam-comments-test-024",
+      "label": 0,
+      "p_yes": 0.9671336387169137
+    },
+    {
+      "id": "spam-comments-test-025",
+      "label": 1,
+      "p_yes": 0.908552800024922
+    },
+    {
+      "id": "spam-comments-test-026",
+      "label": 0,
+      "p_yes": 0.9432137467811037
+    },
+    {
+      "id": "spam-comments-test-027",
+      "label": 1,
+      "p_yes": 0.8547284581659916
+    },
+    {
+      "id": "spam-comments-test-028",
+      "label": 0,
+      "p_yes": 0.8306049361049352
+    },
+    {
+      "id": "spam-comments-test-029",
+      "label": 1,
+      "p_yes": 0.8458788877566655
+    },
+    {
+      "id": "spam-comments-test-030",
+      "label": 0,
+      "p_yes": 0.9473355481413993
+    },
+    {
+      "id": "spam-comments-test-031",
+      "label": 1,
+      "p_yes": 0.9007577614642504
+    },
+    {
+      "id": "spam-comments-test-032",
+      "label": 0,
+      "p_yes": 0.9347517594610366
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "count": 40,
+  "accuracy": 0.825,
+  "balanced_accuracy": 0.825,
+  "brier": 0.14193478552658473,
+  "log_loss": 0.46346470544035956,
+  "by_family": {
+    "email_address_presence": {
+      "count": 40,
+      "accuracy": 0.825
+    }
+  },
+  "split": "test",
+  "temperature": 1.531087461682031,
+  "bundle": "models/spam-email-v1",
+  "model_sha256": "26dcf0192a508e4548ec2c3fc9f509e6f974e8586d525a80caee5a5a52bb0575",
+  "data_sha256": {
+    "data/email-address-test.jsonl": "07f685dd065d8e70283ec031751df84c35cec71720b8e2da54521d36ec20ee87"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 74.23283299431205,
+  "p95_ms": 128.07358077261594,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

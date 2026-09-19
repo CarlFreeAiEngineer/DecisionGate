@@ -1,0 +1,102 @@
+{
+  "count": 80,
+  "accuracy": 0.85,
+  "balanced_accuracy": 0.85,
+  "brier": 0.10295190232052462,
+  "log_loss": 0.32502946944441496,
+  "by_family": {
+    "appointment": {
+      "count": 6,
+      "accuracy": 1.0
+    },
+    "appointment_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "cancellation": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "coding_billing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "coding_routing": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate_issue": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "email_address_presence": {
+      "count": 12,
+      "accuracy": 0.9166666666666666
+    },
+    "everyday": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "mixed_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "negation": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "reference": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "refund": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "refund_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "reported_speech": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_routing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "spam_marketing_comment": {
+      "count": 16,
+      "accuracy": 0.9375
+    },
+    "urgency": {
+      "count": 6,
+      "accuracy": 0.6666666666666666
+    }
+  },
+  "split": "calibration",
+  "temperature": 1.531087461682031,
+  "bundle": "models/spam-email-v1",
+  "model_sha256": "26dcf0192a508e4548ec2c3fc9f509e6f974e8586d525a80caee5a5a52bb0575",
+  "data_sha256": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
+    "data/contributions/email-address-correction.jsonl": "b1a881f09cb429679ea76e18d848256022ea10e5d42ae5a76f2957d64e8fcf73",
+    "data/contributions/spam-comments.jsonl": "0ebf66d0339f9ff7320017fcbaf04bc9999fd6ed7262e40f1177a16662a38edf"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 10.544938035309315,
+  "p95_ms": 23.238454048987474,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

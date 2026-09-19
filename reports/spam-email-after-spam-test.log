@@ -1,0 +1,26 @@
+{
+  "count": 32,
+  "accuracy": 0.53125,
+  "balanced_accuracy": 0.53125,
+  "brier": 0.32929075682792264,
+  "log_loss": 0.9578181101253334,
+  "by_family": {
+    "spam_marketing_comment": {
+      "count": 32,
+      "accuracy": 0.53125
+    }
+  },
+  "split": "test",
+  "temperature": 1.531087461682031,
+  "bundle": "models/spam-email-v1",
+  "model_sha256": "26dcf0192a508e4548ec2c3fc9f509e6f974e8586d525a80caee5a5a52bb0575",
+  "data_sha256": {
+    "data/spam-comments-test.jsonl": "bedc56db7877d5824c86366913dfaf715d398301dfa390eb50cb9448096a7fd2"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 105.23170803207904,
+  "p95_ms": 208.77172688487917,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

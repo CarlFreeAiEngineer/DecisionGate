@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "exit_code": 0,
+  "network": "not verified on Windows: no firewall or system policy changes made",
+  "network_denial_verified": false,
+  "relocated": true,
+  "working_directory_separate": true,
+  "development_tools_on_path": false,
+  "stdout": "p_yes=0.995962204",
+  "native_process_peak_rss_bytes": null,
+  "bundle_bytes": 352792610,
+  "library_bytes": 4071936,
+  "model_bytes": 328609581,
+  "host_link_dependencies": [
+    "    decisiongate.dll",
+    "    KERNEL32.dll"
+  ]
+}

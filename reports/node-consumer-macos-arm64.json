@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "node": "v26.7.0",
+  "pYes": 0.966611187427822,
+  "retry": true,
+  "esm": true,
+  "cjs": true,
+  "offline": true,
+  "platform": "darwin-arm64",
+  "typescript_compilation": true,
+  "browser_subpath_import": true,
+  "network_denied": true,
+  "network_isolation": "macOS sandbox",
+  "original_native_bundle_reads_denied": true,
+  "tarball": "/Users/ace/Desktop/prjx/DecisionModel/released/node/decisiongate-0.2.0-darwin-arm64.tgz",
+  "tarball_sha256": "ed6d0711570a4b3ac40daa59ec3625f198b9c65ec4ee08b471fa2dd5d2136f6d"
+}

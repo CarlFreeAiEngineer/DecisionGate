@@ -1,0 +1,36 @@
+{
+  "original": [
+    {
+      "case": "refund",
+      "p_yes": 0.28639380578166174,
+      "label": 1
+    },
+    {
+      "case": "invoice",
+      "p_yes": 0.16524454696108465,
+      "label": 0
+    },
+    {
+      "case": "cancellation",
+      "p_yes": 0.11463204108850547,
+      "label": 1
+    }
+  ],
+  "candidate": [
+    {
+      "case": "refund",
+      "p_yes": 0.9962034385661188,
+      "label": 1
+    },
+    {
+      "case": "invoice",
+      "p_yes": 0.005127448912056216,
+      "label": 0
+    },
+    {
+      "case": "cancellation",
+      "p_yes": 0.9959622015075841,
+      "label": 1
+    }
+  ]
+}

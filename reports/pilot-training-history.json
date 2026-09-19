@@ -1,0 +1,602 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.6963798488889422,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "brier": 0.2501651500760054,
+      "log_loss": 0.6934775884298849,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "elapsed_seconds": 3.084751166868955
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.6932985995497022,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "brier": 0.24997035488812974,
+      "log_loss": 0.6930878854854706,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "elapsed_seconds": 6.404459582874551
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.6935334163052695,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "brier": 0.2498963481757055,
+      "log_loss": 0.6929398745554624,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "elapsed_seconds": 9.843938166974112
+  },
+  {
+    "epoch": 4,
+    "train_loss": 0.6931056933743613,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "brier": 0.24981739871607592,
+      "log_loss": 0.6927816896780866,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "elapsed_seconds": 13.0963839169126
+  },
+  {
+    "epoch": 5,
+    "train_loss": 0.6927073044436318,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.5535714285714286,
+      "balanced_accuracy": 0.5535714285714286,
+      "brier": 0.24837248115847663,
+      "log_loss": 0.6898908649482239,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "elapsed_seconds": 16.44390833284706
+  },
+  {
+    "epoch": 6,
+    "train_loss": 0.680355144398553,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.6071428571428571,
+      "balanced_accuracy": 0.6071428571428571,
+      "brier": 0.23769650359941946,
+      "log_loss": 0.6683804641649681,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.625
+        }
+      }
+    },
+    "elapsed_seconds": 20.134217249928042
+  },
+  {
+    "epoch": 7,
+    "train_loss": 0.5680182469742638,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.6785714285714286,
+      "balanced_accuracy": 0.6785714285714286,
+      "brier": 0.2202473554118868,
+      "log_loss": 0.6332641290280413,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.875
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.625
+        }
+      }
+    },
+    "elapsed_seconds": 24.041746416827664
+  },
+  {
+    "epoch": 8,
+    "train_loss": 0.4676359402281897,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.6964285714285714,
+      "balanced_accuracy": 0.6964285714285714,
+      "brier": 0.21794083745206386,
+      "log_loss": 0.6356925094781355,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.875
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.625
+        }
+      }
+    },
+    "elapsed_seconds": 27.272401166846976
+  },
+  {
+    "epoch": 9,
+    "train_loss": 0.35978574412209646,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.6607142857142857,
+      "balanced_accuracy": 0.6607142857142857,
+      "brier": 0.24313763245377934,
+      "log_loss": 0.7234211732590395,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.75
+        }
+      }
+    },
+    "elapsed_seconds": 30.417369707953185
+  },
+  {
+    "epoch": 10,
+    "train_loss": 0.43113375135830473,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.6607142857142857,
+      "balanced_accuracy": 0.6607142857142857,
+      "brier": 0.2616260683707742,
+      "log_loss": 0.7727946067236298,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.5
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.625
+        }
+      }
+    },
+    "elapsed_seconds": 33.51029199990444
+  },
+  {
+    "epoch": 11,
+    "train_loss": 0.3031069796000208,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.8571428571428571,
+      "balanced_accuracy": 0.8571428571428571,
+      "brier": 0.11695574079140135,
+      "log_loss": 0.3854630598169936,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.875
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 1.0
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.875
+        }
+      }
+    },
+    "elapsed_seconds": 36.582900874782354
+  },
+  {
+    "epoch": 12,
+    "train_loss": 0.20425776339003018,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.8214285714285714,
+      "balanced_accuracy": 0.8214285714285714,
+      "brier": 0.1470708841644434,
+      "log_loss": 0.4989135928873945,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.75
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.875
+        }
+      }
+    },
+    "elapsed_seconds": 39.81902641686611
+  }
+]

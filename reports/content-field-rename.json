@@ -1,0 +1,27 @@
+{
+  "change": "Rename data/API field state to content; every other record value unchanged; no retraining.",
+  "datasets": [
+    {
+      "file": "data/plain-questions.jsonl",
+      "before_sha256": "d61952283b454a8c499a70f5d0a18334d695e64913a4cb03e843dcbb15b8439f",
+      "after_sha256": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+      "records": 100
+    },
+    {
+      "file": "data/seed.jsonl",
+      "before_sha256": "b7b448d9fcc0d9b19a287a8aa3eae8e5e13bbacb809ecf870bdefb702315d9bf",
+      "after_sha256": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+      "records": 264
+    },
+    {
+      "file": "data/contributions/example-correction.jsonl",
+      "before_sha256": "b8f825869820689ad0aa73eadacc79dc45b1a6f0379bfa3254eeaa222e390585",
+      "after_sha256": "5bcba6d31dd3c6daadea7488d54d4c4a0ea06857d383e128fa17f02d24c2f3b4",
+      "records": 1
+    }
+  ],
+  "prediction_comparison": {
+    "cases": 365,
+    "max_absolute_difference": 0.0
+  }
+}

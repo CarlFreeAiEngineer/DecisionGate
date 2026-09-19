@@ -1,0 +1,45 @@
+{
+  "platform": "Windows-11-10.0.26200-SP0",
+  "binaries": {
+    "decisiongate.dll": {
+      "needed_libraries": [
+        "KERNEL32.dll",
+        "bcryptprimitives.dll",
+        "kernel32.dll",
+        "api-ms-win-core-synch-l1-2-0.dll",
+        "ntdll.dll",
+        "VCRUNTIME140.dll",
+        "api-ms-win-crt-math-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll"
+      ]
+    },
+    "onnxruntime.dll": {
+      "needed_libraries": [
+        "KERNEL32.dll",
+        "MSVCP140.dll",
+        "VCRUNTIME140.dll",
+        "VCRUNTIME140_1.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "api-ms-win-crt-convert-l1-1-0.dll",
+        "api-ms-win-crt-string-l1-1-0.dll",
+        "api-ms-win-crt-math-l1-1-0.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-filesystem-l1-1-0.dll",
+        "ADVAPI32.dll",
+        "MSVCP140_1.dll",
+        "api-ms-win-crt-time-l1-1-0.dll",
+        "api-ms-win-crt-locale-l1-1-0.dll",
+        "SETUPAPI.dll",
+        "dxgi.dll",
+        "api-ms-win-core-path-l1-1-0.dll",
+        "dbghelp.dll"
+      ]
+    }
+  },
+  "limits": "Binary metadata is a compatibility floor, not validation on older OS releases or every CPU. Native runtime checks ran only on the recorded build host.",
+  "system_runtime": "Microsoft Visual C++ 2015-2022 x64 Redistributable; minimum Windows release requires testing."
+}

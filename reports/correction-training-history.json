@@ -1,0 +1,52 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 0.1870948141813278,
+    "validation": {
+      "count": 56,
+      "accuracy": 0.8214285714285714,
+      "balanced_accuracy": 0.8214285714285714,
+      "brier": 0.15103913771213046,
+      "log_loss": 0.520212857861771,
+      "by_family": {
+        "appointment": {
+          "count": 8,
+          "accuracy": 0.875
+        },
+        "appointment_intent": {
+          "count": 4,
+          "accuracy": 0.75
+        },
+        "coding_routing": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate": {
+          "count": 8,
+          "accuracy": 1.0
+        },
+        "duplicate_reports": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "refund": {
+          "count": 8,
+          "accuracy": 0.625
+        },
+        "refund_intent": {
+          "count": 4,
+          "accuracy": 0.5
+        },
+        "request_routing": {
+          "count": 4,
+          "accuracy": 1.0
+        },
+        "urgency": {
+          "count": 8,
+          "accuracy": 0.875
+        }
+      }
+    },
+    "elapsed_seconds": 4.995081000030041
+  }
+]

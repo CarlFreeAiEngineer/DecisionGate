@@ -1,0 +1,26 @@
+{
+  "count": 32,
+  "accuracy": 0.4375,
+  "balanced_accuracy": 0.4375,
+  "brier": 0.47997231112063865,
+  "log_loss": 1.7811105849346545,
+  "by_family": {
+    "spam_marketing_comment": {
+      "count": 32,
+      "accuracy": 0.4375
+    }
+  },
+  "split": "test",
+  "temperature": 1.1350108156723155,
+  "bundle": "released/macos-arm64",
+  "model_sha256": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+  "data_sha256": {
+    "data/spam-comments-test.jsonl": "bedc56db7877d5824c86366913dfaf715d398301dfa390eb50cb9448096a7fd2"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 14.205708517692983,
+  "p95_ms": 40.756866394076496,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

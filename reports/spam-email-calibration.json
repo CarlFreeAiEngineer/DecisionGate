@@ -1,0 +1,504 @@
+{
+  "count": 80,
+  "accuracy": 0.85,
+  "balanced_accuracy": 0.85,
+  "brier": 0.10295190232052462,
+  "log_loss": 0.32502946944441496,
+  "by_family": {
+    "appointment": {
+      "count": 6,
+      "accuracy": 1.0
+    },
+    "appointment_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "cancellation": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "coding_billing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "coding_routing": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate_issue": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "email_address_presence": {
+      "count": 12,
+      "accuracy": 0.9166666666666666
+    },
+    "everyday": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "mixed_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "negation": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "reference": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "refund": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "refund_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "reported_speech": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_routing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "spam_marketing_comment": {
+      "count": 16,
+      "accuracy": 0.9375
+    },
+    "urgency": {
+      "count": 6,
+      "accuracy": 0.6666666666666666
+    }
+  },
+  "split": "calibration",
+  "temperature": 1.531087461682031,
+  "bundle": "models/spam-email-v1",
+  "model_sha256": "26dcf0192a508e4548ec2c3fc9f509e6f974e8586d525a80caee5a5a52bb0575",
+  "data_sha256": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
+    "data/contributions/email-address-correction.jsonl": "b1a881f09cb429679ea76e18d848256022ea10e5d42ae5a76f2957d64e8fcf73",
+    "data/contributions/spam-comments.jsonl": "0ebf66d0339f9ff7320017fcbaf04bc9999fd6ed7262e40f1177a16662a38edf"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "majority_accuracy": 0.5,
+  "p50_ms": 10.544938035309315,
+  "p95_ms": 23.238454048987474,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark.",
+  "predictions": [
+    {
+      "id": "seed-v1-refund-045",
+      "label": 1,
+      "p_yes": 0.7501600038622913
+    },
+    {
+      "id": "seed-v1-refund-046",
+      "label": 0,
+      "p_yes": 0.686039470382761
+    },
+    {
+      "id": "seed-v1-refund-047",
+      "label": 1,
+      "p_yes": 0.6900686726476519
+    },
+    {
+      "id": "seed-v1-refund-048",
+      "label": 0,
+      "p_yes": 0.6038232792040664
+    },
+    {
+      "id": "seed-v1-refund-049",
+      "label": 1,
+      "p_yes": 0.8830022649771655
+    },
+    {
+      "id": "seed-v1-refund-050",
+      "label": 0,
+      "p_yes": 0.7941917654606849
+    },
+    {
+      "id": "seed-v1-urgency-045",
+      "label": 1,
+      "p_yes": 0.5836377394495381
+    },
+    {
+      "id": "seed-v1-urgency-046",
+      "label": 0,
+      "p_yes": 0.5324168435389914
+    },
+    {
+      "id": "seed-v1-urgency-047",
+      "label": 1,
+      "p_yes": 0.8685873188593513
+    },
+    {
+      "id": "seed-v1-urgency-048",
+      "label": 0,
+      "p_yes": 0.050913677967214
+    },
+    {
+      "id": "seed-v1-urgency-049",
+      "label": 1,
+      "p_yes": 0.353991334813428
+    },
+    {
+      "id": "seed-v1-urgency-050",
+      "label": 0,
+      "p_yes": 0.1943116590544315
+    },
+    {
+      "id": "seed-v1-duplicate-045",
+      "label": 1,
+      "p_yes": 0.8899379091319746
+    },
+    {
+      "id": "seed-v1-duplicate-046",
+      "label": 0,
+      "p_yes": 0.14440636861041478
+    },
+    {
+      "id": "seed-v1-duplicate-047",
+      "label": 1,
+      "p_yes": 0.9248732532352232
+    },
+    {
+      "id": "seed-v1-duplicate-048",
+      "label": 0,
+      "p_yes": 0.14602255957226346
+    },
+    {
+      "id": "seed-v1-coding_routing-045",
+      "label": 1,
+      "p_yes": 0.8303804002000874
+    },
+    {
+      "id": "seed-v1-coding_routing-046",
+      "label": 0,
+      "p_yes": 0.09171455480025272
+    },
+    {
+      "id": "seed-v1-coding_routing-047",
+      "label": 1,
+      "p_yes": 0.9477655233826173
+    },
+    {
+      "id": "seed-v1-coding_routing-048",
+      "label": 0,
+      "p_yes": 0.05172684884436936
+    },
+    {
+      "id": "seed-v1-appointment-045",
+      "label": 1,
+      "p_yes": 0.973458091317443
+    },
+    {
+      "id": "seed-v1-appointment-046",
+      "label": 0,
+      "p_yes": 0.2984030803468697
+    },
+    {
+      "id": "seed-v1-appointment-047",
+      "label": 1,
+      "p_yes": 0.8848844711813549
+    },
+    {
+      "id": "seed-v1-appointment-048",
+      "label": 0,
+      "p_yes": 0.058753272658490785
+    },
+    {
+      "id": "plain-v1-refund_intent-011-1",
+      "label": 1,
+      "p_yes": 0.9878509641292651
+    },
+    {
+      "id": "plain-v1-refund_intent-011-0",
+      "label": 0,
+      "p_yes": 0.025336444011009155
+    },
+    {
+      "id": "plain-v1-appointment_intent-011-1",
+      "label": 1,
+      "p_yes": 0.9175244556908575
+    },
+    {
+      "id": "plain-v1-appointment_intent-011-0",
+      "label": 0,
+      "p_yes": 0.03399368596391188
+    },
+    {
+      "id": "plain-v1-request_routing-011-1",
+      "label": 1,
+      "p_yes": 0.9825313322964819
+    },
+    {
+      "id": "plain-v1-request_routing-011-0",
+      "label": 0,
+      "p_yes": 0.012899200918789828
+    },
+    {
+      "id": "plain-v1-duplicate_reports-011-1",
+      "label": 1,
+      "p_yes": 0.8898880468394663
+    },
+    {
+      "id": "plain-v1-duplicate_reports-011-0",
+      "label": 0,
+      "p_yes": 0.8618050520359427
+    },
+    {
+      "id": "expansion-v2-111-1",
+      "label": 1,
+      "p_yes": 0.9816447731580235
+    },
+    {
+      "id": "expansion-v2-111-0",
+      "label": 0,
+      "p_yes": 0.6433459841109789
+    },
+    {
+      "id": "expansion-v2-112-1",
+      "label": 1,
+      "p_yes": 0.9857166843149777
+    },
+    {
+      "id": "expansion-v2-112-0",
+      "label": 0,
+      "p_yes": 0.025617332448827322
+    },
+    {
+      "id": "expansion-v2-113-1",
+      "label": 1,
+      "p_yes": 0.9849503038541483
+    },
+    {
+      "id": "expansion-v2-113-0",
+      "label": 0,
+      "p_yes": 0.2815447893020257
+    },
+    {
+      "id": "expansion-v2-114-1",
+      "label": 1,
+      "p_yes": 0.05855683143976537
+    },
+    {
+      "id": "expansion-v2-114-0",
+      "label": 0,
+      "p_yes": 0.019714366637267014
+    },
+    {
+      "id": "expansion-v2-115-1",
+      "label": 1,
+      "p_yes": 0.37731701179048355
+    },
+    {
+      "id": "expansion-v2-115-0",
+      "label": 0,
+      "p_yes": 0.08140621888911315
+    },
+    {
+      "id": "expansion-v2-116-1",
+      "label": 1,
+      "p_yes": 0.9785880822010992
+    },
+    {
+      "id": "expansion-v2-116-0",
+      "label": 0,
+      "p_yes": 0.48855846351752424
+    },
+    {
+      "id": "expansion-v2-117-1",
+      "label": 1,
+      "p_yes": 0.9655834083036993
+    },
+    {
+      "id": "expansion-v2-117-0",
+      "label": 0,
+      "p_yes": 0.016105630487390037
+    },
+    {
+      "id": "expansion-v2-118-1",
+      "label": 1,
+      "p_yes": 0.9739802898805371
+    },
+    {
+      "id": "expansion-v2-118-0",
+      "label": 0,
+      "p_yes": 0.0170365629850457
+    },
+    {
+      "id": "expansion-v2-119-1",
+      "label": 1,
+      "p_yes": 0.9434977034216733
+    },
+    {
+      "id": "expansion-v2-119-0",
+      "label": 0,
+      "p_yes": 0.6194681405466916
+    },
+    {
+      "id": "expansion-v2-120-1",
+      "label": 1,
+      "p_yes": 0.7084034544440683
+    },
+    {
+      "id": "expansion-v2-120-0",
+      "label": 0,
+      "p_yes": 0.042125842937383674
+    },
+    {
+      "id": "email-correction-calibration-001",
+      "label": 0,
+      "p_yes": 0.0494910748865893
+    },
+    {
+      "id": "email-correction-calibration-002",
+      "label": 1,
+      "p_yes": 0.9480026318117458
+    },
+    {
+      "id": "email-correction-calibration-003",
+      "label": 0,
+      "p_yes": 0.03234375566034817
+    },
+    {
+      "id": "email-correction-calibration-004",
+      "label": 1,
+      "p_yes": 0.8592959680848531
+    },
+    {
+      "id": "email-correction-calibration-005",
+      "label": 0,
+      "p_yes": 0.09149641439748181
+    },
+    {
+      "id": "email-correction-calibration-006",
+      "label": 1,
+      "p_yes": 0.9756934508652637
+    },
+    {
+      "id": "email-correction-calibration-007",
+      "label": 0,
+      "p_yes": 0.08053645893976528
+    },
+    {
+      "id": "email-correction-calibration-008",
+      "label": 1,
+      "p_yes": 0.9504659411032774
+    },
+    {
+      "id": "email-correction-calibration-009",
+      "label": 0,
+      "p_yes": 0.1187264507886378
+    },
+    {
+      "id": "email-correction-calibration-010",
+      "label": 1,
+      "p_yes": 0.508153624444518
+    },
+    {
+      "id": "email-correction-calibration-011",
+      "label": 0,
+      "p_yes": 0.04147007386319469
+    },
+    {
+      "id": "email-correction-calibration-012",
+      "label": 1,
+      "p_yes": 0.1160678625836575
+    },
+    {
+      "id": "spam-comments-calibration-065",
+      "label": 0,
+      "p_yes": 0.04398795720251934
+    },
+    {
+      "id": "spam-comments-calibration-066",
+      "label": 1,
+      "p_yes": 0.9584312063884383
+    },
+    {
+      "id": "spam-comments-calibration-067",
+      "label": 0,
+      "p_yes": 0.26269579507692115
+    },
+    {
+      "id": "spam-comments-calibration-068",
+      "label": 1,
+      "p_yes": 0.7211036080395493
+    },
+    {
+      "id": "spam-comments-calibration-069",
+      "label": 0,
+      "p_yes": 0.056498768621788174
+    },
+    {
+      "id": "spam-comments-calibration-070",
+      "label": 1,
+      "p_yes": 0.954081817615911
+    },
+    {
+      "id": "spam-comments-calibration-071",
+      "label": 0,
+      "p_yes": 0.06025204116572035
+    },
+    {
+      "id": "spam-comments-calibration-072",
+      "label": 1,
+      "p_yes": 0.12566526857266125
+    },
+    {
+      "id": "spam-comments-calibration-073",
+      "label": 0,
+      "p_yes": 0.014576142626114733
+    },
+    {
+      "id": "spam-comments-calibration-074",
+      "label": 1,
+      "p_yes": 0.9529572864404913
+    },
+    {
+      "id": "spam-comments-calibration-075",
+      "label": 0,
+      "p_yes": 0.016853118005175766
+    },
+    {
+      "id": "spam-comments-calibration-076",
+      "label": 1,
+      "p_yes": 0.6699314193460061
+    },
+    {
+      "id": "spam-comments-calibration-077",
+      "label": 1,
+      "p_yes": 0.9604156315471761
+    },
+    {
+      "id": "spam-comments-calibration-078",
+      "label": 0,
+      "p_yes": 0.17002704955315692
+    },
+    {
+      "id": "spam-comments-calibration-079",
+      "label": 1,
+      "p_yes": 0.9604463805047729
+    },
+    {
+      "id": "spam-comments-calibration-080",
+      "label": 0,
+      "p_yes": 0.2274782782898323
+    }
+  ]
+}

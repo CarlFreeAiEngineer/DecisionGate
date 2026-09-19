@@ -1,0 +1,17 @@
+{
+  "base": "microsoft/MiniLM-L12-H384-uncased",
+  "revision": "44acabbec0ef496f6dbc93adadea57f376b7c0ec",
+  "start": null,
+  "seed": 42,
+  "batch_size": 16,
+  "learning_rate": 3e-05,
+  "device": "mps",
+  "max_tokens": 256,
+  "data": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "b7b448d9fcc0d9b19a287a8aa3eae8e5e13bbacb809ecf870bdefb702315d9bf",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "d61952283b454a8c499a70f5d0a18334d695e64913a4cb03e843dcbb15b8439f"
+  },
+  "parameter_count": 33360770,
+  "torch": "2.8.0",
+  "epochs": 12
+}

@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "network_denial_verified": true,
+  "probe_endpoint": "172.30.0.1:445",
+  "before": {
+    "exit_code": 0,
+    "stdout": "connect_error=0"
+  },
+  "blocked": {
+    "exit_code": 4,
+    "stdout": "connect_error=10013"
+  },
+  "inference": {
+    "exit_code": 0,
+    "stdout": "p_yes=0.995962204"
+  },
+  "rule_removed": true,
+  "after": {
+    "exit_code": 0,
+    "stdout": "connect_error=0"
+  },
+  "scope": "Outbound block for the temporary C executable only"
+}

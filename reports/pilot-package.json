@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "exit_code": 0,
+  "network": "denied by macOS sandbox",
+  "relocated": true,
+  "development_tools_on_path": false,
+  "stdout": "p_yes=0.114632041",
+  "native_process_peak_rss_bytes": 350191616,
+  "bundle_bytes": 195860137,
+  "library_bytes": 3662336,
+  "model_bytes": 133692193
+}

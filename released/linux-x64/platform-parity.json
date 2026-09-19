@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
+  "cases": 81,
+  "max_absolute_difference": 3.0455886942393207e-06,
+  "boolean_disagreements": [],
+  "seconds": 14.048014935106039
+}

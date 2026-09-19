@@ -1,0 +1,22 @@
+{
+  "base": "cross-encoder/nli-MiniLM2-L6-H768",
+  "revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+  "template_version": 2,
+  "nli_head": true,
+  "start": null,
+  "seed": 42,
+  "batch_size": 16,
+  "learning_rate": 1e-05,
+  "device": "mps",
+  "max_tokens": 256,
+  "data": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830"
+  },
+  "parameter_count": 82119938,
+  "torch": "2.8.0",
+  "epochs": 8,
+  "pipeline_sha256": "527395af257de6735168e65498e0ce354985a4150afbdfed9a35b550d6ebf79e",
+  "uv_lock_sha256": "c1091d7ad88644225ff2e376617f3f25db99677194ca38c130a6e108c9d60522",
+  "start_sha256": null
+}

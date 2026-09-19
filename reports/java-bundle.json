@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "java_version": "openjdk 17.0.20.1 2026-08-18",
+  "exit_code": 0,
+  "network_denied": true,
+  "original_bundle_read_denied": true,
+  "stdout": "Refund request: 0.996203\nInvoice request: 0.005127\nBundled Java inference passed; DecisionGate remains experimental.\n",
+  "stderr": "",
+  "api_jar_bytes": 18243,
+  "bundle_jar_bytes": 320704321
+}

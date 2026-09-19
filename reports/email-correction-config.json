@@ -1,0 +1,24 @@
+{
+  "base": "cross-encoder/nli-MiniLM2-L6-H768",
+  "revision": "b95119ce93d3e065de6214e38cd4a97b0f2f2c6d",
+  "template_version": 2,
+  "nli_head": false,
+  "start": "runs/v2-nli-expanded/best",
+  "seed": 42,
+  "batch_size": 16,
+  "learning_rate": 1e-05,
+  "device": "mps",
+  "max_tokens": 256,
+  "data": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
+    "data/contributions/email-address-correction.jsonl": "b1a881f09cb429679ea76e18d848256022ea10e5d42ae5a76f2957d64e8fcf73"
+  },
+  "parameter_count": 82119938,
+  "torch": "2.8.0",
+  "epochs": 10,
+  "pipeline_sha256": "e1574f9eb737164d94616677e7cd48f82901fa6077ddf378096e2adfd8526345",
+  "uv_lock_sha256": "a12aa592fc919d04c5e5fb159d741c4499f3f1ef51469ee4ba0fd7592b3bb675",
+  "start_sha256": "b1b1e9b033190f37916f6f0db378594dbfd4c5bacd1bdb500bdcb64ee53c5e76"
+}

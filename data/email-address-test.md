@@ -1,0 +1,7 @@
+# Email address presence: held-out test
+
+Forty original synthetic records: 20 yes and 20 no, all in the `test` split and `email_address_presence` task family. Each record has a unique ID and group. Related positive and negative scenarios remain together in this test file; their unique groups should not be read as proof of statistical independence. Do not use these records for training or model selection.
+
+A yes means that the content includes an ordinary email address or an unambiguous disguised address. Coverage includes plus tags, punctuation, quoted headers, inactive and sample addresses, bracketed separators, inserted spaces, and explicitly spelled-out separators. A no may mention email, spam, mailing lists, websites, handles, account identifiers, or withheld contact details without supplying an address. Questions use varied wording. All address domains are reserved `example.com`, `example.net`, or `example.org`.
+
+An independent author read three records from `evaluation-v2.jsonl` for the schema and did not consult email training data, model outputs, or evaluation results. Labels and rationales are synthetic and unreviewed; license: CC0-1.0. These examples measure clear address-presence cases, not mailbox deliverability or complete email syntax validation. They do not establish performance on real private messages, multilingual content, ambiguous disguises, Unicode addresses, or adversarial encodings.

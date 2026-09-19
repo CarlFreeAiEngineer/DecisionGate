@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.decisiongate</groupId>
+  <artifactId>decisiongate-java</artifactId>
+  <version>0.2.0</version>
+  <name>DecisionGate Java</name>
+  <description>Offline yes/no decisions through a normal Java API</description>
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.outputTimestamp>2026-09-17T00:00:00Z</project.build.outputTimestamp>
+    <decisiongate.bundle></decisiongate.bundle>
+    <!-- Default bundle for the choose (dg_evaluate_choice) integration test only; it predates
+         the multiple-choice native functions in released bundles, so it points at the local
+         development bundle instead. Override with -Ddecisiongate.choose.bundle=PATH or the
+         DECISIONGATE_CHOOSE_BUNDLE environment variable (checked first); this never changes
+         the -Ddecisiongate.bundle default used for released-bundle testing. -->
+    <decisiongate.choose.bundle>${project.basedir}/../models/choose-dev-macos</decisiongate.choose.bundle>
+    <native.classifier>macos-arm64</native.classifier>
+  </properties>
+  <licenses><license><name>Apache License 2.0</name><url>https://www.apache.org/licenses/LICENSE-2.0</url></license></licenses>
+  <dependencies>
+    <dependency><groupId>net.java.dev.jna</groupId><artifactId>jna</artifactId><version>5.19.1</version></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.11.4</version><scope>test</scope></dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.1</version></plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.4</version>
+        <configuration><systemPropertyVariables>
+          <decisiongate.bundle>${decisiongate.bundle}</decisiongate.bundle>
+          <decisiongate.choose.bundle>${decisiongate.choose.bundle}</decisiongate.choose.bundle>
+        </systemPropertyVariables></configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version>
+        <configuration><archive><manifestEntries><Automatic-Module-Name>org.decisiongate</Automatic-Module-Name></manifestEntries></archive></configuration>
+      </plugin>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.3.1</version><executions><execution><id>sources</id><goals><goal>jar-no-fork</goal></goals></execution></executions></plugin>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.11.2</version><executions><execution><id>javadoc</id><goals><goal>jar</goal></goals></execution></executions></plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>bundle</id>
+      <build><plugins><plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version>
+        <executions><execution><id>native-bundle</id><phase>package</phase><goals><goal>jar</goal></goals><configuration>
+          <classifier>${native.classifier}</classifier><classesDirectory>${project.build.directory}/native-bundle</classesDirectory>
+          <archive><manifestEntries><Automatic-Module-Name>org.decisiongate.bundle</Automatic-Module-Name></manifestEntries></archive>
+        </configuration></execution></executions>
+      </plugin></plugins></build>
+    </profile>
+  </profiles>
+</project>

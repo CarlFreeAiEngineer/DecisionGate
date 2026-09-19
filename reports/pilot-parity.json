@@ -1,0 +1,13 @@
+{
+  "parity_cases": 366,
+  "max_probability_error": 2.0456436002347367e-06,
+  "native_load_seconds": 1.840803333092481,
+  "benchmark_tokens": 256,
+  "benchmark_calls": 1000,
+  "warmup_calls": 20,
+  "threads": 4,
+  "p50_ms": 41.47597949486226,
+  "p95_ms": 43.99143724003806,
+  "process_peak_rss_bytes_macos": 755744768,
+  "memory_note": "Includes PyTorch reference and native model; use native C process for deployment memory."
+}

@@ -1,0 +1,21 @@
+{
+  "base": "microsoft/MiniLM-L12-H384-uncased",
+  "revision": "44acabbec0ef496f6dbc93adadea57f376b7c0ec",
+  "start": "runs/pilot-v2/best",
+  "seed": 42,
+  "batch_size": 16,
+  "learning_rate": 3e-05,
+  "device": "mps",
+  "max_tokens": 256,
+  "data": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "b7b448d9fcc0d9b19a287a8aa3eae8e5e13bbacb809ecf870bdefb702315d9bf",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "d61952283b454a8c499a70f5d0a18334d695e64913a4cb03e843dcbb15b8439f",
+    "data/contributions/example-correction.jsonl": "b8f825869820689ad0aa73eadacc79dc45b1a6f0379bfa3254eeaa222e390585"
+  },
+  "parameter_count": 33360770,
+  "torch": "2.8.0",
+  "epochs": 1,
+  "pipeline_sha256": "60f02badc487d7ccbdf6d36ef03098f003f5a9461df670fef75529490aa7b2e8",
+  "uv_lock_sha256": "c1091d7ad88644225ff2e376617f3f25db99677194ca38c130a6e108c9d60522",
+  "start_sha256": "71e0d75585202be1ff9101b4c28988b9d2aedd27f641f47d6178fd16392b2f1e"
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-19T13:47:42.585Z",
+  "tokenizationCases": 691,
+  "results": [
+    {
+      "browser": "webkit",
+      "version": "26.6",
+      "peakBrowserProcessRssBytes": null,
+      "memoryNote": "Sum of browser process RSS sampled each second; shared pages can be counted more than once. JS heap excludes Wasm memory. WebKit memory is omitted because its XPC processes are not descendants of the test process.",
+      "coldMs": 1147,
+      "ticks": 673,
+      "cases": 87,
+      "maxDifference": 0.0000016369251515380157,
+      "disagree": 0,
+      "inclusive": true,
+      "atOne": false,
+      "atZero": true,
+      "overlength": "DG_INPUT_TOO_LONG",
+      "heap": null,
+      "p50Ms": 79,
+      "p95Ms": 113,
+      "tokenizationCases": 691,
+      "invalidCases": 18,
+      "initializationRetry": true,
+      "integrityFailureRejected": true,
+      "byteLimitRejected": true,
+      "choiceCases": 5,
+      "choiceMaxDifference": 0.0000012580014489005364,
+      "lifecycle": {
+        "full": "DG_RESOURCE_ERROR",
+        "cancelled": "DG_CLOSED"
+      },
+      "offlineReload": true,
+      "offlineMethod": "origin connections rejected; self-only CSP",
+      "offlinePYes": 0.9919370883812078,
+      "externalRequests": 0
+    }
+  ]
+}

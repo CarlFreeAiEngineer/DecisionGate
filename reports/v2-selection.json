@@ -1,0 +1,9 @@
+{
+  "selected": "models/v2-nli-expanded",
+  "selected_epoch": 7,
+  "selection": "lowest log loss on the same 96 validation records; full precision; fresh test not evaluated yet",
+  "model_sha256": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
+  "manifest_sha256": "4cf00980009d71167a6dd9b85178efe8adfb8eca785eb47de98cc2cdb3ef96e7",
+  "fresh_test_sha256": "ffda37e4ea80042a0a78c5be266c836c1ff3b6f13bffebe20c07553e0d1fb528",
+  "compression": "Rejected both quantized candidates for large validation prediction changes"
+}

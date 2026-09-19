@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "Rust unit tests",
+    "C host load/inference/exit",
+    "native ABI and Python tests",
+    "frozen platform parity cases"
+  ],
+  "platform_id": "linux-x64"
+}

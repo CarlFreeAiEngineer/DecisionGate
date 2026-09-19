@@ -1,0 +1,29 @@
+[project]
+name = "decisiongate"
+version = "0.1.0"
+description = "Experimental offline yes/no decisions"
+requires-python = ">=3.11,<3.13"
+dependencies = []
+
+[dependency-groups]
+training = [
+  "torch>=2.6,<2.9",
+  "transformers>=4.48,<4.54",
+  "onnx>=1.17,<1.19",
+  "onnxruntime==1.22.1",
+  "numpy>=2,<3",
+  "safetensors>=0.5,<1",
+]
+
+[tool.uv]
+default-groups = ["training"]
+
+[project.scripts]
+decisiongate-train = "training.pipeline:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["training", "decisiongate"]

@@ -1,0 +1,45 @@
+{
+  "count": 56,
+  "accuracy": 0.5,
+  "balanced_accuracy": 0.5,
+  "brier": 0.2500343234024907,
+  "log_loss": 0.6932158313522325,
+  "by_family": {
+    "appointment": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "appointment_intent": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "coding_routing": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "duplicate": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "duplicate_reports": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "refund": {
+      "count": 8,
+      "accuracy": 0.5
+    },
+    "refund_intent": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "request_routing": {
+      "count": 4,
+      "accuracy": 0.5
+    },
+    "urgency": {
+      "count": 8,
+      "accuracy": 0.5
+    }
+  }
+}

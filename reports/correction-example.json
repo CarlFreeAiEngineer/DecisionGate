@@ -1,0 +1,5 @@
+{
+  "original": 0.11463204108850547,
+  "correction": 0.15957141787860155,
+  "note": "Correction is training data, not a generalization test. One epoch; original release retained."
+}

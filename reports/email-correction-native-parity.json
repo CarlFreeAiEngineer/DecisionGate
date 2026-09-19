@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "cases": 40,
+  "max_probability_error": 5.551115123125783e-17,
+  "correction": {
+    "content": "I wish people would stop emailing me spam",
+    "question": "Does this look like an email address is embedded in the comment?",
+    "expected": false,
+    "before_p_yes": 0.8147193020850837,
+    "after_p_yes": 0.05110757340899182
+  }
+}

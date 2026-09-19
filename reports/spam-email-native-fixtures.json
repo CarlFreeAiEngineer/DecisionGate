@@ -1,0 +1,31 @@
+{
+  "expected_probability": 0.986122636194813,
+  "expected_unicode_probability": 0.29462769048942045,
+  "examples": [
+    {
+      "content": "i'm trying order a can of pinto beans",
+      "p_yes": 0.25786179407098203
+    },
+    {
+      "content": "Do you like my picture? Send \"yes\" to samantha at hotpix dot com, and i will give you more.",
+      "p_yes": 0.7917973265359499
+    },
+    {
+      "content": "I wish people would stop emailing me spam",
+      "p_yes": 0.07277702264780098
+    },
+    {
+      "content": "Dude, I love GTA 5. I can play it all day.",
+      "p_yes": 0.0606637410987304
+    },
+    {
+      "content": "My email is love@spicyhot.com; would love to meet you",
+      "p_yes": 0.8382344045037943
+    },
+    {
+      "content": "Visit rank-hi.com and i will tell you how to win bitcoinz!",
+      "p_yes": 0.8943264815051758
+    }
+  ],
+  "email_correction_p_yes": 0.03536231304128587
+}

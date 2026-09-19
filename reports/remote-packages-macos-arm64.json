@@ -1,0 +1,39 @@
+{
+  "platform": "macos-arm64",
+  "system": "macOS-26.6.2-arm64-arm-64bit",
+  "steps": [
+    {
+      "name": "node-dependencies",
+      "exit_code": 0,
+      "seconds": 0.77,
+      "log": "reports/remote-macos-arm64-node-dependencies.log"
+    },
+    {
+      "name": "node-build",
+      "exit_code": 0,
+      "seconds": 1.14,
+      "log": "reports/remote-macos-arm64-node-build.log"
+    },
+    {
+      "name": "node-tests",
+      "exit_code": 0,
+      "seconds": 2.98,
+      "log": "reports/remote-macos-arm64-node-tests.log"
+    },
+    {
+      "name": "node-pack",
+      "exit_code": 0,
+      "seconds": 31.69,
+      "log": "reports/remote-macos-arm64-node-pack.log"
+    },
+    {
+      "name": "node-consumer",
+      "exit_code": 0,
+      "seconds": 14.41,
+      "log": "reports/remote-macos-arm64-node-consumer.log"
+    }
+  ],
+  "status": "passed",
+  "node_version": "v26.7.0",
+  "node_headers": "/opt/homebrew/Cellar/node/26.7.0/include/node"
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>DecisionGate, inside your browser</title>
+<style>body{max-width:46rem;margin:3rem auto;padding:0 1rem;font:18px system-ui;color:#15222a;background:#f7faf9}label{display:block;margin:1rem 0}textarea,input{display:block;box-sizing:border-box;width:100%;font:inherit;padding:.7rem}button{font:inherit;padding:.7rem 1rem;margin-right:.5rem}output{display:block;margin-top:1rem;white-space:pre-wrap}</style>
+<h1>DecisionGate</h1><p>Your software probably needs this. Even inside a web browser!</p>
+<p>This page makes its decision on your device. First use loads about 350 MB of local website assets. “Keep offline” saves the page and component for later visits.</p>
+<label>Content<textarea id="content">Could you let me know when my order will arrive?</textarea></label>
+<label>Question<input id="question" value="Is the customer asking for a reply?"></label>
+<button id="decide">Decide</button><button id="offline">Keep offline</button><output id="result" aria-live="polite"></output>
+<h2>Choose among options</h2>
+<label>Content<textarea id="chooseContent">My card was charged twice for last month's invoice.</textarea></label>
+<label>Question<input id="chooseQuestion" value="Which team should handle this message?"></label>
+<label>Options, one per line<textarea id="options">billing
+technical support
+sales</textarea></label>
+<button id="choose">Choose</button><output id="choiceResult" aria-live="polite"></output>
+<script type="module">
+import { isYes, chooseP } from './index.js';
+const result=document.querySelector('#result');
+document.querySelector('#decide').onclick=async()=>{result.textContent='Deciding…';try{result.textContent=(await isYes(document.querySelector('#content').value,document.querySelector('#question').value))?'Yes':'No';}catch(e){result.textContent=`${e.code??'ERROR'}: ${e.message}`;}};
+document.querySelector('#offline').onclick=async()=>{result.textContent='Saving offline assets…';try{const registration=await navigator.serviceWorker.register('./service-worker.js');if(!registration.active){await new Promise((resolve,reject)=>{const installing=registration.installing;if(!installing){reject(new Error('Offline installation did not start'));return;}const changed=()=>{if(installing.state==='activated')resolve();else if(installing.state==='redundant')reject(new Error('Unable to save offline assets. The browser may lack storage space; try ordinary browsing instead of private mode.'));};installing.addEventListener('statechange',changed);changed();});}result.textContent='Saved. This page can now run offline unless the browser clears its storage.';}catch(e){result.textContent=`Offline storage failed: ${e.message}`;}};
+const choiceResult=document.querySelector('#choiceResult');
+document.querySelector('#choose').onclick=async()=>{choiceResult.textContent='Choosing…';try{const options=document.querySelector('#options').value.split('\n').map(line=>line.trim()).filter(Boolean);const ranking=await chooseP(document.querySelector('#chooseContent').value,document.querySelector('#chooseQuestion').value,options);choiceResult.textContent=ranking.map(({index,p})=>`${options[index]}: ${(p*100).toFixed(1)}%`).join('\n');}catch(e){choiceResult.textContent=`${e.code??'ERROR'}: ${e.message}`;}};
+</script></html>

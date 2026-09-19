@@ -1,0 +1,18 @@
+import { npmCommand } from './npm-command.mjs';
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, renameSync, writeFileSync, createReadStream } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = dirname(fileURLToPath(import.meta.url));
+const destination = join(root, '../released/node');
+mkdirSync(destination, {recursive:true});
+const [command, commandArgs] = npmCommand(['pack','--json','--pack-destination',destination]);
+const [packed] = JSON.parse(execFileSync(command, commandArgs, {cwd:root,encoding:'utf8',maxBuffer:1024*1024}));
+const name = `decisiongate-${packed.version}-${process.platform}-${process.arch}.tgz`;
+renameSync(join(destination,packed.filename),join(destination,name));
+const hash = createHash('sha256');
+for await (const chunk of createReadStream(join(destination,name))) hash.update(chunk);
+const sha256 = hash.digest('hex');
+writeFileSync(join(destination,`${name}.sha256`),`${sha256}  ${name}\n`);
+console.log(JSON.stringify({file:name,bytes:packed.size,unpackedBytes:packed.unpackedSize,sha256}));

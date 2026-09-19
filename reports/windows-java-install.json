@@ -1,0 +1,14 @@
+{
+  "original_settings_existed": false,
+  "original_settings_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "status": "passed",
+  "winget_pid": 5680,
+  "winget_exit_code": 0,
+  "jdk": "C:\\Program Files\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot",
+  "java_version": "openjdk 17.0.20.1 2026-08-18\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+  "settings_restored_exactly": true,
+  "package_id": "EclipseAdoptium.Temurin.17.JDK",
+  "workaround": "Stopped only stalled winget PID5480, temporarily disabled source auto-update to use the existing catalog, then restored original settings exactly.",
+  "settings_reference": "https://learn.microsoft.com/en-us/windows/package-manager/winget/settings",
+  "installer_sha256": "a6013774c5e4a34951e11c1997d8b4641d2de7736d3eac839231f4266bd1116f"
+}

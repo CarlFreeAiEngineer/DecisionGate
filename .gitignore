@@ -1,0 +1,30 @@
+# Local development tools and downloaded crate cache.
+/tools/
+/tmp/
+
+# Rust build output.
+/code/target/
+
+# Python environments and bytecode.
+.venv/
+__pycache__/
+*.py[cod]
+
+.DS_Store
+/runs/
+/data/local/
+/models/
+/examples/c_smoke
+/java/target/
+/javascript/node_modules/
+/javascript/native/
+/javascript/web/
+/web/node_modules/
+/examples/rust_smoke/target/
+
+# Release bundles (weights, native libraries, wheels, JARs) are far over GitHub's file size limit.
+# Keep only their text records; binaries are published separately.
+/released/**
+!/released/**/
+!/released/**/*.md
+!/released/**/*.json

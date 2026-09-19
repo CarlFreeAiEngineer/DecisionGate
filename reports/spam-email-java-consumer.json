@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "cases": 6,
+  "network_denied": true,
+  "original_native_bundle_reads_denied": true,
+  "exit_code": 0,
+  "stdout": "Six Java/native comparisons passed\n",
+  "stderr": "",
+  "artifacts": "models/spam-email-v1-java",
+  "native_fixture_report": "reports/spam-email-native-fixtures.json"
+}
