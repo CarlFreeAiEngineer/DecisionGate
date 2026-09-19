@@ -15,6 +15,7 @@ BASE = 'microsoft/MiniLM-L12-H384-uncased'
 REVISION = '44acabbec0ef496f6dbc93adadea57f376b7c0ec'
 MAX_TOKENS = 256
 MAX_OPTIONS = 256
+FIXED_SHAPES = False  # pad every batch to MAX_TOKENS; constant shapes keep the MPS allocator from fragmenting
 
 
 def digest(path):
@@ -147,7 +148,8 @@ def metrics(rows, probabilities):
 def encode(tokenizer, rows, template=1):
     questions, contents = [prompt(r) for r in rows], [r['content'] for r in rows]
     first, second = (contents, questions) if template == 2 else (questions, contents)
-    result = tokenizer(first, second, padding=True, truncation=False, return_token_type_ids=True, return_tensors='pt')
+    padding = {'padding': 'max_length', 'max_length': MAX_TOKENS} if FIXED_SHAPES else {'padding': True}
+    result = tokenizer(first, second, truncation=False, return_token_type_ids=True, return_tensors='pt', **padding)
     if result['input_ids'].shape[1] > MAX_TOKENS:
         raise ValueError(f'Input exceeds {MAX_TOKENS} tokens; shorten data or explicitly revise model contract')
     return result
@@ -161,6 +163,8 @@ def predict(model, tokenizer, rows, device):
         for start in range(0, len(rows), 16):
             batch = {k:v.to(device) for k,v in encode(tokenizer, rows[start:start+16], getattr(model.config, 'decisionmodel_template_version', 1)).items()}
             result.extend(model(**batch).logits.softmax(-1)[:,1].cpu().tolist())
+    if device == 'mps':
+        torch.mps.empty_cache()
     return result
 
 
@@ -186,15 +190,19 @@ def train(args):
     tokenizer = AutoTokenizer.from_pretrained(source, **source_options)
     if args.nli_head and not args.start:
         model = AutoModelForSequenceClassification.from_pretrained(source, attn_implementation='eager', **source_options)
-        if model.config.model_type != 'roberta' or model.config.id2label != {0:'contradiction',1:'entailment',2:'neutral'}:
-            raise ValueError('NLI initialization requires the documented RoBERTa three-class head')
-        old = model.classifier.out_proj
+        # Reuse the NLI head: yes starts as entailment, no as the average of the non-entailment classes.
+        labels = {str(v).lower(): int(k) for k, v in model.config.id2label.items()}
+        if 'entailment' not in labels or not ({'contradiction', 'neutral'} <= set(labels) or 'not_entailment' in labels):
+            raise ValueError('NLI initialization requires an entailment/contradiction/neutral or entailment/not_entailment head')
+        no_classes = [labels[n] for n in ('contradiction', 'neutral', 'not_entailment') if n in labels]
+        holder, attribute = (model.classifier, 'out_proj') if hasattr(model.classifier, 'out_proj') else (model, 'classifier')
+        old = getattr(holder, attribute)
         head = torch.nn.Linear(old.in_features, 2)
         with torch.no_grad():
-            head.weight[0].copy_((old.weight[0]+old.weight[2])/2)
-            head.bias[0].copy_((old.bias[0]+old.bias[2])/2)
-            head.weight[1].copy_(old.weight[1]); head.bias[1].copy_(old.bias[1])
-        model.classifier.out_proj = head
+            head.weight[0].copy_(old.weight[no_classes].mean(0))
+            head.bias[0].copy_(old.bias[no_classes].mean())
+            head.weight[1].copy_(old.weight[labels['entailment']]); head.bias[1].copy_(old.bias[labels['entailment']])
+        setattr(holder, attribute, head)
         model.num_labels = model.config.num_labels = 2
     else:
         model = AutoModelForSequenceClassification.from_pretrained(source, num_labels=2, attn_implementation='eager', **source_options)
@@ -207,6 +215,10 @@ def train(args):
     foundation_revision = getattr(model.config, 'decisionmodel_revision', parent_recipe.get('revision', args.revision))
     model.config.decisionmodel_base = foundation_base
     model.config.decisionmodel_revision = foundation_revision
+    global FIXED_SHAPES
+    FIXED_SHAPES = args.fixed_shapes
+    if args.gradient_checkpointing:
+        model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False})  # recompute activations in backward; large models otherwise exhaust MPS memory
     model.to(device)
     model.config.id2label = {0:'NO', 1:'YES'}
     model.config.label2id = {'NO':0, 'YES':1}
@@ -253,6 +265,8 @@ def train(args):
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.)
             optimizer.step()
             loss_sum += loss.item()*len(batch_rows)
+            if device == 'mps' and (offset // args.batch_size) % 5 == 0:
+                torch.mps.empty_cache()  # variable sequence lengths otherwise grow the MPS cache until it fails
         validation_probabilities = predict(model, tokenizer, validation, device)
         score = metrics(validation, validation_probabilities)
         choice_items = [(r, p) for r, p in zip(validation, validation_probabilities) if r.get('choice_of')]
@@ -295,7 +309,12 @@ def export(args):
             super().__init__()
             self.inner = model
         def forward(self, input_ids, attention_mask, token_type_ids):
-            return self.inner(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids).logits
+            if getattr(model.config, 'type_vocab_size', 0) > 0:
+                return self.inner(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids).logits
+            # Architectures without segment embeddings (DeBERTa v3) ignore token_type_ids; keep the input in the
+            # graph with a zero contribution so every runtime can feed the same three tensors.
+            logits = self.inner(input_ids=input_ids, attention_mask=attention_mask).logits
+            return logits + token_type_ids[:, :1].to(logits.dtype) * 0
     template = getattr(model.config, 'decisionmodel_template_version', 1)
     sample = encode(tokenizer, [{'question':'Is this asking for a refund?', 'content':'Please return my payment.'}], template)
     names = ['input_ids','attention_mask','token_type_ids']
@@ -449,6 +468,8 @@ def main():
     tr.add_argument('--device',choices=['cpu','mps','cuda']); tr.add_argument('--start'); tr.add_argument('--resume',action='store_true')
     tr.add_argument('--base',default=BASE); tr.add_argument('--revision',default=REVISION)
     tr.add_argument('--nli-head',action='store_true'); tr.add_argument('--template',type=int,choices=[1,2],default=1)
+    tr.add_argument('--gradient-checkpointing',action='store_true',help='Recompute activations during backward to cut peak memory')
+    tr.add_argument('--fixed-shapes',action='store_true',help='Pad every batch to the maximum token count so GPU memory blocks are reused')
     ex = sub.add_parser('export'); ex.add_argument('--checkpoint',required=True); ex.add_argument('--output',required=True); ex.add_argument('--model-id',required=True)
     ev = sub.add_parser('evaluate'); ev.add_argument('--bundle',required=True); ev.add_argument('--split',choices=['train','validation','calibration','test'],default='test'); ev.add_argument('--output',required=True); ev.add_argument('--extra-data',action='append',default=[])
     cal = sub.add_parser('calibrate'); cal.add_argument('--bundle',required=True); cal.add_argument('--output',required=True); cal.add_argument('--extra-data',action='append',default=[]); cal.set_defaults(split='calibration')

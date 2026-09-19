@@ -91,7 +91,7 @@ Complete, runnable examples for every language, including probabilities, criteri
 
 ## Your answer. Your rules.
 
-Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call loads the component and is slow; every call after that reuses it and takes about 70 milliseconds on a laptop CPU (measured p50 on an M1 Pro, see [the v0.3 report](reports/accuracy-v3.md)).
+Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call loads the component and is slow; every call after that reuses it and takes about 560 milliseconds on a laptop CPU for a 256-token input (measured p50 on an M1 Pro with four threads, see [the v0.4 report](reports/accuracy-v4.md)); the previous, far less accurate model took 70 milliseconds.
 
 | Language                | Boolean                | Probability of yes      |
 | ----------------------- | ---------------------- | ----------------------- |
@@ -170,9 +170,9 @@ We intend to publish releases and training assets, likely on Hugging Face alongs
 
 ## What you can use today
 
-The experimental Mac bundle is about **229 MB**; the browser bundle is about **181 MB**. Weights are stored as float16 and computed in float32, which halved the download without changing any test decision; Windows and Linux bundles are still the previous 394 MB version until they are rebuilt. Both run entirely inside your application, with no telemetry, remote inference fallback, or per-call bill. Browser assets are delivered with your web app. It was fine-tuned on an M1 Pro Mac with 32 GB of memory. Project code and current weights are both Apache-2.0; dependencies carry their own [license notices](notices/README.md).
+The experimental Mac bundle is about **900 MB** and the browser bundle about **870 MB**. Weights are stored as float16 and computed in float32; version 0.4.0 moved to a 435M-parameter DeBERTa-v3-large foundation, four times the size of 0.3.0, because accuracy was the priority. Windows and Linux bundles are still the previous version until they are rebuilt. Both run entirely inside your application, with no telemetry, remote inference fallback, or per-call bill. Browser assets are delivered with your web app. Training ran on a Google Colab A100 (the M1 Pro could not hold the large model). Project code and current weights are both Apache-2.0 and MIT respectively for the foundation; dependencies carry their own [license notices](notices/README.md).
 
-**Accuracy is still experimental:** version 0.3.0 answered **62 of 80 fresh synthetic yes/no test cases** correctly (59 for the previous version, 42 for the original) and **14 of 20 held-out multiple-choice cases**. That leaves plenty of errors, and there is no independent human-reviewed benchmark. The examples above illustrate the interface, not a guarantee of reliable appointment, duplicate, or cancellation detection. See [measured accuracy, size, and speed](reports/accuracy-v3.md).
+**Accuracy is measured, not guaranteed:** version 0.4.0 answered **443 of 480 held-out yes/no test cases (92.3%)** written by separate authors across sixteen families, **74 of 80 fresh cases (92.5%)** and **19 of 20 held-out multiple-choice cases**; the previous version scored 59.2%, 77.5%, and 14 of 20 on the same sets. Intent, negation, quoted instructions, routing, and duplicate detection are at or above 90% per family; arithmetic and exact numeric boundaries are the weak spot (70%). All test data is synthetic and machine-authored, so there is still no independent human-reviewed benchmark. See [measured accuracy, size, and speed](reports/accuracy-v4.md).
 
 The current version handles English text, yes/no questions, and multiple choice over caller-supplied options. Other decision types come later.
 

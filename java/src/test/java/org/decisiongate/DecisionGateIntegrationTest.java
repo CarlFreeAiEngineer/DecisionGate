@@ -20,9 +20,9 @@ class DecisionGateIntegrationTest {
     private static final String QUESTION = "Is the customer asking to cancel their subscription?";
     // Release goldens remain the default; alternate bundles supply independent native results.
     private static final double EXPECTED = Double.parseDouble(
-            System.getProperty("decisiongate.expectedProbability", "0.9959622015075841"));
+            System.getProperty("decisiongate.expectedProbability", "0.9967822260684038"));
     private static final double EXPECTED_UNICODE = Double.parseDouble(
-            System.getProperty("decisiongate.expectedUnicodeProbability", "0.061476134239817716"));
+            System.getProperty("decisiongate.expectedUnicodeProbability", "0.9947915411986116"));
     private static DecisionGate model;
 
     @BeforeAll

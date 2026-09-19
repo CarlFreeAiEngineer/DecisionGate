@@ -1,0 +1,188 @@
+{
+  "count": 32,
+  "accuracy": 0.90625,
+  "balanced_accuracy": 0.90625,
+  "brier": 0.11357497210917168,
+  "log_loss": 0.40066755215963634,
+  "by_family": {
+    "spam_marketing_comment": {
+      "count": 32,
+      "accuracy": 0.90625
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 34.03806244023144,
+  "p95_ms": 86.69574004597962,
+  "predictions": [
+    {
+      "id": "spam-comments-test-001",
+      "label": 1,
+      "p_yes": 0.6979984740754885
+    },
+    {
+      "id": "spam-comments-test-002",
+      "label": 0,
+      "p_yes": 0.9400424891816982
+    },
+    {
+      "id": "spam-comments-test-003",
+      "label": 1,
+      "p_yes": 0.9677095034650592
+    },
+    {
+      "id": "spam-comments-test-004",
+      "label": 0,
+      "p_yes": 0.5262783114717661
+    },
+    {
+      "id": "spam-comments-test-005",
+      "label": 1,
+      "p_yes": 0.900187440059789
+    },
+    {
+      "id": "spam-comments-test-006",
+      "label": 0,
+      "p_yes": 0.2939451911901493
+    },
+    {
+      "id": "spam-comments-test-007",
+      "label": 1,
+      "p_yes": 0.6778639256022932
+    },
+    {
+      "id": "spam-comments-test-008",
+      "label": 0,
+      "p_yes": 0.3542351495794865
+    },
+    {
+      "id": "spam-comments-test-009",
+      "label": 1,
+      "p_yes": 0.5755192482121683
+    },
+    {
+      "id": "spam-comments-test-010",
+      "label": 0,
+      "p_yes": 0.32218216218841866
+    },
+    {
+      "id": "spam-comments-test-011",
+      "label": 1,
+      "p_yes": 0.9129866962464726
+    },
+    {
+      "id": "spam-comments-test-012",
+      "label": 0,
+      "p_yes": 0.044050818634414936
+    },
+    {
+      "id": "spam-comments-test-013",
+      "label": 1,
+      "p_yes": 0.903838825208339
+    },
+    {
+      "id": "spam-comments-test-014",
+      "label": 0,
+      "p_yes": 0.03284607596246477
+    },
+    {
+      "id": "spam-comments-test-015",
+      "label": 1,
+      "p_yes": 0.7377910934610054
+    },
+    {
+      "id": "spam-comments-test-016",
+      "label": 0,
+      "p_yes": 0.3343515702353379
+    },
+    {
+      "id": "spam-comments-test-017",
+      "label": 1,
+      "p_yes": 0.788419728245982
+    },
+    {
+      "id": "spam-comments-test-018",
+      "label": 0,
+      "p_yes": 0.376720977833485
+    },
+    {
+      "id": "spam-comments-test-019",
+      "label": 1,
+      "p_yes": 0.8846596727927029
+    },
+    {
+      "id": "spam-comments-test-020",
+      "label": 0,
+      "p_yes": 0.05753465783066433
+    },
+    {
+      "id": "spam-comments-test-021",
+      "label": 1,
+      "p_yes": 0.931021078294039
+    },
+    {
+      "id": "spam-comments-test-022",
+      "label": 0,
+      "p_yes": 0.013336359048817805
+    },
+    {
+      "id": "spam-comments-test-023",
+      "label": 1,
+      "p_yes": 0.7000238029784367
+    },
+    {
+      "id": "spam-comments-test-024",
+      "label": 0,
+      "p_yes": 0.923701808737636
+    },
+    {
+      "id": "spam-comments-test-025",
+      "label": 1,
+      "p_yes": 0.8184625739893239
+    },
+    {
+      "id": "spam-comments-test-026",
+      "label": 0,
+      "p_yes": 0.03685776173626001
+    },
+    {
+      "id": "spam-comments-test-027",
+      "label": 1,
+      "p_yes": 0.7777883436094135
+    },
+    {
+      "id": "spam-comments-test-028",
+      "label": 0,
+      "p_yes": 0.03169107633714217
+    },
+    {
+      "id": "spam-comments-test-029",
+      "label": 1,
+      "p_yes": 0.5201763245779248
+    },
+    {
+      "id": "spam-comments-test-030",
+      "label": 0,
+      "p_yes": 0.18769031310847886
+    },
+    {
+      "id": "spam-comments-test-031",
+      "label": 1,
+      "p_yes": 0.7488752254910357
+    },
+    {
+      "id": "spam-comments-test-032",
+      "label": 0,
+      "p_yes": 0.08277024237840548
+    }
+  ],
+  "split": "test",
+  "temperature": 1.4288939585111033,
+  "bundle": "models/v4-base",
+  "model_sha256": "3d5b89052c9865bf399d859073a2d9c6acccba4fc8c85125ded10ae955585246",
+  "data_sha256": {
+    "data/spam-comments-test.jsonl": "bedc56db7877d5824c86366913dfaf715d398301dfa390eb50cb9448096a7fd2"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

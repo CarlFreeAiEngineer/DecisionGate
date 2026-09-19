@@ -1,0 +1,5 @@
+
+> decisiongate@0.4.0 build
+> node build.mjs
+
+Built /Users/ace/Desktop/prjx/DecisionModel/javascript/native/darwin-arm64/decisiongate.node

@@ -1,0 +1,798 @@
+{
+  "count": 52,
+  "accuracy": 0.6730769230769231,
+  "balanced_accuracy": 0.6730769230769231,
+  "brier": 0.20726526322735347,
+  "log_loss": 0.5960360444455968,
+  "by_family": {
+    "appointment": {
+      "count": 4,
+      "accuracy": 0.75
+    },
+    "appointment_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "coding_routing": {
+      "count": 4,
+      "accuracy": 0.75
+    },
+    "duplicate": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "permission": {
+      "count": 10,
+      "accuracy": 0.5
+    },
+    "refund": {
+      "count": 4,
+      "accuracy": 0.25
+    },
+    "refund_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_routing": {
+      "count": 6,
+      "accuracy": 1.0
+    },
+    "timeline": {
+      "count": 10,
+      "accuracy": 0.5
+    },
+    "urgency": {
+      "count": 4,
+      "accuracy": 0.75
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 20.895124995149672,
+  "p95_ms": 23.22343122214079,
+  "predictions": [
+    {
+      "id": "seed-v1-refund-041",
+      "label": 1,
+      "p_yes": 0.45190140470965307
+    },
+    {
+      "id": "seed-v1-refund-042",
+      "label": 0,
+      "p_yes": 0.6138657062940074
+    },
+    {
+      "id": "seed-v1-refund-043",
+      "label": 1,
+      "p_yes": 0.5798231799735113
+    },
+    {
+      "id": "seed-v1-refund-044",
+      "label": 0,
+      "p_yes": 0.578120589040758
+    },
+    {
+      "id": "seed-v1-urgency-041",
+      "label": 1,
+      "p_yes": 0.5973252885808104
+    },
+    {
+      "id": "seed-v1-urgency-042",
+      "label": 0,
+      "p_yes": 0.559157235348114
+    },
+    {
+      "id": "seed-v1-urgency-043",
+      "label": 1,
+      "p_yes": 0.5489852913718185
+    },
+    {
+      "id": "seed-v1-urgency-044",
+      "label": 0,
+      "p_yes": 0.26587242011844264
+    },
+    {
+      "id": "seed-v1-duplicate-041",
+      "label": 1,
+      "p_yes": 0.8436606989728351
+    },
+    {
+      "id": "seed-v1-duplicate-042",
+      "label": 0,
+      "p_yes": 0.11459436648380959
+    },
+    {
+      "id": "seed-v1-duplicate-043",
+      "label": 1,
+      "p_yes": 0.9532367119991259
+    },
+    {
+      "id": "seed-v1-duplicate-044",
+      "label": 0,
+      "p_yes": 0.13422009548730462
+    },
+    {
+      "id": "seed-v1-coding_routing-041",
+      "label": 1,
+      "p_yes": 0.9363015629410205
+    },
+    {
+      "id": "seed-v1-coding_routing-042",
+      "label": 0,
+      "p_yes": 0.40595027779601206
+    },
+    {
+      "id": "seed-v1-coding_routing-043",
+      "label": 1,
+      "p_yes": 0.8104491648036649
+    },
+    {
+      "id": "seed-v1-coding_routing-044",
+      "label": 0,
+      "p_yes": 0.6291634860933425
+    },
+    {
+      "id": "seed-v1-appointment-041",
+      "label": 1,
+      "p_yes": 0.7863352791866683
+    },
+    {
+      "id": "seed-v1-appointment-042",
+      "label": 0,
+      "p_yes": 0.3339510184376493
+    },
+    {
+      "id": "seed-v1-appointment-043",
+      "label": 1,
+      "p_yes": 0.8446015839503571
+    },
+    {
+      "id": "seed-v1-appointment-044",
+      "label": 0,
+      "p_yes": 0.7792562744417261
+    },
+    {
+      "id": "seed-v1-permission-001",
+      "label": 1,
+      "p_yes": 0.24474544634622394
+    },
+    {
+      "id": "seed-v1-permission-002",
+      "label": 0,
+      "p_yes": 0.2707787831602061
+    },
+    {
+      "id": "seed-v1-permission-003",
+      "label": 1,
+      "p_yes": 0.26963654912551155
+    },
+    {
+      "id": "seed-v1-permission-004",
+      "label": 0,
+      "p_yes": 0.22787541068912193
+    },
+    {
+      "id": "seed-v1-permission-005",
+      "label": 1,
+      "p_yes": 0.2889368850849327
+    },
+    {
+      "id": "seed-v1-permission-006",
+      "label": 0,
+      "p_yes": 0.30155838886876524
+    },
+    {
+      "id": "seed-v1-permission-007",
+      "label": 1,
+      "p_yes": 0.13487606472285374
+    },
+    {
+      "id": "seed-v1-permission-008",
+      "label": 0,
+      "p_yes": 0.3005541301171472
+    },
+    {
+      "id": "seed-v1-permission-009",
+      "label": 1,
+      "p_yes": 0.22965526073260192
+    },
+    {
+      "id": "seed-v1-permission-010",
+      "label": 0,
+      "p_yes": 0.319890983751073
+    },
+    {
+      "id": "seed-v1-timeline-001",
+      "label": 1,
+      "p_yes": 0.41883916184580766
+    },
+    {
+      "id": "seed-v1-timeline-002",
+      "label": 0,
+      "p_yes": 0.17083311451719557
+    },
+    {
+      "id": "seed-v1-timeline-003",
+      "label": 1,
+      "p_yes": 0.1688033237715734
+    },
+    {
+      "id": "seed-v1-timeline-004",
+      "label": 0,
+      "p_yes": 0.123935563364167
+    },
+    {
+      "id": "seed-v1-timeline-005",
+      "label": 1,
+      "p_yes": 0.16469415408767418
+    },
+    {
+      "id": "seed-v1-timeline-006",
+      "label": 0,
+      "p_yes": 0.3015403977545176
+    },
+    {
+      "id": "seed-v1-timeline-007",
+      "label": 1,
+      "p_yes": 0.2549179836949205
+    },
+    {
+      "id": "seed-v1-timeline-008",
+      "label": 0,
+      "p_yes": 0.23920518397408144
+    },
+    {
+      "id": "seed-v1-timeline-009",
+      "label": 1,
+      "p_yes": 0.25597015756779085
+    },
+    {
+      "id": "seed-v1-timeline-010",
+      "label": 0,
+      "p_yes": 0.26502581863846547
+    },
+    {
+      "id": "plain-v1-refund_intent-012-1",
+      "label": 1,
+      "p_yes": 0.9492922680215946
+    },
+    {
+      "id": "plain-v1-refund_intent-012-0",
+      "label": 0,
+      "p_yes": 0.010982603985946342
+    },
+    {
+      "id": "plain-v1-appointment_intent-012-1",
+      "label": 1,
+      "p_yes": 0.9548959920723533
+    },
+    {
+      "id": "plain-v1-appointment_intent-012-0",
+      "label": 0,
+      "p_yes": 0.010397323096473237
+    },
+    {
+      "id": "plain-v1-request_routing-012-1",
+      "label": 1,
+      "p_yes": 0.9680291003658927
+    },
+    {
+      "id": "plain-v1-request_routing-012-0",
+      "label": 0,
+      "p_yes": 0.02530490868402699
+    },
+    {
+      "id": "plain-v1-request_routing-013-1",
+      "label": 1,
+      "p_yes": 0.9682949811636048
+    },
+    {
+      "id": "plain-v1-request_routing-013-0",
+      "label": 0,
+      "p_yes": 0.01241728878511931
+    },
+    {
+      "id": "plain-v1-request_routing-014-1",
+      "label": 1,
+      "p_yes": 0.8447844359567867
+    },
+    {
+      "id": "plain-v1-request_routing-014-0",
+      "label": 0,
+      "p_yes": 0.03803549414801446
+    },
+    {
+      "id": "plain-v1-duplicate_reports-012-1",
+      "label": 1,
+      "p_yes": 0.9740856107167017
+    },
+    {
+      "id": "plain-v1-duplicate_reports-012-0",
+      "label": 0,
+      "p_yes": 0.9496515962502055
+    }
+  ],
+  "choice_accuracy": 0.7,
+  "choice_count": 20,
+  "choice_log_loss": 0.8903722902620033,
+  "choice_by_family": {
+    "support_routing": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "urgency_level": {
+      "count": 2,
+      "accuracy": 0.0
+    },
+    "unit_or_quantity": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "document_type": {
+      "count": 7,
+      "accuracy": 0.5714285714285714
+    },
+    "animal_or_object": {
+      "count": 7,
+      "accuracy": 1.0
+    }
+  },
+  "choice_predictions": [
+    {
+      "id": "choices-v1-101",
+      "label": 2,
+      "ranked": [
+        [
+          1,
+          0.501547487728528
+        ],
+        [
+          2,
+          0.3227519037474984
+        ],
+        [
+          0,
+          0.16972472674594616
+        ],
+        [
+          3,
+          0.005975881778027414
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-102",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.4169930421757452
+        ],
+        [
+          3,
+          0.3881661975522839
+        ],
+        [
+          0,
+          0.17413330244853237
+        ],
+        [
+          2,
+          0.020707457823438573
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-103",
+      "label": 2,
+      "ranked": [
+        [
+          3,
+          0.5390556680206564
+        ],
+        [
+          2,
+          0.43057888896180974
+        ],
+        [
+          0,
+          0.015215289798711335
+        ],
+        [
+          1,
+          0.015150153218822475
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-104",
+      "label": 2,
+      "ranked": [
+        [
+          0,
+          0.6288174933468801
+        ],
+        [
+          2,
+          0.24504317435264095
+        ],
+        [
+          1,
+          0.11472711549207
+        ],
+        [
+          3,
+          0.011412216808409068
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-105",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.9932825844056733
+        ],
+        [
+          0,
+          0.006498124205564633
+        ],
+        [
+          3,
+          0.00010978856773698854
+        ],
+        [
+          1,
+          0.00010950282102507288
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-106",
+      "label": 3,
+      "ranked": [
+        [
+          3,
+          0.7745120902502152
+        ],
+        [
+          0,
+          0.2214139559146857
+        ],
+        [
+          2,
+          0.002406793385413511
+        ],
+        [
+          1,
+          0.0016671604496855663
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-107",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9440797031694885
+        ],
+        [
+          2,
+          0.05465149887749172
+        ],
+        [
+          0,
+          0.0008348952962464806
+        ],
+        [
+          3,
+          0.00043390265677343897
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-108",
+      "label": 1,
+      "ranked": [
+        [
+          0,
+          0.9945662178844178
+        ],
+        [
+          1,
+          0.002911134821806255
+        ],
+        [
+          2,
+          0.001675819021393502
+        ],
+        [
+          3,
+          0.0008468282723821966
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-109",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.8969868663878438
+        ],
+        [
+          0,
+          0.08211718952407737
+        ],
+        [
+          1,
+          0.01681584981632321
+        ],
+        [
+          3,
+          0.004080094271755784
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-110",
+      "label": 1,
+      "ranked": [
+        [
+          0,
+          0.8325695233750214
+        ],
+        [
+          1,
+          0.12723526636265153
+        ],
+        [
+          3,
+          0.028028275093116402
+        ],
+        [
+          2,
+          0.012166935169210462
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-111",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.9708322094467491
+        ],
+        [
+          1,
+          0.015346904067340185
+        ],
+        [
+          0,
+          0.012358426132687906
+        ],
+        [
+          3,
+          0.0014624603532229997
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-112",
+      "label": 1,
+      "ranked": [
+        [
+          0,
+          0.976170033460207
+        ],
+        [
+          1,
+          0.013256126331554029
+        ],
+        [
+          3,
+          0.00825165339897024
+        ],
+        [
+          2,
+          0.0023221868092687765
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-113",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.9906282779087041
+        ],
+        [
+          1,
+          0.005249033855185552
+        ],
+        [
+          0,
+          0.0025860197879125327
+        ],
+        [
+          3,
+          0.0015366684481977991
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-114",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9994686356484717
+        ],
+        [
+          0,
+          0.00026893488085226577
+        ],
+        [
+          2,
+          0.00014766672249942887
+        ],
+        [
+          3,
+          0.00011476274817662026
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-115",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.6345216694301999
+        ],
+        [
+          0,
+          0.36472885887988793
+        ],
+        [
+          3,
+          0.000665740541110424
+        ],
+        [
+          2,
+          8.37311488015816e-05
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-116",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9873972155001206
+        ],
+        [
+          2,
+          0.009724213380441972
+        ],
+        [
+          0,
+          0.0016869664844343507
+        ],
+        [
+          3,
+          0.0011916046350031783
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-117",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.9078294160406015
+        ],
+        [
+          0,
+          0.09182962106705266
+        ],
+        [
+          1,
+          0.0002760986095301937
+        ],
+        [
+          3,
+          6.486428281556058e-05
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-118",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9970393879094349
+        ],
+        [
+          2,
+          0.0011734736093826116
+        ],
+        [
+          3,
+          0.0009118376118107473
+        ],
+        [
+          0,
+          0.0008753008693716571
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-119",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.7468924713109679
+        ],
+        [
+          0,
+          0.23419389898595522
+        ],
+        [
+          1,
+          0.009740134449752877
+        ],
+        [
+          3,
+          0.009173495253323949
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-120",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9984177424841503
+        ],
+        [
+          3,
+          0.0006870560912776476
+        ],
+        [
+          0,
+          0.0004804198304668527
+        ],
+        [
+          2,
+          0.0004147815941051841
+        ]
+      ]
+    }
+  ],
+  "split": "test",
+  "temperature": 1.161448613840343,
+  "bundle": "models/v3-nli-choices-fp16",
+  "model_sha256": "884d82d2a78b85acc497f4acfc3144a21e8d82808d0affbf8976fa1f0d97ac9d",
+  "data_sha256": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
+    "data/choices.jsonl": "bc818e5cae7957ba42b0bb472a99c7522d7deac1bd371b4b5c5e1153246efaeb"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

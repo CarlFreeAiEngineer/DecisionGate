@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "wheel": "decisiongate-0.3.0-py3-none-macosx_14_0_arm64.whl",
+  "network_denied": true,
+  "checkout_read_denied": true,
+  "network_isolation": "macOS sandbox",
+  "consumer": {
+    "probability": 0.9958687974895749,
+    "custom_probability": 0.5744862867902104,
+    "module": "/Users/ace/.cache/uv/archive-v0/61_VWXD618sKkWkk/lib/python3.12/site-packages/decisiongate/__init__.py",
+    "concurrent_calls": 8
+  },
+  "stderr": "Installed 1 package in 4ms\n"
+}

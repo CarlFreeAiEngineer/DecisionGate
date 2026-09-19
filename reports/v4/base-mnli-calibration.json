@@ -1,0 +1,610 @@
+{
+  "count": 52,
+  "accuracy": 0.9615384615384616,
+  "balanced_accuracy": 0.9615384615384616,
+  "brier": 0.03796901828729642,
+  "log_loss": 0.1478092313834286,
+  "by_family": {
+    "appointment": {
+      "count": 6,
+      "accuracy": 1.0
+    },
+    "appointment_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "cancellation": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "coding_billing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "coding_routing": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate_issue": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "everyday": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "mixed_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "negation": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "reference": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "refund": {
+      "count": 8,
+      "accuracy": 0.875
+    },
+    "refund_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "reported_speech": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_routing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "urgency": {
+      "count": 6,
+      "accuracy": 1.0
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 26.63429151289165,
+  "p95_ms": 53.62887940136715,
+  "predictions": [
+    {
+      "id": "seed-v1-refund-045",
+      "label": 1,
+      "p_yes": 0.9495989429481615
+    },
+    {
+      "id": "seed-v1-refund-046",
+      "label": 0,
+      "p_yes": 0.021927746274735125
+    },
+    {
+      "id": "seed-v1-refund-047",
+      "label": 1,
+      "p_yes": 0.9615348576258634
+    },
+    {
+      "id": "seed-v1-refund-048",
+      "label": 0,
+      "p_yes": 0.03666054934208612
+    },
+    {
+      "id": "seed-v1-refund-049",
+      "label": 1,
+      "p_yes": 0.9500324899282265
+    },
+    {
+      "id": "seed-v1-refund-050",
+      "label": 0,
+      "p_yes": 0.02270452197755533
+    },
+    {
+      "id": "seed-v1-urgency-045",
+      "label": 1,
+      "p_yes": 0.9598705101846834
+    },
+    {
+      "id": "seed-v1-urgency-046",
+      "label": 0,
+      "p_yes": 0.058614395803061395
+    },
+    {
+      "id": "seed-v1-urgency-047",
+      "label": 1,
+      "p_yes": 0.9604404413556754
+    },
+    {
+      "id": "seed-v1-urgency-048",
+      "label": 0,
+      "p_yes": 0.02396947158904831
+    },
+    {
+      "id": "seed-v1-urgency-049",
+      "label": 1,
+      "p_yes": 0.9772997936835073
+    },
+    {
+      "id": "seed-v1-urgency-050",
+      "label": 0,
+      "p_yes": 0.02455110507386725
+    },
+    {
+      "id": "seed-v1-duplicate-045",
+      "label": 1,
+      "p_yes": 0.9763949457621199
+    },
+    {
+      "id": "seed-v1-duplicate-046",
+      "label": 0,
+      "p_yes": 0.03557206646469913
+    },
+    {
+      "id": "seed-v1-duplicate-047",
+      "label": 1,
+      "p_yes": 0.9772848759673635
+    },
+    {
+      "id": "seed-v1-duplicate-048",
+      "label": 0,
+      "p_yes": 0.033954781606173094
+    },
+    {
+      "id": "seed-v1-coding_routing-045",
+      "label": 1,
+      "p_yes": 0.9782946748994177
+    },
+    {
+      "id": "seed-v1-coding_routing-046",
+      "label": 0,
+      "p_yes": 0.027681137541169694
+    },
+    {
+      "id": "seed-v1-coding_routing-047",
+      "label": 1,
+      "p_yes": 0.9836197941587441
+    },
+    {
+      "id": "seed-v1-coding_routing-048",
+      "label": 0,
+      "p_yes": 0.027657732542267537
+    },
+    {
+      "id": "seed-v1-appointment-045",
+      "label": 1,
+      "p_yes": 0.9841954797462783
+    },
+    {
+      "id": "seed-v1-appointment-046",
+      "label": 0,
+      "p_yes": 0.02430629422047843
+    },
+    {
+      "id": "seed-v1-appointment-047",
+      "label": 1,
+      "p_yes": 0.975341206052301
+    },
+    {
+      "id": "seed-v1-appointment-048",
+      "label": 0,
+      "p_yes": 0.3872447549388461
+    },
+    {
+      "id": "plain-v1-refund_intent-011-1",
+      "label": 1,
+      "p_yes": 0.9780377665327002
+    },
+    {
+      "id": "plain-v1-refund_intent-011-0",
+      "label": 0,
+      "p_yes": 0.030599416548028377
+    },
+    {
+      "id": "plain-v1-appointment_intent-011-1",
+      "label": 1,
+      "p_yes": 0.976212987774403
+    },
+    {
+      "id": "plain-v1-appointment_intent-011-0",
+      "label": 0,
+      "p_yes": 0.028352161644718807
+    },
+    {
+      "id": "plain-v1-request_routing-011-1",
+      "label": 1,
+      "p_yes": 0.9713752945177268
+    },
+    {
+      "id": "plain-v1-request_routing-011-0",
+      "label": 0,
+      "p_yes": 0.025213213937637494
+    },
+    {
+      "id": "plain-v1-duplicate_reports-011-1",
+      "label": 1,
+      "p_yes": 0.975835025064762
+    },
+    {
+      "id": "plain-v1-duplicate_reports-011-0",
+      "label": 0,
+      "p_yes": 0.946761901219475
+    },
+    {
+      "id": "expansion-v2-111-1",
+      "label": 1,
+      "p_yes": 0.9721882922228138
+    },
+    {
+      "id": "expansion-v2-111-0",
+      "label": 0,
+      "p_yes": 0.04052441234259426
+    },
+    {
+      "id": "expansion-v2-112-1",
+      "label": 1,
+      "p_yes": 0.9789398606824116
+    },
+    {
+      "id": "expansion-v2-112-0",
+      "label": 0,
+      "p_yes": 0.02950602280252409
+    },
+    {
+      "id": "expansion-v2-113-1",
+      "label": 1,
+      "p_yes": 0.9762044988107453
+    },
+    {
+      "id": "expansion-v2-113-0",
+      "label": 0,
+      "p_yes": 0.03564709633601686
+    },
+    {
+      "id": "expansion-v2-114-1",
+      "label": 1,
+      "p_yes": 0.9500664791286976
+    },
+    {
+      "id": "expansion-v2-114-0",
+      "label": 0,
+      "p_yes": 0.03691552726234026
+    },
+    {
+      "id": "expansion-v2-115-1",
+      "label": 1,
+      "p_yes": 0.06313791443707874
+    },
+    {
+      "id": "expansion-v2-115-0",
+      "label": 0,
+      "p_yes": 0.027087148953595982
+    },
+    {
+      "id": "expansion-v2-116-1",
+      "label": 1,
+      "p_yes": 0.9787985719074004
+    },
+    {
+      "id": "expansion-v2-116-0",
+      "label": 0,
+      "p_yes": 0.04988073835352939
+    },
+    {
+      "id": "expansion-v2-117-1",
+      "label": 1,
+      "p_yes": 0.9768253888981985
+    },
+    {
+      "id": "expansion-v2-117-0",
+      "label": 0,
+      "p_yes": 0.022208104377433844
+    },
+    {
+      "id": "expansion-v2-118-1",
+      "label": 1,
+      "p_yes": 0.9757820912786865
+    },
+    {
+      "id": "expansion-v2-118-0",
+      "label": 0,
+      "p_yes": 0.01990661505579736
+    },
+    {
+      "id": "expansion-v2-119-1",
+      "label": 1,
+      "p_yes": 0.9778034410115437
+    },
+    {
+      "id": "expansion-v2-119-0",
+      "label": 0,
+      "p_yes": 0.06598279219267801
+    },
+    {
+      "id": "expansion-v2-120-1",
+      "label": 1,
+      "p_yes": 0.982458837016818
+    },
+    {
+      "id": "expansion-v2-120-0",
+      "label": 0,
+      "p_yes": 0.030030869342652654
+    }
+  ],
+  "choice_accuracy": 0.9,
+  "choice_count": 10,
+  "choice_log_loss": 0.46190160478239284,
+  "choice_by_family": {
+    "support_routing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_type": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "sentiment": {
+      "count": 1,
+      "accuracy": 0.0
+    },
+    "urgency_level": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "language_of_text": {
+      "count": 1,
+      "accuracy": 1.0
+    },
+    "day_or_time_lookup": {
+      "count": 1,
+      "accuracy": 1.0
+    },
+    "unit_or_quantity": {
+      "count": 1,
+      "accuracy": 1.0
+    }
+  },
+  "choice_predictions": [
+    {
+      "id": "choices-v1-091",
+      "label": 2,
+      "ranked": [
+        [
+          2,
+          0.7230594010232427
+        ],
+        [
+          0,
+          0.17301944790115642
+        ],
+        [
+          3,
+          0.07729308034673148
+        ],
+        [
+          1,
+          0.026628070728869378
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-092",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.6404621768808622
+        ],
+        [
+          0,
+          0.29111767487352397
+        ],
+        [
+          2,
+          0.03425525686565116
+        ],
+        [
+          3,
+          0.03416489137996281
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-093",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9979679143105803
+        ],
+        [
+          2,
+          0.0007247057075899358
+        ],
+        [
+          0,
+          0.0006602012007232059
+        ],
+        [
+          3,
+          0.0006471787811065034
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-094",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9850392400223977
+        ],
+        [
+          3,
+          0.013214010003738567
+        ],
+        [
+          0,
+          0.0008739856206391964
+        ],
+        [
+          2,
+          0.0008727643532246253
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-095",
+      "label": 3,
+      "ranked": [
+        [
+          1,
+          0.9694705051217399
+        ],
+        [
+          3,
+          0.02923339844592884
+        ],
+        [
+          2,
+          0.000684012229660287
+        ],
+        [
+          0,
+          0.0006120842026709218
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-096",
+      "label": 3,
+      "ranked": [
+        [
+          3,
+          0.9794564729250633
+        ],
+        [
+          1,
+          0.015397218508086253
+        ],
+        [
+          0,
+          0.004096908093284038
+        ],
+        [
+          2,
+          0.0010494004735663175
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-097",
+      "label": 3,
+      "ranked": [
+        [
+          3,
+          0.9381594228870394
+        ],
+        [
+          2,
+          0.03694085539832489
+        ],
+        [
+          0,
+          0.01748872321115774
+        ],
+        [
+          1,
+          0.0074109985034780616
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-098",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.8842108761980111
+        ],
+        [
+          3,
+          0.057246038054740205
+        ],
+        [
+          0,
+          0.039295513872463064
+        ],
+        [
+          2,
+          0.01924757187478567
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-099",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9147989306026144
+        ],
+        [
+          3,
+          0.037738178153845205
+        ],
+        [
+          2,
+          0.02423668708384033
+        ],
+        [
+          0,
+          0.023226204159700215
+        ]
+      ]
+    },
+    {
+      "id": "choices-v1-100",
+      "label": 1,
+      "ranked": [
+        [
+          1,
+          0.9970723018908342
+        ],
+        [
+          2,
+          0.0011399941197027083
+        ],
+        [
+          0,
+          0.0009275604045262415
+        ],
+        [
+          3,
+          0.0008601435849370445
+        ]
+      ]
+    }
+  ],
+  "split": "calibration",
+  "temperature": 2.2908676527677745,
+  "bundle": "models/v4-base-mnli",
+  "model_sha256": "0d35308bd80c3c800a8232bab0fb6797388bd7428c2a21e9e1774849408cfca2",
+  "data_sha256": {
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
+    "data/choices.jsonl": "bc818e5cae7957ba42b0bb472a99c7522d7deac1bd371b4b5c5e1153246efaeb"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

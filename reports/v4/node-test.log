@@ -1,0 +1,23 @@
+
+> decisiongate@0.4.0 test
+> node --test test/*.test.mjs
+
+✔ concurrent first use, probability, inclusive boundaries, and event loop responsiveness (8119.288208ms)
+✔ criteria, Unicode, changing working directory (159.436667ms)
+✔ invalid input never becomes a negative answer (2.620875ms)
+✔ bounded queue (4728.102041ms)
+✔ addon boundary rejects invalid direct calls (0.581584ms)
+✔ chooseP ranks options best first with probabilities summing to one (529.320625ms)
+✔ choose keeps caller order on ties (236.793833ms)
+✔ choose returns -1 when the best option is below threshold (251.946458ms)
+✔ chooseP validates content, question, options and opts (0.473666ms)
+✔ isYesP and chooseP share one queue under concurrent use (695.276209ms)
+✔ worker environments finish native work and exit cleanly (256.100583ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15141.955292

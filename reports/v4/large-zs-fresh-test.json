@@ -1,0 +1,468 @@
+{
+  "count": 80,
+  "accuracy": 0.9,
+  "balanced_accuracy": 0.9,
+  "brier": 0.06464136627618075,
+  "log_loss": 0.18859127413233753,
+  "by_family": {
+    "appointment_intent": {
+      "count": 7,
+      "accuracy": 1.0
+    },
+    "cancellation_intent": {
+      "count": 7,
+      "accuracy": 1.0
+    },
+    "coding_billing": {
+      "count": 7,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 7,
+      "accuracy": 0.8571428571428571
+    },
+    "eligibility": {
+      "count": 7,
+      "accuracy": 0.7142857142857143
+    },
+    "events": {
+      "count": 7,
+      "accuracy": 1.0
+    },
+    "negation": {
+      "count": 5,
+      "accuracy": 0.6
+    },
+    "numeric_criteria": {
+      "count": 11,
+      "accuracy": 0.8181818181818182
+    },
+    "permissions": {
+      "count": 8,
+      "accuracy": 1.0
+    },
+    "quoted_instructions": {
+      "count": 5,
+      "accuracy": 0.8
+    },
+    "refund_intent": {
+      "count": 9,
+      "accuracy": 1.0
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 90.45047895051539,
+  "p95_ms": 114.1054959851317,
+  "predictions": [
+    {
+      "id": "evaluation-v2-001",
+      "label": 1,
+      "p_yes": 0.9931235980728164
+    },
+    {
+      "id": "evaluation-v2-002",
+      "label": 0,
+      "p_yes": 0.005666730567960664
+    },
+    {
+      "id": "evaluation-v2-003",
+      "label": 0,
+      "p_yes": 0.00386180120902983
+    },
+    {
+      "id": "evaluation-v2-004",
+      "label": 1,
+      "p_yes": 0.9962997809361652
+    },
+    {
+      "id": "evaluation-v2-005",
+      "label": 1,
+      "p_yes": 0.9967364197701475
+    },
+    {
+      "id": "evaluation-v2-006",
+      "label": 0,
+      "p_yes": 0.0033295852449118047
+    },
+    {
+      "id": "evaluation-v2-007",
+      "label": 0,
+      "p_yes": 0.004611559032334796
+    },
+    {
+      "id": "evaluation-v2-008",
+      "label": 1,
+      "p_yes": 0.9960582128252843
+    },
+    {
+      "id": "evaluation-v2-009",
+      "label": 1,
+      "p_yes": 0.9877205201206656
+    },
+    {
+      "id": "evaluation-v2-010",
+      "label": 0,
+      "p_yes": 0.00421027413136285
+    },
+    {
+      "id": "evaluation-v2-011",
+      "label": 0,
+      "p_yes": 0.008155483814947264
+    },
+    {
+      "id": "evaluation-v2-012",
+      "label": 1,
+      "p_yes": 0.682050226027818
+    },
+    {
+      "id": "evaluation-v2-013",
+      "label": 1,
+      "p_yes": 0.9789564286371568
+    },
+    {
+      "id": "evaluation-v2-014",
+      "label": 0,
+      "p_yes": 0.6934762759291125
+    },
+    {
+      "id": "evaluation-v2-015",
+      "label": 0,
+      "p_yes": 0.019190130982952146
+    },
+    {
+      "id": "evaluation-v2-016",
+      "label": 1,
+      "p_yes": 0.9925339604168131
+    },
+    {
+      "id": "evaluation-v2-017",
+      "label": 1,
+      "p_yes": 0.985108774911061
+    },
+    {
+      "id": "evaluation-v2-018",
+      "label": 0,
+      "p_yes": 0.0214165828130029
+    },
+    {
+      "id": "evaluation-v2-019",
+      "label": 0,
+      "p_yes": 0.019236270886151548
+    },
+    {
+      "id": "evaluation-v2-020",
+      "label": 1,
+      "p_yes": 0.9593970687050744
+    },
+    {
+      "id": "evaluation-v2-021",
+      "label": 1,
+      "p_yes": 0.9953219135249805
+    },
+    {
+      "id": "evaluation-v2-022",
+      "label": 0,
+      "p_yes": 0.006105160337601073
+    },
+    {
+      "id": "evaluation-v2-023",
+      "label": 0,
+      "p_yes": 0.04972250862934261
+    },
+    {
+      "id": "evaluation-v2-024",
+      "label": 1,
+      "p_yes": 0.19397856166354255
+    },
+    {
+      "id": "evaluation-v2-025",
+      "label": 1,
+      "p_yes": 0.14041341145779365
+    },
+    {
+      "id": "evaluation-v2-026",
+      "label": 0,
+      "p_yes": 0.04658999193012751
+    },
+    {
+      "id": "evaluation-v2-027",
+      "label": 0,
+      "p_yes": 0.08579138129673995
+    },
+    {
+      "id": "evaluation-v2-028",
+      "label": 1,
+      "p_yes": 0.992219738229593
+    },
+    {
+      "id": "evaluation-v2-029",
+      "label": 1,
+      "p_yes": 0.3418027835262364
+    },
+    {
+      "id": "evaluation-v2-030",
+      "label": 0,
+      "p_yes": 0.004057936238608036
+    },
+    {
+      "id": "evaluation-v2-031",
+      "label": 0,
+      "p_yes": 0.004000491323217398
+    },
+    {
+      "id": "evaluation-v2-032",
+      "label": 1,
+      "p_yes": 0.9913759094702356
+    },
+    {
+      "id": "evaluation-v2-033",
+      "label": 1,
+      "p_yes": 0.996605275819527
+    },
+    {
+      "id": "evaluation-v2-034",
+      "label": 0,
+      "p_yes": 0.0035898374680807528
+    },
+    {
+      "id": "evaluation-v2-035",
+      "label": 0,
+      "p_yes": 0.023185083642337283
+    },
+    {
+      "id": "evaluation-v2-036",
+      "label": 1,
+      "p_yes": 0.9555944164742489
+    },
+    {
+      "id": "evaluation-v2-037",
+      "label": 1,
+      "p_yes": 0.9934377789679767
+    },
+    {
+      "id": "evaluation-v2-038",
+      "label": 0,
+      "p_yes": 0.03620828861860821
+    },
+    {
+      "id": "evaluation-v2-039",
+      "label": 0,
+      "p_yes": 0.0033049745170630365
+    },
+    {
+      "id": "evaluation-v2-040",
+      "label": 1,
+      "p_yes": 0.9950096526706641
+    },
+    {
+      "id": "evaluation-v2-041",
+      "label": 1,
+      "p_yes": 0.9966166717596351
+    },
+    {
+      "id": "evaluation-v2-042",
+      "label": 0,
+      "p_yes": 0.004719909635444361
+    },
+    {
+      "id": "evaluation-v2-043",
+      "label": 0,
+      "p_yes": 0.012297353106031297
+    },
+    {
+      "id": "evaluation-v2-044",
+      "label": 1,
+      "p_yes": 0.996707253916021
+    },
+    {
+      "id": "evaluation-v2-045",
+      "label": 1,
+      "p_yes": 0.9964754965859653
+    },
+    {
+      "id": "evaluation-v2-046",
+      "label": 0,
+      "p_yes": 0.005567894559392072
+    },
+    {
+      "id": "evaluation-v2-047",
+      "label": 0,
+      "p_yes": 0.017338007753744698
+    },
+    {
+      "id": "evaluation-v2-048",
+      "label": 1,
+      "p_yes": 0.9120896510316315
+    },
+    {
+      "id": "evaluation-v2-049",
+      "label": 1,
+      "p_yes": 0.969158848795101
+    },
+    {
+      "id": "evaluation-v2-050",
+      "label": 0,
+      "p_yes": 0.1721673850291314
+    },
+    {
+      "id": "evaluation-v2-051",
+      "label": 1,
+      "p_yes": 0.6971880476641046
+    },
+    {
+      "id": "evaluation-v2-052",
+      "label": 0,
+      "p_yes": 0.04535203655309628
+    },
+    {
+      "id": "evaluation-v2-053",
+      "label": 0,
+      "p_yes": 0.41157783429860056
+    },
+    {
+      "id": "evaluation-v2-054",
+      "label": 1,
+      "p_yes": 0.9207896373516582
+    },
+    {
+      "id": "evaluation-v2-055",
+      "label": 1,
+      "p_yes": 0.3701529422929156
+    },
+    {
+      "id": "evaluation-v2-056",
+      "label": 0,
+      "p_yes": 0.010396387851915836
+    },
+    {
+      "id": "evaluation-v2-057",
+      "label": 1,
+      "p_yes": 0.9914347309637341
+    },
+    {
+      "id": "evaluation-v2-058",
+      "label": 0,
+      "p_yes": 0.024045205465173025
+    },
+    {
+      "id": "evaluation-v2-059",
+      "label": 0,
+      "p_yes": 0.10194785281721233
+    },
+    {
+      "id": "evaluation-v2-060",
+      "label": 1,
+      "p_yes": 0.11168296753144182
+    },
+    {
+      "id": "evaluation-v2-061",
+      "label": 0,
+      "p_yes": 0.029549265577511724
+    },
+    {
+      "id": "evaluation-v2-062",
+      "label": 1,
+      "p_yes": 0.9894522332437764
+    },
+    {
+      "id": "evaluation-v2-063",
+      "label": 0,
+      "p_yes": 0.018585961821262646
+    },
+    {
+      "id": "evaluation-v2-064",
+      "label": 1,
+      "p_yes": 0.9934144643876806
+    },
+    {
+      "id": "evaluation-v2-065",
+      "label": 1,
+      "p_yes": 0.9787364254149932
+    },
+    {
+      "id": "evaluation-v2-066",
+      "label": 0,
+      "p_yes": 0.047045365260228234
+    },
+    {
+      "id": "evaluation-v2-067",
+      "label": 1,
+      "p_yes": 0.7031744730238901
+    },
+    {
+      "id": "evaluation-v2-068",
+      "label": 0,
+      "p_yes": 0.04480586747563377
+    },
+    {
+      "id": "evaluation-v2-069",
+      "label": 0,
+      "p_yes": 0.003885235808146764
+    },
+    {
+      "id": "evaluation-v2-070",
+      "label": 1,
+      "p_yes": 0.9964650147914489
+    },
+    {
+      "id": "evaluation-v2-071",
+      "label": 1,
+      "p_yes": 0.9859997571499854
+    },
+    {
+      "id": "evaluation-v2-072",
+      "label": 0,
+      "p_yes": 0.007201908135225251
+    },
+    {
+      "id": "evaluation-v2-073",
+      "label": 0,
+      "p_yes": 0.007150158582273521
+    },
+    {
+      "id": "evaluation-v2-074",
+      "label": 1,
+      "p_yes": 0.9882903484745994
+    },
+    {
+      "id": "evaluation-v2-075",
+      "label": 1,
+      "p_yes": 0.9801383506905373
+    },
+    {
+      "id": "evaluation-v2-076",
+      "label": 0,
+      "p_yes": 0.7290671637063316
+    },
+    {
+      "id": "evaluation-v2-077",
+      "label": 0,
+      "p_yes": 0.6368138795890298
+    },
+    {
+      "id": "evaluation-v2-078",
+      "label": 1,
+      "p_yes": 0.5425478761491562
+    },
+    {
+      "id": "evaluation-v2-079",
+      "label": 0,
+      "p_yes": 0.026550253671477335
+    },
+    {
+      "id": "evaluation-v2-080",
+      "label": 1,
+      "p_yes": 0.9897503099825287
+    }
+  ],
+  "split": "test",
+  "temperature": 1.6788040181225612,
+  "bundle": "models/v4-large-zs",
+  "model_sha256": "9bcc6073f43fccdc5d0c91183a0f2d0c13f9d184148fb37db32cff11d0e8572b",
+  "data_sha256": {
+    "data/evaluation-v2.jsonl": "ffda37e4ea80042a0a78c5be266c836c1ff3b6f13bffebe20c07553e0d1fb528"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

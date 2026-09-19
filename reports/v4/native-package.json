@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "exit_code": 0,
+  "network": "denied by macOS sandbox",
+  "network_denial_verified": true,
+  "relocated": true,
+  "working_directory_separate": true,
+  "development_tools_on_path": false,
+  "stdout": "p_yes=0.996782226\ntop=billing p=0.943029387",
+  "native_process_peak_rss_bytes": 5326110720,
+  "bundle_bytes": 942350658,
+  "library_bytes": 3679120,
+  "model_bytes": 872159821,
+  "host_link_dependencies": [
+    "\t@rpath/libdecisiongate.dylib (compatibility version 0.0.0, current version 0.0.0)",
+    "\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)"
+  ]
+}

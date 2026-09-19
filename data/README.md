@@ -1,5 +1,7 @@
 # Open seed data
 
+Version 0.4.0 trains on everything below plus [data/v4](v4/README.md): 3,526 newly authored records in sixteen families and a separate 480-case held-out test. See [the v0.4 report](../reports/accuracy-v4.md).
+
 The current v0.2 recipe also explicitly loads [expansion-v2.jsonl](expansion-v2.jsonl), bringing training/validation/calibration counts to 404/96/52. [evaluation-v2.jsonl](evaluation-v2.jsonl) is a separate frozen 80-example test, never training input. See [the current recipe](../specs/accuracy-v2.md). All these records remain synthetic and unreviewed.
 
 [choices.jsonl](choices.jsonl) adds 120 multiple-choice records (`label_type: choice`, an `options` list, and an index `label`) for the `choose` call; see [its note](choices.md). The pipeline expands each into one yes/no row per option using the runtime's choice template. Loaded with `--extra-data data/choices.jsonl`; not part of the v0.2 release's training.

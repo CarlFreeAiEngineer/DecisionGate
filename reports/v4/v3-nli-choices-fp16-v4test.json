@@ -1,0 +1,2491 @@
+{
+  "count": 480,
+  "accuracy": 0.5916666666666667,
+  "balanced_accuracy": 0.5916666666666667,
+  "brier": 0.2646130008438341,
+  "log_loss": 0.7890580345119406,
+  "by_family": {
+    "appointment_intent": {
+      "count": 30,
+      "accuracy": 0.6333333333333333
+    },
+    "cancellation_intent": {
+      "count": 30,
+      "accuracy": 0.6
+    },
+    "duplicate_reports": {
+      "count": 30,
+      "accuracy": 0.5666666666666667
+    },
+    "eligibility": {
+      "count": 30,
+      "accuracy": 0.4666666666666667
+    },
+    "email_screening": {
+      "count": 30,
+      "accuracy": 0.8
+    },
+    "events_timeline": {
+      "count": 30,
+      "accuracy": 0.6
+    },
+    "everyday": {
+      "count": 30,
+      "accuracy": 0.7
+    },
+    "evidence_presence": {
+      "count": 30,
+      "accuracy": 0.5666666666666667
+    },
+    "negation": {
+      "count": 30,
+      "accuracy": 0.6333333333333333
+    },
+    "numeric_criteria": {
+      "count": 30,
+      "accuracy": 0.36666666666666664
+    },
+    "permissions": {
+      "count": 30,
+      "accuracy": 0.4666666666666667
+    },
+    "quoted_instructions": {
+      "count": 30,
+      "accuracy": 0.6333333333333333
+    },
+    "refund_intent": {
+      "count": 30,
+      "accuracy": 0.6666666666666666
+    },
+    "routing": {
+      "count": 30,
+      "accuracy": 0.6333333333333333
+    },
+    "spam_promotion": {
+      "count": 30,
+      "accuracy": 0.5333333333333333
+    },
+    "urgency": {
+      "count": 30,
+      "accuracy": 0.6
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 20.729395444504917,
+  "p95_ms": 30.828870669938606,
+  "predictions": [
+    {
+      "id": "appointment_intent-901-1",
+      "label": 1,
+      "p_yes": 0.9702567242516105
+    },
+    {
+      "id": "appointment_intent-901-2",
+      "label": 0,
+      "p_yes": 0.298769175397436
+    },
+    {
+      "id": "appointment_intent-902-1",
+      "label": 1,
+      "p_yes": 0.675788692618103
+    },
+    {
+      "id": "appointment_intent-902-2",
+      "label": 0,
+      "p_yes": 0.00658906019280275
+    },
+    {
+      "id": "appointment_intent-903-1",
+      "label": 1,
+      "p_yes": 0.8024707119212828
+    },
+    {
+      "id": "appointment_intent-903-2",
+      "label": 0,
+      "p_yes": 0.7365383498195727
+    },
+    {
+      "id": "appointment_intent-904-1",
+      "label": 0,
+      "p_yes": 0.47069382955832156
+    },
+    {
+      "id": "appointment_intent-904-2",
+      "label": 1,
+      "p_yes": 0.27083760634032117
+    },
+    {
+      "id": "appointment_intent-905-1",
+      "label": 1,
+      "p_yes": 0.8336737801986738
+    },
+    {
+      "id": "appointment_intent-905-2",
+      "label": 0,
+      "p_yes": 0.9725552571776767
+    },
+    {
+      "id": "appointment_intent-906-1",
+      "label": 1,
+      "p_yes": 0.8203932425945486
+    },
+    {
+      "id": "appointment_intent-906-2",
+      "label": 0,
+      "p_yes": 0.00811987004417184
+    },
+    {
+      "id": "appointment_intent-907-1",
+      "label": 0,
+      "p_yes": 0.5387661752540708
+    },
+    {
+      "id": "appointment_intent-907-2",
+      "label": 1,
+      "p_yes": 0.9470585849893675
+    },
+    {
+      "id": "appointment_intent-908-1",
+      "label": 0,
+      "p_yes": 0.03873327009084829
+    },
+    {
+      "id": "appointment_intent-908-2",
+      "label": 1,
+      "p_yes": 0.041395865450968954
+    },
+    {
+      "id": "appointment_intent-909-1",
+      "label": 1,
+      "p_yes": 0.5477918149768988
+    },
+    {
+      "id": "appointment_intent-909-2",
+      "label": 0,
+      "p_yes": 0.0070863750433174
+    },
+    {
+      "id": "appointment_intent-910-1",
+      "label": 1,
+      "p_yes": 0.2885809402886888
+    },
+    {
+      "id": "appointment_intent-910-2",
+      "label": 0,
+      "p_yes": 0.6786814058299026
+    },
+    {
+      "id": "appointment_intent-911-1",
+      "label": 0,
+      "p_yes": 0.1110609646565884
+    },
+    {
+      "id": "appointment_intent-911-2",
+      "label": 1,
+      "p_yes": 0.9935987065103152
+    },
+    {
+      "id": "appointment_intent-912-1",
+      "label": 0,
+      "p_yes": 0.7261801934087996
+    },
+    {
+      "id": "appointment_intent-912-2",
+      "label": 1,
+      "p_yes": 0.6938067177104181
+    },
+    {
+      "id": "appointment_intent-913-1",
+      "label": 0,
+      "p_yes": 0.5598569270415689
+    },
+    {
+      "id": "appointment_intent-913-2",
+      "label": 1,
+      "p_yes": 0.1016516951944363
+    },
+    {
+      "id": "appointment_intent-914-1",
+      "label": 1,
+      "p_yes": 0.34164766493753695
+    },
+    {
+      "id": "appointment_intent-914-2",
+      "label": 0,
+      "p_yes": 0.008639250904450805
+    },
+    {
+      "id": "appointment_intent-915-1",
+      "label": 1,
+      "p_yes": 0.9549406190925335
+    },
+    {
+      "id": "appointment_intent-915-2",
+      "label": 0,
+      "p_yes": 0.23850306599883841
+    },
+    {
+      "id": "cancellation_intent-901-1",
+      "label": 0,
+      "p_yes": 0.4533556771468378
+    },
+    {
+      "id": "cancellation_intent-901-2",
+      "label": 1,
+      "p_yes": 0.9924722087623334
+    },
+    {
+      "id": "cancellation_intent-902-1",
+      "label": 0,
+      "p_yes": 0.21689681605104308
+    },
+    {
+      "id": "cancellation_intent-902-2",
+      "label": 1,
+      "p_yes": 0.17199460889207083
+    },
+    {
+      "id": "cancellation_intent-903-1",
+      "label": 0,
+      "p_yes": 0.3565273829415319
+    },
+    {
+      "id": "cancellation_intent-903-2",
+      "label": 1,
+      "p_yes": 0.05098572496410042
+    },
+    {
+      "id": "cancellation_intent-904-1",
+      "label": 0,
+      "p_yes": 0.03988765713819673
+    },
+    {
+      "id": "cancellation_intent-904-2",
+      "label": 1,
+      "p_yes": 0.087991967589128
+    },
+    {
+      "id": "cancellation_intent-905-1",
+      "label": 0,
+      "p_yes": 0.006147432752184591
+    },
+    {
+      "id": "cancellation_intent-905-2",
+      "label": 1,
+      "p_yes": 0.12305143139607713
+    },
+    {
+      "id": "cancellation_intent-906-1",
+      "label": 0,
+      "p_yes": 0.7358837757922126
+    },
+    {
+      "id": "cancellation_intent-906-2",
+      "label": 1,
+      "p_yes": 0.34325019185878447
+    },
+    {
+      "id": "cancellation_intent-907-1",
+      "label": 0,
+      "p_yes": 0.08024870851757099
+    },
+    {
+      "id": "cancellation_intent-907-2",
+      "label": 1,
+      "p_yes": 0.909827815562363
+    },
+    {
+      "id": "cancellation_intent-908-1",
+      "label": 0,
+      "p_yes": 0.3562639252124837
+    },
+    {
+      "id": "cancellation_intent-908-2",
+      "label": 1,
+      "p_yes": 0.19555172177763788
+    },
+    {
+      "id": "cancellation_intent-909-1",
+      "label": 0,
+      "p_yes": 0.018002486877988753
+    },
+    {
+      "id": "cancellation_intent-909-2",
+      "label": 1,
+      "p_yes": 0.6988328841275177
+    },
+    {
+      "id": "cancellation_intent-910-1",
+      "label": 0,
+      "p_yes": 0.024937962138923905
+    },
+    {
+      "id": "cancellation_intent-910-2",
+      "label": 1,
+      "p_yes": 0.5796770213357366
+    },
+    {
+      "id": "cancellation_intent-911-1",
+      "label": 0,
+      "p_yes": 0.8002495604499265
+    },
+    {
+      "id": "cancellation_intent-911-2",
+      "label": 1,
+      "p_yes": 0.9207245478903715
+    },
+    {
+      "id": "cancellation_intent-912-1",
+      "label": 0,
+      "p_yes": 0.13077096710685432
+    },
+    {
+      "id": "cancellation_intent-912-2",
+      "label": 1,
+      "p_yes": 0.44609347573282593
+    },
+    {
+      "id": "cancellation_intent-913-1",
+      "label": 0,
+      "p_yes": 0.6555683074665933
+    },
+    {
+      "id": "cancellation_intent-913-2",
+      "label": 1,
+      "p_yes": 0.6982021885969587
+    },
+    {
+      "id": "cancellation_intent-914-1",
+      "label": 0,
+      "p_yes": 0.6823141006869783
+    },
+    {
+      "id": "cancellation_intent-914-2",
+      "label": 1,
+      "p_yes": 0.48029522296566707
+    },
+    {
+      "id": "cancellation_intent-915-1",
+      "label": 0,
+      "p_yes": 0.0572161169552842
+    },
+    {
+      "id": "cancellation_intent-915-2",
+      "label": 1,
+      "p_yes": 0.9836294343609832
+    },
+    {
+      "id": "refund_intent-901-1",
+      "label": 0,
+      "p_yes": 0.30849593332785136
+    },
+    {
+      "id": "refund_intent-901-2",
+      "label": 1,
+      "p_yes": 0.63795772793192
+    },
+    {
+      "id": "refund_intent-902-1",
+      "label": 0,
+      "p_yes": 0.04369730531849679
+    },
+    {
+      "id": "refund_intent-902-2",
+      "label": 1,
+      "p_yes": 0.9902449946775067
+    },
+    {
+      "id": "refund_intent-903-1",
+      "label": 0,
+      "p_yes": 0.03557162075472993
+    },
+    {
+      "id": "refund_intent-903-2",
+      "label": 1,
+      "p_yes": 0.9926504338607307
+    },
+    {
+      "id": "refund_intent-904-1",
+      "label": 0,
+      "p_yes": 0.493263293372239
+    },
+    {
+      "id": "refund_intent-904-2",
+      "label": 1,
+      "p_yes": 0.9718626851485244
+    },
+    {
+      "id": "refund_intent-905-1",
+      "label": 1,
+      "p_yes": 0.9276299279889694
+    },
+    {
+      "id": "refund_intent-905-2",
+      "label": 0,
+      "p_yes": 0.7522294948714334
+    },
+    {
+      "id": "refund_intent-906-1",
+      "label": 0,
+      "p_yes": 0.14889013245626387
+    },
+    {
+      "id": "refund_intent-906-2",
+      "label": 1,
+      "p_yes": 0.04461431204336009
+    },
+    {
+      "id": "refund_intent-907-1",
+      "label": 0,
+      "p_yes": 0.8061415555384045
+    },
+    {
+      "id": "refund_intent-907-2",
+      "label": 1,
+      "p_yes": 0.4307346554949076
+    },
+    {
+      "id": "refund_intent-908-1",
+      "label": 1,
+      "p_yes": 0.9179417896928566
+    },
+    {
+      "id": "refund_intent-908-2",
+      "label": 0,
+      "p_yes": 0.5902898995228476
+    },
+    {
+      "id": "refund_intent-909-1",
+      "label": 1,
+      "p_yes": 0.42848679877656615
+    },
+    {
+      "id": "refund_intent-909-2",
+      "label": 0,
+      "p_yes": 0.00790189761069096
+    },
+    {
+      "id": "refund_intent-910-1",
+      "label": 0,
+      "p_yes": 0.4085888789348991
+    },
+    {
+      "id": "refund_intent-910-2",
+      "label": 1,
+      "p_yes": 0.6004233197145332
+    },
+    {
+      "id": "refund_intent-911-1",
+      "label": 0,
+      "p_yes": 0.981626360745027
+    },
+    {
+      "id": "refund_intent-911-2",
+      "label": 1,
+      "p_yes": 0.9784513478042672
+    },
+    {
+      "id": "refund_intent-912-1",
+      "label": 1,
+      "p_yes": 0.9384197728585404
+    },
+    {
+      "id": "refund_intent-912-2",
+      "label": 0,
+      "p_yes": 0.01161555946488281
+    },
+    {
+      "id": "refund_intent-913-1",
+      "label": 0,
+      "p_yes": 0.7095291898272155
+    },
+    {
+      "id": "refund_intent-913-2",
+      "label": 1,
+      "p_yes": 0.412803516561761
+    },
+    {
+      "id": "refund_intent-914-1",
+      "label": 0,
+      "p_yes": 0.6588448086516061
+    },
+    {
+      "id": "refund_intent-914-2",
+      "label": 1,
+      "p_yes": 0.6499840670063965
+    },
+    {
+      "id": "refund_intent-915-1",
+      "label": 1,
+      "p_yes": 0.9163010701318297
+    },
+    {
+      "id": "refund_intent-915-2",
+      "label": 0,
+      "p_yes": 0.01344403559016637
+    },
+    {
+      "id": "routing-901-1",
+      "label": 1,
+      "p_yes": 0.9156374622357816
+    },
+    {
+      "id": "routing-901-2",
+      "label": 0,
+      "p_yes": 0.13355945980747108
+    },
+    {
+      "id": "routing-902-1",
+      "label": 1,
+      "p_yes": 0.988781754429642
+    },
+    {
+      "id": "routing-902-2",
+      "label": 0,
+      "p_yes": 0.7005580819596577
+    },
+    {
+      "id": "routing-903-1",
+      "label": 1,
+      "p_yes": 0.22660770514422687
+    },
+    {
+      "id": "routing-903-2",
+      "label": 0,
+      "p_yes": 0.5216590323147517
+    },
+    {
+      "id": "routing-904-1",
+      "label": 1,
+      "p_yes": 0.517396968546558
+    },
+    {
+      "id": "routing-904-2",
+      "label": 0,
+      "p_yes": 0.025311471247200106
+    },
+    {
+      "id": "routing-905-1",
+      "label": 1,
+      "p_yes": 0.9808442891573432
+    },
+    {
+      "id": "routing-905-2",
+      "label": 0,
+      "p_yes": 0.03345363682703745
+    },
+    {
+      "id": "routing-906-1",
+      "label": 1,
+      "p_yes": 0.9793559245115783
+    },
+    {
+      "id": "routing-906-2",
+      "label": 0,
+      "p_yes": 0.4567816367410236
+    },
+    {
+      "id": "routing-907-1",
+      "label": 1,
+      "p_yes": 0.1473759618209059
+    },
+    {
+      "id": "routing-907-2",
+      "label": 0,
+      "p_yes": 0.14802917183066008
+    },
+    {
+      "id": "routing-908-1",
+      "label": 1,
+      "p_yes": 0.9380781623892135
+    },
+    {
+      "id": "routing-908-2",
+      "label": 0,
+      "p_yes": 0.04161888505215619
+    },
+    {
+      "id": "routing-909-1",
+      "label": 1,
+      "p_yes": 0.3426149372699836
+    },
+    {
+      "id": "routing-909-2",
+      "label": 0,
+      "p_yes": 0.5361018832236993
+    },
+    {
+      "id": "routing-910-1",
+      "label": 0,
+      "p_yes": 0.008163422295912302
+    },
+    {
+      "id": "routing-910-2",
+      "label": 1,
+      "p_yes": 0.6115346476150131
+    },
+    {
+      "id": "routing-911-1",
+      "label": 1,
+      "p_yes": 0.9332369001736683
+    },
+    {
+      "id": "routing-911-2",
+      "label": 0,
+      "p_yes": 0.01595070828174762
+    },
+    {
+      "id": "routing-912-1",
+      "label": 1,
+      "p_yes": 0.9160962101458641
+    },
+    {
+      "id": "routing-912-2",
+      "label": 0,
+      "p_yes": 0.41001453022113776
+    },
+    {
+      "id": "routing-913-1",
+      "label": 1,
+      "p_yes": 0.15790837983771108
+    },
+    {
+      "id": "routing-913-2",
+      "label": 0,
+      "p_yes": 0.2726491710260781
+    },
+    {
+      "id": "routing-914-1",
+      "label": 1,
+      "p_yes": 0.19243413592709346
+    },
+    {
+      "id": "routing-914-2",
+      "label": 0,
+      "p_yes": 0.5056774842831293
+    },
+    {
+      "id": "routing-915-1",
+      "label": 1,
+      "p_yes": 0.3936773750067561
+    },
+    {
+      "id": "routing-915-2",
+      "label": 0,
+      "p_yes": 0.5147042917398943
+    },
+    {
+      "id": "urgency-901-1",
+      "label": 0,
+      "p_yes": 0.39410311781437746
+    },
+    {
+      "id": "urgency-901-2",
+      "label": 1,
+      "p_yes": 0.9381795106152531
+    },
+    {
+      "id": "urgency-902-1",
+      "label": 0,
+      "p_yes": 0.40288521102175057
+    },
+    {
+      "id": "urgency-902-2",
+      "label": 1,
+      "p_yes": 0.41416510454167094
+    },
+    {
+      "id": "urgency-903-1",
+      "label": 1,
+      "p_yes": 0.45576000637453506
+    },
+    {
+      "id": "urgency-903-2",
+      "label": 0,
+      "p_yes": 0.022214577830856185
+    },
+    {
+      "id": "urgency-904-1",
+      "label": 1,
+      "p_yes": 0.7925238868366026
+    },
+    {
+      "id": "urgency-904-2",
+      "label": 0,
+      "p_yes": 0.7243737896075765
+    },
+    {
+      "id": "urgency-905-1",
+      "label": 1,
+      "p_yes": 0.17717557294308642
+    },
+    {
+      "id": "urgency-905-2",
+      "label": 0,
+      "p_yes": 0.6371197234169541
+    },
+    {
+      "id": "urgency-906-1",
+      "label": 0,
+      "p_yes": 0.1543063349182091
+    },
+    {
+      "id": "urgency-906-2",
+      "label": 1,
+      "p_yes": 0.9701479359369829
+    },
+    {
+      "id": "urgency-907-1",
+      "label": 0,
+      "p_yes": 0.07485139270855552
+    },
+    {
+      "id": "urgency-907-2",
+      "label": 1,
+      "p_yes": 0.6205907461155916
+    },
+    {
+      "id": "urgency-908-1",
+      "label": 1,
+      "p_yes": 0.7059483667266042
+    },
+    {
+      "id": "urgency-908-2",
+      "label": 0,
+      "p_yes": 0.18464269085441504
+    },
+    {
+      "id": "urgency-909-1",
+      "label": 0,
+      "p_yes": 0.4051201915146361
+    },
+    {
+      "id": "urgency-909-2",
+      "label": 1,
+      "p_yes": 0.5625041916606658
+    },
+    {
+      "id": "urgency-910-1",
+      "label": 1,
+      "p_yes": 0.33238904378786716
+    },
+    {
+      "id": "urgency-910-2",
+      "label": 0,
+      "p_yes": 0.5335805441132665
+    },
+    {
+      "id": "urgency-911-1",
+      "label": 1,
+      "p_yes": 0.538948523068401
+    },
+    {
+      "id": "urgency-911-2",
+      "label": 0,
+      "p_yes": 0.5346870485890797
+    },
+    {
+      "id": "urgency-912-1",
+      "label": 0,
+      "p_yes": 0.6027234442154255
+    },
+    {
+      "id": "urgency-912-2",
+      "label": 1,
+      "p_yes": 0.9554628228955313
+    },
+    {
+      "id": "urgency-913-1",
+      "label": 1,
+      "p_yes": 0.567661944077929
+    },
+    {
+      "id": "urgency-913-2",
+      "label": 0,
+      "p_yes": 0.09681604565700079
+    },
+    {
+      "id": "urgency-914-1",
+      "label": 1,
+      "p_yes": 0.5594400590250683
+    },
+    {
+      "id": "urgency-914-2",
+      "label": 0,
+      "p_yes": 0.5585314654467928
+    },
+    {
+      "id": "urgency-915-1",
+      "label": 0,
+      "p_yes": 0.6569842650509758
+    },
+    {
+      "id": "urgency-915-2",
+      "label": 1,
+      "p_yes": 0.20755964894585602
+    },
+    {
+      "id": "everyday-901-1",
+      "label": 1,
+      "p_yes": 0.9765517129727912
+    },
+    {
+      "id": "everyday-901-2",
+      "label": 0,
+      "p_yes": 0.2952753455520219
+    },
+    {
+      "id": "everyday-902-1",
+      "label": 0,
+      "p_yes": 0.38058322399024225
+    },
+    {
+      "id": "everyday-902-2",
+      "label": 1,
+      "p_yes": 0.7916036533887373
+    },
+    {
+      "id": "everyday-903-1",
+      "label": 0,
+      "p_yes": 0.48738866605358067
+    },
+    {
+      "id": "everyday-903-2",
+      "label": 1,
+      "p_yes": 0.9627133898428285
+    },
+    {
+      "id": "everyday-904-1",
+      "label": 0,
+      "p_yes": 0.984109550044423
+    },
+    {
+      "id": "everyday-904-2",
+      "label": 1,
+      "p_yes": 0.9724400785229966
+    },
+    {
+      "id": "everyday-905-1",
+      "label": 1,
+      "p_yes": 0.25824923922539605
+    },
+    {
+      "id": "everyday-905-2",
+      "label": 0,
+      "p_yes": 0.7784886235162721
+    },
+    {
+      "id": "everyday-906-1",
+      "label": 1,
+      "p_yes": 0.6919642942257591
+    },
+    {
+      "id": "everyday-906-2",
+      "label": 0,
+      "p_yes": 0.9894762234538192
+    },
+    {
+      "id": "everyday-907-1",
+      "label": 0,
+      "p_yes": 0.18492672421413472
+    },
+    {
+      "id": "everyday-907-2",
+      "label": 1,
+      "p_yes": 0.5609525763440566
+    },
+    {
+      "id": "everyday-908-1",
+      "label": 1,
+      "p_yes": 0.34830635136309485
+    },
+    {
+      "id": "everyday-908-2",
+      "label": 0,
+      "p_yes": 0.5779966414783381
+    },
+    {
+      "id": "everyday-909-1",
+      "label": 0,
+      "p_yes": 0.29267499197577124
+    },
+    {
+      "id": "everyday-909-2",
+      "label": 1,
+      "p_yes": 0.9624075953699637
+    },
+    {
+      "id": "everyday-910-1",
+      "label": 0,
+      "p_yes": 0.9215631950897208
+    },
+    {
+      "id": "everyday-910-2",
+      "label": 1,
+      "p_yes": 0.35463303498023785
+    },
+    {
+      "id": "everyday-911-1",
+      "label": 1,
+      "p_yes": 0.9720659353341956
+    },
+    {
+      "id": "everyday-911-2",
+      "label": 0,
+      "p_yes": 0.9262988351774795
+    },
+    {
+      "id": "everyday-912-1",
+      "label": 1,
+      "p_yes": 0.920886852669573
+    },
+    {
+      "id": "everyday-912-2",
+      "label": 0,
+      "p_yes": 0.047152029558971596
+    },
+    {
+      "id": "everyday-913-1",
+      "label": 0,
+      "p_yes": 0.008178597780975077
+    },
+    {
+      "id": "everyday-913-2",
+      "label": 1,
+      "p_yes": 0.9458157115342161
+    },
+    {
+      "id": "everyday-914-1",
+      "label": 0,
+      "p_yes": 0.08736932302101764
+    },
+    {
+      "id": "everyday-914-2",
+      "label": 1,
+      "p_yes": 0.6066654606977275
+    },
+    {
+      "id": "everyday-915-1",
+      "label": 1,
+      "p_yes": 0.5869994073180987
+    },
+    {
+      "id": "everyday-915-2",
+      "label": 0,
+      "p_yes": 0.264168692606227
+    },
+    {
+      "id": "permissions-901-1",
+      "label": 1,
+      "p_yes": 0.9405332357199451
+    },
+    {
+      "id": "permissions-901-2",
+      "label": 0,
+      "p_yes": 0.9205688963720948
+    },
+    {
+      "id": "permissions-902-1",
+      "label": 1,
+      "p_yes": 0.42219871110651325
+    },
+    {
+      "id": "permissions-902-2",
+      "label": 0,
+      "p_yes": 0.31114894922460407
+    },
+    {
+      "id": "permissions-903-1",
+      "label": 1,
+      "p_yes": 0.03038959166021885
+    },
+    {
+      "id": "permissions-903-2",
+      "label": 0,
+      "p_yes": 0.02505568764727274
+    },
+    {
+      "id": "permissions-904-1",
+      "label": 0,
+      "p_yes": 0.9549588775190613
+    },
+    {
+      "id": "permissions-904-2",
+      "label": 1,
+      "p_yes": 0.4257461138706605
+    },
+    {
+      "id": "permissions-905-1",
+      "label": 0,
+      "p_yes": 0.5976348729537779
+    },
+    {
+      "id": "permissions-905-2",
+      "label": 1,
+      "p_yes": 0.5593516758205757
+    },
+    {
+      "id": "permissions-906-1",
+      "label": 0,
+      "p_yes": 0.022593888034499982
+    },
+    {
+      "id": "permissions-906-2",
+      "label": 1,
+      "p_yes": 0.053010117000509394
+    },
+    {
+      "id": "permissions-907-1",
+      "label": 1,
+      "p_yes": 0.04553450811961137
+    },
+    {
+      "id": "permissions-907-2",
+      "label": 0,
+      "p_yes": 0.04853762885937754
+    },
+    {
+      "id": "permissions-908-1",
+      "label": 1,
+      "p_yes": 0.5530463705129108
+    },
+    {
+      "id": "permissions-908-2",
+      "label": 0,
+      "p_yes": 0.5643034298049275
+    },
+    {
+      "id": "permissions-909-1",
+      "label": 0,
+      "p_yes": 0.0823304498443922
+    },
+    {
+      "id": "permissions-909-2",
+      "label": 1,
+      "p_yes": 0.05685984420019035
+    },
+    {
+      "id": "permissions-910-1",
+      "label": 1,
+      "p_yes": 0.11374813918058392
+    },
+    {
+      "id": "permissions-910-2",
+      "label": 0,
+      "p_yes": 0.17146976373279293
+    },
+    {
+      "id": "permissions-911-1",
+      "label": 1,
+      "p_yes": 0.8062626613674011
+    },
+    {
+      "id": "permissions-911-2",
+      "label": 0,
+      "p_yes": 0.7766233109093631
+    },
+    {
+      "id": "permissions-912-1",
+      "label": 1,
+      "p_yes": 0.1457429320336829
+    },
+    {
+      "id": "permissions-912-2",
+      "label": 0,
+      "p_yes": 0.32398445969677114
+    },
+    {
+      "id": "permissions-913-1",
+      "label": 0,
+      "p_yes": 0.05165776003958148
+    },
+    {
+      "id": "permissions-913-2",
+      "label": 1,
+      "p_yes": 0.16613593220773082
+    },
+    {
+      "id": "permissions-914-1",
+      "label": 0,
+      "p_yes": 0.6557618559161394
+    },
+    {
+      "id": "permissions-914-2",
+      "label": 1,
+      "p_yes": 0.5525513084631225
+    },
+    {
+      "id": "permissions-915-1",
+      "label": 0,
+      "p_yes": 0.8001446594633657
+    },
+    {
+      "id": "permissions-915-2",
+      "label": 1,
+      "p_yes": 0.7954439704084851
+    },
+    {
+      "id": "eligibility-901-1",
+      "label": 0,
+      "p_yes": 0.68639167313365
+    },
+    {
+      "id": "eligibility-901-2",
+      "label": 1,
+      "p_yes": 0.03279814102647326
+    },
+    {
+      "id": "eligibility-902-1",
+      "label": 1,
+      "p_yes": 0.8221587808022107
+    },
+    {
+      "id": "eligibility-902-2",
+      "label": 0,
+      "p_yes": 0.8202799087542689
+    },
+    {
+      "id": "eligibility-903-1",
+      "label": 1,
+      "p_yes": 0.8438465632497735
+    },
+    {
+      "id": "eligibility-903-2",
+      "label": 0,
+      "p_yes": 0.9539847625827226
+    },
+    {
+      "id": "eligibility-904-1",
+      "label": 1,
+      "p_yes": 0.09832832293059997
+    },
+    {
+      "id": "eligibility-904-2",
+      "label": 0,
+      "p_yes": 0.17882826921719
+    },
+    {
+      "id": "eligibility-905-1",
+      "label": 1,
+      "p_yes": 0.5309740084548413
+    },
+    {
+      "id": "eligibility-905-2",
+      "label": 0,
+      "p_yes": 0.5128201041688845
+    },
+    {
+      "id": "eligibility-906-1",
+      "label": 0,
+      "p_yes": 0.15999734322600906
+    },
+    {
+      "id": "eligibility-906-2",
+      "label": 1,
+      "p_yes": 0.15504135849030534
+    },
+    {
+      "id": "eligibility-907-1",
+      "label": 0,
+      "p_yes": 0.9138581432753778
+    },
+    {
+      "id": "eligibility-907-2",
+      "label": 1,
+      "p_yes": 0.6235670270059049
+    },
+    {
+      "id": "eligibility-908-1",
+      "label": 0,
+      "p_yes": 0.541329175451327
+    },
+    {
+      "id": "eligibility-908-2",
+      "label": 1,
+      "p_yes": 0.4848778126481108
+    },
+    {
+      "id": "eligibility-909-1",
+      "label": 0,
+      "p_yes": 0.09122170306123321
+    },
+    {
+      "id": "eligibility-909-2",
+      "label": 1,
+      "p_yes": 0.08452232833408964
+    },
+    {
+      "id": "eligibility-910-1",
+      "label": 0,
+      "p_yes": 0.9840510524917958
+    },
+    {
+      "id": "eligibility-910-2",
+      "label": 1,
+      "p_yes": 0.968569304252004
+    },
+    {
+      "id": "eligibility-911-1",
+      "label": 1,
+      "p_yes": 0.6328718510914547
+    },
+    {
+      "id": "eligibility-911-2",
+      "label": 0,
+      "p_yes": 0.7429444325901099
+    },
+    {
+      "id": "eligibility-912-1",
+      "label": 1,
+      "p_yes": 0.419322528702607
+    },
+    {
+      "id": "eligibility-912-2",
+      "label": 0,
+      "p_yes": 0.21663049090578906
+    },
+    {
+      "id": "eligibility-913-1",
+      "label": 0,
+      "p_yes": 0.08823744505732561
+    },
+    {
+      "id": "eligibility-913-2",
+      "label": 1,
+      "p_yes": 0.09760584608517964
+    },
+    {
+      "id": "eligibility-914-1",
+      "label": 1,
+      "p_yes": 0.9739399219022872
+    },
+    {
+      "id": "eligibility-914-2",
+      "label": 0,
+      "p_yes": 0.9677832997099302
+    },
+    {
+      "id": "eligibility-915-1",
+      "label": 0,
+      "p_yes": 0.4064414616972383
+    },
+    {
+      "id": "eligibility-915-2",
+      "label": 1,
+      "p_yes": 0.9875722876635784
+    },
+    {
+      "id": "numeric_criteria-901-1",
+      "label": 0,
+      "p_yes": 0.8805094611279437
+    },
+    {
+      "id": "numeric_criteria-901-2",
+      "label": 1,
+      "p_yes": 0.580540825351545
+    },
+    {
+      "id": "numeric_criteria-902-1",
+      "label": 0,
+      "p_yes": 0.7742987682578971
+    },
+    {
+      "id": "numeric_criteria-902-2",
+      "label": 1,
+      "p_yes": 0.4815142055735623
+    },
+    {
+      "id": "numeric_criteria-903-1",
+      "label": 0,
+      "p_yes": 0.6867541510334781
+    },
+    {
+      "id": "numeric_criteria-903-2",
+      "label": 1,
+      "p_yes": 0.5060325886725531
+    },
+    {
+      "id": "numeric_criteria-904-1",
+      "label": 1,
+      "p_yes": 0.9361612071255598
+    },
+    {
+      "id": "numeric_criteria-904-2",
+      "label": 0,
+      "p_yes": 0.9355364174845108
+    },
+    {
+      "id": "numeric_criteria-905-1",
+      "label": 1,
+      "p_yes": 0.2586675868791683
+    },
+    {
+      "id": "numeric_criteria-905-2",
+      "label": 0,
+      "p_yes": 0.40134552445079125
+    },
+    {
+      "id": "numeric_criteria-906-1",
+      "label": 0,
+      "p_yes": 0.771940560371995
+    },
+    {
+      "id": "numeric_criteria-906-2",
+      "label": 1,
+      "p_yes": 0.4547836909115974
+    },
+    {
+      "id": "numeric_criteria-907-1",
+      "label": 1,
+      "p_yes": 0.842612199812479
+    },
+    {
+      "id": "numeric_criteria-907-2",
+      "label": 0,
+      "p_yes": 0.6833335483400946
+    },
+    {
+      "id": "numeric_criteria-908-1",
+      "label": 0,
+      "p_yes": 0.5514764872518927
+    },
+    {
+      "id": "numeric_criteria-908-2",
+      "label": 1,
+      "p_yes": 0.08254579774789995
+    },
+    {
+      "id": "numeric_criteria-909-1",
+      "label": 0,
+      "p_yes": 0.71694468476871
+    },
+    {
+      "id": "numeric_criteria-909-2",
+      "label": 1,
+      "p_yes": 0.6767612365916247
+    },
+    {
+      "id": "numeric_criteria-910-1",
+      "label": 1,
+      "p_yes": 0.2755069963213404
+    },
+    {
+      "id": "numeric_criteria-910-2",
+      "label": 0,
+      "p_yes": 0.11984357668570414
+    },
+    {
+      "id": "numeric_criteria-911-1",
+      "label": 0,
+      "p_yes": 0.4376906646083734
+    },
+    {
+      "id": "numeric_criteria-911-2",
+      "label": 1,
+      "p_yes": 0.4950176862327307
+    },
+    {
+      "id": "numeric_criteria-912-1",
+      "label": 0,
+      "p_yes": 0.8000884792203945
+    },
+    {
+      "id": "numeric_criteria-912-2",
+      "label": 1,
+      "p_yes": 0.6453303245426761
+    },
+    {
+      "id": "numeric_criteria-913-1",
+      "label": 0,
+      "p_yes": 0.7265650690197416
+    },
+    {
+      "id": "numeric_criteria-913-2",
+      "label": 1,
+      "p_yes": 0.7075366606455853
+    },
+    {
+      "id": "numeric_criteria-914-1",
+      "label": 0,
+      "p_yes": 0.6864080664730996
+    },
+    {
+      "id": "numeric_criteria-914-2",
+      "label": 1,
+      "p_yes": 0.21625080351239598
+    },
+    {
+      "id": "numeric_criteria-915-1",
+      "label": 0,
+      "p_yes": 0.5869520048664724
+    },
+    {
+      "id": "numeric_criteria-915-2",
+      "label": 1,
+      "p_yes": 0.9936230846213223
+    },
+    {
+      "id": "events_timeline-901-1",
+      "label": 0,
+      "p_yes": 0.19066400414128826
+    },
+    {
+      "id": "events_timeline-901-2",
+      "label": 1,
+      "p_yes": 0.49580838545334727
+    },
+    {
+      "id": "events_timeline-902-1",
+      "label": 0,
+      "p_yes": 0.95930076873618
+    },
+    {
+      "id": "events_timeline-902-2",
+      "label": 1,
+      "p_yes": 0.7860946283765475
+    },
+    {
+      "id": "events_timeline-903-1",
+      "label": 1,
+      "p_yes": 0.3389630186527477
+    },
+    {
+      "id": "events_timeline-903-2",
+      "label": 0,
+      "p_yes": 0.029033946647190886
+    },
+    {
+      "id": "events_timeline-904-1",
+      "label": 0,
+      "p_yes": 0.8141710534788736
+    },
+    {
+      "id": "events_timeline-904-2",
+      "label": 1,
+      "p_yes": 0.4157953531058408
+    },
+    {
+      "id": "events_timeline-905-1",
+      "label": 0,
+      "p_yes": 0.40675430627721476
+    },
+    {
+      "id": "events_timeline-905-2",
+      "label": 1,
+      "p_yes": 0.44904776101968435
+    },
+    {
+      "id": "events_timeline-906-1",
+      "label": 0,
+      "p_yes": 0.12940325668055908
+    },
+    {
+      "id": "events_timeline-906-2",
+      "label": 1,
+      "p_yes": 0.9954316131314598
+    },
+    {
+      "id": "events_timeline-907-1",
+      "label": 0,
+      "p_yes": 0.4700055618942728
+    },
+    {
+      "id": "events_timeline-907-2",
+      "label": 1,
+      "p_yes": 0.26687269296085964
+    },
+    {
+      "id": "events_timeline-908-1",
+      "label": 1,
+      "p_yes": 0.6842461860018625
+    },
+    {
+      "id": "events_timeline-908-2",
+      "label": 0,
+      "p_yes": 0.68279874952253
+    },
+    {
+      "id": "events_timeline-909-1",
+      "label": 0,
+      "p_yes": 0.042440081038355434
+    },
+    {
+      "id": "events_timeline-909-2",
+      "label": 1,
+      "p_yes": 0.9896227736723511
+    },
+    {
+      "id": "events_timeline-910-1",
+      "label": 0,
+      "p_yes": 0.9870635454426285
+    },
+    {
+      "id": "events_timeline-910-2",
+      "label": 1,
+      "p_yes": 0.31334326259475864
+    },
+    {
+      "id": "events_timeline-911-1",
+      "label": 0,
+      "p_yes": 0.20080156453617504
+    },
+    {
+      "id": "events_timeline-911-2",
+      "label": 1,
+      "p_yes": 0.774216381405634
+    },
+    {
+      "id": "events_timeline-912-1",
+      "label": 1,
+      "p_yes": 0.9500599233644202
+    },
+    {
+      "id": "events_timeline-912-2",
+      "label": 0,
+      "p_yes": 0.3671072080393433
+    },
+    {
+      "id": "events_timeline-913-1",
+      "label": 0,
+      "p_yes": 0.7692177993042332
+    },
+    {
+      "id": "events_timeline-913-2",
+      "label": 1,
+      "p_yes": 0.7183811033206291
+    },
+    {
+      "id": "events_timeline-914-1",
+      "label": 0,
+      "p_yes": 0.008905748057973666
+    },
+    {
+      "id": "events_timeline-914-2",
+      "label": 1,
+      "p_yes": 0.2578287403417146
+    },
+    {
+      "id": "events_timeline-915-1",
+      "label": 0,
+      "p_yes": 0.22796402505406352
+    },
+    {
+      "id": "events_timeline-915-2",
+      "label": 1,
+      "p_yes": 0.9939292382626534
+    },
+    {
+      "id": "negation-901-1",
+      "label": 0,
+      "p_yes": 0.3008831385715199
+    },
+    {
+      "id": "negation-901-2",
+      "label": 1,
+      "p_yes": 0.9691074388579012
+    },
+    {
+      "id": "negation-902-1",
+      "label": 0,
+      "p_yes": 0.04078062107076267
+    },
+    {
+      "id": "negation-902-2",
+      "label": 1,
+      "p_yes": 0.5758951799134471
+    },
+    {
+      "id": "negation-903-1",
+      "label": 1,
+      "p_yes": 0.9809196019466917
+    },
+    {
+      "id": "negation-903-2",
+      "label": 0,
+      "p_yes": 0.7455731151295568
+    },
+    {
+      "id": "negation-904-1",
+      "label": 0,
+      "p_yes": 0.03485077649877983
+    },
+    {
+      "id": "negation-904-2",
+      "label": 1,
+      "p_yes": 0.9643167596958749
+    },
+    {
+      "id": "negation-905-1",
+      "label": 0,
+      "p_yes": 0.04001330278771723
+    },
+    {
+      "id": "negation-905-2",
+      "label": 1,
+      "p_yes": 0.07771835701138612
+    },
+    {
+      "id": "negation-906-1",
+      "label": 0,
+      "p_yes": 0.006162646935636296
+    },
+    {
+      "id": "negation-906-2",
+      "label": 1,
+      "p_yes": 0.9331164332651455
+    },
+    {
+      "id": "negation-907-1",
+      "label": 0,
+      "p_yes": 0.8141105144369905
+    },
+    {
+      "id": "negation-907-2",
+      "label": 1,
+      "p_yes": 0.3301862653730891
+    },
+    {
+      "id": "negation-908-1",
+      "label": 0,
+      "p_yes": 0.10255427627088154
+    },
+    {
+      "id": "negation-908-2",
+      "label": 1,
+      "p_yes": 0.5501198492817191
+    },
+    {
+      "id": "negation-909-1",
+      "label": 0,
+      "p_yes": 0.7429333378787722
+    },
+    {
+      "id": "negation-909-2",
+      "label": 1,
+      "p_yes": 0.717588386194156
+    },
+    {
+      "id": "negation-910-1",
+      "label": 0,
+      "p_yes": 0.03902335708177733
+    },
+    {
+      "id": "negation-910-2",
+      "label": 1,
+      "p_yes": 0.37115874598998977
+    },
+    {
+      "id": "negation-911-1",
+      "label": 0,
+      "p_yes": 0.07356299993074289
+    },
+    {
+      "id": "negation-911-2",
+      "label": 1,
+      "p_yes": 0.630499990050521
+    },
+    {
+      "id": "negation-912-1",
+      "label": 1,
+      "p_yes": 0.648723578199139
+    },
+    {
+      "id": "negation-912-2",
+      "label": 0,
+      "p_yes": 0.5845583024662141
+    },
+    {
+      "id": "negation-913-1",
+      "label": 0,
+      "p_yes": 0.8256977068530749
+    },
+    {
+      "id": "negation-913-2",
+      "label": 1,
+      "p_yes": 0.7628630904187117
+    },
+    {
+      "id": "negation-914-1",
+      "label": 0,
+      "p_yes": 0.5444026964482228
+    },
+    {
+      "id": "negation-914-2",
+      "label": 1,
+      "p_yes": 0.9603788484714905
+    },
+    {
+      "id": "negation-915-1",
+      "label": 0,
+      "p_yes": 0.727289802225895
+    },
+    {
+      "id": "negation-915-2",
+      "label": 1,
+      "p_yes": 0.16860091984933837
+    },
+    {
+      "id": "quoted_instructions-901-1",
+      "label": 0,
+      "p_yes": 0.023026001851283805
+    },
+    {
+      "id": "quoted_instructions-901-2",
+      "label": 1,
+      "p_yes": 0.9566696956684518
+    },
+    {
+      "id": "quoted_instructions-902-1",
+      "label": 0,
+      "p_yes": 0.7326236050591189
+    },
+    {
+      "id": "quoted_instructions-902-2",
+      "label": 1,
+      "p_yes": 0.768010105568594
+    },
+    {
+      "id": "quoted_instructions-903-1",
+      "label": 1,
+      "p_yes": 0.9883302779476424
+    },
+    {
+      "id": "quoted_instructions-903-2",
+      "label": 0,
+      "p_yes": 0.8881505865218514
+    },
+    {
+      "id": "quoted_instructions-904-1",
+      "label": 0,
+      "p_yes": 0.9883118320291917
+    },
+    {
+      "id": "quoted_instructions-904-2",
+      "label": 1,
+      "p_yes": 0.4054654675796767
+    },
+    {
+      "id": "quoted_instructions-905-1",
+      "label": 1,
+      "p_yes": 0.9893191501926627
+    },
+    {
+      "id": "quoted_instructions-905-2",
+      "label": 0,
+      "p_yes": 0.004821798044237838
+    },
+    {
+      "id": "quoted_instructions-906-1",
+      "label": 0,
+      "p_yes": 0.5404107182388534
+    },
+    {
+      "id": "quoted_instructions-906-2",
+      "label": 1,
+      "p_yes": 0.6223604066597281
+    },
+    {
+      "id": "quoted_instructions-907-1",
+      "label": 0,
+      "p_yes": 0.09648669388106136
+    },
+    {
+      "id": "quoted_instructions-907-2",
+      "label": 1,
+      "p_yes": 0.9906518971874088
+    },
+    {
+      "id": "quoted_instructions-908-1",
+      "label": 0,
+      "p_yes": 0.08480297147748374
+    },
+    {
+      "id": "quoted_instructions-908-2",
+      "label": 1,
+      "p_yes": 0.9050986993618539
+    },
+    {
+      "id": "quoted_instructions-909-1",
+      "label": 1,
+      "p_yes": 0.827671509100278
+    },
+    {
+      "id": "quoted_instructions-909-2",
+      "label": 0,
+      "p_yes": 0.6704970440569454
+    },
+    {
+      "id": "quoted_instructions-910-1",
+      "label": 0,
+      "p_yes": 0.8294146630135972
+    },
+    {
+      "id": "quoted_instructions-910-2",
+      "label": 1,
+      "p_yes": 0.9662832670736033
+    },
+    {
+      "id": "quoted_instructions-911-1",
+      "label": 0,
+      "p_yes": 0.7321684280247022
+    },
+    {
+      "id": "quoted_instructions-911-2",
+      "label": 1,
+      "p_yes": 0.5233256754178595
+    },
+    {
+      "id": "quoted_instructions-912-1",
+      "label": 0,
+      "p_yes": 0.6523331936022595
+    },
+    {
+      "id": "quoted_instructions-912-2",
+      "label": 1,
+      "p_yes": 0.7529722733641412
+    },
+    {
+      "id": "quoted_instructions-913-1",
+      "label": 1,
+      "p_yes": 0.019035572912688672
+    },
+    {
+      "id": "quoted_instructions-913-2",
+      "label": 0,
+      "p_yes": 0.008207731736297847
+    },
+    {
+      "id": "quoted_instructions-914-1",
+      "label": 1,
+      "p_yes": 0.37931221901286033
+    },
+    {
+      "id": "quoted_instructions-914-2",
+      "label": 0,
+      "p_yes": 0.13424467915857644
+    },
+    {
+      "id": "quoted_instructions-915-1",
+      "label": 1,
+      "p_yes": 0.9895743276192528
+    },
+    {
+      "id": "quoted_instructions-915-2",
+      "label": 0,
+      "p_yes": 0.050561466429823405
+    },
+    {
+      "id": "duplicate_reports-901-1",
+      "label": 1,
+      "p_yes": 0.052548893840958004
+    },
+    {
+      "id": "duplicate_reports-901-2",
+      "label": 0,
+      "p_yes": 0.02716141131563736
+    },
+    {
+      "id": "duplicate_reports-902-1",
+      "label": 1,
+      "p_yes": 0.03149660414210434
+    },
+    {
+      "id": "duplicate_reports-902-2",
+      "label": 0,
+      "p_yes": 0.04125563029485889
+    },
+    {
+      "id": "duplicate_reports-903-1",
+      "label": 0,
+      "p_yes": 0.9536712780841542
+    },
+    {
+      "id": "duplicate_reports-903-2",
+      "label": 1,
+      "p_yes": 0.7515445698623122
+    },
+    {
+      "id": "duplicate_reports-904-1",
+      "label": 0,
+      "p_yes": 0.02656972947664671
+    },
+    {
+      "id": "duplicate_reports-904-2",
+      "label": 1,
+      "p_yes": 0.6686576693988144
+    },
+    {
+      "id": "duplicate_reports-905-1",
+      "label": 1,
+      "p_yes": 0.00989225300911875
+    },
+    {
+      "id": "duplicate_reports-905-2",
+      "label": 0,
+      "p_yes": 0.06569535780899886
+    },
+    {
+      "id": "duplicate_reports-906-1",
+      "label": 1,
+      "p_yes": 0.24822655328967785
+    },
+    {
+      "id": "duplicate_reports-906-2",
+      "label": 0,
+      "p_yes": 0.1392894908088226
+    },
+    {
+      "id": "duplicate_reports-907-1",
+      "label": 0,
+      "p_yes": 0.46834674759617284
+    },
+    {
+      "id": "duplicate_reports-907-2",
+      "label": 1,
+      "p_yes": 0.7448584656017151
+    },
+    {
+      "id": "duplicate_reports-908-1",
+      "label": 1,
+      "p_yes": 0.8007107076063903
+    },
+    {
+      "id": "duplicate_reports-908-2",
+      "label": 0,
+      "p_yes": 0.21426789699613366
+    },
+    {
+      "id": "duplicate_reports-909-1",
+      "label": 0,
+      "p_yes": 0.7109196526079997
+    },
+    {
+      "id": "duplicate_reports-909-2",
+      "label": 1,
+      "p_yes": 0.27505015255339316
+    },
+    {
+      "id": "duplicate_reports-910-1",
+      "label": 1,
+      "p_yes": 0.14993154526107977
+    },
+    {
+      "id": "duplicate_reports-910-2",
+      "label": 0,
+      "p_yes": 0.2785797518479383
+    },
+    {
+      "id": "duplicate_reports-911-1",
+      "label": 1,
+      "p_yes": 0.6279506915390994
+    },
+    {
+      "id": "duplicate_reports-911-2",
+      "label": 0,
+      "p_yes": 0.6106305625954362
+    },
+    {
+      "id": "duplicate_reports-912-1",
+      "label": 1,
+      "p_yes": 0.6056536907394598
+    },
+    {
+      "id": "duplicate_reports-912-2",
+      "label": 0,
+      "p_yes": 0.6393517467848026
+    },
+    {
+      "id": "duplicate_reports-913-1",
+      "label": 1,
+      "p_yes": 0.42366952701726984
+    },
+    {
+      "id": "duplicate_reports-913-2",
+      "label": 0,
+      "p_yes": 0.38374245734711626
+    },
+    {
+      "id": "duplicate_reports-914-1",
+      "label": 1,
+      "p_yes": 0.8672828069495021
+    },
+    {
+      "id": "duplicate_reports-914-2",
+      "label": 0,
+      "p_yes": 0.7562610587632953
+    },
+    {
+      "id": "duplicate_reports-915-1",
+      "label": 1,
+      "p_yes": 0.1528509433818607
+    },
+    {
+      "id": "duplicate_reports-915-2",
+      "label": 0,
+      "p_yes": 0.22394970408105436
+    },
+    {
+      "id": "evidence_presence-901-1",
+      "label": 1,
+      "p_yes": 0.9132855294503376
+    },
+    {
+      "id": "evidence_presence-901-2",
+      "label": 0,
+      "p_yes": 0.9879190231683904
+    },
+    {
+      "id": "evidence_presence-902-1",
+      "label": 1,
+      "p_yes": 0.9898565762732362
+    },
+    {
+      "id": "evidence_presence-902-2",
+      "label": 0,
+      "p_yes": 0.8590989516098468
+    },
+    {
+      "id": "evidence_presence-903-1",
+      "label": 0,
+      "p_yes": 0.919605165146149
+    },
+    {
+      "id": "evidence_presence-903-2",
+      "label": 1,
+      "p_yes": 0.9932616283990771
+    },
+    {
+      "id": "evidence_presence-904-1",
+      "label": 0,
+      "p_yes": 0.17228563808692227
+    },
+    {
+      "id": "evidence_presence-904-2",
+      "label": 1,
+      "p_yes": 0.9914621047921853
+    },
+    {
+      "id": "evidence_presence-905-1",
+      "label": 0,
+      "p_yes": 0.21364144596880905
+    },
+    {
+      "id": "evidence_presence-905-2",
+      "label": 1,
+      "p_yes": 0.994503637915406
+    },
+    {
+      "id": "evidence_presence-906-1",
+      "label": 1,
+      "p_yes": 0.9845678184623445
+    },
+    {
+      "id": "evidence_presence-906-2",
+      "label": 0,
+      "p_yes": 0.8690388266111858
+    },
+    {
+      "id": "evidence_presence-907-1",
+      "label": 0,
+      "p_yes": 0.7434380650487633
+    },
+    {
+      "id": "evidence_presence-907-2",
+      "label": 1,
+      "p_yes": 0.9958849321590085
+    },
+    {
+      "id": "evidence_presence-908-1",
+      "label": 0,
+      "p_yes": 0.6906064027299348
+    },
+    {
+      "id": "evidence_presence-908-2",
+      "label": 1,
+      "p_yes": 0.945593825727898
+    },
+    {
+      "id": "evidence_presence-909-1",
+      "label": 0,
+      "p_yes": 0.8640883341372549
+    },
+    {
+      "id": "evidence_presence-909-2",
+      "label": 1,
+      "p_yes": 0.9926382692931827
+    },
+    {
+      "id": "evidence_presence-910-1",
+      "label": 1,
+      "p_yes": 0.9645174762506592
+    },
+    {
+      "id": "evidence_presence-910-2",
+      "label": 0,
+      "p_yes": 0.5609197016614093
+    },
+    {
+      "id": "evidence_presence-911-1",
+      "label": 1,
+      "p_yes": 0.25875445713506406
+    },
+    {
+      "id": "evidence_presence-911-2",
+      "label": 0,
+      "p_yes": 0.3805237430607385
+    },
+    {
+      "id": "evidence_presence-912-1",
+      "label": 1,
+      "p_yes": 0.3528540382566106
+    },
+    {
+      "id": "evidence_presence-912-2",
+      "label": 0,
+      "p_yes": 0.24553640607915253
+    },
+    {
+      "id": "evidence_presence-913-1",
+      "label": 1,
+      "p_yes": 0.26130739077082105
+    },
+    {
+      "id": "evidence_presence-913-2",
+      "label": 0,
+      "p_yes": 0.742419148977817
+    },
+    {
+      "id": "evidence_presence-914-1",
+      "label": 1,
+      "p_yes": 0.9790818644300993
+    },
+    {
+      "id": "evidence_presence-914-2",
+      "label": 0,
+      "p_yes": 0.03999225869687696
+    },
+    {
+      "id": "evidence_presence-915-1",
+      "label": 1,
+      "p_yes": 0.24135538648152394
+    },
+    {
+      "id": "evidence_presence-915-2",
+      "label": 0,
+      "p_yes": 0.0369316299780713
+    },
+    {
+      "id": "spam_promotion-901-1",
+      "label": 1,
+      "p_yes": 0.5459466621531278
+    },
+    {
+      "id": "spam_promotion-901-2",
+      "label": 0,
+      "p_yes": 0.04936637667695487
+    },
+    {
+      "id": "spam_promotion-902-1",
+      "label": 0,
+      "p_yes": 0.4578875372743365
+    },
+    {
+      "id": "spam_promotion-902-2",
+      "label": 1,
+      "p_yes": 0.8662572359757654
+    },
+    {
+      "id": "spam_promotion-903-1",
+      "label": 1,
+      "p_yes": 0.5922651324450444
+    },
+    {
+      "id": "spam_promotion-903-2",
+      "label": 0,
+      "p_yes": 0.017218570540393233
+    },
+    {
+      "id": "spam_promotion-904-1",
+      "label": 1,
+      "p_yes": 0.3067252022910342
+    },
+    {
+      "id": "spam_promotion-904-2",
+      "label": 0,
+      "p_yes": 0.7231873053288459
+    },
+    {
+      "id": "spam_promotion-905-1",
+      "label": 1,
+      "p_yes": 0.9466531125312643
+    },
+    {
+      "id": "spam_promotion-905-2",
+      "label": 0,
+      "p_yes": 0.04401928203459458
+    },
+    {
+      "id": "spam_promotion-906-1",
+      "label": 1,
+      "p_yes": 0.22324722407854372
+    },
+    {
+      "id": "spam_promotion-906-2",
+      "label": 0,
+      "p_yes": 0.7922709583968438
+    },
+    {
+      "id": "spam_promotion-907-1",
+      "label": 0,
+      "p_yes": 0.027931620553838417
+    },
+    {
+      "id": "spam_promotion-907-2",
+      "label": 1,
+      "p_yes": 0.7362747838547945
+    },
+    {
+      "id": "spam_promotion-908-1",
+      "label": 1,
+      "p_yes": 0.6100770150520203
+    },
+    {
+      "id": "spam_promotion-908-2",
+      "label": 0,
+      "p_yes": 0.5296454861529786
+    },
+    {
+      "id": "spam_promotion-909-1",
+      "label": 1,
+      "p_yes": 0.39092727505272823
+    },
+    {
+      "id": "spam_promotion-909-2",
+      "label": 0,
+      "p_yes": 0.6529280536403035
+    },
+    {
+      "id": "spam_promotion-910-1",
+      "label": 1,
+      "p_yes": 0.5463759439994806
+    },
+    {
+      "id": "spam_promotion-910-2",
+      "label": 0,
+      "p_yes": 0.4361320106375314
+    },
+    {
+      "id": "spam_promotion-911-1",
+      "label": 1,
+      "p_yes": 0.20041244569071393
+    },
+    {
+      "id": "spam_promotion-911-2",
+      "label": 0,
+      "p_yes": 0.3595997371789337
+    },
+    {
+      "id": "spam_promotion-912-1",
+      "label": 1,
+      "p_yes": 0.39724069913293547
+    },
+    {
+      "id": "spam_promotion-912-2",
+      "label": 0,
+      "p_yes": 0.6142530986459187
+    },
+    {
+      "id": "spam_promotion-913-1",
+      "label": 1,
+      "p_yes": 0.4956233050269455
+    },
+    {
+      "id": "spam_promotion-913-2",
+      "label": 0,
+      "p_yes": 0.7209562830146258
+    },
+    {
+      "id": "spam_promotion-914-1",
+      "label": 1,
+      "p_yes": 0.5912709825257674
+    },
+    {
+      "id": "spam_promotion-914-2",
+      "label": 0,
+      "p_yes": 0.5875950350024478
+    },
+    {
+      "id": "spam_promotion-915-1",
+      "label": 1,
+      "p_yes": 0.4199005469444804
+    },
+    {
+      "id": "spam_promotion-915-2",
+      "label": 0,
+      "p_yes": 0.360565253094718
+    },
+    {
+      "id": "email_screening-901-1",
+      "label": 1,
+      "p_yes": 0.3708202897736407
+    },
+    {
+      "id": "email_screening-901-2",
+      "label": 0,
+      "p_yes": 0.06224999122140698
+    },
+    {
+      "id": "email_screening-902-1",
+      "label": 1,
+      "p_yes": 0.9521034908723526
+    },
+    {
+      "id": "email_screening-902-2",
+      "label": 0,
+      "p_yes": 0.01180094613888657
+    },
+    {
+      "id": "email_screening-903-1",
+      "label": 0,
+      "p_yes": 0.07957441533677094
+    },
+    {
+      "id": "email_screening-903-2",
+      "label": 1,
+      "p_yes": 0.5613270299435374
+    },
+    {
+      "id": "email_screening-904-1",
+      "label": 1,
+      "p_yes": 0.9894155486717972
+    },
+    {
+      "id": "email_screening-904-2",
+      "label": 0,
+      "p_yes": 0.4885007510815207
+    },
+    {
+      "id": "email_screening-905-1",
+      "label": 1,
+      "p_yes": 0.5622962579800076
+    },
+    {
+      "id": "email_screening-905-2",
+      "label": 0,
+      "p_yes": 0.05500299143119419
+    },
+    {
+      "id": "email_screening-906-1",
+      "label": 1,
+      "p_yes": 0.9520731798010764
+    },
+    {
+      "id": "email_screening-906-2",
+      "label": 0,
+      "p_yes": 0.13227856277120892
+    },
+    {
+      "id": "email_screening-907-1",
+      "label": 1,
+      "p_yes": 0.9720984665188508
+    },
+    {
+      "id": "email_screening-907-2",
+      "label": 0,
+      "p_yes": 0.016039295735253457
+    },
+    {
+      "id": "email_screening-908-1",
+      "label": 0,
+      "p_yes": 0.18310520291264412
+    },
+    {
+      "id": "email_screening-908-2",
+      "label": 1,
+      "p_yes": 0.9922154250002541
+    },
+    {
+      "id": "email_screening-909-1",
+      "label": 0,
+      "p_yes": 0.4290542394078163
+    },
+    {
+      "id": "email_screening-909-2",
+      "label": 1,
+      "p_yes": 0.9944186583690555
+    },
+    {
+      "id": "email_screening-910-1",
+      "label": 0,
+      "p_yes": 0.9742436552375356
+    },
+    {
+      "id": "email_screening-910-2",
+      "label": 1,
+      "p_yes": 0.973236315778787
+    },
+    {
+      "id": "email_screening-911-1",
+      "label": 1,
+      "p_yes": 0.42722582507866425
+    },
+    {
+      "id": "email_screening-911-2",
+      "label": 0,
+      "p_yes": 0.5920342286431083
+    },
+    {
+      "id": "email_screening-912-1",
+      "label": 1,
+      "p_yes": 0.15002015462823684
+    },
+    {
+      "id": "email_screening-912-2",
+      "label": 0,
+      "p_yes": 0.07008030834375283
+    },
+    {
+      "id": "email_screening-913-1",
+      "label": 1,
+      "p_yes": 0.6687226742151683
+    },
+    {
+      "id": "email_screening-913-2",
+      "label": 0,
+      "p_yes": 0.28098583897342244
+    },
+    {
+      "id": "email_screening-914-1",
+      "label": 1,
+      "p_yes": 0.6918224069142307
+    },
+    {
+      "id": "email_screening-914-2",
+      "label": 0,
+      "p_yes": 0.7156963820746219
+    },
+    {
+      "id": "email_screening-915-1",
+      "label": 1,
+      "p_yes": 0.5561954558227962
+    },
+    {
+      "id": "email_screening-915-2",
+      "label": 0,
+      "p_yes": 0.11289400558187325
+    }
+  ],
+  "split": "test",
+  "temperature": 1.161448613840343,
+  "bundle": "models/v3-nli-choices-fp16",
+  "model_sha256": "884d82d2a78b85acc497f4acfc3144a21e8d82808d0affbf8976fa1f0d97ac9d",
+  "data_sha256": {
+    "data/v4/test-1.jsonl": "3cb7a03974c818c659379b701a6b0639e08bc717d174c0899ddd0e75b3e7d136",
+    "data/v4/test-2.jsonl": "bd33dc973bb795ace1a4055f53f309c3a7a821982b3256ad0346f9c0562a1e4a",
+    "data/v4/test-3.jsonl": "9c4ef367557ed8bff89874a89dec91a70ba642eca3047676857b8909072e8595",
+    "data/v4/test-4.jsonl": "ad33a3bde136c7ddea47872b020fc279f3a38e5dd1d80b2e32ec2ab09c9dc8fd"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

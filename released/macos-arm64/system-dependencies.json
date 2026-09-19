@@ -1,0 +1,31 @@
+{
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "binaries": {
+    "libdecisiongate.dylib": {
+      "minimum_macos": [
+        "11.0"
+      ],
+      "linked_libraries": [
+        "\t@rpath/libdecisiongate.dylib (compatibility version 0.0.0, current version 0.0.0)",
+        "\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)",
+        "\t/usr/lib/libiconv.2.dylib (compatibility version 7.0.0, current version 7.0.0)"
+      ]
+    },
+    "libonnxruntime.dylib": {
+      "minimum_macos": [
+        "13.3"
+      ],
+      "linked_libraries": [
+        "\t@rpath/libonnxruntime.1.22.1.dylib (compatibility version 0.0.0, current version 1.22.1)",
+        "\t/System/Library/Frameworks/CoreML.framework/Versions/A/CoreML (compatibility version 1.0.0, current version 1.0.0)",
+        "\t/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 2420.0.0)",
+        "\t/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 2420.0.0)",
+        "\t/usr/lib/libiconv.2.dylib (compatibility version 7.0.0, current version 7.0.0)",
+        "\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 1700.255.0)",
+        "\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1345.100.2)",
+        "\t/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)"
+      ]
+    }
+  },
+  "limits": "Binary metadata is a compatibility floor, not validation on older OS releases or every CPU. Native runtime checks ran only on the recorded build host."
+}

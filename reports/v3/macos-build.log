@@ -1,0 +1,126 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling version_check v0.9.5
+   Compiling serde_core v1.0.229
+   Compiling autocfg v1.5.1
+   Compiling libc v0.2.189
+   Compiling cfg-if v1.0.5
+   Compiling pkg-config v0.3.34
+   Compiling crossbeam-utils v0.8.23
+   Compiling ident_case v1.0.1
+   Compiling strsim v0.11.1
+   Compiling getrandom v0.3.4
+   Compiling memchr v2.8.3
+   Compiling zerocopy v0.8.57
+   Compiling serde v1.0.229
+   Compiling fnv v1.0.7
+   Compiling crossbeam-epoch v0.9.21
+   Compiling num-traits v0.2.19
+   Compiling generic-array v0.14.7
+   Compiling crossbeam-deque v0.8.8
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.12
+   Compiling cc v1.4.6
+   Compiling syn v2.0.119
+   Compiling syn v3.0.6
+   Compiling rustversion v1.0.23
+   Compiling typenum v1.20.1
+   Compiling rayon-core v1.13.0
+   Compiling serde_derive v1.0.229
+   Compiling onig_sys v69.9.3
+   Compiling matrixmultiply v0.3.11
+   Compiling darling_core v0.20.11
+   Compiling either v1.18.0
+   Compiling zmij v1.0.23
+   Compiling rand_core v0.9.5
+   Compiling aho-corasick v1.1.5
+   Compiling ort-sys v2.0.0-rc.10
+   Compiling ahash v0.8.12
+   Compiling minimal-lexical v0.2.1
+   Compiling ppv-lite86 v0.2.21
+   Compiling paste v1.0.15
+   Compiling esaxx-rs v0.1.10
+   Compiling thiserror v2.0.20
+   Compiling once_cell v1.21.4
+   Compiling rawpointer v0.2.1
+   Compiling regex-syntax v0.8.11
+   Compiling serde_json v1.0.151
+   Compiling itoa v1.0.18
+   Compiling darling_macro v0.20.11
+   Compiling darling v0.20.11
+   Compiling rand_chacha v0.9.0
+   Compiling nom v7.1.3
+   Compiling regex-automata v0.4.18
+   Compiling castaway v0.2.4
+   Compiling derive_builder_core v0.20.2
+   Compiling monostate-impl v0.1.18
+   Compiling rayon v1.12.0
+   Compiling num-complex v0.4.6
+   Compiling num-integer v0.1.47
+   Compiling derive_builder_macro v0.20.2
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling itertools v0.14.0
+   Compiling thiserror-impl v2.0.20
+   Compiling macro_rules_attribute-proc_macro v0.2.3
+   Compiling smallvec v1.16.1
+   Compiling ryu v1.0.23
+   Compiling static_assertions v1.1.0
+   Compiling pastey v0.2.3
+   Compiling base64 v0.13.1
+   Compiling bitflags v2.13.2
+   Compiling unicode-segmentation v1.13.3
+   Compiling compact_str v0.9.1
+   Compiling macro_rules_attribute v0.2.3
+   Compiling unicode-normalization-alignments v0.1.12
+   Compiling spm_precompiled v0.1.4
+   Compiling regex v1.13.1
+   Compiling digest v0.10.7
+   Compiling derive_builder v0.20.2
+   Compiling ndarray v0.16.1
+   Compiling monostate v0.1.18
+   Compiling rayon-cond v0.4.0
+   Compiling rand v0.9.5
+   Compiling dary_heap v0.3.9
+   Compiling cpufeatures v0.2.17
+   Compiling libloading v0.8.9
+   Compiling smallvec v2.0.0-alpha.10
+   Compiling log v0.4.34
+   Compiling unicode_categories v0.1.1
+   Compiling sha2 v0.10.9
+   Compiling onig v6.5.3
+   Compiling tokenizers v0.21.4
+   Compiling ort v2.0.0-rc.10
+   Compiling decisiongate v0.1.0 (/Users/ace/Desktop/prjx/DecisionModel/code)
+    Finished `release` profile [optimized] target(s) in 25.91s
+     Running unittests src/lib.rs (code/target/release/deps/decisiongate-81eb0c441365fdb6)
+
+running 8 tests
+test tests::invalid_abi_inputs_do_not_write_probability ... ok
+test tests::template_versions_preserve_pair_order_and_criteria ... ok
+test tests::unsupported_templates_and_empty_criteria_are_rejected ... ok
+test tests::choice_prompts_and_ranking ... ok
+test tests::invalid_choice_abi_inputs_do_not_write_outputs ... ok
+test tests::invalid_text_and_missing_bundle_are_rejected ... ok
+test tests::errors_can_be_copied_without_being_cleared ... ok
+test tests::panic_is_contained_at_boundary ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests decisiongate
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+    Finished `release` profile [optimized] target(s) in 0.06s
+/Users/ace/Desktop/prjx/DecisionModel/released/macos-arm64/libdecisiongate.dylib: replacing existing signature
+p_yes=0.995868797
+top=billing p=0.985366711
+{
+  "checks": 168,
+  "status": "passed",
+  "unicode_criteria_p_yes": 0.03441558148955975
+}
+Built and tested bundle: /Users/ace/Desktop/prjx/DecisionModel/released/macos-arm64

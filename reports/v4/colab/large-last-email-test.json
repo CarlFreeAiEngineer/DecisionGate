@@ -1,0 +1,228 @@
+{
+  "count": 40,
+  "accuracy": 0.875,
+  "balanced_accuracy": 0.875,
+  "brier": 0.10921746374521395,
+  "log_loss": 0.35447219158647797,
+  "by_family": {
+    "email_address_presence": {
+      "count": 40,
+      "accuracy": 0.875
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 113.33327700003792,
+  "p95_ms": 131.04271049983254,
+  "predictions": [
+    {
+      "id": "email-address-test-001",
+      "label": 1,
+      "p_yes": 0.9498867038401879
+    },
+    {
+      "id": "email-address-test-002",
+      "label": 0,
+      "p_yes": 0.8817547355068845
+    },
+    {
+      "id": "email-address-test-003",
+      "label": 1,
+      "p_yes": 0.9535702507659636
+    },
+    {
+      "id": "email-address-test-004",
+      "label": 0,
+      "p_yes": 0.3562347624676266
+    },
+    {
+      "id": "email-address-test-005",
+      "label": 1,
+      "p_yes": 0.9490561179602041
+    },
+    {
+      "id": "email-address-test-006",
+      "label": 0,
+      "p_yes": 0.032432337173034634
+    },
+    {
+      "id": "email-address-test-007",
+      "label": 1,
+      "p_yes": 0.7978770754756195
+    },
+    {
+      "id": "email-address-test-008",
+      "label": 0,
+      "p_yes": 0.028123101953222086
+    },
+    {
+      "id": "email-address-test-009",
+      "label": 1,
+      "p_yes": 0.9483772481630126
+    },
+    {
+      "id": "email-address-test-010",
+      "label": 0,
+      "p_yes": 0.9135243701097125
+    },
+    {
+      "id": "email-address-test-011",
+      "label": 1,
+      "p_yes": 0.953141218402484
+    },
+    {
+      "id": "email-address-test-012",
+      "label": 0,
+      "p_yes": 0.04836343050653233
+    },
+    {
+      "id": "email-address-test-013",
+      "label": 1,
+      "p_yes": 0.838791477380264
+    },
+    {
+      "id": "email-address-test-014",
+      "label": 0,
+      "p_yes": 0.1428215482558534
+    },
+    {
+      "id": "email-address-test-015",
+      "label": 1,
+      "p_yes": 0.9525827545981373
+    },
+    {
+      "id": "email-address-test-016",
+      "label": 0,
+      "p_yes": 0.09330718658002798
+    },
+    {
+      "id": "email-address-test-017",
+      "label": 1,
+      "p_yes": 0.9188770452825356
+    },
+    {
+      "id": "email-address-test-018",
+      "label": 0,
+      "p_yes": 0.21298635343968406
+    },
+    {
+      "id": "email-address-test-019",
+      "label": 1,
+      "p_yes": 0.6954106211961877
+    },
+    {
+      "id": "email-address-test-020",
+      "label": 0,
+      "p_yes": 0.056755859389424866
+    },
+    {
+      "id": "email-address-test-021",
+      "label": 1,
+      "p_yes": 0.9517642657228387
+    },
+    {
+      "id": "email-address-test-022",
+      "label": 0,
+      "p_yes": 0.8980635026940716
+    },
+    {
+      "id": "email-address-test-023",
+      "label": 1,
+      "p_yes": 0.9546496089980299
+    },
+    {
+      "id": "email-address-test-024",
+      "label": 0,
+      "p_yes": 0.04389775580537628
+    },
+    {
+      "id": "email-address-test-025",
+      "label": 1,
+      "p_yes": 0.9417666900064928
+    },
+    {
+      "id": "email-address-test-026",
+      "label": 0,
+      "p_yes": 0.06811280297165256
+    },
+    {
+      "id": "email-address-test-027",
+      "label": 1,
+      "p_yes": 0.9533505231485455
+    },
+    {
+      "id": "email-address-test-028",
+      "label": 0,
+      "p_yes": 0.07360295342151256
+    },
+    {
+      "id": "email-address-test-029",
+      "label": 1,
+      "p_yes": 0.9562357101165024
+    },
+    {
+      "id": "email-address-test-030",
+      "label": 0,
+      "p_yes": 0.07745199496110748
+    },
+    {
+      "id": "email-address-test-031",
+      "label": 1,
+      "p_yes": 0.9493061986452807
+    },
+    {
+      "id": "email-address-test-032",
+      "label": 0,
+      "p_yes": 0.8374345484574851
+    },
+    {
+      "id": "email-address-test-033",
+      "label": 1,
+      "p_yes": 0.8576833633544487
+    },
+    {
+      "id": "email-address-test-034",
+      "label": 0,
+      "p_yes": 0.0785155856322392
+    },
+    {
+      "id": "email-address-test-035",
+      "label": 1,
+      "p_yes": 0.8443146986150833
+    },
+    {
+      "id": "email-address-test-036",
+      "label": 0,
+      "p_yes": 0.0496322322151095
+    },
+    {
+      "id": "email-address-test-037",
+      "label": 1,
+      "p_yes": 0.12289045094200161
+    },
+    {
+      "id": "email-address-test-038",
+      "label": 0,
+      "p_yes": 0.032940020370978755
+    },
+    {
+      "id": "email-address-test-039",
+      "label": 1,
+      "p_yes": 0.953139109780096
+    },
+    {
+      "id": "email-address-test-040",
+      "label": 0,
+      "p_yes": 0.037183921845486446
+    }
+  ],
+  "split": "test",
+  "temperature": 3.019951720402017,
+  "bundle": "models/large-last",
+  "model_sha256": "c545b12e750b3f07182ce2768eae5d3f974970a7cc52b2659c6895757f2dc820",
+  "data_sha256": {
+    "data/email-address-test.jsonl": "07f685dd065d8e70283ec031751df84c35cec71720b8e2da54521d36ec20ee87"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

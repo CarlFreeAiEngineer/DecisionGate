@@ -12,9 +12,8 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Exercises dg_evaluate_choice against a bundle that has the multiple-choice native functions.
- * Released bundles under released/macos-arm64 predate dg_choose_p/dg_choose/dg_evaluate_choice,
- * so this test defaults to the local development bundle instead. Override the bundle location
- * with the DECISIONGATE_CHOOSE_BUNDLE environment variable, or -Ddecisiongate.choose.bundle=PATH;
+ * The pom points this at the released bundle. Override the bundle location with the
+ * DECISIONGATE_CHOOSE_BUNDLE environment variable, or -Ddecisiongate.choose.bundle=PATH;
  * this leaves the -Ddecisiongate.bundle default used for released-bundle testing unchanged.
  */
 class DecisionGateChoiceIntegrationTest {

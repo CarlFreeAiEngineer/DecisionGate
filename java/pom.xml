@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.decisiongate</groupId>
   <artifactId>decisiongate-java</artifactId>
-  <version>0.2.0</version>
+  <version>0.4.0</version>
   <name>DecisionGate Java</name>
   <description>Offline yes/no decisions through a normal Java API</description>
   <properties>
@@ -16,7 +16,7 @@
          development bundle instead. Override with -Ddecisiongate.choose.bundle=PATH or the
          DECISIONGATE_CHOOSE_BUNDLE environment variable (checked first); this never changes
          the -Ddecisiongate.bundle default used for released-bundle testing. -->
-    <decisiongate.choose.bundle>${project.basedir}/../models/choose-dev-macos</decisiongate.choose.bundle>
+    <decisiongate.choose.bundle>${project.basedir}/../released/macos-arm64</decisiongate.choose.bundle>
     <native.classifier>macos-arm64</native.classifier>
   </properties>
   <licenses><license><name>Apache License 2.0</name><url>https://www.apache.org/licenses/LICENSE-2.0</url></license></licenses>

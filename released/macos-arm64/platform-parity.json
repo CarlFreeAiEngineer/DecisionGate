@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "cases": 81,
+  "max_absolute_difference": 0.0,
+  "boolean_disagreements": [],
+  "seconds": 13.381785708013922
+}

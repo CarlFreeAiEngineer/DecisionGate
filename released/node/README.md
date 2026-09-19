@@ -3,7 +3,7 @@
 Fetch the tarballs with `uv run code/fetch_released.py --only node` if they are not already here, then install the one matching your operating system and architecture, for example:
 
 ```sh
-npm install /path/to/decisiongate-0.3.0-darwin-arm64.tgz
+npm install /path/to/decisiongate-0.4.0-darwin-arm64.tgz
 ```
 
 ```javascript

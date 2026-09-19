@@ -68,12 +68,12 @@ Maven:
 <dependency>
   <groupId>org.decisiongate</groupId>
   <artifactId>decisiongate-java</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 </dependency>
 <dependency>
   <groupId>org.decisiongate</groupId>
   <artifactId>decisiongate-java</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
   <classifier>macos-arm64</classifier>
   <scope>runtime</scope>
 </dependency>
@@ -82,15 +82,15 @@ Maven:
 Gradle, Kotlin DSL:
 
 ```kotlin
-implementation("org.decisiongate:decisiongate-java:0.3.0")
-runtimeOnly("org.decisiongate:decisiongate-java:0.3.0:macos-arm64")
+implementation("org.decisiongate:decisiongate-java:0.4.0")
+runtimeOnly("org.decisiongate:decisiongate-java:0.4.0:macos-arm64")
 ```
 
 Choose `macos-arm64`, `linux-x64` or `windows-x64` for the platform classifier.
 
 The small API JAR brings JNA 5.19.1 as a normal transitive dependency. The separate platform JAR contains the native libraries, model, tokenizer, manifest, and notices. Applications do not need Rust, C tooling, Python, ONNX installation, or a server. Sources and Javadoc JARs are included for IDEs.
 
-Dependency resolution happens during application setup/build as usual. The first `Decisions.isYes(...)` or `Decisions.isYesP(...)` call makes no downloads or network calls. It extracts the packaged assets into a versioned local cache under `~/.cache/decisiongate`, verifies SHA-256 hashes, and loads the library. The unpacked bundle needs about 394 MB; keep both archive and extraction space in mind when packaging an application. Set `-Ddecisiongate.cache=/your/cache/path` before the first call to choose another cache directory. Extraction is protected by a file lock and interrupted extraction can be retried.
+Dependency resolution happens during application setup/build as usual. The first `Decisions.isYes(...)` or `Decisions.isYesP(...)` call makes no downloads or network calls. It extracts the packaged assets into a versioned local cache under `~/.cache/decisiongate`, verifies SHA-256 hashes, and loads the library. The unpacked 0.4.0 bundle needs about 900 MB; keep both archive and extraction space in mind when packaging an application. Set `-Ddecisiongate.cache=/your/cache/path` before the first call to choose another cache directory. Extraction is protected by a file lock and interrupted extraction can be retried.
 
 Missing platform assets give a clear error, never a download fallback.
 

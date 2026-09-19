@@ -1,0 +1,272 @@
+Compressed weights: 872159821 bytes (394 tensors stored as float16); temperature kept, re-run calibrate and evaluate to confirm
+{
+  "count": 244,
+  "accuracy": 0.9221311475409836,
+  "balanced_accuracy": 0.9221311475409837,
+  "brier": 0.06338239769262663,
+  "log_loss": 0.21938368357496155,
+  "by_family": {
+    "appointment": {
+      "count": 6,
+      "accuracy": 1.0
+    },
+    "appointment_intent": {
+      "count": 14,
+      "accuracy": 1.0
+    },
+    "cancellation": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "cancellation_intent": {
+      "count": 12,
+      "accuracy": 1.0
+    },
+    "coding_billing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "coding_routing": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate": {
+      "count": 4,
+      "accuracy": 1.0
+    },
+    "duplicate_issue": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "duplicate_reports": {
+      "count": 14,
+      "accuracy": 0.8571428571428571
+    },
+    "eligibility": {
+      "count": 12,
+      "accuracy": 0.6666666666666666
+    },
+    "email_screening": {
+      "count": 12,
+      "accuracy": 0.9166666666666666
+    },
+    "events_timeline": {
+      "count": 12,
+      "accuracy": 0.6666666666666666
+    },
+    "everyday": {
+      "count": 14,
+      "accuracy": 1.0
+    },
+    "evidence_presence": {
+      "count": 12,
+      "accuracy": 1.0
+    },
+    "mixed_intent": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "negation": {
+      "count": 14,
+      "accuracy": 0.8571428571428571
+    },
+    "numeric_criteria": {
+      "count": 12,
+      "accuracy": 0.9166666666666666
+    },
+    "permissions": {
+      "count": 12,
+      "accuracy": 1.0
+    },
+    "quoted_instructions": {
+      "count": 12,
+      "accuracy": 0.9166666666666666
+    },
+    "reference": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "refund": {
+      "count": 8,
+      "accuracy": 1.0
+    },
+    "refund_intent": {
+      "count": 14,
+      "accuracy": 1.0
+    },
+    "reported_speech": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_routing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "routing": {
+      "count": 12,
+      "accuracy": 0.9166666666666666
+    },
+    "spam_promotion": {
+      "count": 12,
+      "accuracy": 0.8333333333333334
+    },
+    "urgency": {
+      "count": 18,
+      "accuracy": 0.9444444444444444
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 154.80519499988077,
+  "p95_ms": 246.16494505000898,
+  "choice_accuracy": 1.0,
+  "choice_count": 10,
+  "choice_log_loss": 0.4330742223645173,
+  "choice_by_family": {
+    "support_routing": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "request_type": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "sentiment": {
+      "count": 1,
+      "accuracy": 1.0
+    },
+    "urgency_level": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "language_of_text": {
+      "count": 1,
+      "accuracy": 1.0
+    },
+    "day_or_time_lookup": {
+      "count": 1,
+      "accuracy": 1.0
+    },
+    "unit_or_quantity": {
+      "count": 1,
+      "accuracy": 1.0
+    }
+  },
+  "split": "calibration",
+  "temperature": 1.6218100973589302,
+  "bundle": "models/large-best-fp16",
+  "model_sha256": "a251fd8ac6adfd58c496e6bb20058342ecc274e3372c7bfd5a6099a18d261845",
+  "data_sha256": {
+    "/content/dg/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/content/dg/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
+    "data/choices.jsonl": "bc818e5cae7957ba42b0bb472a99c7522d7deac1bd371b4b5c5e1153246efaeb",
+    "data/v4/appointment_intent.jsonl": "956804d5c4341501f1282af78a6d6716a3dbef3d159ce035cf1ccdb2212b5d29",
+    "data/v4/cancellation_intent.jsonl": "9d3de9b007c29096edd48ee14485cef2f5d7fb3010f3d5eeffb99d0488d1e2c7",
+    "data/v4/duplicate_reports.jsonl": "4f6079a9bcdd28b2b9a27f062f70a2686462cf5ec015dac3c1fef6199c80e8f1",
+    "data/v4/eligibility.jsonl": "61156503cd298c67d4ced01bc2405adb20e834d11723a4aa9df3d6ebaf71c0fd",
+    "data/v4/email_screening.jsonl": "c5590d8705d4ef7f0cae3721b5f8dca9b5add4af2611f174a956f174ee8e0701",
+    "data/v4/events_timeline.jsonl": "dd1fab80e382bbdba3e1723104b093ba834b22a2cf0733a1bc18da09cbc49212",
+    "data/v4/everyday.jsonl": "dfdbbb1067bc13f170b1f61cd4a15cfe26d8e9ababe72b6a723ad974d978d212",
+    "data/v4/evidence_presence.jsonl": "087c14ef2979678d5ecc1f3dbec29675dbd35a50fc62e91c4b9a1e8882c894ef",
+    "data/v4/negation.jsonl": "904db1b9a6182f8380dc90e721bc5921544818005165bfc4bcdf3a4d921302e4",
+    "data/v4/numeric_criteria.jsonl": "bc6ea2631db10a7f0cdc2711bb42358975416d1a83bd21e951d3f44ae16e3ba8",
+    "data/v4/permissions.jsonl": "e2206f577a0670f83e5d6e4d2620c5e412bc79557fba6a6ad5d8b35aa5179096",
+    "data/v4/quoted_instructions.jsonl": "5d1d039310f4ad6c46d991f8bd214f512dd656707a5915101b86c9e3d5ff9dad",
+    "data/v4/refund_intent.jsonl": "13924eb2a5b077682d23bfe4863b50b7aa0efe1c6f409ee2a8555fb23b2d6ae5",
+    "data/v4/routing.jsonl": "b0570922e4553ee0f8b9a3d2062e986d2285aadd68b85f3f731a0ea2fffeb14c",
+    "data/v4/spam_promotion.jsonl": "37be05675ae938eb42fc5ac9898e0eff37499956e6e68a3785f2599c8e937df5",
+    "data/v4/urgency.jsonl": "37375eb8b816381f744cefd3b84f7006ae788bf6b710237de7aba4b228cd6bbf"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}
+{
+  "count": 480,
+  "accuracy": 0.9229166666666667,
+  "balanced_accuracy": 0.9229166666666666,
+  "brier": 0.06222299660754271,
+  "log_loss": 0.2059229882627919,
+  "by_family": {
+    "appointment_intent": {
+      "count": 30,
+      "accuracy": 0.9666666666666667
+    },
+    "cancellation_intent": {
+      "count": 30,
+      "accuracy": 0.9666666666666667
+    },
+    "duplicate_reports": {
+      "count": 30,
+      "accuracy": 0.9
+    },
+    "eligibility": {
+      "count": 30,
+      "accuracy": 0.8
+    },
+    "email_screening": {
+      "count": 30,
+      "accuracy": 0.9666666666666667
+    },
+    "events_timeline": {
+      "count": 30,
+      "accuracy": 0.9666666666666667
+    },
+    "everyday": {
+      "count": 30,
+      "accuracy": 1.0
+    },
+    "evidence_presence": {
+      "count": 30,
+      "accuracy": 0.9333333333333333
+    },
+    "negation": {
+      "count": 30,
+      "accuracy": 1.0
+    },
+    "numeric_criteria": {
+      "count": 30,
+      "accuracy": 0.7
+    },
+    "permissions": {
+      "count": 30,
+      "accuracy": 0.8666666666666667
+    },
+    "quoted_instructions": {
+      "count": 30,
+      "accuracy": 0.9666666666666667
+    },
+    "refund_intent": {
+      "count": 30,
+      "accuracy": 1.0
+    },
+    "routing": {
+      "count": 30,
+      "accuracy": 0.9333333333333333
+    },
+    "spam_promotion": {
+      "count": 30,
+      "accuracy": 0.9666666666666667
+    },
+    "urgency": {
+      "count": 30,
+      "accuracy": 0.8333333333333334
+    }
+  },
+  "majority_accuracy": 0.5,
+  "p50_ms": 188.62348599986944,
+  "p95_ms": 249.24107395027022,
+  "split": "test",
+  "temperature": 1.6218100973589302,
+  "bundle": "models/large-best-fp16",
+  "model_sha256": "a251fd8ac6adfd58c496e6bb20058342ecc274e3372c7bfd5a6099a18d261845",
+  "data_sha256": {
+    "data/v4/test-1.jsonl": "3cb7a03974c818c659379b701a6b0639e08bc717d174c0899ddd0e75b3e7d136",
+    "data/v4/test-2.jsonl": "bd33dc973bb795ace1a4055f53f309c3a7a821982b3256ad0346f9c0562a1e4a",
+    "data/v4/test-3.jsonl": "9c4ef367557ed8bff89874a89dec91a70ba642eca3047676857b8909072e8595",
+    "data/v4/test-4.jsonl": "ad33a3bde136c7ddea47872b020fc279f3a38e5dd1d80b2e32ec2ab09c9dc8fd"
+  },
+  "constant_half_brier": 0.25,
+  "constant_half_log_loss": 0.6931471805599453,
+  "note": "Synthetic unreviewed pilot; these timings are not the 1000-call release benchmark."
+}

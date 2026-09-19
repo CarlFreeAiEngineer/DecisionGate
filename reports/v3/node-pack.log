@@ -1,0 +1,5 @@
+
+> decisiongate@0.3.0 pack:release
+> node pack.mjs
+
+{"file":"decisiongate-0.3.0-darwin-arm64.tgz","bytes":324891675,"unpackedBytes":410189413,"sha256":"7ec905d0b108a05f6081c508dbaad5471cf4eb7f179ca254bdea76f5d4cdda8b"}

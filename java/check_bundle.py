@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import socket
 import shutil
 import uuid
@@ -22,14 +23,19 @@ parser.add_argument('--network-namespace',action='store_true',help='Verify Linux
 parser.add_argument('--jdk',type=Path,help='JDK home; otherwise tools/jdk, JAVA_HOME, or javac on PATH')
 parser.add_argument('--windows-firewall',action='store_true',help='Temporarily block java.exe outbound network access; requires elevated Windows shell')
 parser.add_argument('--jna',type=Path,default=ROOT/'tools/maven-repository/net/java/dev/jna/jna/5.19.1/jna-5.19.1.jar')
+parser.add_argument('--version',help='Artifact version to check; defaults to the version in java/pom.xml')
 args=parser.parse_args()
 if args.network_namespace and (platform.system() != 'Linux' or {name for _,name in socket.if_nameindex()} != {'lo'}):
     raise SystemExit('--network-namespace requires a Linux namespace with only loopback')
 classifier=args.classifier or {'Darwin':'macos-arm64','Linux':'linux-x64','Windows':'windows-x64'}[platform.system()]
 classes=ROOT/'java/target/example-classes'
 classes.mkdir(parents=True,exist_ok=True)
-api=ROOT/'released/java/decisiongate-java-0.2.0.jar'
-bundle=ROOT/f'released/java/decisiongate-java-0.2.0-{classifier}.jar'
+# Follow java/pom.xml rather than a hard-coded version, so a release bump reaches this check.
+version=args.version or re.search(r'<version>([^<]+)</version>',(ROOT/'java/pom.xml').read_text(encoding='utf-8')).group(1)
+api=ROOT/f'released/java/decisiongate-java-{version}.jar'
+bundle=ROOT/f'released/java/decisiongate-java-{version}-{classifier}.jar'
+for jar in (api,bundle):
+    if not jar.is_file(): raise SystemExit(f'Missing released artifact: {jar}')
 jna=args.jna.resolve()
 classpath=os.pathsep.join(map(str,[classes,api,jna,bundle]))
 jdk_candidates=[args.jdk] if args.jdk else [ROOT/'tools/jdk',Path(os.environ['JAVA_HOME']) if os.environ.get('JAVA_HOME') else None,Path(shutil.which('javac')).resolve().parent.parent if shutil.which('javac') else None]
@@ -70,7 +76,7 @@ try:
 finally:
     if firewall_created:
         powershell("$ErrorActionPreference='Stop'; Remove-NetFirewallRule -Name '"+firewall_name+"'")
-report={'status':'passed','classifier':classifier,'java_version':subprocess.check_output([str(java),'--version'],text=True).splitlines()[0],
+report={'status':'passed','classifier':classifier,'version':version,'java_version':subprocess.check_output([str(java),'--version'],text=True).splitlines()[0],
         'exit_code':result.returncode,'network_denied':platform.system()=='Darwin' or args.network_namespace,
         'firewall_rule_configured':args.windows_firewall,
         'network_isolation':'Linux network namespace (loopback only)' if args.network_namespace else 'macOS sandbox' if platform.system()=='Darwin' else 'Windows Firewall outbound block configured for java.exe; denial not independently probed' if args.windows_firewall else None,

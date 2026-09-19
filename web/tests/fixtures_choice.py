@@ -3,13 +3,9 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Freeze browser choose/chooseP references from the native choice-capable library.
+"""Freeze browser choose/chooseP references from the released native library.
 
-released/macos-arm64 predates dg_evaluate_choice; models/choose-dev-macos carries
-the identical model.onnx and tokenizer.json (same sha256 in both manifests) plus
-the choice entry points, so it is used here instead. Writes a small, separate
-JSON file (not fixtures.json) so the existing tokenizer/pYes fixture pipeline,
-which still targets released/macos-arm64, is left untouched.
+Reads released/macos-arm64 through the Python binding and writes a small separate JSON file (not fixtures.json) so the tokenizer/pYes fixture pipeline stays untouched.
 """
 import json
 import sys
@@ -18,7 +14,7 @@ root = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(root))
 from decisiongate import Session
 
-bundle = root / 'models/choose-dev-macos'
+bundle = root / 'released/macos-arm64'
 cases = [
     {'content': "My card was charged twice for last month's invoice.",
      'question': 'Which team should handle this message?',

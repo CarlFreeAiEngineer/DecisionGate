@@ -55,7 +55,7 @@ export function rank(logits) {
   return ranking;
 }
 export function createTokenizer(json) {
-  if (json.post_processor?.type !== "RobertaProcessing") throw new DecisionGateError("DG_INCOMPATIBLE", "This release requires a RoBERTa tokenizer");
+  if (!["RobertaProcessing", "TemplateProcessing"].includes(json.post_processor?.type)) throw new DecisionGateError("DG_INCOMPATIBLE", "This release requires a RoBERTa or template (DeBERTa) tokenizer");
   return new Tokenizer(json, {});
 }
 export function encode(tokenizer, manifest, content, question, criteria) {
@@ -64,6 +64,7 @@ export function encode(tokenizer, manifest, content, question, criteria) {
   const encoded = tokenizer.encode(pair[0], { text_pair: pair[1], add_special_tokens: true, return_token_type_ids: true });
   if (encoded.ids.length > manifest.max_tokens) throw new DecisionGateError('DG_INPUT_TOO_LONG', 'Input exceeds the token limit; input was not truncated');
   // RoBERTa uses one segment for both sequences; the JS tokenizer defaults to BERT segment IDs.
-  encoded.token_type_ids = new Array(encoded.ids.length).fill(0);
+  // Template (DeBERTa) tokenizers carry their own segment ids, which the model ignores; keep them for parity with the native runtime.
+  if (tokenizer.tokenizer.post_processor?.type === "RobertaProcessing") encoded.token_type_ids = new Array(encoded.ids.length).fill(0);
   return encoded;
 }

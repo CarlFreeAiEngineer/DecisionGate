@@ -10,8 +10,8 @@ public final class BundledExample {
                 "Is the customer asking for a refund?");
         double no = Decisions.isYesP("Could you send me a copy of the invoice?",
                 "Is the customer asking for a refund?");
-        if (Math.abs(yes - 0.9962034385661188) > 1e-6
-                || Math.abs(no - 0.005127448912056216) > 1e-6) {
+        if (Math.abs(yes - 0.9953542153119675) > 1e-6
+                || Math.abs(no - 0.004099880544579517) > 1e-6) {
             throw new AssertionError("Java/native prediction mismatch");
         }
         System.out.printf("Refund request: %.6f%nInvoice request: %.6f%n", yes, no);
@@ -28,14 +28,14 @@ public final class BundledExample {
         double criteria = Decisions.isYesP("Please cancel Renée’s café subscription. ☕",
                 "Is cancellation requested?",
                 new Criteria("An explicit request to cancel.", "No cancellation request."));
-        if (Math.abs(criteria - 0.061476134239817716) > 1e-6) {
+        if (Math.abs(criteria - 0.9947915411986116) > 1e-6) {
             throw new AssertionError("Java/native criteria mismatch");
         }
         Criteria descriptions = new Criteria("An explicit request to cancel.", "No cancellation request.");
-        if (Decisions.isYes("Please cancel Renée’s café subscription. ☕",
+        if (!Decisions.isYes("Please cancel Renée’s café subscription. ☕",
                 "Is cancellation requested?", descriptions)
-                || !Decisions.isYes("Please cancel Renée’s café subscription. ☕",
-                "Is cancellation requested?", descriptions, 0.05)) {
+                || Decisions.isYes("Please cancel Renée’s café subscription. ☕",
+                "Is cancellation requested?", descriptions, 0.999)) {
             throw new AssertionError("Boolean criteria mismatch");
         }
         try {

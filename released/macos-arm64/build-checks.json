@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "checks": [
+    "Rust unit tests",
+    "C host load/inference/exit",
+    "native ABI and Python tests"
+  ],
+  "platform_id": "macos-arm64"
+}

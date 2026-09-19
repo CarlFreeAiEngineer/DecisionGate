@@ -14,7 +14,7 @@ from pathlib import Path
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.2.0'
+VERSION = '0.4.0'
 # The bundled Mac runtime requires 13.3. A 14.0 tag conservatively avoids
 # advertising compatibility with 13.0-13.2 (macOS wheel tags use major versions).
 TARGETS = {

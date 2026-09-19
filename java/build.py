@@ -76,10 +76,10 @@ def main():
     released=args.output.resolve()
     released.mkdir(parents=True,exist_ok=True)
     for suffix in ['', '-sources', '-javadoc', '-'+args.classifier]:
-        jar=target/('decisiongate-java-0.2.0'+suffix+'.jar')
+        jar=target/('decisiongate-java-0.4.0'+suffix+'.jar')
         if not jar.is_file(): raise SystemExit(f'Missing built artifact: {jar}')
         shutil.copy2(jar,released/jar.name)
-    shutil.copy2(ROOT/'java/pom.xml',released/'decisiongate-java-0.2.0.pom')
+    shutil.copy2(ROOT/'java/pom.xml',released/'decisiongate-java-0.4.0.pom')
     print('Java artifacts:',released)
 
 if __name__=='__main__': main()
