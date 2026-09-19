@@ -42,79 +42,30 @@ appointment_requested = is_yes(
 
 **If you know [JEV](https://www.jevai.org/)** from TypeSafe AI: the brain under the hood is similar, a small classifier that takes text plus a question and returns a typed answer with a probability instead of generating prose ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). But JEV is a paid API on someone else's server. DecisionGate is a library file in your build. For a working programmer that is a night-and-day difference: no account, no network, no bill, no one else's outage, and the model is yours to retrain.
 
-## Languages and platforms
+## How it compares
 
-**An offline yes/no decision component for your software.** Ready-to-use interfaces for **Python, Java, TypeScript/JavaScript, C, and Rust** run on Apple silicon Macs, Windows x64, and Linux x64. The C interface also makes bindings possible for C++, C#, Go, Swift, Ruby, and other languages that can call C libraries.
+Every row below can answer "is this person asking for an appointment?" The differences are the painful parts: what you have to set up, what shape the answer comes back in, and what you do when it's wrong.
 
-| Platform             | Library     | Status                                  |
-| -------------------- | ----------- | --------------------------------------- |
-| Mac M1 and newer     | `.dylib`    | Experimental build, tested locally      |
-| Windows x64          | `.dll`      | Built and tested on Windows 11          |
-| Linux x64, glibc     | `.so`       | Built and tested on Omarchy Linux       |
-| Desktop web browsers | WebAssembly | Tested in Chromium, Firefox, and WebKit |
+| | Setup | The answer comes back as | Offline | Wrong answer? |
+| --- | --- | --- | --- | --- |
+| **DecisionGate** | Add a library | A boolean | Yes | Add data, retrain |
+| **Regex / keywords** | None | A boolean, for cases you thought of | Yes | Add a pattern, break another |
+| **LLM API** | API key, billing, network | JSON, if you beg | No | Prompt harder and hope |
+| **Local LLM** (Ollama, llama.cpp) | Runtime, model files, GPU | JSON, if you beg | Yes | Prompt harder and hope |
+| **Jev** (TypeSafe AI) | API key, waitlist, network | Typed answer + probability | No | Can't; it's hosted |
+| **Needle 3** (Cactus) | Python package or C library | JSON tool call | Yes | LoRA fine-tune |
+| **Zero-shot NLI model** | PyTorch or ONNX, in Python | Logits you threshold | Yes | Write the training code |
 
-**The same trained weights everywhere.** Native applications and browsers use the same decision data, tokenizer, and rules, with tested agreement between their answers.
+What the table hides:
 
-The component runs on a CPU. Your application needs no separate runner or GPU setup. See [release bundles](released/README.md) for packaging details.
+- **Regex and keyword matching** is what most software actually does today, and it's the right tool until the day someone writes "no rush, but could I come in Tuesday?" Every fuzzy case becomes another pattern, and every new pattern breaks an old one. DecisionGate is for the decisions that were never really regular expressions.
+- **A hosted LLM** is the most flexible and the best on hard cases. It is also an API key, a bill, a network dependency, your users' text on someone else's server, and an afternoon of begging for JSON. That is the reason this project exists.
+- **A local LLM through Ollama or llama.cpp** removes the network and the bill and replaces them with a runtime to install, model files to manage, a GPU to wish for, and the same begging for JSON. It turns a simple question into an infrastructure project.
+- **Jev** is the closest in spirit: a purpose-built decision model that takes text plus a question and returns a typed answer with a probability, not prose. No begging. But it is a hosted API in early access behind a waitlist, at $0.042 per million input tokens, with 70 to 500 milliseconds plus network per call. Your users' text leaves your machine every time, and you cannot retrain it.
+- **Needle 3** is a remarkable piece of engineering aimed at a different job: tool calling, structured extraction, and embeddings on phones, wearables, and microcontrollers, in 8 to 29 MB under Apache-2.0. You can get a classification out of it by defining one tool per label, but there is no `is_yes(text, question)`, and it ships as a Python package or C library rather than ready-made Java, Node, browser, and Rust interfaces.
+- **A zero-shot NLI model** such as `facebook/bart-large-mnli` is what DecisionGate is built from, one layer down. Free and open, and a fine choice if you already live in Python with PyTorch installed and want to write the tokenization, prompting, thresholds, calibration, and packaging yourself. DecisionGate is that work, done once, shipped as a component for six languages.
 
-The same call, from whatever you already write in:
-
-```java
-Decisions.isYes(text, "Is the customer asking to cancel?")      // Java
-```
-
-```typescript
-await isYes(text, "Is this reporting a service outage?");        // TypeScript / Node.js
-```
-
-```c
-dg_is_yes(text, strlen(text), q, strlen(q), NULL, &yes);         /* C */
-```
-
-```rust
-dg_is_yes(text.as_ptr(), text.len(), q.as_ptr(), q.len(), null(), &mut yes)  // Rust
-```
-
-**Even inside a web browser**, with the text never leaving the user's device:
-
-```javascript
-import { isYes } from "decisiongate/web";
-```
-
-Complete, runnable examples for every language, including probabilities, criteria, thresholds, and multiple-choice decisions, are in [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md).
-
-## Your answer. Your rules.
-
-Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call loads the component and is slow; every call after that reuses it and takes about 70 milliseconds on a laptop CPU (measured p50 on an M1 Pro, see [the v0.3 report](reports/accuracy-v3.md)).
-
-| Language                | Boolean                | Probability of yes      |
-| ----------------------- | ---------------------- | ----------------------- |
-| Python                  | `is_yes(...)`          | `is_yes_p(...)`         |
-| Java                    | `Decisions.isYes(...)` | `Decisions.isYesP(...)` |
-| JavaScript / TypeScript | `await isYes(...)`     | `await isYesP(...)`     |
-| C                       | `dg_is_yes(...)`       | `dg_is_yes_p(...)`      |
-| Rust (via the C ABI)    | `dg_is_yes(...)`       | `dg_is_yes_p(...)`      |
-
-**Several options instead of yes or no?** `choose` returns the index of the best option and `choose_p` the whole ranking, best first, with probabilities that sum to one:
-
-```python
-from decisiongate import choose, choose_p
-
-teams = ["billing", "technical support", "sales"]
-message = "My card was charged twice for last month's invoice."
-
-i = choose(message, "Which team should handle this message?", teams, threshold=0.60)
-# 0 for "billing"; None when the best option is below 60%, so you can hand it to a person.
-
-ranked = choose_p(message, "Which team should handle this message?", teams)
-# [(0, 0.98), (2, 0.01), (1, 0.01)]: (index, probability) pairs, best first.
-```
-
-Java is `Decisions.choose(...)` and `Decisions.chooseP(...)`, JavaScript `choose`/`chooseP`, and C `dg_choose`/`dg_choose_p` with caller-owned output arrays and nothing to free. A deferred choice is `-1` outside Python.
-
-**P means probability of yes**, from zero to one. Boolean calls return true when that probability is at least **0.5** by default. Python accepts `threshold=0.90`; Java accepts a threshold overload, as above; C offers `dg_is_yes_at_threshold`. Choose a threshold using examples from your application, or use probabilities to reserve an uncertain range for review. Errors are reported separately, never disguised as “no.”
-
-Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [ordinarydata.com/DecisionGate](https://ordinarydata.com/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
+Numbers are from each project's own published material as of September 2026 and will drift; check the source before relying on them.
 
 ## What if this gives a wrong answer?
 

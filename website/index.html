@@ -35,6 +35,11 @@
   .langs { display: flex; flex-wrap: wrap; gap: 8px 10px; padding: 0; margin: 0 0 1.5em; list-style: none; }
   .langs li { background: var(--code-bg); border-radius: 999px; padding: 4px 14px; font-size: .95rem; }
   footer { margin-top: 4em; color: var(--muted); font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .9rem; margin: 0 0 1.2em; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--rule); }
+  th { font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  td:first-child { font-weight: bold; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
   @media (max-width: 520px) { h1 { font-size: 2.3rem; } h2.shout { font-size: 2rem; } body { font-size: 17px; } }
 </style>
 </head>
@@ -101,6 +106,36 @@ appointment_requested = is_yes(
 dg_is_yes(text, strlen(text), q, strlen(q), NULL, &amp;yes);</code></pre>
 
 <p>It's fast, too. The first call loads the model and takes a moment; after that, a decision takes about 70 milliseconds on a laptop CPU, with no network round trip to wait on. Same weights, same answers, on Apple silicon Macs, Windows, Linux, and in Chromium, Firefox, and WebKit. Want a probability instead of a boolean, so you can hold the uncertain ones for a human? Want to spell out what counts as yes and what counts as no? Want to pick between several options instead of two? All ordinary function arguments.</p>
+
+<h2>How it compares</h2>
+
+<p>Every row below can answer "is this person asking for an appointment?" The differences are the painful parts: what you have to set up, what shape the answer comes back in, and what you do when it's wrong.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th></th><th>Setup</th><th>The answer comes back as</th><th>Offline</th><th>Wrong answer?</th><th>License</th></tr></thead>
+<tbody>
+<tr><td>DecisionGate</td><td>Add a library</td><td>A boolean</td><td>Yes</td><td>Add data, retrain</td><td>Apache-2.0</td></tr>
+<tr><td>Regex / keywords</td><td>None</td><td>A boolean, for the cases you thought of</td><td>Yes</td><td>Add a pattern, break another</td><td>Yours</td></tr>
+<tr><td>LLM API</td><td>API key, billing, network</td><td>JSON, if you beg</td><td>No</td><td>Prompt harder and hope</td><td>Proprietary</td></tr>
+<tr><td>Local LLM<br><span class="muted">Ollama, llama.cpp</span></td><td>Runtime, model files, a GPU to wish for</td><td>JSON, if you beg</td><td>Yes</td><td>Prompt harder and hope</td><td>Varies</td></tr>
+<tr><td><a href="https://www.jevai.org/">Jev</a><br><span class="muted">TypeSafe AI</span></td><td>API key, waitlist, network</td><td>Typed answer with probability</td><td>No</td><td>Can't; it's hosted</td><td>Proprietary</td></tr>
+<tr><td><a href="https://cactuscompute.com/needle">Needle 3</a><br><span class="muted">Cactus</span></td><td>Python package or C library</td><td>JSON tool call</td><td>Yes</td><td>LoRA fine-tune</td><td>Apache-2.0</td></tr>
+<tr><td>Zero-shot NLI model<br><span class="muted">Hugging Face</span></td><td>PyTorch or ONNX, in Python</td><td>Logits you threshold</td><td>Yes</td><td>Write the training code</td><td>Varies</td></tr>
+</tbody></table></div>
+
+<p><strong>Regex and keyword matching</strong> is what most software actually does today, and it's the right tool until the day someone writes "no rush, but could I come in Tuesday?" Every fuzzy case becomes another pattern, and every new pattern breaks an old one. DecisionGate is for the decisions that were never really regular expressions.</p>
+
+<p><strong>A hosted LLM</strong> is the most flexible and the best on hard cases. It is also an API key, a bill, a network dependency, your users' text on someone else's server, and an afternoon of begging for JSON. That is the reason this project exists.</p>
+
+<p><strong>A local LLM through Ollama or llama.cpp</strong> removes the network and the bill and replaces them with a runtime to install, model files to manage, a GPU to wish for, and the same begging for JSON. It turns a simple question into an infrastructure project.</p>
+
+<p><strong>Jev</strong> is the closest in spirit: a purpose-built decision model that takes text plus a question and returns a typed answer with a probability, not prose. No begging. But it is a hosted API in early access behind a waitlist, at $0.042 per million input tokens and 70 to 500 milliseconds plus network per call. Your users' text leaves your machine every time, and you cannot retrain it.</p>
+
+<p><strong>Needle 3</strong> is a remarkable piece of engineering aimed at a different job: tool calling, structured extraction, and embeddings on phones, wearables, and microcontrollers, in 8 to 29 MB. You can coax a classification out of it by defining one tool per label, but there is no <code>is_yes(text, question)</code>, and it ships as a Python package or C library rather than ready-made Java, Node, browser, and Rust interfaces.</p>
+
+<p><strong>A zero-shot NLI model</strong> is what DecisionGate is built from, one layer down. Free and open, and a fine choice if you already live in Python with PyTorch installed and want to write the tokenization, prompting, thresholds, calibration, and packaging yourself. DecisionGate is that work, done once, shipped as a component for six languages.</p>
+
+<p class="muted">Numbers come from each project's own published material as of September 2026 and will drift. Check the source before relying on any of them.</p>
 
 <h2>What if it gives a wrong answer?</h2>
 
