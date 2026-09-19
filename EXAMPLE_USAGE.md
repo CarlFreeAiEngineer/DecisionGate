@@ -53,7 +53,7 @@ team = choose(
 )   # 0, meaning "billing"
 ```
 
-Failures raise `DecisionGateError`, never return `False` or `None`. Invalid thresholds raise `ValueError`.
+Failures raise `DecisionGateError`, never return `False` or `None`; `choose` returns `None` only when the best option is below a threshold you passed. Invalid thresholds raise `ValueError`.
 
 ## Java
 
@@ -149,6 +149,37 @@ const p = await isYesP(content, question, { criteria: { yes, no } });
 ```
 
 Your web app bundles the WebAssembly component and its assets. Offline use requires those assets to be installed or cached first. Deployment, content-security-policy, and bundler notes are in [the browser guide](web/README.md).
+
+## C# and .NET
+
+```csharp
+using DecisionGate;
+
+// A yes/no decision.
+if (Decisions.IsYes("Any chance I could come in next Tuesday?",
+                    "Is this person asking for an appointment?"))
+    OfferAvailableTimes();
+
+// The probability.
+double p = Decisions.IsYesP("Please return my money. The item arrived broken.",
+                            "Is the customer asking for a refund?");
+
+// Criteria and a stricter threshold.
+bool cancel = Decisions.IsYes(
+    "Please cancel my subscription before the next renewal.",
+    "Is the customer asking to cancel their subscription?",
+    new Criteria("The customer wants their subscription to end.",
+                 "The customer asks about anything other than ending the subscription."),
+    threshold: 0.9);
+
+// Several options. Returns the index of the best option.
+int team = Decisions.Choose(
+    "My card was charged twice for last month's invoice.",
+    "Which team should handle this message?",
+    new[] { "billing", "technical support", "sales" });   // 0, meaning "billing"
+```
+
+Failures throw `DecisionGateException` with a `StatusCode`; invalid thresholds throw `ArgumentOutOfRangeException`. `Decisions.ChooseP` returns every option as a `Choice(Index, P)` ranked best first. Point the wrapper at a bundle with `Bundle.Directory` or `DECISIONGATE_BUNDLE`, or ship the bundle in a `decisiongate` folder beside the executable; see [the C# guide](csharp/README.md).
 
 ## C
 

@@ -28,3 +28,5 @@ __pycache__/
 !/released/**/
 !/released/**/*.md
 !/released/**/*.json
+/csharp/**/bin/
+/csharp/**/obj/
