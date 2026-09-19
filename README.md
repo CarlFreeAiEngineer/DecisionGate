@@ -38,8 +38,6 @@ appointment_requested = is_yes(
 
 **No Ollama. No llama.cpp. No TenserFlow, No agent harness. No network! Just a goddamn software component!**
 
-**Think SQLite, not a database server.** SQLite is a whole database that lives inside your program as one library file, with bindings in Python, Java, JavaScript, C, Rust, and nearly everything else. Nobody runs a SQLite server, and nobody has a SQLite API key. DecisionGate is that, for yes/no decisions about text: a hosted LLM is the database server, and this is the library file.
-
 **It's like a regex library.** Every language has one. You hand it a pattern and some text, and you get back a boolean. Nobody runs a regex server, nobody has a regex API key, and nobody thinks of it as AI. DecisionGate is the same kind of thing, except the pattern is a question in plain English: `is_yes(text, "Is this person asking for an appointment?")`. Reach for it on the day the regex stops working.
 
 **The silent half of the brain.** In split-brain patients only one hemisphere can talk; the other still answers questions correctly, by pointing, and never explains itself ([CGP Grey explains](https://www.youtube.com/watch?v=wfYbgdo8e-8)). Language models are the talking half. DecisionGate is the silent half: it reads, decides, points at yes or no or one of your options, and says nothing else. Give your code both.
