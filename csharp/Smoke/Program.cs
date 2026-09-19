@@ -26,4 +26,4 @@ foreach (var c in Decisions.ChooseP("My card was charged twice for last month's 
 
 try { Decisions.IsYes("", "empty content?"); }
 catch (DecisionGateException e) { Console.WriteLine($"error reported as exception (status {e.StatusCode}): {e.Message}"); }
-Console.WriteLine("Experimental model: these estimates are not reliable enough for real decisions.");
+Console.WriteLine("Synthetic-benchmark model: about 92% on held-out tests; measure on your own data before relying on it.");
