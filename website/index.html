@@ -50,7 +50,7 @@
 
 <p>You're building an application. A user types, <em>"Any chance I could come in next Tuesday?"</em> Your software needs to make one simple decision: is this person asking for an appointment?</p>
 
-<p>Do you really have to get an API key, ship their <strong>potentially private</strong> text across the internet to a company they've never heard of, and pay for an API call just to answer that? Or install Ollama, manage a separate runtime, and turn a simple question into an infrastructure project? And then, on top of all that, spend your afternoon <strong>begging</strong> for JSON?</p>
+<p>Do you really have to get an API key, ship their POTENTIALLY PRIVATE text across the internet to a company they've never heard of, and pay for an API call just to answer that? Or install Ollama, manage a separate runtime, and turn a simple question into an infrastructure project? And then, on top of all that, spend your afternoon <strong>begging</strong> for JSON?</p>
 
 <pre><code>User text: "Any chance I could come in next Tuesday?"
 
@@ -91,7 +91,7 @@ appointment_requested = is_yes(
 <pre><code>re.search(<span class="c">r"\b(appointment|come in|book|schedule)\b"</span>, text)   <span class="c"># the old way</span>
 is_yes(text, <span class="c">"Is this person asking for an appointment?"</span>)     <span class="c"># the new way</span></code></pre>
 
-<p>Reach for it on the day the regex stops working. Which, for human language input, is <strong>right now</strong>.</p>
+<p>Reach for it on the day the regex stops working. Which, for human language input, is RIGHT NOW.</p>
 
 <h2>The other half of the brain</h2>
 
