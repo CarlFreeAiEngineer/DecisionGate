@@ -38,6 +38,10 @@ appointment_requested = is_yes(
 
 **No Ollama. No llama.cpp. No TenserFlow, No agent harness. No network! Just a goddamn software component!**
 
+**Think SQLite, not a database server.** SQLite is a whole database that lives inside your program as one library file, with bindings in Python, Java, JavaScript, C, Rust, and nearly everything else. Nobody runs a SQLite server, and nobody has a SQLite API key. DecisionGate is that, for yes/no decisions about text: a hosted LLM is the database server, and this is the library file.
+
+**It's like a regex library.** Every language has one. You hand it a pattern and some text, and you get back a boolean. Nobody runs a regex server, nobody has a regex API key, and nobody thinks of it as AI. DecisionGate is the same kind of thing, except the pattern is a question in plain English: `is_yes(text, "Is this person asking for an appointment?")`. Reach for it on the day the regex stops working.
+
 **The silent half of the brain.** In split-brain patients only one hemisphere can talk; the other still answers questions correctly, by pointing, and never explains itself ([CGP Grey explains](https://www.youtube.com/watch?v=wfYbgdo8e-8)). Language models are the talking half. DecisionGate is the silent half: it reads, decides, points at yes or no or one of your options, and says nothing else. Give your code both.
 
 **If you know [JEV](https://www.jevai.org/)** from TypeSafe AI: the brain under the hood is similar, a small classifier that takes text plus a question and returns a typed answer with a probability instead of generating prose ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). But JEV is a paid API on someone else's server. DecisionGate is a library file in your build. For a working programmer that is a night-and-day difference: no account, no network, no bill, no one else's outage, and the model is yours to retrain.
