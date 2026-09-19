@@ -8,9 +8,12 @@
 Maintainers only: needs SSH access to the web host. Writes SHA256SUMS.txt from
 the local files, then copies everything with rsync into a versioned folder.
 code/fetch_released.py reads that same SHA256SUMS.txt, so publishing a version
-is what makes it downloadable.
+is what makes it downloadable. --site also deploys the pages in website/;
+--site-only deploys just those.
 
   uv run code/publish_released.py --version 0.3.0
+  uv run code/publish_released.py --version 0.3.0 --site
+  uv run code/publish_released.py --site-only
   uv run code/publish_released.py --version 0.3.0 --dry-run
 """
 import argparse
@@ -23,6 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_HOST = 'ace@ordinarydata.com'
 DEFAULT_REMOTE_DIR = 'domains/ordinarydata.com/DecisionGate/files'
+SITE_PAGES = {'index.html': 'index.html', 'files-index.html': 'files/index.html'}  # website/ name -> path under DecisionGate/
 SKIP_DIRS = {'__pycache__', 'node_modules'}
 
 
@@ -46,9 +50,23 @@ def write_sums(source):
     return len(lines) - 1
 
 
+def publish_site(host, remote_dir, dry_run):
+    site_root = remote_dir.rsplit('/files', 1)[0]
+    for local, remote in SITE_PAGES.items():
+        source = ROOT / 'website' / local
+        if not source.is_file():
+            sys.exit(f'{source} is missing')
+        target = f'{host}:{site_root}/{remote}'
+        print(f'{source.relative_to(ROOT)} -> {target}')
+        if not dry_run:
+            subprocess.run(['rsync', '-z', '-p', '--chmod=ugo=rwX,go-w', str(source), target], check=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--version', required=True, help='folder name on the server, for example 0.3.0')
+    parser.add_argument('--version', help='folder name on the server, for example 0.3.0')
+    parser.add_argument('--site', action='store_true', help='also deploy the pages in website/')
+    parser.add_argument('--site-only', action='store_true', help='deploy only the pages in website/')
     parser.add_argument('--source', type=Path, default=ROOT / 'released')
     parser.add_argument('--host', default=DEFAULT_HOST)
     parser.add_argument('--remote-dir', default=DEFAULT_REMOTE_DIR, help='path under the SSH user home')
@@ -57,6 +75,11 @@ def main():
 
     if not shutil.which('rsync'):
         sys.exit('rsync is required; install it with your package manager')
+    if args.site_only:
+        publish_site(args.host, args.remote_dir, args.dry_run)
+        return
+    if not args.version:
+        parser.error('--version is required unless --site-only is given')
     if not args.source.is_dir():
         sys.exit(f'{args.source} does not exist')
     count = write_sums(args.source)
@@ -64,13 +87,15 @@ def main():
 
     destination = f'{args.host}:{args.remote_dir}/{args.version}/'
     subprocess.run(['ssh', args.host, f'mkdir -p {args.remote_dir}/{args.version}'], check=True)
-    command = ['rsync', '-az', '--partial', '--info=progress2', '--chmod=D755,F644']  # web server must be able to read
+    command = ['rsync', '-az', '--partial', '--chmod=ugo=rwX,go-w']  # world-readable so the web server can serve; symbolic form works in both rsync and openrsync
     command += [f'--exclude={d}' for d in SKIP_DIRS] + ['--exclude=*.part']
     if args.dry_run:
         command.append('--dry-run')
     command += [f'{args.source}/', destination]
     subprocess.run(command, check=True)
     print(f'published {args.version} to https://ordinarydata.com/DecisionGate/files/{args.version}/')
+    if args.site:
+        publish_site(args.host, args.remote_dir, args.dry_run)
 
 
 if __name__ == '__main__':

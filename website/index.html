@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DecisionGate</title>
+<meta name="description" content="DecisionGate: an offline yes/no decision component for your software. A library, some arguments, a return value. Not an AI.">
+<style>
+  :root {
+    --bg: #fbfaf7; --ink: #1c1b18; --muted: #5d5a52; --accent: #b3361c;
+    --code-bg: #f1eee6; --rule: #e2ddd0; --yes: #1f7a3a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16150f; --ink: #ece8dd; --muted: #a8a294; --accent: #ff7a52; --code-bg: #23211a; --rule: #35322a; --yes: #6fd48a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.55 Georgia, "Times New Roman", serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 20px 80px; }
+  h1 { font-size: 3.2rem; line-height: 1.05; margin: 0 0 .2em; letter-spacing: -.02em; }
+  h1 small { display: block; font-size: 1.15rem; font-weight: normal; color: var(--muted); margin-top: .4em; letter-spacing: 0; }
+  h2 { font-size: 1.7rem; margin: 2.2em 0 .5em; line-height: 1.15; }
+  h2.shout { font-size: 2.6rem; color: var(--accent); margin-top: .4em; }
+  p { margin: 0 0 1em; }
+  .muted { color: var(--muted); }
+  pre { background: var(--code-bg); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font: 15px/1.45 ui-monospace, Menlo, Consolas, monospace; margin: 0 0 1.2em; }
+  code { font: 0.92em ui-monospace, Menlo, Consolas, monospace; background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
+  pre code { background: none; padding: 0; }
+  .c { color: var(--muted); }
+  .k { color: var(--accent); }
+  .y { color: var(--yes); font-weight: bold; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5em 0; }
+  a { color: var(--accent); }
+  .cta { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 14px 22px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; }
+  .cta:hover { filter: brightness(1.1); }
+  .langs { display: flex; flex-wrap: wrap; gap: 8px 10px; padding: 0; margin: 0 0 1.5em; list-style: none; }
+  .langs li { background: var(--code-bg); border-radius: 999px; padding: 4px 14px; font-size: .95rem; }
+  footer { margin-top: 4em; color: var(--muted); font-size: .9rem; }
+  @media (max-width: 520px) { h1 { font-size: 2.3rem; } h2.shout { font-size: 2rem; } body { font-size: 17px; } }
+</style>
+</head>
+<body>
+<main>
+
+<h1>DecisionGate<small>Your software probably needs this.</small></h1>
+
+<p>You're building an application. A user types, <em>"Any chance I could come in next Tuesday?"</em> Your software needs to make one simple decision: is this person asking for an appointment?</p>
+
+<p>Do you really have to get an API key, send their text across the internet, and pay for an API call just to answer that? Or install Ollama, manage a separate runtime, and turn a simple question into an infrastructure project? And then, on top of all that, spend your afternoon <strong>begging</strong> for JSON?</p>
+
+<pre><code>User text: "Any chance I could come in next Tuesday?"
+
+Is this user asking for an appointment?
+
+Please return ONLY valid JSON: {"appointment_requested": true}
+Use false if the answer is no. An actual boolean, not the string "false".
+No explanation. No Markdown. No code fences. No extra keys.
+Do not say "Certainly!"; just skip to the JSON.
+
+Please. I have a family. Just valid JSON... I'm begging you.</code></pre>
+
+<p>You're thinking: <em>"I wish I could just load a normal library and call a normal function."</em></p>
+
+<h2 class="shout">Now you can.</h2>
+
+<pre><code><span class="k">from</span> decisiongate <span class="k">import</span> is_yes
+
+appointment_requested = is_yes(
+    <span class="c">"Any chance I could come in next Tuesday?",</span>
+    <span class="c">"Is this person asking for an appointment?",</span>
+)   <span class="c"># </span><span class="y">True</span></code></pre>
+
+<p>That's it. That's the whole product. A function that takes some text and a question, and returns a boolean.</p>
+
+<h2>A software component. Not an AI.</h2>
+
+<p>Yes, there's a small trained model inside. It's so small and so thoroughly boxed in that you never have to think about it. There is no chat. No prompt. No agent. No "temperature." Nothing to talk to, nothing to coax, nothing to apologize to. You ship it inside your application and you call a function, the same way your grandfather used software components: a library, some arguments, a return value. The kind of thing people did in the 1990s, before every boolean needed a subscription.</p>
+
+<p><strong>No Ollama. No llama.cpp. No TensorFlow. No agent harness. No network. No API key. No bill.</strong> The whole thing runs on the CPU inside your own process, on the user's own machine. Their text never leaves it.</p>
+
+<h2>The other half of the brain</h2>
+
+<p>There is a famous set of experiments on people whose two brain hemispheres were surgically separated. Only one side can talk. The other side is silent, but it isn't stupid: ask it a question and it answers, correctly, by pointing. It just never explains itself. <a href="https://www.youtube.com/watch?v=wfYbgdo8e-8">CGP Grey has a lovely video about it.</a></p>
+
+<p>Large language models are the talking side. Wonderful at explaining, terrible at shutting up. DecisionGate is the silent side: it reads, it decides, it points at <em>yes</em> or <em>no</em> or one of your options, and it says nothing else. Give your code both halves and let each do what it's good at.</p>
+
+<p class="muted">If you know <a href="https://www.jevai.org/">JEV</a> from TypeSafe AI, the brain under the hood is similar: a small classifier that takes some text and a question and returns a typed answer with a probability, instead of generating prose. But JEV is a paid API on somebody else's server. DecisionGate is a library file in your build. For a working programmer the two are as different as a web service and a function call: no account, no network, no bill, no one else's outage, and the model is yours to retrain.</p>
+
+<h2>In whatever language you already write</h2>
+
+<ul class="langs">
+  <li>Python</li><li>Java</li><li>TypeScript / JavaScript</li><li>C</li><li>Rust</li><li>Web browsers (WebAssembly)</li><li>Anything that can call a C library</li>
+</ul>
+
+<pre><code><span class="c">// Java</span>
+<span class="k">if</span> (Decisions.isYes(text, <span class="c">"Is the customer asking to cancel?"</span>)) routeToCancellations();
+
+<span class="c">// TypeScript on Node.js, or right inside the browser</span>
+<span class="k">if</span> (<span class="k">await</span> isYes(text, <span class="c">"Is this reporting a service outage?"</span>)) alertSupport();
+
+<span class="c">/* C */</span>
+dg_is_yes(text, strlen(text), q, strlen(q), NULL, &amp;yes);</code></pre>
+
+<p>Same weights, same answers, on Apple silicon Macs, Windows, Linux, and in Chromium, Firefox, and WebKit. Want a probability instead of a boolean, so you can hold the uncertain ones for a human? Want to spell out what counts as yes and what counts as no? Want to pick between several options instead of two? All ordinary function arguments.</p>
+
+<h2>What if it gives a wrong answer?</h2>
+
+<h2 class="shout">GREAT!</h2>
+
+<p>That means you can add training data, retrain the model yourself, right there in the project, and contribute your training data back so the whole world benefits.</p>
+
+<p>A wrong answer from someone else's API is a dead end: you file a ticket and hope. A wrong answer here is an improvement you can make yourself. Write down the text, the question, and the right answer, add them to the training data, and retrain. The training data is plain text files in the repository, and the training recipe runs on an ordinary laptop. Keep the improved model for yourself, or send your examples back in a pull request and the next release gets better for everyone. No GPU, no machine-learning degree, no permission required.</p>
+
+<p><strong>Open weights. Open training data. Open recipes. Apache 2.0.</strong></p>
+
+<hr>
+
+<p style="text-align:center"><a class="cta" href="https://github.com/freeideas/DecisionGate">Get it on GitHub</a></p>
+<p class="muted" style="text-align:center">Clone it. Call it. Retrain it. Send us your examples.</p>
+
+<footer>
+  <p>DecisionGate is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The name means what it says: a gate that your software's decisions pass through, one boolean at a time.</p>
+</footer>
+
+</main>
+</body>
+</html>
