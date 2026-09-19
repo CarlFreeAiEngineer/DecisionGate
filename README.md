@@ -122,7 +122,7 @@ Install a [Python wheel](released/python/README.md), add the [Java JARs](java/RE
 
 **That means you can add training data, retrain the model yourself right here in this project, and contribute your training data to the project so the whole world can benefit!**
 
-A wrong answer from a closed API is a dead end: you file a ticket and hope. A wrong answer here is a bug report you can fix yourself, the same way you'd patch any other open-source component. The training data is plain text files in this repository, the training recipe runs on an ordinary laptop, and a pull request with your examples makes the next release better for everyone.
+A wrong answer from a closed API is a dead end: you file a ticket and hope. A wrong answer here is an improvement you can make yourself. Write down the text, the question, and the right answer, add them to the training data, and retrain. The training data is plain text files in this repository, and the training recipe runs on an ordinary laptop. Keep the improved model for yourself, or send your examples back in a pull request and the next release gets better for everyone.
 
 **Open weights. Open training data. Open recipes.**
 
