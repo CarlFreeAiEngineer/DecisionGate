@@ -139,6 +139,8 @@ Every row below can answer "is this person asking for an appointment?" The diffe
 
 \* Needle's engine binary sends telemetry unless you turn it off.
 
+Numbers are from each project's own published material as of September 2026 and will drift; check the source before relying on them.
+
 What the table hides:
 
 - **Regex and keyword matching** is what most software actually does today, and it's the right tool until the day someone writes "no rush, but could I come in Tuesday?" Every fuzzy case becomes another pattern, and every new pattern breaks an old one. DecisionGate is for the decisions that were never really regular expressions.
@@ -147,8 +149,6 @@ What the table hides:
 - **Jev** is the closest in spirit: a purpose-built decision model that takes text plus a question and returns a typed answer with a probability, not prose. No begging. But it is a hosted API in early access behind a waitlist, at $0.042 per million input tokens, with 70 to 500 milliseconds plus network per call. Your users' text leaves your machine every time, and you cannot retrain it.
 - **Needle 3** is a remarkable piece of engineering aimed at a different job: tool calling, structured extraction, and embeddings on phones, wearables, and microcontrollers, in 8 to 29 MB. You can get a classification out of it by defining one tool per label, but there is no `is_yes(text, question)`, and it ships as a Python package or C library rather than ready-made Java, Node, browser, and Rust interfaces. Read the license twice: the weights and Python package are Apache-2.0, but the engine that runs them is free only for individuals, nonprofits, and companies under $2M in funding and revenue; above that you need a commercial license from Cactus Compute. The engine binary also has telemetry on by default.
 - **A zero-shot NLI model** such as `facebook/bart-large-mnli` is free and open, and a fine choice if you already live in Python with PyTorch installed and want to write the tokenization, prompting, thresholds, calibration, and packaging yourself. It is also what DecisionGate is built from, one layer down. DecisionGate is that work, done once, shipped as a component for seven languages.
-
-Numbers are from each project's own published material as of September 2026 and will drift; check the source before relying on them.
 
 ## What if this gives a wrong answer?
 
