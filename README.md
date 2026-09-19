@@ -40,7 +40,7 @@ appointment_requested = is_yes(
 
 **The silent half of the brain.** In split-brain patients only one hemisphere can talk; the other still answers questions correctly, by pointing, and never explains itself ([CGP Grey explains](https://www.youtube.com/watch?v=wfYbgdo8e-8)). Language models are the talking half. DecisionGate is the silent half: it reads, decides, points at yes or no or one of your options, and says nothing else. Give your code both.
 
-**Credit where due:** this is the same idea as [JEV](https://www.jevai.org/) from TypeSafe AI, a fast classifier that takes state plus a question and returns a typed answer with a probability instead of generating text ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). JEV is an API you call. DecisionGate is a component you ship, with open weights and training data you can retrain yourself.
+**If you know [JEV](https://www.jevai.org/)** from TypeSafe AI: the brain under the hood is similar, a small classifier that takes text plus a question and returns a typed answer with a probability instead of generating prose ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). But JEV is a paid API on someone else's server. DecisionGate is a library file in your build. For a working programmer that is a night-and-day difference: no account, no network, no bill, no one else's outage, and the model is yours to retrain.
 
 ## Languages and platforms
 
