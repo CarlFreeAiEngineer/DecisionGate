@@ -1,6 +1,8 @@
 # Release bundles
 
-This directory holds installable local DecisionGate releases. Every target uses the same full-precision weights, tokenizer, input rules, and calibration. Packaging does not improve or reduce decision accuracy: the current version answered 59/80 fresh synthetic cases correctly. See [the accuracy report](../reports/accuracy-v2.md).
+This directory holds installable local DecisionGate releases. Every target is meant to use the same weights, tokenizer, input rules, and calibration. Packaging does not improve or reduce decision accuracy: version 0.3.0 answered 62/80 fresh synthetic yes/no cases and 14/20 held-out multiple-choice cases correctly. See [the accuracy report](../reports/accuracy-v3.md).
+
+**Version status by platform.** The Mac bundle, Mac Python wheel, Mac Node tarball, Mac Java classifier JAR, and browser assets are version 0.3.0: the retrained model with `choose`, stored as float16 weights. The Windows and Linux bundles, wheels, tarballs, and classifier JARs are still version 0.2.0: the previous model without the `choose` entry points. They keep working for yes/no calls; `choose` on those platforms needs a 0.3.0 rebuild on that platform with [the build helper](../code/README.md). Do not mix a 0.3.0 API JAR or package with a 0.2.0 native bundle and expect `choose` to work.
 
 Native bundles:
 
@@ -25,8 +27,8 @@ The [Windows verification report](../reports/windows-release.md) records native,
 - [Node.js packages](../javascript/README.md) include a Node-API addon, JavaScript/TypeScript interfaces, native assets, and the browser entry. Install the tarball matching the operating system and architecture.
 - [Browser assets](../web/README.md) include the WebAssembly runtime, worker, declarations, weights, tokenizer, and an offline-capable example. Copy `web/` into your application's assets. Chromium, Firefox, and WebKit engines passed real inference and offline tests on the Mac.
 
-The browser bundle is approximately 345 MB; the Mac native bundle is approximately 394 MB and Linux native bundle approximately 359 MB. The combined npm tarball contains separate native and browser assets, including two copies of the weights, so it is larger. Browser use requires the web app's initial asset delivery and sufficient storage for offline installation. See [browser measurements and limitations](../reports/browser-webassembly.md).
+The 0.3.0 browser bundle is approximately 181 MB and the 0.3.0 Mac native bundle approximately 229 MB (weights 164 MB, stored as float16 and computed in float32). The 0.2.0 Linux native bundle is approximately 359 MB. The combined npm tarball contains separate native and browser assets, including two copies of the weights, so it is larger. Browser use requires the web app's initial asset delivery and sufficient storage for offline installation. See [browser measurements and limitations](../reports/browser-webassembly.md).
 
-Binary hosting is undecided. Git LFS, release downloads, or a separate website can be considered after the local version works. This directory defines the local release layout regardless of the eventual download service; it does not require committing large binaries to ordinary Git.
+The binaries in this directory are not committed to Git; only the `.md` and `.json` records are. Published versions live at `https://ordinarydata.com/DecisionGate/files/<version>/` with a `SHA256SUMS.txt`. `uv run code/fetch_released.py` downloads and verifies them into this directory (`--only macos-arm64` and similar select parts). Maintainers publish a new version with `uv run code/publish_released.py --version X.Y.Z`, which writes the checksum file and copies this directory to the server.
 
-No artifacts have been published to PyPI, Maven Central, npm, or a public download host. Local installation and packaging are implemented independently of that future publishing decision.
+No artifacts have been published to PyPI, Maven Central, or npm. Local installation and packaging are implemented independently of that future publishing decision.

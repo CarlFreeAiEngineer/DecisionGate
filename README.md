@@ -38,6 +38,10 @@ appointment_requested = is_yes(
 
 **No Ollama. No llama.cpp. No TenserFlow, No agent harness. No network! Just a goddamn software component!**
 
+**The silent half of the brain.** In split-brain patients only one hemisphere can talk; the other still answers questions correctly, by pointing, and never explains itself ([CGP Grey explains](https://www.youtube.com/watch?v=wfYbgdo8e-8)). Language models are the talking half. DecisionGate is the silent half: it reads, decides, points at yes or no or one of your options, and says nothing else. Give your code both.
+
+**Credit where due:** this is the same idea as [JEV](https://www.jevai.org/) from TypeSafe AI, a fast classifier that takes state plus a question and returns a typed answer with a probability instead of generating text ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). JEV is an API you call. DecisionGate is a component you ship, with open weights and training data you can retrain yourself.
+
 ## Languages and platforms
 
 **An offline yes/no decision component for your software.** Ready-to-use interfaces for **Python, Java, TypeScript/JavaScript, C, and Rust** run on Apple silicon Macs, Windows x64, and Linux x64. The C interface also makes bindings possible for C++, C#, Go, Swift, Ruby, and other languages that can call C libraries.
@@ -91,9 +95,26 @@ Supply different content and a yes/no question on each call. Optional criteria l
 | C                       | `dg_is_yes(...)`       | `dg_is_yes_p(...)`      |
 | Rust (via the C ABI)    | `dg_is_yes(...)`       | `dg_is_yes_p(...)`      |
 
+**Several options instead of yes or no?** `choose` returns the index of the best option and `choose_p` the whole ranking, best first, with probabilities that sum to one:
+
+```python
+from decisiongate import choose, choose_p
+
+teams = ["billing", "technical support", "sales"]
+message = "My card was charged twice for last month's invoice."
+
+i = choose(message, "Which team should handle this message?", teams, threshold=0.60)
+# 0 for "billing"; None when the best option is below 60%, so you can hand it to a person.
+
+ranked = choose_p(message, "Which team should handle this message?", teams)
+# [(0, 0.98), (2, 0.01), (1, 0.01)]: (index, probability) pairs, best first.
+```
+
+Java is `Decisions.choose(...)` and `Decisions.chooseP(...)`, JavaScript `choose`/`chooseP`, and C `dg_choose`/`dg_choose_p` with caller-owned output arrays and nothing to free. A deferred choice is `-1` outside Python.
+
 **P means probability of yes**, from zero to one. Boolean calls return true when that probability is at least **0.5** by default. Python accepts `threshold=0.90`; Java accepts a threshold overload, as above; C offers `dg_is_yes_at_threshold`. Choose a threshold using examples from your application, or use probabilities to reserve an uncertain range for review. Errors are reported separately, never disguised as “no.”
 
-Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/). Local packages are under `released/`; registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
+Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [ordinarydata.com/DecisionGate](https://ordinarydata.com/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
 
 ## What if this gives a wrong answer?
 
@@ -107,7 +128,7 @@ A wrong answer from a closed API is a dead end: you file a ticket and hope. A wr
 
 1. **Catch a mistake.** Save the content and question, supply the correct answer, and explain why.
 2. **Teach your own copy.** Clone the repository, add your examples, and [retrain and test](specs/accuracy-v2.md) a version you can ship.
-3. **Share the improvement.** Submit examples through a normal Git pull request. Reviewed contributions improve the shared training data; tested improvements become new releases.
+3. **Share the improvement.** Submit examples through a normal Git pull request. Reviewed contributions improve the shared training data; tested improvements become new releases. The step-by-step version is in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 You need neither a GPU nor machine-learning expertise to contribute an example. You can also retrain privately without sharing your data. A correction is useful evidence, not a guaranteed fix: evaluation checks whether it helps without breaking earlier decisions.
 
@@ -115,10 +136,10 @@ We intend to publish releases and training assets, likely on Hugging Face alongs
 
 ## What you can use today
 
-The experimental Mac bundle is about **394 MB**; the browser bundle is about **345 MB**. Both run entirely inside your application, with no telemetry, remote inference fallback, or per-call bill. Browser assets are delivered with your web app. It was fine-tuned on an M1 Pro Mac with 32 GB of memory. Project code and current weights are both Apache-2.0; dependencies carry their own [license notices](notices/README.md).
+The experimental Mac bundle is about **229 MB**; the browser bundle is about **181 MB**. Weights are stored as float16 and computed in float32, which halved the download without changing any test decision; Windows and Linux bundles are still the previous 394 MB version until they are rebuilt. Both run entirely inside your application, with no telemetry, remote inference fallback, or per-call bill. Browser assets are delivered with your web app. It was fine-tuned on an M1 Pro Mac with 32 GB of memory. Project code and current weights are both Apache-2.0; dependencies carry their own [license notices](notices/README.md).
 
-**Accuracy is still experimental:** the current version answered **59 of 80 fresh synthetic test cases correctly**, up from 42 for the original. That leaves 21 errors, and there is no independent human-reviewed benchmark. The examples above illustrate the interface, not a guarantee of reliable appointment, duplicate, or cancellation detection. See [measured accuracy, size, and speed](reports/accuracy-v2.md).
+**Accuracy is still experimental:** version 0.3.0 answered **62 of 80 fresh synthetic yes/no test cases** correctly (59 for the previous version, 42 for the original) and **14 of 20 held-out multiple-choice cases**. That leaves plenty of errors, and there is no independent human-reviewed benchmark. The examples above illustrate the interface, not a guarantee of reliable appointment, duplicate, or cancellation detection. See [measured accuracy, size, and speed](reports/accuracy-v3.md).
 
-Version one handles English text and yes/no questions. Other decision types come later.
+The current version handles English text, yes/no questions, and multiple choice over caller-supplied options. Other decision types come later.
 
 Building it? Start with the [developer specifications](specs/README.md).

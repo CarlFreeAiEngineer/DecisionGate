@@ -60,7 +60,7 @@ DecisionGate's accuracy is unchanged by the Java wrapper. It remains experimenta
 
 ## Dependencies
 
-These artifacts exist locally under [released/java/](../released/java/). **They have not been published to Maven Central.** Coordinates are provisional. The build below installs them into the project's Maven repository; use that repository when testing the dependency declarations locally.
+These artifacts exist under [released/java/](../released/java/) after `uv run code/fetch_released.py --only java`. **They have not been published to Maven Central.** Coordinates are provisional. The build below installs them into the project's Maven repository; use that repository when testing the dependency declarations locally.
 
 Maven:
 
@@ -68,12 +68,12 @@ Maven:
 <dependency>
   <groupId>org.decisiongate</groupId>
   <artifactId>decisiongate-java</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
 </dependency>
 <dependency>
   <groupId>org.decisiongate</groupId>
   <artifactId>decisiongate-java</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
   <classifier>macos-arm64</classifier>
   <scope>runtime</scope>
 </dependency>
@@ -82,8 +82,8 @@ Maven:
 Gradle, Kotlin DSL:
 
 ```kotlin
-implementation("org.decisiongate:decisiongate-java:0.2.0")
-runtimeOnly("org.decisiongate:decisiongate-java:0.2.0:macos-arm64")
+implementation("org.decisiongate:decisiongate-java:0.3.0")
+runtimeOnly("org.decisiongate:decisiongate-java:0.3.0:macos-arm64")
 ```
 
 Choose `macos-arm64`, `linux-x64` or `windows-x64` for the platform classifier.
