@@ -134,8 +134,10 @@ Every row below can answer "is this person asking for an appointment?" The diffe
 | **LLM API** | API key, billing, network | JSON, if you beg | No | Prompt harder and hope |
 | **Local LLM** (Ollama, llama.cpp) | Runtime, model files, GPU | JSON, if you beg | Yes | Prompt harder and hope |
 | **Jev** (TypeSafe AI) | API key, waitlist, network | Typed answer + probability | No | Can't; it's hosted |
-| **Needle 3** (Cactus) | Python package or C library | JSON tool call | Yes | LoRA fine-tune |
+| **Needle 3** (Cactus) | Python package or C library | JSON tool call | Yes* | LoRA fine-tune |
 | **Zero-shot NLI model** | PyTorch or ONNX, in Python | Logits you threshold | Yes | Write the training code |
+
+\* Needle's engine binary sends telemetry unless you turn it off.
 
 What the table hides:
 
@@ -143,7 +145,7 @@ What the table hides:
 - **A hosted LLM** is the most flexible and the best on hard cases. It is also an API key, a bill, a network dependency, your users' text on someone else's server, and an afternoon of begging for JSON. That is the reason this project exists.
 - **A local LLM through Ollama or llama.cpp** removes the network and the bill and replaces them with a runtime to install, model files to manage, a GPU to wish for, and the same begging for JSON. It turns a simple question into an infrastructure project.
 - **Jev** is the closest in spirit: a purpose-built decision model that takes text plus a question and returns a typed answer with a probability, not prose. No begging. But it is a hosted API in early access behind a waitlist, at $0.042 per million input tokens, with 70 to 500 milliseconds plus network per call. Your users' text leaves your machine every time, and you cannot retrain it.
-- **Needle 3** is a remarkable piece of engineering aimed at a different job: tool calling, structured extraction, and embeddings on phones, wearables, and microcontrollers, in 8 to 29 MB under Apache-2.0. You can get a classification out of it by defining one tool per label, but there is no `is_yes(text, question)`, and it ships as a Python package or C library rather than ready-made Java, Node, browser, and Rust interfaces.
+- **Needle 3** is a remarkable piece of engineering aimed at a different job: tool calling, structured extraction, and embeddings on phones, wearables, and microcontrollers, in 8 to 29 MB. You can get a classification out of it by defining one tool per label, but there is no `is_yes(text, question)`, and it ships as a Python package or C library rather than ready-made Java, Node, browser, and Rust interfaces. Read the license twice: the weights and Python package are Apache-2.0, but the engine that runs them is free only for individuals, nonprofits, and companies under $2M in funding and revenue; above that you need a commercial license from Cactus Compute. The engine binary also has telemetry on by default.
 - **A zero-shot NLI model** such as `facebook/bart-large-mnli` is what DecisionGate is built from, one layer down. Free and open, and a fine choice if you already live in Python with PyTorch installed and want to write the tokenization, prompting, thresholds, calibration, and packaging yourself. DecisionGate is that work, done once, shipped as a component for seven languages.
 
 Numbers are from each project's own published material as of September 2026 and will drift; check the source before relying on them.
