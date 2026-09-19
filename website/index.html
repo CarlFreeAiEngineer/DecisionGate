@@ -100,7 +100,7 @@ appointment_requested = is_yes(
 <span class="c">/* C */</span>
 dg_is_yes(text, strlen(text), q, strlen(q), NULL, &amp;yes);</code></pre>
 
-<p>Same weights, same answers, on Apple silicon Macs, Windows, Linux, and in Chromium, Firefox, and WebKit. Want a probability instead of a boolean, so you can hold the uncertain ones for a human? Want to spell out what counts as yes and what counts as no? Want to pick between several options instead of two? All ordinary function arguments.</p>
+<p>It's fast, too. The first call loads the model and takes a moment; after that, a decision takes about 70 milliseconds on a laptop CPU, with no network round trip to wait on. Same weights, same answers, on Apple silicon Macs, Windows, Linux, and in Chromium, Firefox, and WebKit. Want a probability instead of a boolean, so you can hold the uncertain ones for a human? Want to spell out what counts as yes and what counts as no? Want to pick between several options instead of two? All ordinary function arguments.</p>
 
 <h2>What if it gives a wrong answer?</h2>
 

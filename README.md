@@ -85,7 +85,7 @@ Complete, runnable examples for every language, including probabilities, criteri
 
 ## Your answer. Your rules.
 
-Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call initializes the component automatically; later calls reuse it.
+Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call loads the component and is slow; every call after that reuses it and takes about 70 milliseconds on a laptop CPU (measured p50 on an M1 Pro, see [the v0.3 report](reports/accuracy-v3.md)).
 
 | Language                | Boolean                | Probability of yes      |
 | ----------------------- | ---------------------- | ----------------------- |
