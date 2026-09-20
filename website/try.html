@@ -80,10 +80,10 @@
 <script type="module">
 import { configure, isYes, isYesP, choose, chooseP } from './files/0.4.0/web/index.js';
 
-const EXAMPLE = `const text = "Any chance I could come in next Tuesday?";
+const EXAMPLE = `const userMessage = "Any chance I could come in next Tuesday?";
 
-if (await isYes(text, "Is this person asking for an appointment?")) {
-  print("Offer some available times.");
+if (await isYes(userMessage, "Is this person asking for an appointment?")) {
+  print("Customer wants an appointment!");
 } else {
   print("Not an appointment request.");
 }
