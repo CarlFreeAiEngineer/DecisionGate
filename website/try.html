@@ -109,8 +109,9 @@ configure({ onProgress: ({ file, loaded, total }) => {
   let done = 0, all = 0;
   for (const [l, t] of bytes.values()) { done += l; all += t; }
   thermo.classList.remove('indeterminate');
-  fill.style.width = `${Math.min(100, 100 * done / all).toFixed(1)}%`;
-  statusText.textContent = `Loading ${(done / 1e6).toFixed(0)} of ${(all / 1e6).toFixed(0)} MB…`;
+  const percent = Math.min(100, 100 * done / all);
+  fill.style.width = `${percent.toFixed(1)}%`;
+  statusText.textContent = `Loading ${percent.toFixed(0)}%…`;
 } });
 const setReady = (text) => { status.className = 'ready'; statusText.textContent = text; runButton.textContent = 'Run'; runButton.disabled = false; };
 let ready = isYesP('warm up', 'Is this a warm-up?').then(
