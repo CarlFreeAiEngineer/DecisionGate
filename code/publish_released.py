@@ -11,10 +11,10 @@ code/fetch_released.py reads that same SHA256SUMS.txt, so publishing a version
 is what makes it downloadable. --site also deploys the pages in website/;
 --site-only deploys just those.
 
-  uv run code/publish_released.py --version 0.3.0
-  uv run code/publish_released.py --version 0.3.0 --site
+  uv run code/publish_released.py --version 0.4.0
+  uv run code/publish_released.py --version 0.4.0 --site
   uv run code/publish_released.py --site-only
-  uv run code/publish_released.py --version 0.3.0 --dry-run
+  uv run code/publish_released.py --version 0.4.0 --dry-run
 """
 import argparse
 import hashlib
@@ -26,7 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_HOST = 'ace@ordinarydata.com'
 DEFAULT_REMOTE_DIR = 'domains/ordinarydata.com/DecisionGate/files'
-SITE_PAGES = {'index.html': 'index.html', 'files-index.html': 'files/index.html'}  # website/ name -> path under DecisionGate/
+SITE_PAGES = {'index.html': 'index.html', 'try.html': 'try.html', 'files-index.html': 'files/index.html'}  # website/ name -> path under DecisionGate/
 SKIP_DIRS = {'__pycache__', 'node_modules'}
 
 
@@ -64,7 +64,7 @@ def publish_site(host, remote_dir, dry_run):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--version', help='folder name on the server, for example 0.3.0')
+    parser.add_argument('--version', help='folder name on the server, for example 0.4.0')
     parser.add_argument('--site', action='store_true', help='also deploy the pages in website/')
     parser.add_argument('--site-only', action='store_true', help='deploy only the pages in website/')
     parser.add_argument('--source', type=Path, default=ROOT / 'released')

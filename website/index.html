@@ -165,7 +165,7 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
                     <span class="k">const char</span> *question, size_t question_bytes,
                     <span class="k">const</span> dg_criteria *criteria, uint8_t *out_yes);</code></pre>
 
-<p>It's fast, too. The first call loads the model and takes a moment; after that, a decision takes about 70 milliseconds on a laptop CPU, with no network round trip to wait on. Same weights, same answers, on Apple silicon Macs, Windows, Linux, and in Chromium, Firefox, and WebKit. Want a probability instead of a boolean, so you can hold the uncertain ones for a human? Want to spell out what counts as yes and what counts as no? Want to pick between several options instead of two? All ordinary function arguments.</p>
+<p>It's fast, too. The first call loads the model and takes a moment; after that, a decision takes about half a second on a laptop CPU, with no network round trip to wait on. Same weights, same answers, on Apple silicon Macs, Windows, Linux, and in Chromium, Firefox, and WebKit. Want a probability instead of a boolean, so you can hold the uncertain ones for a human? Want to spell out what counts as yes and what counts as no? Want to pick between several options instead of two? All ordinary function arguments.</p>
 
 <h2>How it compares</h2>
 
@@ -209,8 +209,8 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
 
 <hr>
 
-<p style="text-align:center"><a class="cta" href="https://github.com/freeideas/DecisionGate">Get it on GitHub</a></p>
-<p class="muted" style="text-align:center">Clone it. Call it. Retrain it. Send us your examples.</p>
+<p style="text-align:center"><a class="cta" href="https://github.com/freeideas/DecisionGate">Get it on GitHub</a> &nbsp; <a class="cta" href="try.html">Try it in your browser</a></p>
+<p class="muted" style="text-align:center">Clone it. Call it. Retrain it. Send us your examples. Or edit and run a live JavaScript example right here, with nothing leaving your device.</p>
 
 <footer>
   <p>DecisionGate is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The name means what it says: a gate that your software's decisions pass through, one boolean at a time.</p>

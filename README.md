@@ -87,6 +87,8 @@ dg_is_yes(text.as_ptr(), text.len(), q.as_ptr(), q.len(), null(), &mut yes)  // 
 import { isYes } from "decisiongate/web";
 ```
 
+[Try it live](https://ordinarydata.com/DecisionGate/try.html): an editable JavaScript example that runs on your own CPU, in your browser.
+
 Complete, runnable examples for every language, including probabilities, criteria, thresholds, and multiple-choice decisions, are in [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md).
 
 ## Your answer. Your rules.
@@ -120,6 +122,14 @@ ranked = choose_p(message, "Which team should handle this message?", teams)
 Java is `Decisions.choose(...)` and `Decisions.chooseP(...)`, JavaScript `choose`/`chooseP`, and C `dg_choose`/`dg_choose_p` with caller-owned output arrays and nothing to free. A deferred choice is `-1` outside Python.
 
 **P means probability of yes**, from zero to one. Boolean calls return true when that probability is at least **0.5** by default. Python accepts `threshold=0.90`; Java accepts a threshold overload, as above; C offers `dg_is_yes_at_threshold`. Choose a threshold using examples from your application, or use probabilities to reserve an uncertain range for review. Errors are reported separately, never disguised as “no.”
+
+**Getting started takes three commands and no compiler.** Clone the repository, download the prebuilt binaries for your platform (or all of them), then install the package for your language from `released/`:
+
+```text
+git clone https://github.com/freeideas/DecisionGate.git
+cd DecisionGate
+uv run code/fetch_released.py --only python --only macos-arm64   # or linux-x64, windows-x64, java, node, web; omit --only for everything
+```
 
 Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [ordinarydata.com/DecisionGate](https://ordinarydata.com/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
 
@@ -170,7 +180,7 @@ We intend to publish releases and training assets, likely on Hugging Face alongs
 
 ## What you can use today
 
-The experimental Mac bundle is about **900 MB** and the browser bundle about **870 MB**. Weights are stored as float16 and computed in float32; version 0.4.0 moved to a 435M-parameter DeBERTa-v3-large foundation, four times the size of 0.3.0, because accuracy was the priority. Windows and Linux bundles are still the previous version until they are rebuilt. Both run entirely inside your application, with no telemetry, remote inference fallback, or per-call bill. Browser assets are delivered with your web app. Training ran on a Google Colab A100 (the M1 Pro could not hold the large model). Project code and current weights are both Apache-2.0 and MIT respectively for the foundation; dependencies carry their own [license notices](notices/README.md).
+The experimental Mac bundle is about **900 MB** and the browser bundle about **870 MB**. Weights are stored as float16 and computed in float32; version 0.4.0 moved to a 435M-parameter DeBERTa-v3-large foundation, four times the size of 0.3.0, because accuracy was the priority. Both run entirely inside your application, with no telemetry, remote inference fallback, or per-call bill. Browser assets are delivered with your web app. Training ran on a Google Colab A100 (the M1 Pro could not hold the large model). Project code is Apache-2.0 and the 0.4.0 weights derive from an MIT-licensed DeBERTa-v3-large checkpoint; dependencies carry their own [license notices](notices/README.md), which also record a training-data caveat from the upstream model card.
 
 **Accuracy is measured, not guaranteed:** version 0.4.0 answered **443 of 480 held-out yes/no test cases (92.3%)** written by separate authors across sixteen families, **74 of 80 fresh cases (92.5%)** and **19 of 20 held-out multiple-choice cases**; the previous version scored 59.2%, 77.5%, and 14 of 20 on the same sets. Intent, negation, quoted instructions, routing, and duplicate detection are at or above 90% per family; arithmetic and exact numeric boundaries are the weak spot (70%). All test data is synthetic and machine-authored, so there is still no independent human-reviewed benchmark. See [measured accuracy, size, and speed](reports/accuracy-v4.md).
 

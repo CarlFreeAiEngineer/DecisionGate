@@ -2,7 +2,7 @@
   "status": "passed",
   "platform": "Windows-11-10.0.26200-SP0",
   "cases": 81,
-  "max_absolute_difference": 3.0455886942393207e-06,
+  "max_absolute_difference": 8.467878673812379e-07,
   "boolean_disagreements": [],
-  "seconds": 27.656999999999243
+  "seconds": 392.2040000000002
 }

@@ -3,45 +3,33 @@
   "system": "Windows-11-10.0.26200-SP0",
   "steps": [
     {
-      "name": "python-build",
-      "exit_code": 0,
-      "seconds": 93.03,
-      "log": "reports\\remote-windows-x64-python-build.log"
-    },
-    {
-      "name": "python-consumer",
-      "exit_code": 0,
-      "seconds": 30.11,
-      "log": "reports\\remote-windows-x64-python-consumer.log"
-    },
-    {
       "name": "node-dependencies",
       "exit_code": 0,
-      "seconds": 49.77,
+      "seconds": 14.94,
       "log": "reports\\remote-windows-x64-node-dependencies.log"
     },
     {
       "name": "node-build",
       "exit_code": 0,
-      "seconds": 11.11,
+      "seconds": 20.91,
       "log": "reports\\remote-windows-x64-node-build.log"
     },
     {
       "name": "node-tests",
       "exit_code": 0,
-      "seconds": 34.19,
+      "seconds": 381.83,
       "log": "reports\\remote-windows-x64-node-tests.log"
     },
     {
       "name": "node-pack",
       "exit_code": 0,
-      "seconds": 155.78,
+      "seconds": 473.34,
       "log": "reports\\remote-windows-x64-node-pack.log"
     },
     {
       "name": "node-consumer",
       "exit_code": 0,
-      "seconds": 208.08,
+      "seconds": 448.88,
       "log": "reports\\remote-windows-x64-node-consumer.log"
     }
   ],
@@ -51,5 +39,5 @@
     "node-v24.19.0-headers.tar.gz": "54f14a297d47ea0794fe272363703d9dc419c96ac68f20d890f98b63754a3e4c",
     "win-x64/node.lib": "63ec831bbf164d1b23197d6fac1944dfb146534e332889ca0755d250e8dedff9"
   },
-  "node_headers": "C:\\DecisionGate-build-20260917\\tools\\node-build\\v24.19.0\\node-v24.19.0\\include\\node"
+  "node_headers": "C:\\DecisionGate-build-20260919\\tools\\node-build\\v24.19.0\\node-v24.19.0\\include\\node"
 }

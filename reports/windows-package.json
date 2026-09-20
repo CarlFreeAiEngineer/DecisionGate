@@ -7,11 +7,11 @@
   "relocated": true,
   "working_directory_separate": true,
   "development_tools_on_path": false,
-  "stdout": "p_yes=0.995962204",
+  "stdout": "p_yes=0.996782227\ntop=billing p=0.943029294",
   "native_process_peak_rss_bytes": null,
-  "bundle_bytes": 352792610,
-  "library_bytes": 4071936,
-  "model_bytes": 328609581,
+  "bundle_bytes": 901506326,
+  "library_bytes": 4101120,
+  "model_bytes": 872159821,
   "host_link_dependencies": [
     "    decisiongate.dll",
     "    KERNEL32.dll"

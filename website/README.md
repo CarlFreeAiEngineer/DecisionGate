@@ -3,6 +3,7 @@
 The public page at <https://ordinarydata.com/DecisionGate/>. It brags about the project and sends people to the repository; it does not list downloads.
 
 - `index.html` deploys to `DecisionGate/index.html` on the server.
+- `try.html` deploys to `DecisionGate/try.html`: an editable, runnable JavaScript example. It imports the browser component from `files/<version>/web/index.js` on the same server (the version is written into the page; update it when publishing a new release) and quietly makes a first call at page load so the visitor's first Run does not wait for the 890 MB download.
 - `files-index.html` deploys to `DecisionGate/files/index.html`, so the folder holding the large release bundles shows a pointer to the repository instead of a directory listing.
 
 The release bundles themselves live under `DecisionGate/files/<version>/` on the same server and are not in this repository; see [released/README.md](../released/README.md).

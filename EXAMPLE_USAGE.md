@@ -14,7 +14,7 @@ Two optional inputs apply to every call. **Criteria** are a pair of sentences sp
 
 The first call loads the component automatically; later calls reuse it. Nothing leaves the process: no network, no API key, no server.
 
-The model is experimental. See [measured accuracy](reports/accuracy-v2.md) before relying on any of these decisions.
+The model is experimental. See [measured accuracy](reports/accuracy-v4.md) before relying on any of these decisions.
 
 ## Python
 

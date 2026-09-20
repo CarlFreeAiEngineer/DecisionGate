@@ -1,13 +1,15 @@
 {
   "status": "passed",
   "classifier": "linux-x64",
+  "version": "0.4.0",
   "java_version": "openjdk 17.0.20.1 2026-08-18",
   "exit_code": 0,
   "network_denied": true,
+  "firewall_rule_configured": false,
   "network_isolation": "Linux network namespace (loopback only)",
   "original_bundle_read_denied": false,
-  "stdout": "Refund request: 0.996203\nInvoice request: 0.005127\nBundled Java inference passed; DecisionGate remains experimental.\n",
+  "stdout": "Refund request: 0.995354\nInvoice request: 0.004100\nBundled Java inference passed; DecisionGate remains experimental.\n",
   "stderr": "",
-  "api_jar_bytes": 18243,
-  "bundle_jar_bytes": 313186659
+  "api_jar_bytes": 26230,
+  "bundle_jar_bytes": 815925393
 }

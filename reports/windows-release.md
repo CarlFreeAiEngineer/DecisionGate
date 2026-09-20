@@ -1,5 +1,11 @@
 # Windows release verification
 
+Version 0.4.0 was rebuilt and verified on 19 and 20 September 2026 in the same Windows 11 x64 guest on emeraldslate (build 26200, two virtual CPUs, 4 GB RAM) with MSVC 14.44 and the project-local Rust 1.98.1 toolchain. The native bundle passes eight Rust unit tests, 168 native ABI/Python checks, C host loading, inference, and clean exit, and all 81 frozen comparison cases agree with the reference decisions (largest probability difference 0.00000085). The relocation check and the Python 3.12 wheel check pass. The Node 24.19.0 package and the Java classifier JAR checks are recorded in their JSON reports alongside this file.
+
+The 0.4.0 model needs about 5 GB of process memory, more than the guest's 4 GB of RAM. The first 0.4.0 attempt failed with a "bad allocation" error from ONNX Runtime during the native check that loads a second session; the guest's system-managed pagefile had peaked at 6.4 GB. Setting a fixed 16 GB pagefile (registry key `PagingFiles` under `Memory Management`, then a reboot) let every check pass, slowly: the 168 native checks took about 25 minutes. A guest with 8 GB of RAM would be the better fix. The larger pagefile then exhausted the 64 GB virtual disk during Node packaging until the previous build directory was deleted. Processes started from an SSH session die when the session closes, so the build runs as a Task Scheduler task; see `code/windows_build.ps1`.
+
+## Version 0.2.0 record (17 September 2026)
+
 Verified on 17 September 2026 in the existing Windows 11 x64 guest on emeraldslate (build 26200, two virtual CPUs, 4 GB RAM). Compilation used MSVC 14.44 and the project-local Rust 1.98.1 toolchain. These results qualify this Windows installation; older Windows versions have not been tested.
 
 The native bundle passes six Rust unit tests, 144 native ABI/Python checks, and C host loading, inference, and clean exit. All 81 frozen comparison cases agree with the reference boolean decisions; the largest probability difference is 0.000003046. The weights and tokenizer are identical to the Mac and Linux bundles. See [build checks](../released/windows-x64/build-checks.json), [comparison results](../released/windows-x64/platform-parity.json), and [build log](windows-build.log).

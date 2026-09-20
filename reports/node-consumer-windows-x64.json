@@ -1,7 +1,7 @@
 {
   "status": "passed",
   "node": "v24.19.0",
-  "pYes": 0.9666111806483961,
+  "pYes": 0.9811686480277453,
   "retry": true,
   "esm": true,
   "cjs": true,
@@ -12,6 +12,6 @@
   "network_denied": false,
   "network_isolation": null,
   "original_native_bundle_reads_denied": false,
-  "tarball": "C:\\DecisionGate-build-20260917\\released\\node\\decisiongate-0.2.0-win32-x64.tgz",
-  "tarball_sha256": "db0cfcab764c3524c2dcd790fd702a1b916ba5bc9f4faa82182e6b05a8576771"
+  "tarball": "C:\\DecisionGate-build-20260919\\released\\node\\decisiongate-0.4.0-win32-x64.tgz",
+  "tarball_sha256": "f95effa598a519024be464bfd28ce16fae894dfa42117b49ad40c5b28ca42414"
 }

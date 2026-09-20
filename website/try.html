@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try DecisionGate</title>
+<meta name="description" content="Edit and run a DecisionGate example in your browser. The decision is made on your device; nothing you type leaves it.">
+<style>
+  :root {
+    --bg: #fbfaf7; --ink: #1c1b18; --muted: #5d5a52; --accent: #b3361c;
+    --code-bg: #f1eee6; --rule: #e2ddd0; --yes: #1f7a3a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #16150f; --ink: #ece8dd; --muted: #a8a294; --accent: #ff7a52; --code-bg: #23211a; --rule: #35322a; --yes: #6fd48a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 18px/1.55 Georgia, "Times New Roman", serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
+  h1 { font-size: 2.6rem; line-height: 1.05; margin: 0 0 .2em; letter-spacing: -.02em; }
+  h1 small { display: block; font-size: 1.1rem; font-weight: normal; color: var(--muted); margin-top: .4em; letter-spacing: 0; }
+  h2 { font-size: 1.5rem; margin: 2em 0 .5em; line-height: 1.15; }
+  p { margin: 0 0 1em; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  code { font: 0.92em ui-monospace, Menlo, Consolas, monospace; background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
+  textarea#code { display: block; width: 100%; min-height: 26em; resize: vertical; border: 1px solid var(--rule); border-radius: 8px; background: var(--code-bg); color: var(--ink); padding: 16px 18px; font: 15px/1.45 ui-monospace, Menlo, Consolas, monospace; tab-size: 2; margin: 0 0 .8em; }
+  textarea#code:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0 0 1em; }
+  button { font: inherit; font-weight: bold; font-size: 1rem; padding: 10px 20px; border: 0; border-radius: 8px; cursor: pointer; background: var(--accent); color: #fff; }
+  button:hover { filter: brightness(1.1); }
+  button:disabled { opacity: .55; cursor: wait; filter: none; }
+  button.plain { background: var(--code-bg); color: var(--ink); font-weight: normal; }
+  #status { font-size: .95rem; color: var(--muted); }
+  #status::before { content: ""; display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: var(--muted); margin-right: .5em; vertical-align: middle; }
+  #status.ready::before { background: var(--yes); }
+  #status.busy::before { background: var(--accent); animation: pulse 1s infinite alternate; }
+  #status.failed::before { background: var(--accent); }
+  @keyframes pulse { from { opacity: .35; } to { opacity: 1; } }
+  pre#out { background: var(--code-bg); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font: 15px/1.45 ui-monospace, Menlo, Consolas, monospace; margin: 0 0 1.2em; min-height: 6em; white-space: pre-wrap; }
+  pre#out .err { color: var(--accent); }
+  pre#out .yes { color: var(--yes); font-weight: bold; }
+  footer { margin-top: 4em; color: var(--muted); font-size: .9rem; }
+  @media (max-width: 520px) { h1 { font-size: 2rem; } body { font-size: 17px; } }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Try DecisionGate<small>Edit the code. Run it. Nothing you type leaves your browser.</small></h1>
+
+<p>This is the same component that ships in the <a href="https://github.com/freeideas/DecisionGate">repository</a>, compiled to WebAssembly and running on YOUR CPU, inside this page. No API key. No server. No network call carries your text anywhere. Change the text, the question, the criteria, the options, whatever you like, then press RUN.</p>
+
+<p class="muted">The component is about 890 MB of weights and runtime, fetched once and cached by your browser. Each decision takes a second or two on a laptop. Desktop Chromium, Firefox, and Safari are supported.</p>
+
+<div class="bar">
+  <button id="run">Run</button>
+  <button id="reset" class="plain">Reset the example</button>
+  <span id="status">Loading the component…</span>
+</div>
+
+<textarea id="code" spellcheck="false" aria-label="JavaScript example, editable"></textarea>
+
+<pre id="out" aria-live="polite"><span class="muted">Output appears here.</span></pre>
+
+<h2>What you are looking at</h2>
+
+<p>The functions available to your code are exactly the ones the package exports: <code>isYes</code>, <code>isYesP</code>, <code>choose</code>, <code>chooseP</code>, plus <code>print</code> for this page's output box. They are the same calls, with the same weights and the same answers, as the Python, Java, C#, C, Rust, and Node.js interfaces in the repository. See <a href="https://github.com/freeideas/DecisionGate/blob/main/EXAMPLE_USAGE.md">EXAMPLE_USAGE.md</a> for every language.</p>
+
+<p>To put this in your own page, copy the <code>web/</code> folder from a release into your site's assets and <code>import { isYes } from './web/index.js'</code>. That is all. <a href="https://github.com/freeideas/DecisionGate/blob/main/web/README.md">Hosting notes</a> cover headers and content security policy.</p>
+
+<p style="text-align:center; margin-top:2.5em"><a href="./">Back to DecisionGate</a> · <a href="https://github.com/freeideas/DecisionGate">Get it on GitHub</a></p>
+
+<footer>
+  <p>DecisionGate is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The model is experimental; measured accuracy is in the repository's reports.</p>
+</footer>
+
+</main>
+<script type="module">
+import { isYes, isYesP, choose, chooseP } from './files/0.4.0/web/index.js';
+
+const EXAMPLE = `// A yes/no decision. Edit anything and press Run.
+const text = "Any chance I could come in next Tuesday?";
+const yes = await isYes(text, "Is this person asking for an appointment?");
+print("Appointment requested:", yes);
+
+// The probability, so you can keep an uncertain range for a human.
+const p = await isYesP(
+  "Please return my money. The item arrived broken.",
+  "Is the customer asking for a refund?",
+);
+print("Refund probability:", p.toFixed(3));
+
+// Spell out what counts as yes and what counts as no.
+const outage = await isYes(
+  "The dashboard has been showing a spinner for everyone since 9am.",
+  "Is this reporting a service outage?",
+  { criteria: {
+      yes: "The service is down or unusable for multiple people.",
+      no: "One person's account, question, or feature request." } },
+);
+print("Outage:", outage);
+
+// Several options instead of yes or no.
+const teams = ["billing", "technical support", "sales"];
+const ranked = await chooseP(
+  "My card was charged twice for last month's invoice.",
+  "Which team should handle this message?",
+  teams,
+);
+for (const { index, p } of ranked) print(\`  \${teams[index]}: \${(p * 100).toFixed(1)}%\`);
+`;
+
+const codeBox = document.querySelector('#code');
+const out = document.querySelector('#out');
+const status = document.querySelector('#status');
+const runButton = document.querySelector('#run');
+codeBox.value = EXAMPLE;
+document.querySelector('#reset').onclick = () => { codeBox.value = EXAMPLE; };
+
+// The first call loads the weights and runtime, which takes a while. Do it as
+// soon as the page opens so the visitor's first Run feels quick.
+let ready = isYesP('warm up', 'Is this a warm-up?').then(
+  () => { status.textContent = 'Component ready'; status.className = 'ready'; },
+  (error) => { status.textContent = `Component failed to load: ${error.message}`; status.className = 'failed'; throw error; },
+);
+
+function show(lines) {
+  out.replaceChildren();
+  for (const [kind, text] of lines) {
+    const span = document.createElement('span');
+    if (kind) span.className = kind;
+    span.textContent = text + '\n';
+    out.append(span);
+  }
+}
+
+runButton.onclick = async () => {
+  const lines = [];
+  const print = (...parts) => {
+    const text = parts.map(part => typeof part === 'string' ? part : JSON.stringify(part)).join(' ');
+    lines.push([/(^|\s)(true|yes)$/i.test(text) ? 'yes' : '', text]);
+    show(lines);
+  };
+  runButton.disabled = true;
+  status.className = 'busy';
+  status.textContent = 'Running…';
+  const started = performance.now();
+  try {
+    show([['muted', 'Running…']]);
+    await ready;
+    const AsyncFunction = Object.getPrototypeOf(async function () {}).constructor;
+    const program = new AsyncFunction('isYes', 'isYesP', 'choose', 'chooseP', 'print', codeBox.value);
+    await program(isYes, isYesP, choose, chooseP, print);
+    if (!lines.length) lines.push(['muted', '(the program printed nothing)']);
+    lines.push(['muted', `Done in ${((performance.now() - started) / 1000).toFixed(1)} s.`]);
+    status.textContent = 'Component ready';
+    status.className = 'ready';
+  } catch (error) {
+    lines.push(['err', `${error.code ?? error.name ?? 'Error'}: ${error.message}`]);
+    status.textContent = 'Component ready';
+    status.className = 'ready';
+  } finally {
+    show(lines);
+    runButton.disabled = false;
+  }
+};
+</script>
+</body>
+</html>

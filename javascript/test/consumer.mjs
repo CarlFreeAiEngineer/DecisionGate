@@ -11,7 +11,8 @@ if (namespace) {
   const interfaces = process.platform === 'linux' ? readFileSync('/proc/net/dev','utf8').trim().split('\n').slice(2).map(line=>line.split(':')[0].trim()) : [];
   if (interfaces.length !== 1 || interfaces[0] !== 'lo') throw new Error('--network-namespace requires Linux with only loopback available');
 }
-const tarball=resolve(root,`released/node/decisiongate-0.2.0-${process.platform}-${process.arch}.tgz`);
+const version = JSON.parse(readFileSync(resolve(root, 'javascript/package.json'), 'utf8')).version;
+const tarball=resolve(root,`released/node/decisiongate-${version}-${process.platform}-${process.arch}.tgz`);
 const temp = mkdtempSync(join(tmpdir(), 'decisiongate-node-'));
 try {
   writeFileSync(join(temp,'package.json'), JSON.stringify({name:'offline-consumer',private:true,type:'module'}));
