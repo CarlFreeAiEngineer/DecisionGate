@@ -11,7 +11,8 @@ export function isYes(content: string, question: string, options?: BooleanOption
 export function chooseP(content: string, question: string, options: string[], opts?: Options): Promise<Choice[]>;
 /** Index of the best option, or -1 when its probability is below opts.threshold (default 0, inclusive). */
 export function choose(content: string, question: string, options: string[], opts?: BooleanOptions): Promise<number>;
-/** Advanced hosting settings; call before first use or after close(). */
-export function configure(options?: {assetBaseUrl?: string | URL; workerUrl?: string | URL; maxQueue?: number}): void;
+export interface Progress { file: string; loaded: number; total: number }
+/** Advanced hosting settings; call before first use or after close(). onProgress is called while each asset downloads. */
+export function configure(options?: {assetBaseUrl?: string | URL; workerUrl?: string | URL; maxQueue?: number; onProgress?: (progress: Progress) => void}): void;
 /** Terminates the worker and rejects pending calls. Later calls restart automatically. */
 export function close(): void;

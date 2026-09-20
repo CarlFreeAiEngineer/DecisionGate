@@ -23,18 +23,20 @@
   .muted { color: var(--muted); }
   a { color: var(--accent); }
   code { font: 0.92em ui-monospace, Menlo, Consolas, monospace; background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
-  textarea#code { display: block; width: 100%; min-height: 9em; resize: vertical; border: 1px solid var(--rule); border-radius: 8px; background: var(--code-bg); color: var(--ink); padding: 16px 18px; font: 15px/1.45 ui-monospace, Menlo, Consolas, monospace; tab-size: 2; margin: 0 0 .8em; }
+  textarea#code { display: block; width: 100%; min-height: 4em; resize: vertical; border: 1px solid var(--rule); border-radius: 8px; background: var(--code-bg); color: var(--ink); padding: 16px 18px; font: 15px/1.45 ui-monospace, Menlo, Consolas, monospace; tab-size: 2; margin: 0 0 .8em; }
   textarea#code:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
   .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0 0 1em; }
   button { font: inherit; font-weight: bold; font-size: 1rem; padding: 10px 20px; border: 0; border-radius: 8px; cursor: pointer; background: var(--accent); color: #fff; }
   button:hover { filter: brightness(1.1); }
   button:disabled { opacity: .55; cursor: wait; filter: none; }
   button.plain { background: var(--code-bg); color: var(--ink); font-weight: normal; }
-  #status { font-size: .95rem; color: var(--muted); }
-  #status::before { content: ""; display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: var(--muted); margin-right: .5em; vertical-align: middle; }
-  #status.ready::before { background: var(--yes); }
-  #status.busy::before { background: var(--accent); animation: pulse 1s infinite alternate; }
-  #status.failed::before { background: var(--accent); }
+  #status { font-size: .95rem; color: var(--muted); display: flex; align-items: center; gap: 10px; flex: 1; min-width: 220px; }
+  .thermo { position: relative; flex: 1; max-width: 320px; height: 14px; border-radius: 999px; background: var(--code-bg); border: 1px solid var(--rule); overflow: hidden; }
+  .thermo .fill { position: absolute; inset: 0; width: 0%; background: linear-gradient(90deg, #e0a030, var(--accent)); border-radius: 999px; transition: width .3s; }
+  .thermo.indeterminate .fill { width: 30%; animation: slide 1.2s infinite linear; }
+  #status.ready .thermo .fill { background: var(--yes); width: 100%; }
+  #status.failed .thermo .fill { background: var(--accent); width: 100%; }
+  @keyframes slide { from { left: -30%; } to { left: 100%; } }
   @keyframes pulse { from { opacity: .35; } to { opacity: 1; } }
   pre#out { background: var(--code-bg); border-radius: 8px; padding: 16px 18px; overflow-x: auto; font: 15px/1.45 ui-monospace, Menlo, Consolas, monospace; margin: 0 0 1.2em; min-height: 6em; white-space: pre-wrap; }
   pre#out .err { color: var(--accent); }
@@ -53,9 +55,9 @@
 <p class="muted">The component is about 890 MB of weights and runtime, fetched once and cached by your browser. Each decision takes a second or two on a laptop. Desktop Chromium, Firefox, and Safari are supported.</p>
 
 <div class="bar">
-  <button id="run">Run</button>
+  <button id="run" disabled>Loading…</button>
   <button id="reset" class="plain">Reset the example</button>
-  <span id="status">Loading the component…</span>
+  <span id="status"><span class="thermo indeterminate" aria-hidden="true"><span class="fill"></span></span><span id="statusText">Warming up…</span></span>
 </div>
 
 <textarea id="code" spellcheck="false" aria-label="JavaScript example, editable"></textarea>
@@ -76,7 +78,7 @@
 
 </main>
 <script type="module">
-import { isYes, isYesP, choose, chooseP } from './files/0.4.0/web/index.js';
+import { configure, isYes, isYesP, choose, chooseP } from './files/0.4.0/web/index.js';
 
 const EXAMPLE = `const text = "Any chance I could come in next Tuesday?";
 
@@ -91,14 +93,29 @@ const codeBox = document.querySelector('#code');
 const out = document.querySelector('#out');
 const status = document.querySelector('#status');
 const runButton = document.querySelector('#run');
-codeBox.value = EXAMPLE;
-document.querySelector('#reset').onclick = () => { codeBox.value = EXAMPLE; };
+const fit = () => { codeBox.rows = codeBox.value.split('\n').length + 1; };
+codeBox.value = EXAMPLE; fit();
+codeBox.addEventListener('input', fit);
+document.querySelector('#reset').onclick = () => { codeBox.value = EXAMPLE; fit(); };
 
 // The first call loads the weights and runtime, which takes a while. Do it as
-// soon as the page opens so the visitor's first Run feels quick.
+// soon as the page opens, with a progress bar, so the visitor's first Run is quick.
+const thermo = document.querySelector('.thermo');
+const fill = document.querySelector('.thermo .fill');
+const statusText = document.querySelector('#statusText');
+const bytes = new Map();
+configure({ onProgress: ({ file, loaded, total }) => {
+  bytes.set(file, [loaded, total]);
+  let done = 0, all = 0;
+  for (const [l, t] of bytes.values()) { done += l; all += t; }
+  thermo.classList.remove('indeterminate');
+  fill.style.width = `${Math.min(100, 100 * done / all).toFixed(1)}%`;
+  statusText.textContent = `Loading ${(done / 1e6).toFixed(0)} of ${(all / 1e6).toFixed(0)} MB…`;
+} });
+const setReady = (text) => { status.className = 'ready'; statusText.textContent = text; runButton.textContent = 'Run'; runButton.disabled = false; };
 let ready = isYesP('warm up', 'Is this a warm-up?').then(
-  () => { status.textContent = 'Component ready'; status.className = 'ready'; },
-  (error) => { status.textContent = `Component failed to load: ${error.message}`; status.className = 'failed'; throw error; },
+  () => setReady('Ready. Runs on your CPU; nothing leaves this page.'),
+  (error) => { status.className = 'failed'; thermo.classList.remove('indeterminate'); statusText.textContent = `Failed to load: ${error.message}`; runButton.textContent = 'Failed'; throw error; },
 );
 
 function show(lines) {
@@ -119,8 +136,8 @@ runButton.onclick = async () => {
     show(lines);
   };
   runButton.disabled = true;
-  status.className = 'busy';
-  status.textContent = 'Running…';
+  runButton.textContent = 'Running…';
+  statusText.textContent = 'Running…';
   const started = performance.now();
   try {
     show([['muted', 'Running…']]);
@@ -130,15 +147,12 @@ runButton.onclick = async () => {
     await program(isYes, isYesP, choose, chooseP, print);
     if (!lines.length) lines.push(['muted', '(the program printed nothing)']);
     lines.push(['muted', `Done in ${((performance.now() - started) / 1000).toFixed(1)} s.`]);
-    status.textContent = 'Component ready';
-    status.className = 'ready';
   } catch (error) {
     lines.push(['err', `${error.code ?? error.name ?? 'Error'}: ${error.message}`]);
-    status.textContent = 'Component ready';
-    status.className = 'ready';
   } finally {
     show(lines);
-    runButton.disabled = false;
+    if (status.className === 'ready') setReady('Ready.');
+    else { runButton.textContent = 'Failed'; }
   }
 };
 </script>

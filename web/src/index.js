@@ -5,13 +5,17 @@ let nextId = 0;
 let settings = { maxQueue: 64 };
 const pending = new Map();
 
-/** Configure advanced hosting before the first call, or after close(). */
+/** Configure advanced hosting before the first call, or after close(). onProgress receives {file, loaded, total} while assets download. */
 export function configure(options = {}) {
   if (worker || pending.size) throw new DecisionGateError('DG_RESOURCE_ERROR', 'Call close() before changing configuration');
   if (!options || typeof options !== 'object' || Array.isArray(options)) throw new DecisionGateError('DG_INVALID_ARGUMENT', 'Configuration must be an object');
   const maxQueue = options.maxQueue ?? 64;
   if (!Number.isSafeInteger(maxQueue) || maxQueue < 1 || maxQueue > 4096) throw new DecisionGateError('DG_INVALID_ARGUMENT', 'maxQueue must be an integer from 1 to 4096');
   settings = { maxQueue };
+  if (options.onProgress !== undefined) {
+    if (typeof options.onProgress !== 'function') throw new DecisionGateError('DG_INVALID_ARGUMENT', 'onProgress must be a function');
+    settings.onProgress = options.onProgress;
+  }
   for (const name of ['assetBaseUrl', 'workerUrl']) if (options[name] !== undefined) {
     const url = new URL(options[name], globalThis.location?.href ?? import.meta.url);
     if (!['http:', 'https:'].includes(url.protocol)) throw new DecisionGateError('DG_INVALID_ARGUMENT', `${name} must be an HTTP(S) URL`);
@@ -27,6 +31,7 @@ function getWorker() {
   if (worker) return worker;
   const created = new Worker(settings.workerUrl ?? new URL('./worker.js', import.meta.url), { type: 'module', name: 'DecisionGate' });
   created.onmessage = ({ data }) => {
+    if (data.progress) { try { settings.onProgress?.(data.progress); } catch {} return; }
     const request = pending.get(data.id);
     if (!request) return;
     pending.delete(data.id);

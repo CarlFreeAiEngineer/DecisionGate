@@ -5,10 +5,29 @@ let queue = Promise.resolve();
 async function checked(url, expected) {
   const response = await fetch(url, { credentials: 'same-origin' });
   if (!response.ok) throw new DecisionGateError('DG_RESOURCE_ERROR', `Unable to read ${new URL(url).pathname}: HTTP ${response.status}`);
-  const bytes = await response.arrayBuffer();
+  const bytes = await read(response, new URL(url).pathname.split('/').pop());
   const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(x => x.toString(16).padStart(2, '0')).join('');
   if (digest !== expected) throw new DecisionGateError('DG_INCOMPATIBLE', `Integrity check failed for ${new URL(url).pathname}`);
   return bytes;
+}
+// Reads the body while reporting progress to the page. Falls back to a plain read when the size is unknown.
+async function read(response, file) {
+  const total = Number(response.headers.get('content-length')) || 0;
+  if (!response.body || !total) return response.arrayBuffer();
+  const chunks = [];
+  let loaded = 0;
+  const reader = response.body.getReader();
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    loaded += value.length;
+    self.postMessage({ progress: { file, loaded, total } });
+  }
+  const bytes = new Uint8Array(loaded);
+  let offset = 0;
+  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }
+  return bytes.buffer;
 }
 async function initialize(assetBaseUrl) {
   const base = assetBaseUrl ? new URL(assetBaseUrl.endsWith('/') ? assetBaseUrl : `${assetBaseUrl}/`) : new URL('./', import.meta.url);

@@ -53,6 +53,8 @@ A compatible component policy is `script-src 'self' 'wasm-unsafe-eval'; worker-s
 
 Invalid text, unmatched UTF-16 surrogates, invalid thresholds, excessive token length, missing or mismatched assets, a full queue, and execution failures reject with `DecisionGateError`, carrying a `code`. They never become a false decision. Each text argument is limited to 1 MiB of UTF-8, matching the native component. Tokenization and the 256-token limit match the native release, without truncation. Initialization is shared and retried after failure. Evaluations are serialized. At most 64 pending calls are accepted by default; `configure({ maxQueue: 16 })` changes the limit before first use.
 
+To show a loading indicator during the first call, pass `configure({ onProgress: ({ file, loaded, total }) => ... })` before that call. It reports bytes received for each asset as it downloads; the weights (`model.onnx`) are almost all of the total. The [live example page](https://ordinarydata.com/DecisionGate/try.html) uses it for a progress bar.
+
 `close()` immediately terminates the worker and rejects outstanding requests with `DG_CLOSED`. Later calls start a fresh worker. Call `close()` before changing configuration. Ordinary applications need no explicit initialization or disposal unless they want to recover the worker's memory early.
 
 The worker verifies the pinned manifest, weights, tokenizer, and Wasm bytes with SHA-256. `SHA256SUMS.json` records the release's top-level files for deployment checks. Serve a complete release together; mixing versions fails integrity validation.
