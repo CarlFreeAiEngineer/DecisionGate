@@ -3,7 +3,12 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Freeze native reference probabilities, or compare another platform to them."""
+"""Freeze native reference probabilities, or compare another platform to them.
+
+Float models must agree within 0.0001 with no changed decisions. A quantized model's manifest may declare a looser
+`parity` tolerance, because 8-bit arithmetic rounds differently on each processor: probabilities then agree within
+`probability`, and at most `max_flip_fraction` of cases may change their decision at 0.5. The frozen reference keeps
+the tolerance it was frozen with."""
 import argparse
 import json
 from pathlib import Path
@@ -12,6 +17,7 @@ import sys
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
+STRICT = {'probability': 1e-4, 'max_flip_fraction': 0.0}
 sys.path.insert(0, str(ROOT))
 from decisiongate import Session
 
@@ -55,10 +61,15 @@ def main():
         args.reference.parent.mkdir(parents=True, exist_ok=True)
         args.reference.write_text(json.dumps({'platform': platform.platform(),
             'sha256': {key: manifest['sha256'][key] for key in ('model.onnx', 'tokenizer.json')},
-            'temperature': manifest['temperature'], 'cases': cases}, indent=2, ensure_ascii=False) + '\n', encoding="utf-8")
+            'temperature': manifest['temperature'], 'tolerance': manifest.get('parity', STRICT), 'cases': cases}, indent=2, ensure_ascii=False) + '\n', encoding="utf-8")
         print(f'Frozen {len(cases)} reference cases at {args.reference}')
     else:
-        report = {'status': 'passed' if max(differences) <= 1e-4 and not boolean_disagreements else 'failed',
+        tolerance = reference.get('tolerance', STRICT)
+        flips = sum(1 for d in boolean_disagreements if d['threshold'] == .5)
+        passed = max(differences) <= tolerance['probability'] and flips <= tolerance['max_flip_fraction'] * len(cases)
+        if tolerance['max_flip_fraction'] == 0 and boolean_disagreements:
+            passed = False
+        report = {'status': 'passed' if passed else 'failed', 'tolerance': tolerance, 'decision_changes_at_half': flips,
                   'platform': platform.platform(), 'cases': len(cases), 'max_absolute_difference': max(differences),
                   'boolean_disagreements': boolean_disagreements, 'seconds': time.monotonic() - started}
         if args.output:

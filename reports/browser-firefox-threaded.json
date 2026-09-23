@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-23T13:42:30.394Z",
+  "date": "2026-09-23T16:24:36.225Z",
   "tokenizationCases": 691,
   "results": [
     {
@@ -7,34 +7,34 @@
       "version": "155.0",
       "crossOriginIsolated": true,
       "hardwareConcurrency": 10,
-      "peakBrowserProcessRssBytes": 9141747712,
+      "peakBrowserProcessRssBytes": 5555027968,
       "memoryNote": "Sum of browser process RSS sampled each second; shared pages can be counted more than once. JS heap excludes Wasm memory. WebKit memory is omitted because its XPC processes are not descendants of the test process.",
-      "coldMs": 8162.659999999999,
-      "ticks": 2877,
+      "coldMs": 6727.3,
+      "ticks": 3216,
       "cases": 87,
-      "maxDifference": 5.867322991903734e-7,
-      "disagree": 0,
+      "maxDifference": 0.08773246467243577,
+      "disagree": 2,
       "inclusive": true,
       "atOne": false,
       "atZero": true,
       "overlength": "DG_INPUT_TOO_LONG",
       "heap": null,
-      "p50Ms": 317.34000000000015,
-      "p95Ms": 400.2000000000007,
+      "p50Ms": 402.9400000000023,
+      "p95Ms": 515.3999999999978,
       "tokenizationCases": 691,
       "invalidCases": 18,
       "initializationRetry": true,
       "integrityFailureRejected": true,
       "byteLimitRejected": true,
       "choiceCases": 5,
-      "choiceMaxDifference": 1.9929781111538425e-7,
+      "choiceMaxDifference": 0.02065379291479808,
       "lifecycle": {
         "full": "DG_RESOURCE_ERROR",
         "cancelled": "DG_CLOSED"
       },
       "offlineReload": true,
       "offlineMethod": "browser offline mode",
-      "offlinePYes": 0.94790809823956,
+      "offlinePYes": 0.9687848938716086,
       "externalRequests": 0
     }
   ]

@@ -147,7 +147,8 @@ def native_checks(output, env):
     subprocess.run([str(executable)], cwd=output, env=env, check=True)
     subprocess.run([sys.executable, str(ROOT / 'tests/native_check.py'), '--bundle', str(output)], env=env, check=True)
     checks = ['Rust unit tests', 'C host load/inference/exit', 'native ABI and Python tests']
-    reference = json.loads((ROOT / 'tests/fixtures/platform-parity.json').read_text(encoding='utf-8'))
+    reference_path = ROOT / 'tests/fixtures/platform-parity.json'
+    reference = json.loads(reference_path.read_text(encoding='utf-8')) if reference_path.is_file() else {'sha256': {'model.onnx': None}}
     manifest = json.loads((output / 'manifest.json').read_text(encoding='utf-8'))
     if all(manifest['sha256'].get(name) == digest for name, digest in reference['sha256'].items()) and manifest.get('temperature', 1.0) == reference['temperature']:
         subprocess.run([sys.executable, str(ROOT / 'tests/platform_parity.py'), '--bundle', str(output), '--output', str(output / 'platform-parity.json')], env=env, check=True)

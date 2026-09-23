@@ -15,7 +15,7 @@ Examples:
   uv run code/fetch_released.py                       # everything, latest known version
   uv run code/fetch_released.py --only macos-arm64    # one native bundle
   uv run code/fetch_released.py --only python --only web
-  uv run code/fetch_released.py --version 0.4.0 --list
+  uv run code/fetch_released.py --version 0.4.1 --list
 """
 import argparse
 import hashlib
@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = 'https://ordinarydata.com/DecisionGate/files'
-DEFAULT_VERSION = '0.4.0'
+DEFAULT_VERSION = '0.4.1'
 CHUNK = 1 << 20
 
 

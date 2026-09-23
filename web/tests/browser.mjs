@@ -14,6 +14,9 @@ const release=process.env.DECISIONGATE_RELEASE_DIR?path.resolve(process.env.DECI
 const tokenFixtures=JSON.parse(await readFile(path.join(root,'web/tests/fixtures.json')));
 const fixtures=tokenFixtures.filter(f=>'pYes' in f);
 const choiceFixtures=JSON.parse(await readFile(path.join(root,'web/tests/fixtures-choice.json')));
+// Float models must match native within 1e-4. A quantized model's manifest declares a looser parity tolerance,
+// because WebAssembly rounds 8-bit arithmetic differently from native code (see tests/platform_parity.py).
+const parity=JSON.parse(await readFile(path.join(release,'manifest.json'))).parity??{probability:1e-4,max_flip_fraction:0};
 const tokenizerModule=(await build({entryPoints:[path.join(root,'web/src/core.js')],bundle:true,format:'esm',platform:'browser',write:false})).outputFiles[0].contents;
 let blockManifest=false;
 let corruptManifest=false;
@@ -87,7 +90,7 @@ for(const name of (process.argv.slice(2).length?process.argv.slice(2):['chromium
    return {coldMs,ticks,cases:fixtures.length,maxDifference:Math.max(...differences),disagree,inclusive,atOne,atZero,overlength,samples,heap};
   },fixtures);
   console.log(name,'inference complete',run.maxDifference);
-  assert(run.maxDifference<1e-4,JSON.stringify(run));assert.equal(run.disagree,0);assert.equal(run.inclusive,true);assert.equal(run.atOne,false);assert.equal(run.atZero,true);assert.equal(run.overlength,'DG_INPUT_TOO_LONG');assert(run.ticks>10);
+  assert(run.maxDifference<=parity.probability,JSON.stringify(run));assert(run.disagree<=parity.max_flip_fraction*fixtures.length,JSON.stringify(run));assert.equal(run.inclusive,true);assert.equal(run.atOne,false);assert.equal(run.atZero,true);assert.equal(run.overlength,'DG_INPUT_TOO_LONG');assert(run.ticks>10);
   const choice=await page.evaluate(async fixtures=>{
    const content="My card was charged twice for last month's invoice.";
    const question='Which team should handle this message?';
@@ -111,12 +114,14 @@ for(const name of (process.argv.slice(2).length?process.argv.slice(2):['chromium
   let maxChoiceDifference=0;
   for(const {ranking,native} of choice.parity){
    assert.equal(ranking.length,native.length);
+   const byIndex=new Map(ranking.map(r=>[r.index,r.p]));
    for(let i=0;i<ranking.length;++i){
-    assert.equal(ranking[i].index,native[i][0],`choice order mismatch: ${JSON.stringify(ranking)} vs ${JSON.stringify(native)}`);
-    maxChoiceDifference=Math.max(maxChoiceDifference,Math.abs(ranking[i].p-native[i][1]));
+    // Exact order is required for float models; a quantized model may swap options whose probabilities are within tolerance.
+    if(parity.max_flip_fraction===0)assert.equal(ranking[i].index,native[i][0],`choice order mismatch: ${JSON.stringify(ranking)} vs ${JSON.stringify(native)}`);
+    maxChoiceDifference=Math.max(maxChoiceDifference,Math.abs(byIndex.get(native[i][0])-native[i][1]));
    }
   }
-  assert(maxChoiceDifference<1e-4,`choice native parity ${maxChoiceDifference}`);
+  assert(maxChoiceDifference<=parity.probability,`choice native parity ${maxChoiceDifference}`);
   console.log(name,'choice native parity',maxChoiceDifference);
   const lifecycle=await page.evaluate(async()=>{
    dg.close();dg.configure({maxQueue:1});

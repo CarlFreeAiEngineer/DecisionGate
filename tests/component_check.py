@@ -58,7 +58,8 @@ with tempfile.TemporaryDirectory() as directory:
             with ThreadPoolExecutor(max_workers=4) as executor:
                 results = list(executor.map(lambda _: dg.is_yes_p(content, question), range(8)))
             assert load.call_count == 1, 'Concurrent calls must share one session'
-        assert all(abs(value - 0.9962034385661188) < 1e-6 for value in results)
+        assert all(abs(value - 0.9949882624561157) < 5e-3 for value in results)  # quantized model: processors round slightly differently
+        assert max(results) - min(results) < 1e-9, 'Concurrent calls on one platform must agree'
         assert dg.is_yes_p('Could you send me a copy of the invoice?', question) < 0.01
         assert dg.is_yes(content, question) is True
         assert dg.is_yes('Could you send me a copy of the invoice?', question) is False

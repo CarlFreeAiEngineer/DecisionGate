@@ -23,7 +23,7 @@ const digest = createHash('sha256').update(data).digest('hex');
 for (const entry of ['index','worker']) await build({entryPoints:[path.join(here,`src/${entry}.js`)],outfile:path.join(destination,`${entry}.js`),bundle:true,format:'esm',platform:'browser',target:['es2022'],minify:true,define:{DG_MANIFEST_SHA:JSON.stringify(digest)}});
 for(const file of ['model.onnx','tokenizer.json']) await copyFile(path.join(native,file),path.join(destination,file));
 await copyFile(path.join(here,'src/index.d.ts'),path.join(destination,'index.d.ts'));
-await writeFile(path.join(destination,'package.json'),JSON.stringify({name:'decisiongate-web',version:'0.4.0',private:true,type:'module',exports:{'.':{types:'./index.d.ts',import:'./index.js'}}},null,2)+'\n');
+await writeFile(path.join(destination,'package.json'),JSON.stringify({name:'decisiongate-web',version:'0.4.1',private:true,type:'module',exports:{'.':{types:'./index.d.ts',import:'./index.js'}}},null,2)+'\n');
 await cp(path.join(native,'notices'),path.join(destination,'notices'),{recursive:true});
 for(const [pkg,name] of [['@huggingface/tokenizers','tokenizers-js'],['onnxruntime-web','onnxruntime-web'],['onnxruntime-common','onnxruntime-common']]) {
  const pkgDir=path.join(here,'node_modules',pkg);

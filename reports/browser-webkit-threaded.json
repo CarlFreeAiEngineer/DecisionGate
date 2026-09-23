@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-23T13:42:59.111Z",
+  "date": "2026-09-23T16:26:34.207Z",
   "tokenizationCases": 691,
   "results": [
     {
@@ -9,32 +9,32 @@
       "hardwareConcurrency": 8,
       "peakBrowserProcessRssBytes": null,
       "memoryNote": "Sum of browser process RSS sampled each second; shared pages can be counted more than once. JS heap excludes Wasm memory. WebKit memory is omitted because its XPC processes are not descendants of the test process.",
-      "coldMs": 5077.0599999999995,
-      "ticks": 1293,
+      "coldMs": 4404.82,
+      "ticks": 1480,
       "cases": 87,
-      "maxDifference": 5.867322991903734e-7,
-      "disagree": 0,
+      "maxDifference": 0.08773246467243577,
+      "disagree": 2,
       "inclusive": true,
       "atOne": false,
       "atZero": true,
       "overlength": "DG_INPUT_TOO_LONG",
       "heap": null,
-      "p50Ms": 118.96000000000004,
-      "p95Ms": 160.29999999999927,
+      "p50Ms": 145.60000000000036,
+      "p95Ms": 224.47999999999956,
       "tokenizationCases": 691,
       "invalidCases": 18,
       "initializationRetry": true,
       "integrityFailureRejected": true,
       "byteLimitRejected": true,
       "choiceCases": 5,
-      "choiceMaxDifference": 1.9929781111538425e-7,
+      "choiceMaxDifference": 0.020653792914798096,
       "lifecycle": {
         "full": "DG_RESOURCE_ERROR",
         "cancelled": "DG_CLOSED"
       },
       "offlineReload": true,
       "offlineMethod": "origin connections rejected; self-only CSP",
-      "offlinePYes": 0.94790809823956,
+      "offlinePYes": 0.9687848938716086,
       "externalRequests": 0
     }
   ]

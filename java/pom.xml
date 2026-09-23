@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.decisiongate</groupId>
   <artifactId>decisiongate-java</artifactId>
-  <version>0.4.0</version>
+  <version>0.4.1</version>
   <name>DecisionGate Java</name>
   <description>Offline yes/no decisions through a normal Java API</description>
   <properties>
