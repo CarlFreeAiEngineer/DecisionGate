@@ -7,7 +7,8 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.dirname(here);
 const destination = path.resolve(process.argv[2] ?? path.join(root, 'released/web'));
 await mkdir(destination, { recursive: true });
-const native = path.join(root, 'released/macos-arm64');
+// DECISIONGATE_NATIVE_DIR stages a different native bundle (its manifest, weights, tokenizer, and notices).
+const native = path.resolve(process.env.DECISIONGATE_NATIVE_DIR ?? path.join(root, 'released/macos-arm64'));
 const manifest = JSON.parse(await readFile(path.join(native, 'manifest.json')));
 manifest.sha256 = { 'model.onnx': manifest.sha256['model.onnx'], 'tokenizer.json': manifest.sha256['tokenizer.json'] };
 manifest.build = { target: 'browser-wasm', onnxruntime: '1.22.0', tokenizer: '@huggingface/tokenizers@0.2.0', threads: 'all logical cores when the page is cross-origin isolated, otherwise 1' };

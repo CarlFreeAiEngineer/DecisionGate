@@ -450,14 +450,18 @@ def quantize(args):
     source, output = Path(args.bundle), Path(args.output)
     if output.exists(): raise ValueError('Quantized output already exists')
     output.mkdir(parents=True)
+    import onnx
     operators=['MatMul','Gemm'] + (['Gather'] if args.quantize_embeddings else [])
+    graph = onnx.load(str(source/'model.onnx'), load_external_data=False).graph
+    kept = [n.name for n in graph.node if n.op_type in operators and any(f in n.name for f in args.keep_float)]
+    nodes = [n.name for n in graph.node if n.op_type in operators and n.name not in kept]
     quantize_dynamic(str(source/'model.onnx'),str(output/'model.onnx'),
-                     op_types_to_quantize=operators,weight_type=QuantType.QInt8,
+                     op_types_to_quantize=operators,nodes_to_quantize=nodes,weight_type=QuantType.QInt8,
                      per_channel=True,extra_options={'MatMulConstBOnly':True})
     shutil.copy2(source/'tokenizer.json',output/'tokenizer.json')
     manifest=json.loads((source/'manifest.json').read_text())
     manifest.update({'model_id':args.model_id,'temperature':1.,'calibration':'unfitted after quantization',
-                     'quantization':{'runtime':'ONNX Runtime','weight_type':'QInt8','operators':operators,'per_channel':True},
+                     'quantization':{'runtime':'ONNX Runtime','weight_type':'QInt8','operators':operators,'per_channel':True,'kept_float':kept},
                      'float_model_sha256':digest(source/'model.onnx')})
     manifest.pop('calibration_data',None)
     manifest['sha256']={n:digest(output/n) for n in ('model.onnx','tokenizer.json')}
@@ -483,6 +487,7 @@ def main():
     cal = sub.add_parser('calibrate'); cal.add_argument('--bundle',required=True); cal.add_argument('--output',required=True); cal.add_argument('--extra-data',action='append',default=[]); cal.set_defaults(split='calibration')
     quant = sub.add_parser('quantize'); quant.add_argument('--bundle',required=True); quant.add_argument('--output',required=True); quant.add_argument('--model-id',required=True)
     quant.add_argument('--quantize-embeddings',action='store_true',help='Also compress embedding tables; can significantly change predictions')
+    quant.add_argument('--keep-float',action='append',default=[],metavar='FRAGMENT',help='Leave nodes whose name contains this text in float; repeatable')
     comp = sub.add_parser('compress'); comp.add_argument('--bundle',required=True); comp.add_argument('--output',required=True); comp.add_argument('--model-id',required=True)
     for command in (valid,tr,ev,cal): command.add_argument('--data',action='append',help='Use these JSONL files instead of the default seed files')
     args = parser.parse_args()
