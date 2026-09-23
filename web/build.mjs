@@ -10,7 +10,7 @@ await mkdir(destination, { recursive: true });
 const native = path.join(root, 'released/macos-arm64');
 const manifest = JSON.parse(await readFile(path.join(native, 'manifest.json')));
 manifest.sha256 = { 'model.onnx': manifest.sha256['model.onnx'], 'tokenizer.json': manifest.sha256['tokenizer.json'] };
-manifest.build = { target: 'browser-wasm', onnxruntime: '1.22.0', tokenizer: '@huggingface/tokenizers@0.2.0', threads: 1 };
+manifest.build = { target: 'browser-wasm', onnxruntime: '1.22.0', tokenizer: '@huggingface/tokenizers@0.2.0', threads: 'all logical cores when the page is cross-origin isolated, otherwise 1' };
 const ort = path.join(here,'node_modules/onnxruntime-web/dist');
 for (const file of ['ort-wasm-simd-threaded.wasm','ort-wasm-simd-threaded.mjs']) {
  await copyFile(path.join(ort,file),path.join(destination,file));

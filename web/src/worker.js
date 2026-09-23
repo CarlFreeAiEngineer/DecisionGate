@@ -35,7 +35,9 @@ async function initialize(assetBaseUrl) {
   if (manifest.format_version !== 1 || ![1, 2].includes(manifest.template_version) || !Number.isSafeInteger(manifest.max_tokens) || manifest.max_tokens < 1 || !Number.isFinite(manifest.temperature) || manifest.temperature <= 0) throw new DecisionGateError('DG_INCOMPATIBLE', 'Unsupported component manifest');
   if (manifest.choice_template_version !== undefined && manifest.choice_template_version !== 1) throw new DecisionGateError('DG_INCOMPATIBLE', 'Unsupported choice template version');
   const tokenizer = createTokenizer(JSON.parse(new TextDecoder().decode(await checked(new URL('tokenizer.json', base), manifest.sha256['tokenizer.json']))));
-  ort.env.wasm.numThreads = 1;
+  // Threaded WebAssembly needs SharedArrayBuffer, which browsers allow only on cross-origin isolated pages;
+  // elsewhere this stays single-threaded. Browsers do not say which cores are fast, so use them all.
+  ort.env.wasm.numThreads = self.crossOriginIsolated ? Math.max(1, navigator.hardwareConcurrency || 1) : 1;
   ort.env.wasm.proxy = false;
   ort.env.wasm.wasmPaths = base.href;
   ort.env.wasm.wasmBinary = await checked(new URL('ort-wasm-simd-threaded.wasm', base), manifest.sha256['ort-wasm-simd-threaded.wasm']);

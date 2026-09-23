@@ -93,7 +93,7 @@ Complete, runnable examples for every language, including probabilities, criteri
 
 ## Your answer. Your rules.
 
-Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call loads the component and is slow; every call after that reuses it and takes about 560 milliseconds on a laptop CPU for a 256-token input (measured p50 on an M1 Pro with four threads, see [the v0.4 report](reports/accuracy-v4.md)); the previous, far less accurate model took 70 milliseconds.
+Supply different content and a yes/no question on each call. Optional criteria let you spell out what counts as yes or no. The first call loads the component and is slow; every call after that reuses it and takes about 320 milliseconds on a laptop CPU for a 256-token input (measured p50 on an M1 Pro using its eight performance cores, see [the thread report](reports/threads.md); the published 0.4.0 bundles still use four threads and take about 560); the previous, far less accurate model took 70 milliseconds.
 
 | Language                | Boolean                | Probability of yes      |
 | ----------------------- | ---------------------- | ----------------------- |

@@ -19,6 +19,9 @@ let blockManifest=false;
 let corruptManifest=false;
 let denyTraffic=false;
 const requests=[];
+// DECISIONGATE_ISOLATED=1 serves every file with cross-origin isolation headers, which enables threaded WebAssembly.
+const suffix=process.env.DECISIONGATE_ISOLATED==='1'?'-threaded':'';
+const isolation=process.env.DECISIONGATE_ISOLATED==='1'?{'Cross-Origin-Opener-Policy':'same-origin','Cross-Origin-Embedder-Policy':'require-corp'}:{};
 const server=createServer(async(req,res)=>{
  try {
   if(denyTraffic){req.socket.destroy();return;}
@@ -31,7 +34,7 @@ const server=createServer(async(req,res)=>{
   if(!file.startsWith(release+path.sep)){res.writeHead(403);res.end();return;}
   const size=(await stat(file)).size;
   const mime={'.js':'text/javascript','.mjs':'text/javascript','.wasm':'application/wasm','.json':'application/json','.html':'text/html'}[path.extname(file)]??'application/octet-stream';
-  res.writeHead(200,{'Content-Type':mime,'Content-Length':size,'Cache-Control':'no-store','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'"});
+  res.writeHead(200,{...isolation,'Content-Type':mime,'Content-Length':size,'Cache-Control':'no-store','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline'"});
   res.end(await readFile(file));
  } catch{res.writeHead(404);res.end();}
 });
@@ -133,9 +136,9 @@ for(const name of (process.argv.slice(2).length?process.argv.slice(2):['chromium
   const offline=await page.evaluate(async()=>{const dg=await import('./index.js');const p=await dg.isYesP('Could you let me know when my order will arrive?','Is the customer asking for a reply?');dg.close();return p;});
   assert(Number.isFinite(offline));assert.deepEqual(external,[]);
   const sorted=run.samples.toSorted((a,b)=>a-b);delete run.samples;
-  const report={browser:name,version:browser.version(),peakBrowserProcessRssBytes:name==='webkit'?null:peakBrowserRssBytes,memoryNote:'Sum of browser process RSS sampled each second; shared pages can be counted more than once. JS heap excludes Wasm memory. WebKit memory is omitted because its XPC processes are not descendants of the test process.',...run,p50Ms:sorted[Math.floor(sorted.length*.5)],p95Ms:sorted[Math.floor(sorted.length*.95)],tokenizationCases:tokenCases,invalidCases:invalid.length,initializationRetry:true,integrityFailureRejected:true,byteLimitRejected:true,choiceCases:choiceFixtures.length,choiceMaxDifference:maxChoiceDifference,lifecycle,offlineReload:true,offlineMethod:name==='webkit'?'origin connections rejected; self-only CSP':'browser offline mode',offlinePYes:offline,externalRequests:external.length};
-  results.push(report);await writeFile(path.join(root,`reports/browser-${name}.json`),JSON.stringify({date:new Date().toISOString(),tokenizationCases:691,results:[report]},null,2)+'\n');console.log(JSON.stringify(report,null,2));
+  const report={browser:name,version:browser.version(),crossOriginIsolated:await page.evaluate(()=>self.crossOriginIsolated),hardwareConcurrency:await page.evaluate(()=>navigator.hardwareConcurrency),peakBrowserProcessRssBytes:name==='webkit'?null:peakBrowserRssBytes,memoryNote:'Sum of browser process RSS sampled each second; shared pages can be counted more than once. JS heap excludes Wasm memory. WebKit memory is omitted because its XPC processes are not descendants of the test process.',...run,p50Ms:sorted[Math.floor(sorted.length*.5)],p95Ms:sorted[Math.floor(sorted.length*.95)],tokenizationCases:tokenCases,invalidCases:invalid.length,initializationRetry:true,integrityFailureRejected:true,byteLimitRejected:true,choiceCases:choiceFixtures.length,choiceMaxDifference:maxChoiceDifference,lifecycle,offlineReload:true,offlineMethod:name==='webkit'?'origin connections rejected; self-only CSP':'browser offline mode',offlinePYes:offline,externalRequests:external.length};
+  results.push(report);await writeFile(path.join(root,`reports/browser-${name}${suffix}.json`),JSON.stringify({date:new Date().toISOString(),tokenizationCases:691,results:[report]},null,2)+'\n');console.log(JSON.stringify(report,null,2));
  } finally {blockManifest=false;corruptManifest=false;denyTraffic=false;clearInterval(memoryTimer);await context.close();await rm(profile,{recursive:true,force:true});}
 }
-await writeFile(path.join(root,`reports/browser-${results.map(r=>r.browser).join('-')}.json`),JSON.stringify({date:new Date().toISOString(),tokenizationCases:691,results},null,2)+'\n');
+await writeFile(path.join(root,`reports/browser-${results.map(r=>r.browser).join('-')}${suffix}.json`),JSON.stringify({date:new Date().toISOString(),tokenizationCases:691,results},null,2)+'\n');
 } finally {server.close();}

@@ -42,7 +42,7 @@ When the browser release is present, the Node build includes it under the `decis
 
 ## Browser implementation
 
-The dedicated module worker uses ONNX Runtime Web 1.22.0 with CPU WebAssembly, one thread, and no GPU requirement. Cross-origin isolation is unnecessary. Tokenization uses the pinned Hugging Face JavaScript tokenizer 0.2.0 with the released `tokenizer.json`; the adapter supplies RoBERTa's all-zero segment IDs. The input ordering, criteria formatting, special tokens, masks, temperature, and inclusive comparison match the native release.
+The dedicated module worker uses ONNX Runtime Web 1.22.0 with CPU WebAssembly and no GPU requirement. On a cross-origin isolated page it uses one thread per logical core, because browsers do not say which cores are fast; elsewhere it runs on one thread. Tokenization uses the pinned Hugging Face JavaScript tokenizer 0.2.0 with the released `tokenizer.json`; the adapter supplies RoBERTa's all-zero segment IDs. The input ordering, criteria formatting, special tokens, masks, temperature, and inclusive comparison match the native release.
 
 Initialization verifies the pinned manifest, weights, tokenizer, and Wasm bytes with SHA-256. The build also writes `SHA256SUMS.json` for deployment checks. Deploy a complete matching release; mixing assets fails validation.
 
@@ -62,4 +62,4 @@ Chromium and Firefox used browser offline mode. WebKit's test refused every orig
 
 Measured warm calls were about 80 ms, with local cold startup around 1.1 to 1.5 seconds. Summed process RSS reached approximately 2.19 GB in Chromium and 2.67 GB in Firefox during the full suite; shared pages can be counted more than once. WebKit's separate XPC processes prevented a comparable memory measurement. These are desktop measurements, not mobile or low-memory support claims. See [the browser report](../reports/browser-webassembly.md) for methods, commands, and machine-readable evidence.
 
-WebGPU, multithreaded Wasm, generic WASI hosts, mobile qualification, registry publication, and hosting are not part of this implementation. Runtime parity preserves the shared component's existing accuracy; it does not improve the underlying decision quality.
+WebGPU, generic WASI hosts, mobile qualification, registry publication, and hosting are not part of this implementation. Runtime parity preserves the shared component's existing accuracy; it does not improve the underlying decision quality.

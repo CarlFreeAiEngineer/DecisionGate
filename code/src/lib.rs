@@ -590,7 +590,7 @@ fn load(directory: &str) -> Result<GateSession> {
     }
     let session = Session::builder()
         .map_err(|e| failure(LOAD, e))?
-        .with_intra_threads(4)
+        .with_intra_threads(inference_threads())
         .map_err(|e| failure(RESOURCE, e))?
         .with_inter_threads(1)
         .map_err(|e| failure(RESOURCE, e))?
@@ -874,9 +874,135 @@ pub unsafe extern "C" fn dg_release(model: *mut GateSession) {
     });
 }
 
+/// Threads for one inference call. ONNX Runtime splits each operation evenly across its threads, so one
+/// slow efficiency core holds all the others up: use only the fastest cores, one thread per physical core.
+/// DECISIONGATE_THREADS overrides this for applications that need cores for other work.
+fn inference_threads() -> usize {
+    if let Some(n) = std::env::var("DECISIONGATE_THREADS")
+        .ok()
+        .and_then(|v| v.trim().parse::<usize>().ok())
+        .filter(|n| *n > 0)
+    {
+        return n.min(256);
+    }
+    let allowed = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(4);
+    fast_cores().filter(|n| *n > 0).unwrap_or(allowed).min(allowed).clamp(1, 256)
+}
+
+#[cfg(target_vendor = "apple")]
+fn fast_cores() -> Option<usize> {
+    extern "C" {
+        fn sysctlbyname(
+            name: *const c_char,
+            old: *mut std::ffi::c_void,
+            old_length: *mut usize,
+            new: *mut std::ffi::c_void,
+            new_length: usize,
+        ) -> i32;
+    }
+    // perflevel0 is the performance cluster on Apple silicon; Intel Macs lack it and have one kind of core.
+    for name in [c"hw.perflevel0.physicalcpu", c"hw.physicalcpu"] {
+        let mut value: i32 = 0;
+        let mut size = std::mem::size_of::<i32>();
+        let status = unsafe {
+            sysctlbyname(name.as_ptr(), (&mut value as *mut i32).cast(), &mut size, ptr::null_mut(), 0)
+        };
+        if status == 0 && value > 0 {
+            return Some(value as usize);
+        }
+    }
+    None
+}
+
+#[cfg(any(target_os = "linux", target_os = "android"))]
+fn fast_cores() -> Option<usize> {
+    let cpu_list = |text: &str| -> Option<Vec<usize>> {
+        let mut cpus = Vec::new();
+        for part in text.trim().split(',').filter(|p| !p.is_empty()) {
+            let (a, b) = part.split_once('-').unwrap_or((part, part));
+            cpus.extend(a.trim().parse::<usize>().ok()?..=b.trim().parse::<usize>().ok()?);
+        }
+        Some(cpus)
+    };
+    let number = |cpu: usize, file: &str| {
+        fs::read_to_string(format!("/sys/devices/system/cpu/cpu{cpu}/{file}"))
+            .ok()
+            .and_then(|s| s.trim().parse::<u64>().ok())
+    };
+    let online = cpu_list(&fs::read_to_string("/sys/devices/system/cpu/online").ok()?)?;
+    // Intel hybrid chips list their performance cores here. ARM big.LITTLE chips rate each core's
+    // capacity out of 1024; keep the big and middle clusters, drop the little one.
+    let fast = if let Some(p_cores) = fs::read_to_string("/sys/devices/cpu_core/cpus").ok().and_then(|t| cpu_list(&t)) {
+        online.iter().copied().filter(|c| p_cores.contains(c)).collect()
+    } else if let Some(top) = online.iter().filter_map(|&c| number(c, "cpu_capacity")).max() {
+        online.iter().copied().filter(|&c| number(c, "cpu_capacity").is_some_and(|v| v * 10 >= top * 6)).collect()
+    } else {
+        online
+    };
+    // Hyperthreads share a core's arithmetic units, so count physical cores.
+    let cores: std::collections::HashSet<(u64, u64)> = fast
+        .iter()
+        .map(|&c| (number(c, "topology/physical_package_id").unwrap_or(0), number(c, "topology/core_id").unwrap_or(c as u64)))
+        .collect();
+    Some(cores.len())
+}
+
+#[cfg(windows)]
+fn fast_cores() -> Option<usize> {
+    #[link(name = "kernel32")]
+    extern "system" {
+        fn GetLogicalProcessorInformationEx(relationship: i32, buffer: *mut u8, length: *mut u32) -> i32;
+    }
+    const RELATION_PROCESSOR_CORE: i32 = 0;
+    let mut length = 0u32;
+    unsafe { GetLogicalProcessorInformationEx(RELATION_PROCESSOR_CORE, ptr::null_mut(), &mut length) };
+    if length == 0 {
+        return None;
+    }
+    let mut buffer = vec![0u8; length as usize];
+    if unsafe { GetLogicalProcessorInformationEx(RELATION_PROCESSOR_CORE, buffer.as_mut_ptr(), &mut length) } == 0 {
+        return None;
+    }
+    // One record per physical core: Relationship (u32), Size (u32), Flags (u8), EfficiencyClass (u8), ...
+    // A higher efficiency class is a faster core; chips with one kind of core report 0 everywhere.
+    let mut classes = Vec::new();
+    let mut offset = 0usize;
+    while offset + 10 <= (length as usize).min(buffer.len()) {
+        let field = |at: usize| u32::from_le_bytes([buffer[at], buffer[at + 1], buffer[at + 2], buffer[at + 3]]);
+        let size = field(offset + 4) as usize;
+        if size == 0 {
+            break;
+        }
+        if field(offset) == RELATION_PROCESSOR_CORE as u32 {
+            classes.push(buffer[offset + 9]);
+        }
+        offset += size;
+    }
+    let top = *classes.iter().max()?;
+    Some(classes.iter().filter(|&&c| c == top).count())
+}
+
+#[cfg(not(any(target_vendor = "apple", target_os = "linux", target_os = "android", windows)))]
+fn fast_cores() -> Option<usize> {
+    None
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn inference_threads_uses_fast_cores_or_override() {
+        let detected = inference_threads();
+        assert!(detected >= 1);
+        if let Some(fast) = fast_cores() {
+            assert!(detected <= fast.max(1));
+        }
+        std::env::set_var("DECISIONGATE_THREADS", "3");
+        assert_eq!(inference_threads(), 3);
+        std::env::set_var("DECISIONGATE_THREADS", "zero");
+        assert_eq!(inference_threads(), detected);
+        std::env::remove_var("DECISIONGATE_THREADS");
+    }
     #[test]
     fn template_versions_preserve_pair_order_and_criteria() {
         let content = "The customer wants a booking.";
