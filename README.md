@@ -34,6 +34,8 @@ appointment_requested = is_yes(
 )
 ```
 
+**Don't take our word for it: [try it in your browser](https://ordinarydata.com/DecisionGate/try.html).** Change the text or the question, press Run, and it answers on your own CPU. Nothing you type leaves the page.
+
 **DecisionGate is a SOFTWARE COMPONENT, not an AI!** OK, there is a small trained model inside, but it is so small and insulated that you don't need to know about it. There is no chat, no prompt, no agent, and nothing to "talk to": it's a function that takes text and a question and returns a boolean. Ship it with your application and call a function. The same way your grandfather used software components: a library, some arguments, a return value. The kind of thing you did back in the 1990s.
 
 **No Ollama. No llama.cpp. No TenserFlow, No agent harness. No network! Just a goddamn software component!**
@@ -86,8 +88,6 @@ dg_is_yes(text.as_ptr(), text.len(), q.as_ptr(), q.len(), null(), &mut yes)  // 
 ```javascript
 import { isYes } from "decisiongate/web";
 ```
-
-[Try it live](https://ordinarydata.com/DecisionGate/try.html): an editable JavaScript example that runs on your own CPU, in your browser.
 
 Complete, runnable examples for every language, including probabilities, criteria, thresholds, and multiple-choice decisions, are in [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md).
 
