@@ -33,7 +33,7 @@ For deployment, copy the whole bundle folder into a `decisiongate` directory nex
 
 `Criteria` is a record with `Yes` and `No` strings describing what counts as each answer. Native failures throw `DecisionGateException` with a `StatusCode`; invalid thresholds throw `ArgumentOutOfRangeException`. An error is never returned as `false` or `-1`.
 
-The first call loads the bundle and takes a few seconds; later calls reuse it and take about half a second on a laptop CPU with the 0.4.0 model (see [the v0.4 report](../reports/accuracy-v4.md)). Calls are safe from any thread and run one at a time. Keep the component loaded for the life of the process; do not call it from process-exit handlers.
+The first call loads the bundle and takes a few seconds; later calls reuse it and take about a tenth to a third of a second on a laptop CPU with the 0.4.1 model (see [the 0.4.1 report](../reports/accuracy-v4.1.md)). Calls are safe from any thread and run one at a time. Keep the component loaded for the life of the process; do not call it from process-exit handlers.
 
 ## Run the smoke test
 
@@ -46,4 +46,4 @@ DECISIONGATE_BUNDLE=../../released/macos-arm64 dotnet run
 
 On Windows, set the variable to `..\..\released\windows-x64` first. The output shows a refund yes/no pair, a criteria-and-threshold call, a `Choose` ranking, and an error reported as an exception. The library targets .NET 8; the smoke app rolls forward to whatever newer runtime is installed.
 
-Tested on macOS arm64 with .NET SDK 10.0.401 and the 0.4.0 Mac bundle (about 900 MB; the smoke program's refund, criteria, choice, and error cases all behave as expected). Linux and Windows use the same code and their own bundles but have not been exercised here yet. A NuGet package is not published; the platform bundles are far over nuget.org's size limit, so the intended packaging is the project reference plus a bundle folder shipped with the application.
+Tested on macOS arm64 with .NET SDK 10.0.401 and the 0.4.1 Mac bundle (about 620 MB; the smoke program's refund, criteria, choice, and error cases all behave as expected). Linux and Windows use the same code and their own bundles but have not been exercised here yet. A NuGet package is not published; the platform bundles are far over nuget.org's size limit, so the intended packaging is the project reference plus a bundle folder shipped with the application.

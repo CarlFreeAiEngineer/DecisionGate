@@ -1,0 +1,20 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260919143252
+Username: WIN-K1V0HGID0VK\ace
+RunAs User: WIN-K1V0HGID0VK\ace
+Configuration Name: 
+Machine: WIN-K1V0HGID0VK (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\DecisionGate-build-20260919\tools\windows_resume.ps1 -Root C:\DecisionGate-build-20260919
+Process ID: 10160
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\DecisionGate-build-20260919\reports\windows-resume-20260919-143250.log
+Running: C:\WINDOWS\system32\cmd.exe /d /c C:\DecisionGate-build-20260919\tools\windows-msvc-environment.cmd

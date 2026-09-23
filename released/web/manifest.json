@@ -2,14 +2,14 @@
   "format_version": 1,
   "template_version": 2,
   "choice_template_version": 1,
-  "model_id": "decisiongate-0.4.0-large-fp16-experimental",
+  "model_id": "decisiongate-0.4.1",
   "max_tokens": 256,
   "base_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
   "base_revision": "cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2",
   "calibration": "temperature scaling on synthetic calibration split; not a reliability guarantee",
   "checkpoint_sha256": "91e9a5119e12e2baf6217e094460fae2961620c16ee336c63fadadd44475e7c9",
   "sha256": {
-    "model.onnx": "a251fd8ac6adfd58c496e6bb20058342ecc274e3372c7bfd5a6099a18d261845",
+    "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
     "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
     "ort-wasm-simd-threaded.wasm": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4",
     "ort-wasm-simd-threaded.mjs": "30dd851d9c00622940500f71ddd2ff8820c5cb65270816080175b958705385a8"
@@ -56,10 +56,39 @@
   },
   "pipeline_sha256": "8cf98372fcaa4539d7b88234ad74204e365fccb9e7a9acc4739b1dbba6c45cc5",
   "uv_lock_sha256": "010cd9eb55de600ff42c1d50f3f6b6dae18ba190b4aa955cf9879ae39c219e93",
-  "temperature": 1.6218100973589302,
+  "temperature": 1.603245390690042,
+  "quantization": {
+    "dynamic_int8": "every other MatMul, per channel, 7-bit weight range",
+    "block_int4": {
+      "block_size": 32,
+      "accuracy_level": 4,
+      "nodes": [
+        "/inner/deberta/encoder/layer.6/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.7/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.8/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.9/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.10/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.11/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.12/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.13/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.14/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.15/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.16/output/dense/MatMul",
+        "/inner/deberta/encoder/layer.17/output/dense/MatMul",
+        "/inner/deberta/embeddings/word_embeddings/Gather",
+        "/inner/pooler/Gather"
+      ]
+    }
+  },
+  "float_model_sha256": "3e1e9c3e6453e410a9615bb83c0ede047c906adcdd000c3db8ff890995e03f4c",
+  "parity": {
+    "probability": 0.25,
+    "max_flip_fraction": 0.05,
+    "note": "Quantized arithmetic rounds differently on each processor, so platforms agree within this probability difference and may differ on borderline decisions."
+  },
   "calibration_data": {
-    "/content/dg/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
-    "/content/dg/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/seed.jsonl": "cef1201c94d55a56679e95eeba0a8b3f075a9a7ba9a745922fd723d77562c495",
+    "/Users/ace/Desktop/prjx/DecisionModel/data/plain-questions.jsonl": "863b5b3817b9b2ce60efbdfabb55bbbc1b89fce7a88acc60717175fb8ae1c830",
     "data/expansion-v2.jsonl": "bae3edb1bd35855dcb4d5c346efd0fcdaae3b28ef219d7f8f06f1634f899810e",
     "data/choices.jsonl": "bc818e5cae7957ba42b0bb472a99c7522d7deac1bd371b4b5c5e1153246efaeb",
     "data/v4/appointment_intent.jsonl": "956804d5c4341501f1282af78a6d6716a3dbef3d159ce035cf1ccdb2212b5d29",
@@ -79,15 +108,10 @@
     "data/v4/spam_promotion.jsonl": "37be05675ae938eb42fc5ac9898e0eff37499956e6e68a3785f2599c8e937df5",
     "data/v4/urgency.jsonl": "37375eb8b816381f744cefd3b84f7006ae788bf6b710237de7aba4b228cd6bbf"
   },
-  "compression": {
-    "method": "float16 weight storage with Cast to float32 at load; float32 compute",
-    "converted_initializers": 394
-  },
-  "float_model_sha256": "3e1e9c3e6453e410a9615bb83c0ede047c906adcdd000c3db8ff890995e03f4c",
   "build": {
     "target": "browser-wasm",
     "onnxruntime": "1.22.0",
     "tokenizer": "@huggingface/tokenizers@0.2.0",
-    "threads": 1
+    "threads": "all logical cores when the page is cross-origin isolated, otherwise 1"
   }
 }

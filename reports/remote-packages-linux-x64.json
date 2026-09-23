@@ -3,17 +3,64 @@
   "system": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
   "steps": [
     {
+      "name": "python-build",
+      "exit_code": 0,
+      "seconds": 126.79,
+      "log": "reports/remote-linux-x64-python-build.log"
+    },
+    {
+      "name": "python-consumer",
+      "exit_code": 0,
+      "seconds": 39.85,
+      "log": "reports/remote-linux-x64-python-consumer.log"
+    },
+    {
+      "name": "node-dependencies",
+      "exit_code": 0,
+      "seconds": 1.98,
+      "log": "reports/remote-linux-x64-node-dependencies.log"
+    },
+    {
+      "name": "node-build",
+      "exit_code": 0,
+      "seconds": 7.92,
+      "log": "reports/remote-linux-x64-node-build.log"
+    },
+    {
+      "name": "node-tests",
+      "exit_code": 0,
+      "seconds": 49.01,
+      "log": "reports/remote-linux-x64-node-tests.log"
+    },
+    {
+      "name": "node-pack",
+      "exit_code": 0,
+      "seconds": 215.31,
+      "log": "reports/remote-linux-x64-node-pack.log"
+    },
+    {
+      "name": "node-consumer",
+      "exit_code": 0,
+      "seconds": 153.05,
+      "log": "reports/remote-linux-x64-node-consumer.log"
+    },
+    {
       "name": "java-build",
       "exit_code": 0,
-      "seconds": 389.88,
+      "seconds": 252.51,
       "log": "reports/remote-linux-x64-java-build.log"
     },
     {
       "name": "java-consumer",
       "exit_code": 0,
-      "seconds": 79.49,
+      "seconds": 55.62,
       "log": "reports/remote-linux-x64-java-consumer.log"
     }
   ],
-  "status": "passed"
+  "status": "passed",
+  "node_version": "v26.7.0",
+  "node_build_assets": {
+    "node-v26.7.0-headers.tar.gz": "00ef24b4724342592aa7a14f9105282a59a7397c8ff7a28166243f5029ce2217"
+  },
+  "node_headers": "/home/ace/DecisionGate-build-20260923/tools/node-build/v26.7.0/node-v26.7.0/include/node"
 }

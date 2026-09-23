@@ -1,8 +1,14 @@
 {
   "status": "passed",
+  "tolerance": {
+    "probability": 0.25,
+    "max_flip_fraction": 0.05,
+    "note": "Quantized arithmetic rounds differently on each processor, so platforms agree within this probability difference and may differ on borderline decisions."
+  },
+  "decision_changes_at_half": 0,
   "platform": "macOS-26.6.2-arm64-arm-64bit",
   "cases": 81,
   "max_absolute_difference": 0.0,
   "boolean_disagreements": [],
-  "seconds": 13.381785708013922
+  "seconds": 7.823846875005984
 }

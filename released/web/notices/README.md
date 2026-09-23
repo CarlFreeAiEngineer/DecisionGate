@@ -2,9 +2,9 @@
 
 Project source is Apache-2.0 (see the top-level `LICENSE`). Original example data is offered under the CC0 terms described in `data/README.md`. Fine-tuned weights retain their base model's terms; the training recipe and exact source checkpoint are recorded in each bundle's `manifest.json` and in the reports.
 
-## Version 0.4.0 foundation (current)
+## Version 0.4.0 and 0.4.1 foundation (current)
 
-The 0.4.0 weights are derived from `MoritzLaurer/deberta-v3-large-zeroshot-v2.0` at revision `cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2`, whose model card declares MIT. That checkpoint is itself a fine-tune of `microsoft/deberta-v3-large` (revision `64a8c8eab3e352a784c658aef62be1662607476f`), also MIT. DecisionGate keeps its entailment head and fine-tunes the weights on the published project data. Included here:
+Version 0.4.1 uses the 0.4.0 weights stored as 8-bit and 4-bit integers; no weights were retrained. The 0.4.0 weights are derived from `MoritzLaurer/deberta-v3-large-zeroshot-v2.0` at revision `cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2`, whose model card declares MIT. That checkpoint is itself a fine-tune of `microsoft/deberta-v3-large` (revision `64a8c8eab3e352a784c658aef62be1662607476f`), also MIT. DecisionGate keeps its entailment head and fine-tunes the weights on the published project data. Included here:
 
 - `deberta-v3-large-zeroshot-v2.0-model-card.md`: the zero-shot checkpoint's model card at the revision used.
 - `DeBERTa-v3-large-model-card.md`: the Microsoft DeBERTa-v3-large model card.

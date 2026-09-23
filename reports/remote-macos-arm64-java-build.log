@@ -1,7 +1,7 @@
 [INFO] Scanning for projects...
 [INFO] 
 [INFO] -----------------< org.decisiongate:decisiongate-java >-----------------
-[INFO] Building DecisionGate Java 0.4.0
+[INFO] Building DecisionGate Java 0.4.1
 [INFO]   from pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
@@ -29,13 +29,13 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running org.decisiongate.DecisionGateChoiceIntegrationTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.44 s -- in org.decisiongate.DecisionGateChoiceIntegrationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.996 s -- in org.decisiongate.DecisionGateChoiceIntegrationTest
 [INFO] Running org.decisiongate.DecisionGateTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in org.decisiongate.DecisionGateTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in org.decisiongate.DecisionGateTest
 [INFO] Running org.decisiongate.DecisionsTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in org.decisiongate.DecisionsTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in org.decisiongate.DecisionsTest
 [INFO] Running org.decisiongate.DecisionGateIntegrationTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.00 s -- in org.decisiongate.DecisionGateIntegrationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.982 s -- in org.decisiongate.DecisionGateIntegrationTest
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -43,28 +43,28 @@
 [INFO] 
 [INFO] 
 [INFO] --- jar:3.4.2:jar (default-jar) @ decisiongate-java ---
-[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0.jar
+[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1.jar
 [INFO] 
 [INFO] --- jar:3.4.2:jar (native-bundle) @ decisiongate-java ---
-[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0-macos-arm64.jar
+[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1-macos-arm64.jar
 [INFO] 
 [INFO] --- source:3.3.1:jar-no-fork (sources) @ decisiongate-java ---
-[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0-sources.jar
+[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1-sources.jar
 [INFO] 
 [INFO] --- javadoc:3.11.2:jar (javadoc) @ decisiongate-java ---
 [INFO] No previous run data found, generating javadoc.
-[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0-javadoc.jar
+[INFO] Building jar: /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1-javadoc.jar
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ decisiongate-java ---
-[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/pom.xml to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.0/decisiongate-java-0.4.0.pom
-[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.0/decisiongate-java-0.4.0.jar
-[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0-macos-arm64.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.0/decisiongate-java-0.4.0-macos-arm64.jar
-[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0-sources.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.0/decisiongate-java-0.4.0-sources.jar
-[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.0-javadoc.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.0/decisiongate-java-0.4.0-javadoc.jar
+[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/pom.xml to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.1/decisiongate-java-0.4.1.pom
+[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.1/decisiongate-java-0.4.1.jar
+[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1-macos-arm64.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.1/decisiongate-java-0.4.1-macos-arm64.jar
+[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1-sources.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.1/decisiongate-java-0.4.1-sources.jar
+[INFO] Installing /Users/ace/Desktop/prjx/DecisionModel/java/target/decisiongate-java-0.4.1-javadoc.jar to /Users/ace/Desktop/prjx/DecisionModel/tools/maven-repository/org/decisiongate/decisiongate-java/0.4.1/decisiongate-java-0.4.1-javadoc.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  52.367 s
-[INFO] Finished at: 2026-09-19T23:34:46+01:00
+[INFO] Total time:  37.564 s
+[INFO] Finished at: 2026-09-23T17:29:15+01:00
 [INFO] ------------------------------------------------------------------------
 Java artifacts: /Users/ace/Desktop/prjx/DecisionModel/released/java

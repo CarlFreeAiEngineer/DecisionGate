@@ -5,31 +5,31 @@
     {
       "name": "node-dependencies",
       "exit_code": 0,
-      "seconds": 14.94,
+      "seconds": 9.53,
       "log": "reports\\remote-windows-x64-node-dependencies.log"
     },
     {
       "name": "node-build",
       "exit_code": 0,
-      "seconds": 20.91,
+      "seconds": 14.39,
       "log": "reports\\remote-windows-x64-node-build.log"
     },
     {
       "name": "node-tests",
       "exit_code": 0,
-      "seconds": 381.83,
+      "seconds": 84.41,
       "log": "reports\\remote-windows-x64-node-tests.log"
     },
     {
       "name": "node-pack",
       "exit_code": 0,
-      "seconds": 473.34,
+      "seconds": 262.78,
       "log": "reports\\remote-windows-x64-node-pack.log"
     },
     {
       "name": "node-consumer",
       "exit_code": 0,
-      "seconds": 448.88,
+      "seconds": 245.19,
       "log": "reports\\remote-windows-x64-node-consumer.log"
     }
   ],

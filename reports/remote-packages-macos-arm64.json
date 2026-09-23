@@ -3,17 +3,62 @@
   "system": "macOS-26.6.2-arm64-arm-64bit",
   "steps": [
     {
+      "name": "python-build",
+      "exit_code": 0,
+      "seconds": 20.02,
+      "log": "reports/remote-macos-arm64-python-build.log"
+    },
+    {
+      "name": "python-consumer",
+      "exit_code": 0,
+      "seconds": 7.79,
+      "log": "reports/remote-macos-arm64-python-consumer.log"
+    },
+    {
+      "name": "node-dependencies",
+      "exit_code": 0,
+      "seconds": 0.51,
+      "log": "reports/remote-macos-arm64-node-dependencies.log"
+    },
+    {
+      "name": "node-build",
+      "exit_code": 0,
+      "seconds": 1.0,
+      "log": "reports/remote-macos-arm64-node-build.log"
+    },
+    {
+      "name": "node-tests",
+      "exit_code": 0,
+      "seconds": 8.15,
+      "log": "reports/remote-macos-arm64-node-tests.log"
+    },
+    {
+      "name": "node-pack",
+      "exit_code": 0,
+      "seconds": 51.15,
+      "log": "reports/remote-macos-arm64-node-pack.log"
+    },
+    {
+      "name": "node-consumer",
+      "exit_code": 0,
+      "seconds": 21.51,
+      "log": "reports/remote-macos-arm64-node-consumer.log"
+    },
+    {
       "name": "java-build",
       "exit_code": 0,
-      "seconds": 54.71,
+      "seconds": 39.23,
       "log": "reports/remote-macos-arm64-java-build.log"
     },
     {
       "name": "java-consumer",
-      "exit_code": 0,
-      "seconds": 16.16,
+      "exit_code": 1,
+      "seconds": 10.68,
       "log": "reports/remote-macos-arm64-java-consumer.log"
     }
   ],
-  "status": "passed"
+  "status": "failed",
+  "node_version": "v26.7.0",
+  "node_headers": "/opt/homebrew/Cellar/node/26.7.0/include/node",
+  "error": "java-consumer failed; see /Users/ace/Desktop/prjx/DecisionModel/reports/remote-macos-arm64-java-consumer.log"
 }

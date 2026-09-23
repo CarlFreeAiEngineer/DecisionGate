@@ -1,8 +1,31 @@
 {
   "status": "passed",
+  "tolerance": {
+    "probability": 0.25,
+    "max_flip_fraction": 0.05,
+    "note": "Quantized arithmetic rounds differently on each processor, so platforms agree within this probability difference and may differ on borderline decisions."
+  },
+  "decision_changes_at_half": 1,
   "platform": "Windows-11-10.0.26200-SP0",
   "cases": 81,
-  "max_absolute_difference": 8.467878673812379e-07,
-  "boolean_disagreements": [],
-  "seconds": 392.2040000000002
+  "max_absolute_difference": 0.12780706707894557,
+  "boolean_disagreements": [
+    {
+      "id": "evaluation-v2-013",
+      "threshold": 0.95
+    },
+    {
+      "id": "evaluation-v2-018",
+      "threshold": 0.05
+    },
+    {
+      "id": "evaluation-v2-029",
+      "threshold": 0.9
+    },
+    {
+      "id": "evaluation-v2-051",
+      "threshold": 0.5
+    }
+  ],
+  "seconds": 93.375
 }

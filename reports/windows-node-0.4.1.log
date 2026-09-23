@@ -1,0 +1,74 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260923101043
+Username: WIN-K1V0HGID0VK\ace
+RunAs User: WIN-K1V0HGID0VK\ace
+Configuration Name: 
+Machine: WIN-K1V0HGID0VK (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\system32\WindowsPowerShell\v1.0\PowerShell.exe -NoExit -ExecutionPolicy Bypass -File \\host.lan\Data\windows_node_0.4.1.ps1
+Process ID: 62844
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\DecisionGate-build-20260919\reports\windows-node-0.4.1.log
+
+Free after cleanup: 7.68 GB
+node-dependencies: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-dependencies.log)
+node-dependencies: passed
+node-build: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-build.log)
+node-build: passed
+node-tests: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-tests.log)
+node-tests: passed
+node-pack: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-pack.log)
+node-pack: passed
+node-consumer: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-consumer.log)
+node-consumer: passed
+{
+  "platform": "windows-x64",
+  "system": "Windows-11-10.0.26200-SP0",
+  "steps": [
+    {
+      "name": "node-dependencies",
+      "exit_code": 0,
+      "seconds": 9.53,
+      "log": "reports\\remote-windows-x64-node-dependencies.log"
+    },
+    {
+      "name": "node-build",
+      "exit_code": 0,
+      "seconds": 14.39,
+      "log": "reports\\remote-windows-x64-node-build.log"
+    },
+    {
+      "name": "node-tests",
+      "exit_code": 0,
+      "seconds": 84.41,
+      "log": "reports\\remote-windows-x64-node-tests.log"
+    },
+    {
+      "name": "node-pack",
+      "exit_code": 0,
+      "seconds": 262.78,
+      "log": "reports\\remote-windows-x64-node-pack.log"
+    },
+    {
+      "name": "node-consumer",
+      "exit_code": 0,
+      "seconds": 245.19,
+      "log": "reports\\remote-windows-x64-node-consumer.log"
+    }
+  ],
+  "status": "passed",
+  "node_version": "v24.19.0",
+  "node_build_assets": {
+    "node-v24.19.0-headers.tar.gz": "54f14a297d47ea0794fe272363703d9dc419c96ac68f20d890f98b63754a3e4c",
+    "win-x64/node.lib": "63ec831bbf164d1b23197d6fac1944dfb146534e332889ca0755d250e8dedff9"
+  },
+  "node_headers": "C:\\DecisionGate-build-20260919\\tools\\node-build\\v24.19.0\\node-v24.19.0\\include\\node"
+}

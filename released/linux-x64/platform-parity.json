@@ -1,8 +1,31 @@
 {
   "status": "passed",
+  "tolerance": {
+    "probability": 0.25,
+    "max_flip_fraction": 0.05,
+    "note": "Quantized arithmetic rounds differently on each processor, so platforms agree within this probability difference and may differ on borderline decisions."
+  },
+  "decision_changes_at_half": 1,
   "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
   "cases": 81,
-  "max_absolute_difference": 8.467878673812379e-07,
-  "boolean_disagreements": [],
-  "seconds": 73.86191107984632
+  "max_absolute_difference": 0.12780706707894557,
+  "boolean_disagreements": [
+    {
+      "id": "evaluation-v2-013",
+      "threshold": 0.95
+    },
+    {
+      "id": "evaluation-v2-018",
+      "threshold": 0.05
+    },
+    {
+      "id": "evaluation-v2-029",
+      "threshold": 0.9
+    },
+    {
+      "id": "evaluation-v2-051",
+      "threshold": 0.5
+    }
+  ],
+  "seconds": 55.29390623513609
 }

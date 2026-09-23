@@ -1,15 +1,15 @@
 {
   "status": "passed",
   "platform": "macOS-26.6.2-arm64-arm-64bit",
-  "wheel": "decisiongate-0.4.0-py3-none-macosx_14_0_arm64.whl",
+  "wheel": "decisiongate-0.4.1-py3-none-macosx_14_0_arm64.whl",
   "network_denied": true,
   "checkout_read_denied": true,
   "network_isolation": "macOS sandbox",
   "consumer": {
-    "probability": 0.9967822260684038,
-    "custom_probability": 0.9965982761791982,
-    "module": "/Users/ace/.cache/uv/archive-v0/ewww3D3umnLaxcgn/lib/python3.12/site-packages/decisiongate/__init__.py",
+    "probability": 0.9969299857604682,
+    "custom_probability": 0.9967069690536223,
+    "module": "/Users/ace/.cache/uv/archive-v0/ONlGipz0RdLSMSjZ/lib/python3.12/site-packages/decisiongate/__init__.py",
     "concurrent_calls": 8
   },
-  "stderr": "Installed 1 package in 3ms\n"
+  "stderr": "Installed 1 package in 4ms\n"
 }

@@ -1,15 +1,15 @@
 {
   "status": "passed",
   "platform": "Windows-11-10.0.26200-SP0",
-  "wheel": "decisiongate-0.4.0-py3-none-win_amd64.whl",
+  "wheel": "decisiongate-0.4.1-py3-none-win_amd64.whl",
   "network_denied": false,
   "checkout_read_denied": false,
   "network_isolation": null,
   "consumer": {
-    "probability": 0.9967822270114345,
-    "custom_probability": 0.9965982781727114,
-    "module": "C:\\Users\\ace\\AppData\\Local\\uv\\cache\\archive-v0\\3YLHYHdGoWV-z6Na\\Lib\\site-packages\\decisiongate\\__init__.py",
+    "probability": 0.9969501025005845,
+    "custom_probability": 0.9967090125587603,
+    "module": "C:\\Users\\ace\\AppData\\Local\\uv\\cache\\archive-v0\\YMs68iX1n8iu10i7\\Lib\\site-packages\\decisiongate\\__init__.py",
     "concurrent_calls": 8
   },
-  "stderr": "Installed 1 package in 1.04s\n"
+  "stderr": "Installed 1 package in 595ms\n"
 }
