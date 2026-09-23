@@ -3,7 +3,8 @@ import { createTokenizer, encode, DecisionGateError, validate, validateChoice, r
 let initialization;
 let queue = Promise.resolve();
 async function checked(url, expected) {
-  const response = await fetch(url, { credentials: 'same-origin' });
+  // no-store: browsers refetch weights this large every visit anyway, so skip the cache and never meet stale files.
+  const response = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
   if (!response.ok) throw new DecisionGateError('DG_RESOURCE_ERROR', `Unable to read ${new URL(url).pathname}: HTTP ${response.status}`);
   const bytes = await read(response, new URL(url).pathname.split('/').pop());
   const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(x => x.toString(16).padStart(2, '0')).join('');
