@@ -1,6 +1,7 @@
 """Small, explicit training pipeline. Run with uv run decisiongate-train --help."""
 import argparse
 import hashlib
+import inspect
 import json
 import os
 from pathlib import Path
@@ -155,6 +156,13 @@ def encode(tokenizer, rows, template=1):
     return result
 
 
+def model_inputs(model, batch):
+    """Drop segment ids for encoders whose forward() has no token_type_ids argument (ModernBERT)."""
+    if 'token_type_ids' not in inspect.signature(model.forward).parameters:
+        batch = {k: v for k, v in batch.items() if k != 'token_type_ids'}
+    return batch
+
+
 def predict(model, tokenizer, rows, device):
     import torch
     model.eval()
@@ -162,7 +170,7 @@ def predict(model, tokenizer, rows, device):
     with torch.no_grad():
         for start in range(0, len(rows), 16):
             batch = {k:v.to(device) for k,v in encode(tokenizer, rows[start:start+16], getattr(model.config, 'decisionmodel_template_version', 1)).items()}
-            result.extend(model(**batch).logits.softmax(-1)[:,1].cpu().tolist())
+            result.extend(model(**model_inputs(model, batch)).logits.softmax(-1)[:,1].cpu().tolist())
     if device == 'mps':
         torch.mps.empty_cache()
     return result
@@ -260,7 +268,7 @@ def train(args):
             batch = {k:v.to(device) for k,v in encode(tokenizer, batch_rows, template).items()}
             labels = torch.tensor([r['label'] for r in batch_rows], device=device)
             optimizer.zero_grad(set_to_none=True)
-            loss = model(**batch, labels=labels).loss
+            loss = model(**model_inputs(model, batch), labels=labels).loss
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.)
             optimizer.step()
@@ -309,7 +317,7 @@ def export(args):
             super().__init__()
             self.inner = model
         def forward(self, input_ids, attention_mask, token_type_ids):
-            if getattr(model.config, 'type_vocab_size', 0) > 0:
+            if getattr(model.config, 'type_vocab_size', 0) > 0 and 'token_type_ids' in inspect.signature(model.forward).parameters:
                 return self.inner(input_ids=input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids).logits
             # Architectures without segment embeddings (DeBERTa v3) ignore token_type_ids; keep the input in the
             # graph with a zero contribution so every runtime can feed the same three tensors.
@@ -324,7 +332,7 @@ def export(args):
             dynamic_axes={**{n:{0:'batch',1:'sequence'} for n in names}, 'logits':{0:'batch'}})
     session = ort.InferenceSession(str(output/'model.onnx'), providers=['CPUExecutionProvider'])
     actual = session.run(None,{n:sample[n].numpy() for n in names})[0]
-    with torch.no_grad(): expected = model(**sample).logits.numpy()
+    with torch.no_grad(): expected = model(**model_inputs(model, sample)).logits.numpy()
     np.testing.assert_allclose(actual, expected, atol=1e-4, rtol=1e-4)
     manifest = {'format_version':1,'template_version':template,'choice_template_version':1,'model_id':args.model_id,'max_tokens':MAX_TOKENS,
                 'base_model':BASE,'base_revision':REVISION,'calibration':'none; experimental uncalibrated softmax',

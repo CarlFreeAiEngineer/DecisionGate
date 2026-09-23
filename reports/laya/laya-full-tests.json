@@ -1,0 +1,73 @@
+{
+ "v4test_480": {
+  "count": 480,
+  "accuracy": 0.8083333333333333,
+  "log_loss": 0.40862921713727274,
+  "by_family": {
+   "appointment_intent": 0.933,
+   "cancellation_intent": 0.833,
+   "duplicate_reports": 0.733,
+   "eligibility": 0.7,
+   "email_screening": 0.867,
+   "events_timeline": 0.833,
+   "everyday": 0.767,
+   "evidence_presence": 0.9,
+   "negation": 0.967,
+   "numeric_criteria": 0.7,
+   "permissions": 0.633,
+   "quoted_instructions": 0.867,
+   "refund_intent": 0.833,
+   "routing": 0.933,
+   "spam_promotion": 0.733,
+   "urgency": 0.7
+  }
+ },
+ "fresh_80": {
+  "count": 80,
+  "accuracy": 0.8625,
+  "log_loss": 0.28116758272474646,
+  "by_family": {
+   "appointment_intent": 1.0,
+   "cancellation_intent": 1.0,
+   "coding_billing": 0.714,
+   "duplicate_reports": 1.0,
+   "eligibility": 0.571,
+   "events": 1.0,
+   "negation": 0.8,
+   "numeric_criteria": 0.818,
+   "permissions": 0.625,
+   "quoted_instructions": 1.0,
+   "refund_intent": 1.0
+  }
+ },
+ "old_52": {
+  "count": 52,
+  "accuracy": 0.8653846153846154,
+  "log_loss": 0.30589231291538777,
+  "by_family": {
+   "appointment": 0.75,
+   "appointment_intent": 1.0,
+   "coding_routing": 1.0,
+   "duplicate": 1.0,
+   "duplicate_reports": 1.0,
+   "permission": 0.8,
+   "refund": 0.5,
+   "refund_intent": 1.0,
+   "request_routing": 1.0,
+   "timeline": 0.8,
+   "urgency": 1.0
+  }
+ },
+ "choice_20": {
+  "count": 20,
+  "accuracy": 0.65,
+  "log_loss": 1.1806547691706686,
+  "by_family": {
+   "animal_or_object": 1.0,
+   "document_type": 0.571,
+   "support_routing": 0.5,
+   "unit_or_quantity": 0.5,
+   "urgency_level": 0.0
+  }
+ }
+}
