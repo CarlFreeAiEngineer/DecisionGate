@@ -10,7 +10,7 @@ cd DecisionGate
 uv run code/fetch_released.py --only macos-arm64    # or linux-x64, windows-x64, web, python, java, node
 ```
 
-The prebuilt bundles are too large for GitHub, so they are downloaded from `https://ordinarydata.com/DecisionGate/files/` and verified by checksum into `released/`. After that, [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) shows the calls in every language and `uv run examples/python_smoke.py` proves it works.
+The prebuilt bundles are too large for GitHub, so they are downloaded from `https://62-84-178-253.sslip.io/DecisionGate/files/` and verified by checksum into `released/`. After that, [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) shows the calls in every language and `uv run examples/python_smoke.py` proves it works.
 
 ## 2. Record the wrong answer
 

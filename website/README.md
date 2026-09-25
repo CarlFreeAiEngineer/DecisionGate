@@ -1,6 +1,6 @@
 # Website
 
-The public page at <https://ordinarydata.com/DecisionGate/>. It brags about the project and sends people to the repository; it does not list downloads.
+The public page at <https://62-84-178-253.sslip.io/DecisionGate/>. It brags about the project and sends people to the repository; it does not list downloads.
 
 - `index.html` deploys to `DecisionGate/index.html` on the server.
 - `try.html` deploys to `DecisionGate/try.html`: an editable, runnable JavaScript example. It imports the browser component from `files/<version>/web/index.js` on the same server (the version is written into the page; update it when publishing a new release) and quietly makes a first call at page load so the visitor's first Run does not wait for the 580 MB download. The web host sends `Cache-Control: no-store` for everything under `DecisionGate/`: browsers refetched the weights every visit anyway, and without a cache an update is live at once.

@@ -3,7 +3,7 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Publish the local released/ tree to https://ordinarydata.com/DecisionGate/files/<version>/.
+"""Publish the local released/ tree to https://62-84-178-253.sslip.io/DecisionGate/files/<version>/.
 
 Maintainers only: needs SSH access to the web host. Writes SHA256SUMS.txt from
 the local files, then copies everything with rsync into a versioned folder.
@@ -24,8 +24,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_HOST = 'ace@ordinarydata.com'
-DEFAULT_REMOTE_DIR = 'domains/ordinarydata.com/DecisionGate/files'
+DEFAULT_HOST = 'ace@62.84.178.253'
+DEFAULT_REMOTE_DIR = '/var/www/textautomationlib/DecisionGate/files'
 SITE_PAGES = {'index.html': 'index.html', 'try.html': 'try.html', 'files-index.html': 'files/index.html'}  # website/ name -> path under DecisionGate/
 SKIP_DIRS = {'__pycache__', 'node_modules'}
 
@@ -69,7 +69,7 @@ def main():
     parser.add_argument('--site-only', action='store_true', help='deploy only the pages in website/')
     parser.add_argument('--source', type=Path, default=ROOT / 'released')
     parser.add_argument('--host', default=DEFAULT_HOST)
-    parser.add_argument('--remote-dir', default=DEFAULT_REMOTE_DIR, help='path under the SSH user home')
+    parser.add_argument('--remote-dir', default=DEFAULT_REMOTE_DIR, help='directory on the web host (relative paths are under the SSH user home)')
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args()
 
@@ -93,7 +93,7 @@ def main():
         command.append('--dry-run')
     command += [f'{args.source}/', destination]
     subprocess.run(command, check=True)
-    print(f'published {args.version} to https://ordinarydata.com/DecisionGate/files/{args.version}/')
+    print(f'published {args.version} to https://62-84-178-253.sslip.io/DecisionGate/files/{args.version}/')
     if args.site:
         publish_site(args.host, args.remote_dir, args.dry_run)
 

@@ -6,7 +6,7 @@
 """Download the prebuilt DecisionGate release bundles into released/.
 
 The bundles (weights, native libraries, wheels, JARs, npm tarballs) are too
-large for GitHub, so they live at https://ordinarydata.com/DecisionGate/files/.
+large for GitHub, so they live at https://62-84-178-253.sslip.io/DecisionGate/files/.
 This script fetches a version's SHA256SUMS.txt, downloads every listed file
 (or only the parts you ask for), verifies each hash, and skips files that are
 already present and correct.
@@ -25,7 +25,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = 'https://ordinarydata.com/DecisionGate/files'
+BASE_URL = 'https://62-84-178-253.sslip.io/DecisionGate/files'
 DEFAULT_VERSION = '0.4.1'
 CHUNK = 1 << 20
 

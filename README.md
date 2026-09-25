@@ -36,7 +36,7 @@ appointment_requested = is_yes(
 )
 ```
 
-**Don't take our word for it: [try it in your browser](https://ordinarydata.com/DecisionGate/try.html).** Change the text or the question, press Run, and it answers on your own CPU. Nothing you type leaves the page.
+**Don't take our word for it: [try it in your browser](https://62-84-178-253.sslip.io/DecisionGate/try.html).** Change the text or the question, press Run, and it answers on your own CPU. Nothing you type leaves the page.
 
 **DecisionGate is a SOFTWARE COMPONENT, not an AI!** OK, there is a small trained model inside, but it is so small and insulated that you don't need to know about it. There is no chat, no prompt, no agent, and nothing to "talk to": it's a function that takes text and a question and returns a boolean. Ship it with your application and call a function. The same way your grandfather used software components: a library, some arguments, a return value. The kind of thing you did back in the 1990s.
 
@@ -138,7 +138,7 @@ cd DecisionGate
 uv run code/fetch_released.py --only python --only macos-arm64   # or linux-x64, windows-x64, java, node, web; omit --only for everything
 ```
 
-Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/) or [Go](examples/go_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [ordinarydata.com/DecisionGate](https://ordinarydata.com/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
+Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/) or [Go](examples/go_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [62-84-178-253.sslip.io/DecisionGate](https://62-84-178-253.sslip.io/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
 
 ## How it compares
 
