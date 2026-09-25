@@ -1,0 +1,633 @@
+{
+  "laya_version": "0.3.20",
+  "results": {
+    "decisiongate": {
+      "new-480": {
+        "count": 480,
+        "correct": 435,
+        "accuracy": 0.90625,
+        "p50_ms": 79.84018749266397,
+        "mean_ms": 79.68889274367636,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 29,
+            "count": 30
+          },
+          "cancellation_intent": {
+            "correct": 29,
+            "count": 30
+          },
+          "duplicate_reports": {
+            "correct": 25,
+            "count": 30
+          },
+          "eligibility": {
+            "correct": 24,
+            "count": 30
+          },
+          "email_screening": {
+            "correct": 29,
+            "count": 30
+          },
+          "events_timeline": {
+            "correct": 29,
+            "count": 30
+          },
+          "everyday": {
+            "correct": 30,
+            "count": 30
+          },
+          "evidence_presence": {
+            "correct": 27,
+            "count": 30
+          },
+          "negation": {
+            "correct": 30,
+            "count": 30
+          },
+          "numeric_criteria": {
+            "correct": 21,
+            "count": 30
+          },
+          "permissions": {
+            "correct": 23,
+            "count": 30
+          },
+          "quoted_instructions": {
+            "correct": 29,
+            "count": 30
+          },
+          "refund_intent": {
+            "correct": 30,
+            "count": 30
+          },
+          "routing": {
+            "correct": 28,
+            "count": 30
+          },
+          "spam_promotion": {
+            "correct": 28,
+            "count": 30
+          },
+          "urgency": {
+            "correct": 24,
+            "count": 30
+          }
+        }
+      },
+      "fresh-80": {
+        "count": 80,
+        "correct": 74,
+        "accuracy": 0.925,
+        "p50_ms": 54.7067705047084,
+        "mean_ms": 55.54113855068863,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 7,
+            "count": 7
+          },
+          "cancellation_intent": {
+            "correct": 7,
+            "count": 7
+          },
+          "coding_billing": {
+            "correct": 6,
+            "count": 7
+          },
+          "duplicate_reports": {
+            "correct": 7,
+            "count": 7
+          },
+          "eligibility": {
+            "correct": 5,
+            "count": 7
+          },
+          "events": {
+            "correct": 7,
+            "count": 7
+          },
+          "negation": {
+            "correct": 5,
+            "count": 5
+          },
+          "numeric_criteria": {
+            "correct": 8,
+            "count": 11
+          },
+          "permissions": {
+            "correct": 8,
+            "count": 8
+          },
+          "quoted_instructions": {
+            "correct": 5,
+            "count": 5
+          },
+          "refund_intent": {
+            "correct": 9,
+            "count": 9
+          }
+        }
+      },
+      "choice-20": {
+        "count": 20,
+        "correct": 18,
+        "accuracy": 0.9,
+        "p50_ms": 221.68114650412463,
+        "mean_ms": 234.6577812510077,
+        "by_family": {
+          "animal_or_object": {
+            "correct": 7,
+            "count": 7
+          },
+          "document_type": {
+            "correct": 7,
+            "count": 7
+          },
+          "support_routing": {
+            "correct": 1,
+            "count": 2
+          },
+          "unit_or_quantity": {
+            "correct": 2,
+            "count": 2
+          },
+          "urgency_level": {
+            "correct": 1,
+            "count": 2
+          }
+        }
+      }
+    },
+    "laya-english": {
+      "new-480": {
+        "count": 480,
+        "correct": 331,
+        "accuracy": 0.6895833333333333,
+        "p50_ms": 122.50116700306535,
+        "mean_ms": 124.30003622005945,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 23,
+            "count": 30
+          },
+          "cancellation_intent": {
+            "correct": 16,
+            "count": 30
+          },
+          "duplicate_reports": {
+            "correct": 20,
+            "count": 30
+          },
+          "eligibility": {
+            "correct": 20,
+            "count": 30
+          },
+          "email_screening": {
+            "correct": 22,
+            "count": 30
+          },
+          "events_timeline": {
+            "correct": 19,
+            "count": 30
+          },
+          "everyday": {
+            "correct": 21,
+            "count": 30
+          },
+          "evidence_presence": {
+            "correct": 27,
+            "count": 30
+          },
+          "negation": {
+            "correct": 22,
+            "count": 30
+          },
+          "numeric_criteria": {
+            "correct": 15,
+            "count": 30
+          },
+          "permissions": {
+            "correct": 18,
+            "count": 30
+          },
+          "quoted_instructions": {
+            "correct": 22,
+            "count": 30
+          },
+          "refund_intent": {
+            "correct": 23,
+            "count": 30
+          },
+          "routing": {
+            "correct": 24,
+            "count": 30
+          },
+          "spam_promotion": {
+            "correct": 22,
+            "count": 30
+          },
+          "urgency": {
+            "correct": 17,
+            "count": 30
+          }
+        }
+      },
+      "fresh-80": {
+        "count": 80,
+        "correct": 63,
+        "accuracy": 0.7875,
+        "p50_ms": 104.64502099785022,
+        "mean_ms": 107.06167078678845,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 7,
+            "count": 7
+          },
+          "cancellation_intent": {
+            "correct": 6,
+            "count": 7
+          },
+          "coding_billing": {
+            "correct": 4,
+            "count": 7
+          },
+          "duplicate_reports": {
+            "correct": 6,
+            "count": 7
+          },
+          "eligibility": {
+            "correct": 6,
+            "count": 7
+          },
+          "events": {
+            "correct": 6,
+            "count": 7
+          },
+          "negation": {
+            "correct": 3,
+            "count": 5
+          },
+          "numeric_criteria": {
+            "correct": 8,
+            "count": 11
+          },
+          "permissions": {
+            "correct": 5,
+            "count": 8
+          },
+          "quoted_instructions": {
+            "correct": 4,
+            "count": 5
+          },
+          "refund_intent": {
+            "correct": 8,
+            "count": 9
+          }
+        }
+      },
+      "choice-20": {
+        "count": 20,
+        "correct": 14,
+        "accuracy": 0.7,
+        "p50_ms": 106.69329148367979,
+        "mean_ms": 112.26397095306311,
+        "by_family": {
+          "animal_or_object": {
+            "correct": 6,
+            "count": 7
+          },
+          "document_type": {
+            "correct": 5,
+            "count": 7
+          },
+          "support_routing": {
+            "correct": 1,
+            "count": 2
+          },
+          "unit_or_quantity": {
+            "correct": 1,
+            "count": 2
+          },
+          "urgency_level": {
+            "correct": 1,
+            "count": 2
+          }
+        }
+      }
+    },
+    "laya-multilingual": {
+      "new-480": {
+        "count": 480,
+        "correct": 259,
+        "accuracy": 0.5395833333333333,
+        "p50_ms": 51.729145998251624,
+        "mean_ms": 53.5991491299986,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 16,
+            "count": 30
+          },
+          "cancellation_intent": {
+            "correct": 15,
+            "count": 30
+          },
+          "duplicate_reports": {
+            "correct": 17,
+            "count": 30
+          },
+          "eligibility": {
+            "correct": 14,
+            "count": 30
+          },
+          "email_screening": {
+            "correct": 20,
+            "count": 30
+          },
+          "events_timeline": {
+            "correct": 16,
+            "count": 30
+          },
+          "everyday": {
+            "correct": 15,
+            "count": 30
+          },
+          "evidence_presence": {
+            "correct": 22,
+            "count": 30
+          },
+          "negation": {
+            "correct": 12,
+            "count": 30
+          },
+          "numeric_criteria": {
+            "correct": 14,
+            "count": 30
+          },
+          "permissions": {
+            "correct": 15,
+            "count": 30
+          },
+          "quoted_instructions": {
+            "correct": 20,
+            "count": 30
+          },
+          "refund_intent": {
+            "correct": 15,
+            "count": 30
+          },
+          "routing": {
+            "correct": 17,
+            "count": 30
+          },
+          "spam_promotion": {
+            "correct": 16,
+            "count": 30
+          },
+          "urgency": {
+            "correct": 15,
+            "count": 30
+          }
+        }
+      },
+      "fresh-80": {
+        "count": 80,
+        "correct": 49,
+        "accuracy": 0.6125,
+        "p50_ms": 46.406437482801266,
+        "mean_ms": 49.34544167444983,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 6,
+            "count": 7
+          },
+          "cancellation_intent": {
+            "correct": 4,
+            "count": 7
+          },
+          "coding_billing": {
+            "correct": 4,
+            "count": 7
+          },
+          "duplicate_reports": {
+            "correct": 5,
+            "count": 7
+          },
+          "eligibility": {
+            "correct": 4,
+            "count": 7
+          },
+          "events": {
+            "correct": 2,
+            "count": 7
+          },
+          "negation": {
+            "correct": 4,
+            "count": 5
+          },
+          "numeric_criteria": {
+            "correct": 6,
+            "count": 11
+          },
+          "permissions": {
+            "correct": 5,
+            "count": 8
+          },
+          "quoted_instructions": {
+            "correct": 2,
+            "count": 5
+          },
+          "refund_intent": {
+            "correct": 7,
+            "count": 9
+          }
+        }
+      },
+      "choice-20": {
+        "count": 20,
+        "correct": 14,
+        "accuracy": 0.7,
+        "p50_ms": 45.387645994196646,
+        "mean_ms": 47.76145420182729,
+        "by_family": {
+          "animal_or_object": {
+            "correct": 5,
+            "count": 7
+          },
+          "document_type": {
+            "correct": 5,
+            "count": 7
+          },
+          "support_routing": {
+            "correct": 1,
+            "count": 2
+          },
+          "unit_or_quantity": {
+            "correct": 2,
+            "count": 2
+          },
+          "urgency_level": {
+            "correct": 1,
+            "count": 2
+          }
+        }
+      }
+    },
+    "laya-typed-decisions": {
+      "new-480": {
+        "count": 480,
+        "correct": 332,
+        "accuracy": 0.6916666666666667,
+        "p50_ms": 125.06110400136095,
+        "mean_ms": 126.79761839317507,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 22,
+            "count": 30
+          },
+          "cancellation_intent": {
+            "correct": 22,
+            "count": 30
+          },
+          "duplicate_reports": {
+            "correct": 19,
+            "count": 30
+          },
+          "eligibility": {
+            "correct": 19,
+            "count": 30
+          },
+          "email_screening": {
+            "correct": 24,
+            "count": 30
+          },
+          "events_timeline": {
+            "correct": 21,
+            "count": 30
+          },
+          "everyday": {
+            "correct": 23,
+            "count": 30
+          },
+          "evidence_presence": {
+            "correct": 23,
+            "count": 30
+          },
+          "negation": {
+            "correct": 22,
+            "count": 30
+          },
+          "numeric_criteria": {
+            "correct": 16,
+            "count": 30
+          },
+          "permissions": {
+            "correct": 15,
+            "count": 30
+          },
+          "quoted_instructions": {
+            "correct": 23,
+            "count": 30
+          },
+          "refund_intent": {
+            "correct": 24,
+            "count": 30
+          },
+          "routing": {
+            "correct": 20,
+            "count": 30
+          },
+          "spam_promotion": {
+            "correct": 19,
+            "count": 30
+          },
+          "urgency": {
+            "correct": 20,
+            "count": 30
+          }
+        }
+      },
+      "fresh-80": {
+        "count": 80,
+        "correct": 65,
+        "accuracy": 0.8125,
+        "p50_ms": 105.50016598426737,
+        "mean_ms": 108.78656559543742,
+        "by_family": {
+          "appointment_intent": {
+            "correct": 6,
+            "count": 7
+          },
+          "cancellation_intent": {
+            "correct": 7,
+            "count": 7
+          },
+          "coding_billing": {
+            "correct": 4,
+            "count": 7
+          },
+          "duplicate_reports": {
+            "correct": 7,
+            "count": 7
+          },
+          "eligibility": {
+            "correct": 7,
+            "count": 7
+          },
+          "events": {
+            "correct": 5,
+            "count": 7
+          },
+          "negation": {
+            "correct": 3,
+            "count": 5
+          },
+          "numeric_criteria": {
+            "correct": 9,
+            "count": 11
+          },
+          "permissions": {
+            "correct": 5,
+            "count": 8
+          },
+          "quoted_instructions": {
+            "correct": 5,
+            "count": 5
+          },
+          "refund_intent": {
+            "correct": 7,
+            "count": 9
+          }
+        }
+      },
+      "choice-20": {
+        "count": 20,
+        "correct": 13,
+        "accuracy": 0.65,
+        "p50_ms": 107.87695800536312,
+        "mean_ms": 113.78424384311074,
+        "by_family": {
+          "animal_or_object": {
+            "correct": 6,
+            "count": 7
+          },
+          "document_type": {
+            "correct": 5,
+            "count": 7
+          },
+          "support_routing": {
+            "correct": 1,
+            "count": 2
+          },
+          "unit_or_quantity": {
+            "correct": 1,
+            "count": 2
+          },
+          "urgency_level": {
+            "correct": 0,
+            "count": 2
+          }
+        }
+      }
+    }
+  }
+}
