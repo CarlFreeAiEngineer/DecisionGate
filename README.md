@@ -2,7 +2,7 @@
 
 ## Your software probably needs this.
 
-## A simple question should be simple
+## A Jev-like local AI inside a single .dll or .so
 
 You’re building an application. A user types, “Any chance I could come in next Tuesday?” Your software needs to make one simple decision: is this person asking for an appointment?
 
