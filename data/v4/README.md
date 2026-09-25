@@ -1,6 +1,6 @@
 # v4 training and test data
 
-Sixteen task families, each in its own file, written on 2026-09-19 by Claude (Anthropic) sub-agents following [AUTHORING.md](AUTHORING.md). Every record is `synthetic_unreviewed` and intended to be CC0-1.0, like the earlier seed data. No customer records or scraped text were used.
+Sixteen task families, each in its own file, written on 2026-09-19 by AI sub-agents following [AUTHORING.md](AUTHORING.md). Every record is `synthetic_unreviewed` and intended to be CC0-1.0, like the earlier seed data. No customer records or scraped text were used.
 
 | File | Family | Records | Splits (train / validation / calibration) |
 | --- | --- | ---: | --- |

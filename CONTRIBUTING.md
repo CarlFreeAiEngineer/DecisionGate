@@ -5,7 +5,7 @@ The most valuable contribution is a wrong answer with the right answer attached.
 ## 1. Clone and get the prebuilt component
 
 ```text
-git clone https://github.com/freeideas/DecisionGate.git
+git clone https://github.com/CarlFreeAiEngineer/DecisionGate.git
 cd DecisionGate
 uv run code/fetch_released.py --only macos-arm64    # or linux-x64, windows-x64, web, python, java, node
 ```

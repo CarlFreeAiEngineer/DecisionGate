@@ -366,7 +366,7 @@ def record(family, question, criteria, row, split, number):
         "source": "decisionmodel-original-synthetic-seed-v1",
         "provenance": {
             "type": "synthetic",
-            "generator": "OpenAI Codex assistant",
+            "generator": "AI assistant",
             "generation_recipe": "Original English cases authored in data/build_seed.py for five training families and two unseen test families; labels and rationales authored alongside each case; no external examples copied.",
             "created": "2026-09-17",
         },

@@ -91,7 +91,7 @@ def main():
                     "source": "decisionmodel-original-plain-questions-v1",
                     "provenance": {
                         "type": "synthetic",
-                        "generator": "OpenAI Codex assistant",
+                        "generator": "AI assistant",
                         "generation_recipe": "Original paired English questions authored in data/build_plain_questions.py; every state has a yes and a no question in the same source group and split; no external examples copied.",
                         "created": "2026-09-17",
                     },

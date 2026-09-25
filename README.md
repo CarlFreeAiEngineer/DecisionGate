@@ -133,7 +133,7 @@ Java is `Decisions.choose(...)` and `Decisions.chooseP(...)`, JavaScript `choose
 **Getting started takes three commands and no compiler.** Clone the repository, download the prebuilt binaries for your platform (or all of them), then install the package for your language from `released/`:
 
 ```text
-git clone https://github.com/freeideas/DecisionGate.git
+git clone https://github.com/CarlFreeAiEngineer/DecisionGate.git
 cd DecisionGate
 uv run code/fetch_released.py --only python --only macos-arm64   # or linux-x64, windows-x64, java, node, web; omit --only for everything
 ```

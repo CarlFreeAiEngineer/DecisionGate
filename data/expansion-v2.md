@@ -1,6 +1,6 @@
 # Question understanding expansion, version 2
 
-`expansion-v2.jsonl` contains 240 original English synthetic examples, authored on 2026-09-17 by the OpenAI Codex assistant. The JSONL is the authoritative authored source. Each of 120 individually written passages has two independently written questions with different correct labels, explicit short rationales, and a shared source group and split. These are question contrasts, not a Cartesian expansion of reusable text templates.
+`expansion-v2.jsonl` contains 240 original English synthetic examples, authored on 2026-09-17 by an AI assistant. The JSONL is the authoritative authored source. Each of 120 individually written passages has two independently written questions with different correct labels, explicit short rationales, and a shared source group and split. These are question contrasts, not a Cartesian expansion of reusable text templates.
 
 | Split | Records | Yes | No | Without criteria | With criteria |
 | --- | ---: | ---: | ---: | ---: | ---: |

@@ -12,7 +12,9 @@ The input field is now named `content` (previously `state`). This was a field-na
 
 The default training pipeline reads both `seed.jsonl` and `plain-questions.jsonl`: 364 records in total (224 train, 56 validation, 32 calibration, 52 test). `contributions/example-correction.jsonl` is a separate worked example loaded only when explicitly passed with `--extra-data`; it is not part of the shipped pilot's training data.
 
-`seed.jsonl` contains 264 original synthetic English examples authored by the OpenAI Codex assistant on 2026-09-17. They are a small development seed for proving the training and native-library workflow, not a reviewed benchmark or evidence of useful general accuracy. No customer records or scraped examples were used. Every record is marked `synthetic_unreviewed`; labels and rationales need independent human review.
+`seed.jsonl` contains 264 original synthetic English examples authored by an AI assistant on 2026-09-17. They are a small development seed for proving the training and native-library workflow, not a reviewed benchmark or evidence of useful general accuracy. No customer records or scraped examples were used. Every record is marked `synthetic_unreviewed`; labels and rationales need independent human review.
+
+On 2026-09-25 the `provenance.generator` field in every data file was changed to a neutral value ("AI assistant" or "AI sub-agent"). Nothing else changed, but the data hashes recorded in `released/*/manifest.json` for earlier releases refer to the files before that edit.
 
 The project intends these original examples and their authored source in `build_seed.py` to be available under CC0-1.0, to the extent rights in the generated material can be dedicated. The CC0 terms are at <https://creativecommons.org/publicdomain/zero/1.0/legalcode>. This notice does not cover upstream model training data or third-party datasets.
 
