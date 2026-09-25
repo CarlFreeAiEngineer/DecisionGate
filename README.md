@@ -48,7 +48,7 @@ appointment_requested = is_yes(
 
 ## Languages and platforms
 
-**An offline yes/no decision component for your software.** Ready-to-use interfaces for **Python, Java, TypeScript/JavaScript, C#, C, and Rust** run on Apple silicon Macs, Windows x64, and Linux x64. The C interface also makes bindings possible for C++, Go, Swift, Ruby, and other languages that can call C libraries.
+**An offline yes/no decision component for your software.** Ready-to-use interfaces for **Python, Java, TypeScript/JavaScript, C#, C, Rust, and Go** run on Apple silicon Macs, Windows x64, and Linux x64. The C interface also makes bindings possible for C++, Swift, Ruby, and other languages that can call C libraries.
 
 | Platform             | Library     | Status                                  |
 | -------------------- | ----------- | --------------------------------------- |
@@ -83,6 +83,10 @@ dg_is_yes(text, strlen(text), q, strlen(q), NULL, &yes);         /* C */
 dg_is_yes(text.as_ptr(), text.len(), q.as_ptr(), q.len(), null(), &mut yes)  // Rust
 ```
 
+```go
+IsYes(text, "Is the customer asking to cancel?", nil, 0.5)       // Go, via cgo
+```
+
 **Even inside a web browser**, with the text never leaving the user's device:
 
 ```javascript
@@ -103,6 +107,7 @@ Supply different content and a yes/no question on each call. Optional criteria l
 | C#                      | `Decisions.IsYes(...)` | `Decisions.IsYesP(...)` |
 | C                       | `dg_is_yes(...)`       | `dg_is_yes_p(...)`      |
 | Rust (via the C ABI)    | `dg_is_yes(...)`       | `dg_is_yes_p(...)`      |
+| Go (via cgo)            | `IsYes(...)`           | `IsYesP(...)`           |
 
 **Several options instead of yes or no?** `choose` returns the index of the best option and `choose_p` the whole ranking, best first, with probabilities that sum to one:
 
@@ -131,7 +136,7 @@ cd DecisionGate
 uv run code/fetch_released.py --only python --only macos-arm64   # or linux-x64, windows-x64, java, node, web; omit --only for everything
 ```
 
-Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [ordinarydata.com/DecisionGate](https://ordinarydata.com/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
+Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/) or [Go](examples/go_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [ordinarydata.com/DecisionGate](https://ordinarydata.com/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
 
 ## How it compares
 

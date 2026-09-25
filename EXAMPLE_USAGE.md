@@ -1,6 +1,6 @@
 # DecisionGate examples
 
-DecisionGate is a software component: include it, call a function, use the answer. These examples show the same three calls in every supported language. Install and packaging details live in each language's own guide: [Python](released/python/README.md), [Java](java/README.md), [Node.js](javascript/README.md), [browser](web/README.md), [C](code/README.md), and [Rust](examples/rust_smoke/).
+DecisionGate is a software component: include it, call a function, use the answer. These examples show the same three calls in every supported language. Install and packaging details live in each language's own guide: [Python](released/python/README.md), [Java](java/README.md), [Node.js](javascript/README.md), [browser](web/README.md), [C](code/README.md), [Rust](examples/rust_smoke/), and [Go](examples/go_smoke/).
 
 Every language offers the same three ideas:
 
@@ -325,6 +325,182 @@ fn main() {
 ```
 
 Wrap the `unsafe` calls once, as above, and the rest of your program sees ordinary `Result<bool, _>` values. The strings are borrowed for the duration of each call only.
+
+## Go
+
+Go calls the C interface through cgo, Go's built-in bridge to C, so building needs a C compiler: Xcode Command Line Tools on a Mac, gcc on Linux, or MinGW-w64 gcc on Windows. A working program is in [`examples/go_smoke`](examples/go_smoke); run it with `go run .` from that directory. It links the bundle under `released/<platform>/` by default. To use another bundle, set `CGO_LDFLAGS="-L/path/to/bundle -Wl,-rpath,/path/to/bundle"`. On Windows, put the bundle directory on `PATH` so the program finds the DLLs at run time.
+
+The comment above `import "C"` tells cgo where the header and library are. The functions below it wrap each call once, so the rest of your program sees ordinary Go values and errors:
+
+```go
+package main
+
+/*
+#cgo CFLAGS: -I${SRCDIR}/../../code/include
+#cgo LDFLAGS: -ldecisiongate
+#cgo darwin LDFLAGS: -L${SRCDIR}/../../released/macos-arm64 -Wl,-rpath,${SRCDIR}/../../released/macos-arm64
+#cgo linux LDFLAGS: -L${SRCDIR}/../../released/linux-x64 -Wl,-rpath,${SRCDIR}/../../released/linux-x64
+#cgo windows LDFLAGS: -L${SRCDIR}/../../released/windows-x64
+#include <stdlib.h>
+#include "decisiongate.h"
+*/
+import "C"
+
+import (
+	"errors"
+	"fmt"
+	"os"
+	"unsafe"
+)
+
+// Criteria spell out what counts as yes and what counts as no.
+type Criteria struct{ Yes, No string }
+
+// Ranked is one option's index into the caller's options and its probability.
+type Ranked struct {
+	Index int
+	P     float64
+}
+
+// cstr borrows a Go string's bytes for the length of one call. The library
+// takes explicit byte lengths, so no terminating NUL is needed.
+func cstr(s string) (*C.char, C.size_t) {
+	return (*C.char)(unsafe.Pointer(unsafe.StringData(s))), C.size_t(len(s))
+}
+
+func lastError(status C.dg_status) error {
+	var required C.size_t
+	C.dg_last_error(nil, 0, &required)
+	if required == 0 {
+		return fmt.Errorf("DecisionGate error %d", int(status))
+	}
+	buffer := make([]byte, int(required))
+	C.dg_last_error((*C.char)(unsafe.Pointer(&buffer[0])), required, &required)
+	return fmt.Errorf("DecisionGate error %d: %s", int(status), buffer[:len(buffer)-1])
+}
+
+// withCriteria passes nil for no criteria, or a C struct borrowing the strings.
+func withCriteria(c *Criteria, call func(*C.dg_criteria) C.dg_status) C.dg_status {
+	if c == nil {
+		return call(nil)
+	}
+	var cc C.dg_criteria
+	cc.yes, cc.yes_bytes = cstr(c.Yes)
+	cc.no, cc.no_bytes = cstr(c.No)
+	return call(&cc)
+}
+
+// IsYes answers a yes/no question about content. A nil error with false is a
+// real "no"; failures are always returned as errors, never disguised as "no".
+func IsYes(content, question string, criteria *Criteria, threshold float64) (bool, error) {
+	text, textBytes := cstr(content)
+	q, qBytes := cstr(question)
+	var yes C.uint8_t
+	status := withCriteria(criteria, func(c *C.dg_criteria) C.dg_status {
+		return C.dg_is_yes_at_threshold(text, textBytes, q, qBytes, c, C.double(threshold), &yes)
+	})
+	if status != C.DG_OK {
+		return false, lastError(status)
+	}
+	return yes == 1, nil
+}
+
+// IsYesP returns the probability of yes, from 0 to 1.
+func IsYesP(content, question string, criteria *Criteria) (float64, error) {
+	text, textBytes := cstr(content)
+	q, qBytes := cstr(question)
+	var p C.double
+	status := withCriteria(criteria, func(c *C.dg_criteria) C.dg_status {
+		return C.dg_is_yes_p(text, textBytes, q, qBytes, c, &p)
+	})
+	if status != C.DG_OK {
+		return 0, lastError(status)
+	}
+	return float64(p), nil
+}
+
+// ChooseP ranks the options, best first, with probabilities that sum to one.
+func ChooseP(content, question string, options []string, criteria *Criteria) ([]Ranked, error) {
+	if len(options) == 0 {
+		return nil, errors.New("no options")
+	}
+	// The option pointer array must live in C memory, so copy the options there.
+	n := len(options)
+	ptrs := (*[1 << 20]*C.char)(C.malloc(C.size_t(n) * C.size_t(unsafe.Sizeof((*C.char)(nil)))))[:n:n]
+	sizes := make([]C.size_t, n)
+	for i, option := range options {
+		ptrs[i] = C.CString(option)
+		sizes[i] = C.size_t(len(option))
+	}
+	defer func() {
+		for _, p := range ptrs {
+			C.free(unsafe.Pointer(p))
+		}
+		C.free(unsafe.Pointer(&ptrs[0]))
+	}()
+	text, textBytes := cstr(content)
+	q, qBytes := cstr(question)
+	index := make([]C.int32_t, n)
+	prob := make([]C.double, n)
+	status := withCriteria(criteria, func(c *C.dg_criteria) C.dg_status {
+		return C.dg_choose_p(text, textBytes, q, qBytes, &ptrs[0], &sizes[0], C.size_t(n), c, &index[0], &prob[0])
+	})
+	if status != C.DG_OK {
+		return nil, lastError(status)
+	}
+	ranked := make([]Ranked, n)
+	for i := range ranked {
+		ranked[i] = Ranked{int(index[i]), float64(prob[i])}
+	}
+	return ranked, nil
+}
+
+func main() {
+	ticket := "Our whole warehouse can't print shipping labels and trucks leave in an hour."
+	question := "Is the customer describing an urgent problem?"
+
+	// A yes/no decision at the usual 0.5 cutoff.
+	urgent, err := IsYes(ticket, question, nil, 0.5)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Could not evaluate the question:", err)
+		os.Exit(1)
+	}
+	fmt.Println("urgent:", urgent)
+
+	// The probability, so you can keep an uncertain range for a person.
+	p, err := IsYesP(ticket, question, nil)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	fmt.Printf("p_yes = %.3f\n", p)
+
+	// Criteria and a stricter threshold.
+	confident, err := IsYes(ticket, question, &Criteria{
+		Yes: "Work is blocked and there is a deadline within hours.",
+		No:  "The problem is an inconvenience with no near deadline.",
+	}, 0.90)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	fmt.Println("confident urgent:", confident)
+
+	// Several options instead of yes or no.
+	teams := []string{"billing", "technical support", "sales"}
+	ranked, err := ChooseP("My card was charged twice for last month's invoice.",
+		"Which team should handle this message?", teams, nil)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	for _, r := range ranked {
+		fmt.Printf("%-18s %.3f\n", teams[r.Index], r.P)
+	}
+}
+```
+
+Strings are borrowed for the duration of each call only. `ChooseP` copies the options into C memory because cgo does not let C receive an array of Go pointers.
 
 ## Choosing a threshold
 
