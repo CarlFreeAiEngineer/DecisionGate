@@ -6,7 +6,7 @@
 
 You’re building an application. A user types, “Any chance I could come in next Tuesday?” Your software needs to make one simple decision: is this person asking for an appointment?
 
-Do you really have to get an API key, ship their POTENTIALLY PRIVATE text across the internet to a company they've never heard of, and pay for an API call just to answer that? Or integrate with Ollama or TensorFlow, manage a separate runtime, and turn a simple question into an infrastructure project? And most of the time, you end up BEGGING for JSON! OMG wouldn't you rather giant squid on the lips instead?
+Do you really have to get an API key, ship their POTENTIALLY PRIVATE text across the internet to a company they've never heard of, and pay for an API call just to answer that? Or integrate with Ollama or TensorFlow, manage a separate runtime, and turn a simple question into an infrastructure project? And most of the time, you end up BEGGING for JSON!
 
 ```prompt
 User text: "Any chance I could come in next Tuesday?"
