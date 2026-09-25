@@ -162,7 +162,7 @@ Numbers are from each project's own published material as of September 2026 and 
 What the table hides:
 
 - **Jev** answers the way DecisionGate does: a typed answer with a probability, no begging. But it is a hosted service with a waitlist and a per-call bill, your users' text leaves your machine every time, and you cannot retrain it.
-- **Laya** is the free, open version of Jev, and it runs on your own machine. In [our side-by-side test](reports/laya-comparison.md) on a laptop CPU it was less accurate (69% against DecisionGate's 90.6%) and no faster on yes/no questions. It needs Python and PyTorch, and downloads its model from Hugging Face on first use.
+- **Laya** is the free, open version of Jev, and it runs on your own machine. In [our side-by-side test](reports/laya-comparison.md) on a laptop CPU it was less accurate (69% against DecisionGate's 90.6%) and no faster on yes/no questions. It needs Python and PyTorch, and downloads its model from Hugging Face on first use. DecisionGate is a file you drop into your project; any programming language.
 - **Regex and keyword matching** works until someone writes "no rush, but could I come in Tuesday?" Every odd case needs another pattern, and each new pattern breaks an old one.
 - **A hosted LLM** is the most flexible option. It also means an API key, a bill, a network connection, your users' text on someone else's server, and begging for JSON.
 - **A local LLM** (Ollama, llama.cpp) removes the network and the bill, but you still install a runtime, manage model files, want a GPU, and beg for JSON.
