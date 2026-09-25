@@ -15,10 +15,12 @@ Examples:
   uv run code/fetch_released.py                       # everything, latest known version
   uv run code/fetch_released.py --only macos-arm64    # one native bundle
   uv run code/fetch_released.py --only python --only web
+  uv run code/fetch_released.py --for java            # what examples/java needs on this computer
   uv run code/fetch_released.py --version 0.4.1 --list
 """
 import argparse
 import hashlib
+import platform
 import sys
 import urllib.error
 import urllib.request
@@ -56,6 +58,26 @@ def read_sums(version):
     return entries
 
 
+LANGUAGES = ('python', 'c', 'rust', 'go', 'csharp', 'java', 'node', 'browser')
+
+
+def needed_for(language, version):
+    """Path prefixes one example in examples/ needs on this computer."""
+    system, machine = platform.system(), platform.machine().lower()
+    native = {('Darwin', 'arm64'): 'macos-arm64', ('Linux', 'x86_64'): 'linux-x64',
+              ('Windows', 'amd64'): 'windows-x64', ('Windows', 'x86_64'): 'windows-x64'}.get((system, machine))
+    if language == 'browser':
+        return ['web/']
+    if native is None:
+        sys.exit(f'no prebuilt bundle for {system} {machine}; the browser example still works')
+    if language == 'java':
+        return [f'java/decisiongate-java-{version}.jar', f'java/decisiongate-java-{version}-{native}.jar']
+    if language == 'node':
+        node = native.replace('macos', 'darwin').replace('windows', 'win32')
+        return [f'node/decisiongate-{version}-{node}.tgz']
+    return [f'{native}/']
+
+
 def download(url, target, expected, size_hint=''):
     target.parent.mkdir(parents=True, exist_ok=True)
     partial = target.with_suffix(target.suffix + '.part')
@@ -82,11 +104,16 @@ def main():
     parser.add_argument('--version', default=DEFAULT_VERSION, help=f'release version to fetch (default {DEFAULT_VERSION})')
     parser.add_argument('--only', action='append', default=[], metavar='DIR',
                         help='top-level bundle directory to fetch: macos-arm64, linux-x64, windows-x64, web, python, java, node; repeatable')
+    parser.add_argument('--for', dest='language', choices=LANGUAGES,
+                        help='fetch only what that language\'s example in examples/ needs on this computer')
     parser.add_argument('--output', type=Path, default=ROOT / 'released', help='destination directory (default released/)')
     parser.add_argument('--list', action='store_true', help='list the published files and exit')
     args = parser.parse_args()
 
     entries = read_sums(args.version)
+    if args.language:
+        prefixes = needed_for(args.language, args.version)
+        entries = [e for e in entries if any(e[1].startswith(prefix) for prefix in prefixes)]
     if args.only:
         entries = [e for e in entries if e[1].split('/', 1)[0] in args.only]
         if not entries:

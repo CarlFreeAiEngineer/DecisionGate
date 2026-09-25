@@ -138,7 +138,7 @@ cd DecisionGate
 uv run code/fetch_released.py --only python --only macos-arm64   # or linux-x64, windows-x64, java, node, web; omit --only for everything
 ```
 
-Install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust_smoke/) or [Go](examples/go_smoke/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [62-84-178-253.sslip.io/DecisionGate](https://62-84-178-253.sslip.io/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
+To try it first, [examples/](examples/README.md) has a small program for every language that runs with one command after the download (`--for java`, `--for node`, and so on fetch only what that example needs). To use it in your project, install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust/) or [Go](examples/go/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [62-84-178-253.sslip.io/DecisionGate](https://62-84-178-253.sslip.io/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
 
 ## How it compares
 

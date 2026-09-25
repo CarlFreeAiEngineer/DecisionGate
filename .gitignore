@@ -20,7 +20,13 @@ __pycache__/
 /javascript/native/
 /javascript/web/
 /web/node_modules/
-/examples/rust_smoke/target/
+/examples/rust/target/
+/examples/java/target/
+/examples/node/node_modules/
+/examples/csharp/bin/
+/examples/csharp/obj/
+/examples/c/example
+/examples/c/example.exe
 
 # Release bundles (weights, native libraries, wheels, JARs) are far over GitHub's file size limit.
 # Keep only their text records; binaries are published separately.

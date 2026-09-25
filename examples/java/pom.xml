@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DecisionGate from Java. Run from this directory: mvn -q compile exec:java
+     Uses the JARs in released/java/ from this checkout; an application would use the normal
+     Maven coordinates shown in java/README.md instead of these file paths. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.decisiongate.examples</groupId>
+  <artifactId>decisiongate-java-example</artifactId>
+  <version>1.0</version>
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <released>${project.basedir}/../../released/java</released>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.decisiongate</groupId><artifactId>decisiongate-java</artifactId><version>0.4.1</version>
+      <scope>system</scope><systemPath>${released}/decisiongate-java-0.4.1.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.decisiongate</groupId><artifactId>decisiongate-java-bundle</artifactId><version>0.4.1</version>
+      <scope>system</scope><systemPath>${released}/decisiongate-java-0.4.1-${platform}.jar</systemPath>
+    </dependency>
+    <dependency><groupId>net.java.dev.jna</groupId><artifactId>jna</artifactId><version>5.19.1</version></dependency>
+  </dependencies>
+  <profiles>
+    <profile><id>mac</id><activation><os><family>mac</family></os></activation><properties><platform>macos-arm64</platform></properties></profile>
+    <profile><id>linux</id><activation><os><family>unix</family><name>Linux</name></os></activation><properties><platform>linux-x64</platform></properties></profile>
+    <profile><id>windows</id><activation><os><family>windows</family></os></activation><properties><platform>windows-x64</platform></properties></profile>
+  </profiles>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId><artifactId>exec-maven-plugin</artifactId><version>3.5.0</version>
+        <configuration><mainClass>Example</mainClass><classpathScope>compile</classpathScope></configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

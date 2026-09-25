@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "decisiongate-rust-smoke"
+name = "decisiongate-rust-example"
 version = "0.1.0"

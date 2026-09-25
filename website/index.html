@@ -145,7 +145,7 @@ uint8_t yes;
 <span class="k">if</span> (dg_is_yes(text, strlen(text), q, strlen(q), NULL, &amp;yes) == DG_OK &amp;&amp; yes)
     route_to_cancellations();</code></pre>
 
-<pre class="snippet" data-lang="rust" hidden><code><span class="c">// via the C interface; see examples/rust_smoke for the extern "C" block</span>
+<pre class="snippet" data-lang="rust" hidden><code><span class="c">// via the C interface; see examples/rust for the extern "C" block</span>
 <span class="k">match</span> is_yes(text, <span class="c">"Is the customer asking to cancel?"</span>) {
     Ok(<span class="k">true</span>) =&gt; route_to_cancellations(),
     Ok(<span class="k">false</span>) =&gt; route_to_general(),

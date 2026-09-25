@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>DecisionGate browser example</title>
+<!-- DecisionGate in a web page. Start the server with: node examples/browser/serve.mjs -->
+<p id="status">Loading the model (about 600 MB the first time)...</p>
+<pre id="out"></pre>
+<script type="module">
+import { configure, isYes, isYesP, chooseP } from '../../released/web/index.js';
+
+const out = document.getElementById('out');
+const status = document.getElementById('status');
+const print = line => { out.textContent += line + '\n'; };
+configure({ onProgress: ({ file, loaded, total }) => {
+  if (file === 'weights') status.textContent = `Loading the model: ${Math.round(100 * loaded / total)}%`;
+} });
+
+const ticket = "Our whole warehouse can't print shipping labels and trucks leave in an hour.";
+const question = 'Is the customer describing an urgent problem?';
+
+// A yes/no decision at the usual 0.5 cutoff. Always await; a Promise itself is truthy.
+print('urgent: ' + await isYes(ticket, question));
+
+// The probability, so you can keep an uncertain range for a person.
+print(`p_yes = ${(await isYesP(ticket, question)).toFixed(3)}`);
+
+// Criteria and a stricter threshold.
+const criteria = {
+  yes: 'Work is blocked and there is a deadline within hours.',
+  no: 'The problem is an inconvenience with no near deadline.',
+};
+print('confident urgent: ' + await isYes(ticket, question, { criteria, threshold: 0.9 }));
+
+// Several options instead of yes or no.
+const teams = ['billing', 'technical support', 'sales'];
+for (const { index, p } of await chooseP("My card was charged twice for last month's invoice.",
+                                         'Which team should handle this message?', teams))
+  print(`${teams[index].padEnd(18)} ${p.toFixed(3)}`);
+status.textContent = 'Done.';
+</script>
+</html>

@@ -1,6 +1,6 @@
 # DecisionGate examples
 
-DecisionGate is a software component: include it, call a function, use the answer. These examples show the same three calls in every supported language. Install and packaging details live in each language's own guide: [Python](released/python/README.md), [Java](java/README.md), [Node.js](javascript/README.md), [browser](web/README.md), [C](code/README.md), [Rust](examples/rust_smoke/), and [Go](examples/go_smoke/).
+DecisionGate is a software component: include it, call a function, use the answer. These examples show the same three calls in every supported language. To run a complete program in your language right away, see [examples/](examples/README.md). Install and packaging details live in each language's own guide: [Python](released/python/README.md), [Java](java/README.md), [Node.js](javascript/README.md), [browser](web/README.md), [C](code/README.md), [Rust](examples/rust/), and [Go](examples/go/).
 
 Every language offers the same three ideas:
 
@@ -229,7 +229,7 @@ The status code is separate from the answer: on any error the output variable is
 
 ## Rust
 
-The component is itself a Rust library that exposes a C interface, so Rust calls it through `extern "C"` declarations. A working project with its `build.rs` is in [`examples/rust_smoke`](examples/rust_smoke); run it with `cargo run --release` from that directory. It links the bundle under `released/<platform>/` by default, or the directory named by `DECISIONGATE_BUNDLE`.
+The component is itself a Rust library that exposes a C interface, so Rust calls it through `extern "C"` declarations. A working project with its `build.rs` is in [`examples/rust`](examples/rust); run it with `cargo run --release` from that directory. It links the bundle under `released/<platform>/` by default, or the directory named by `DECISIONGATE_BUNDLE`.
 
 ```rust
 use std::ffi::{c_char, c_void};
@@ -328,7 +328,7 @@ Wrap the `unsafe` calls once, as above, and the rest of your program sees ordina
 
 ## Go
 
-Go calls the C interface through cgo, Go's built-in bridge to C, so building needs a C compiler: Xcode Command Line Tools on a Mac, gcc on Linux, or MinGW-w64 gcc on Windows. A working program is in [`examples/go_smoke`](examples/go_smoke); run it with `go run .` from that directory. It links the bundle under `released/<platform>/` by default. To use another bundle, set `CGO_LDFLAGS="-L/path/to/bundle -Wl,-rpath,/path/to/bundle"`. On Windows, put the bundle directory on `PATH` so the program finds the DLLs at run time.
+Go calls the C interface through cgo, Go's built-in bridge to C, so building needs a C compiler: Xcode Command Line Tools on a Mac, gcc on Linux, or MinGW-w64 gcc on Windows. A working program is in [`examples/go`](examples/go); run it with `go run .` from that directory. It links the bundle under `released/<platform>/` by default. To use another bundle, set `CGO_LDFLAGS="-L/path/to/bundle -Wl,-rpath,/path/to/bundle"`. On Windows, put the bundle directory on `PATH` so the program finds the DLLs at run time.
 
 The comment above `import "C"` tells cgo where the header and library are. The functions below it wrap each call once, so the rest of your program sees ordinary Go values and errors:
 
