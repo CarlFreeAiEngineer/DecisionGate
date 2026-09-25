@@ -9,8 +9,12 @@
   "calibration": "temperature scaling on synthetic calibration split; not a reliability guarantee",
   "checkpoint_sha256": "91e9a5119e12e2baf6217e094460fae2961620c16ee336c63fadadd44475e7c9",
   "sha256": {
-    "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
     "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
+    "model.onnx": "79637eb4e731a0c7d5a5e87d5e28e0425b99ed3cfaa2ce279a9b81a3b49f1fc8",
+    "weights-1.bin": "6b2fe2a507b1234caf3c07d18b212c94ecd1b2848037d2861a8f9720eef14b65",
+    "weights-2.bin": "a2f2a299cd2c678ed1afceded769aadac75705b9b6e04556365702a8922b8445",
+    "weights-3.bin": "7d1ec195f16edb48e3ccb930caab03ff0927ae3af857472ce26b9a9b03a490c8",
+    "weights-4.bin": "db2480a569fb7b208a7f5e11706a3e442be482c5827a295532f5f72fbaed1904",
     "ort-wasm-simd-threaded.wasm": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4",
     "ort-wasm-simd-threaded.mjs": "30dd851d9c00622940500f71ddd2ff8820c5cb65270816080175b958705385a8"
   },
@@ -113,5 +117,23 @@
     "onnxruntime": "1.22.0",
     "tokenizer": "@huggingface/tokenizers@0.2.0",
     "threads": "all logical cores when the page is cross-origin isolated, otherwise 1"
-  }
+  },
+  "weights": [
+    {
+      "file": "weights-1.bin",
+      "bytes": 146001920
+    },
+    {
+      "file": "weights-2.bin",
+      "bytes": 142801408
+    },
+    {
+      "file": "weights-3.bin",
+      "bytes": 142614528
+    },
+    {
+      "file": "weights-4.bin",
+      "bytes": 142606336
+    }
+  ]
 }

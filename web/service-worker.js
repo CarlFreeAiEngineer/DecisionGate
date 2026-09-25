@@ -2,11 +2,13 @@
 const PREFIX = `decisiongate-web:${self.registration.scope}:`;
 const VERSION = PREFIX + '__RELEASE_DIGEST__';
 const FILES = ['./', './index.html', './index.js', './worker.js', './manifest.json', './model.onnx', './tokenizer.json', './ort-wasm-simd-threaded.mjs', './ort-wasm-simd-threaded.wasm'];
+// The weight files are named in the manifest.
 self.addEventListener('install', event => event.waitUntil((async()=>{
  const cache=await caches.open(VERSION);
  // Sequential requests avoid retaining several large responses simultaneously.
  try {
-  for(const file of FILES) await cache.add(new Request(new URL(file,self.registration.scope),{cache:'reload'}));
+  const manifest=await (await fetch(new URL('./manifest.json',self.registration.scope),{cache:'reload'})).json();
+  for(const file of [...FILES,...(manifest.weights??[]).map(weight=>`./${weight.file}`)]) await cache.add(new Request(new URL(file,self.registration.scope),{cache:'reload'}));
  } catch(error) { await caches.delete(VERSION); throw error; }
  await self.skipWaiting();
 })()));

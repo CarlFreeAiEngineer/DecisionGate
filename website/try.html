@@ -103,10 +103,10 @@ document.querySelector('#reset').onclick = () => { codeBox.value = EXAMPLE; fit(
 const thermo = document.querySelector('.thermo');
 const fill = document.querySelector('.thermo .fill');
 const statusText = document.querySelector('#statusText');
-// Files arrive one after another and the weights are 98% of the bytes, so the bar
-// follows the weights alone; until they start it just shows that work is under way.
+// The weights are 98% of the bytes, so the bar follows their combined progress alone;
+// until they start it just shows that work is under way.
 configure({ onProgress: ({ file, loaded, total }) => {
-  if (file !== 'model.onnx') return;
+  if (file !== 'weights') return;
   thermo.classList.remove('indeterminate');
   const percent = Math.min(100, 100 * loaded / total);
   fill.style.width = `${percent.toFixed(1)}%`;

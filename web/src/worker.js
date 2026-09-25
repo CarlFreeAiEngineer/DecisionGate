@@ -2,33 +2,38 @@ import * as ort from 'onnxruntime-web/wasm';
 import { createTokenizer, encode, DecisionGateError, validate, validateChoice, rank } from './core.js';
 let initialization;
 let queue = Promise.resolve();
-async function checked(url, expected) {
+async function checked(url, expected, onBytes) {
   // no-store: browsers refetch weights this large every visit anyway, so skip the cache and never meet stale files.
   const response = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
   if (!response.ok) throw new DecisionGateError('DG_RESOURCE_ERROR', `Unable to read ${new URL(url).pathname}: HTTP ${response.status}`);
-  const bytes = await read(response, new URL(url).pathname.split('/').pop());
+  const bytes = await read(response, new URL(url).pathname.split('/').pop(), onBytes);
   const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(x => x.toString(16).padStart(2, '0')).join('');
   if (digest !== expected) throw new DecisionGateError('DG_INCOMPATIBLE', `Integrity check failed for ${new URL(url).pathname}`);
   return bytes;
 }
-// Reads the body while reporting progress to the page. Falls back to a plain read when the size is unknown.
-async function read(response, file) {
+// Reads the body while reporting progress to the page, straight into one buffer of the announced size,
+// so a large file is never held twice. Falls back to a plain read when the size is unknown or wrong
+// (a compressed response announces its compressed size). onBytes, if given, hears each chunk's size.
+async function read(response, file, onBytes) {
   const total = Number(response.headers.get('content-length')) || 0;
   if (!response.body || !total) return response.arrayBuffer();
-  const chunks = [];
+  let bytes = new Uint8Array(total);
   let loaded = 0;
   const reader = response.body.getReader();
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
-    chunks.push(value);
+    if (loaded + value.length > bytes.length) {
+      const larger = new Uint8Array(Math.max(bytes.length * 2, loaded + value.length));
+      larger.set(bytes.subarray(0, loaded));
+      bytes = larger;
+    }
+    bytes.set(value, loaded);
     loaded += value.length;
-    self.postMessage({ progress: { file, loaded, total } });
+    onBytes?.(value.length);
+    self.postMessage({ progress: { file, loaded, total: Math.max(total, loaded) } });
   }
-  const bytes = new Uint8Array(loaded);
-  let offset = 0;
-  for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.length; }
-  return bytes.buffer;
+  return loaded === bytes.length ? bytes.buffer : bytes.slice(0, loaded).buffer;
 }
 async function initialize(assetBaseUrl) {
   const base = assetBaseUrl ? new URL(assetBaseUrl.endsWith('/') ? assetBaseUrl : `${assetBaseUrl}/`) : new URL('./', import.meta.url);
@@ -42,8 +47,17 @@ async function initialize(assetBaseUrl) {
   ort.env.wasm.proxy = false;
   ort.env.wasm.wasmPaths = base.href;
   ort.env.wasm.wasmBinary = await checked(new URL('ort-wasm-simd-threaded.wasm', base), manifest.sha256['ort-wasm-simd-threaded.wasm']);
-  const bytes = await checked(new URL('model.onnx', base), manifest.sha256['model.onnx']);
-  const session = await ort.InferenceSession.create(bytes, { executionProviders: ['wasm'], graphOptimizationLevel: 'all' });
+  // model.onnx is only the graph; the weights sit in separate files that the runtime uses in place
+  // instead of copying, which keeps memory low enough for phones. They download side by side, and the
+  // page also hears one combined 'weights' progress figure.
+  const graph = await checked(new URL('model.onnx', base), manifest.sha256['model.onnx']);
+  const weights = manifest.weights ?? [];
+  const total = weights.reduce((sum, weight) => sum + weight.bytes, 0);
+  let loaded = 0;
+  const report = bytes => { loaded += bytes; self.postMessage({ progress: { file: 'weights', loaded, total } }); };
+  const externalData = [];
+  for (const { file } of weights) externalData.push({ path: file, data: new Uint8Array(await checked(new URL(file, base), manifest.sha256[file], report)) });
+  const session = await ort.InferenceSession.create(graph, { executionProviders: ['wasm'], graphOptimizationLevel: 'all', externalData });
   return { manifest, tokenizer, session };
 }
 // Calibrated logit z = (logits[yes] - logits[no]) / temperature, matching the native `logit` function.

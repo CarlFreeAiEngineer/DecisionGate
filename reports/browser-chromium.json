@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-23T16:21:11.222Z",
+  "date": "2026-09-25T12:44:08.815Z",
   "tokenizationCases": 691,
   "results": [
     {
@@ -7,10 +7,10 @@
       "version": "153.0.8010.12",
       "crossOriginIsolated": false,
       "hardwareConcurrency": 10,
-      "peakBrowserProcessRssBytes": 4203085824,
+      "peakBrowserProcessRssBytes": 2412036096,
       "memoryNote": "Sum of browser process RSS sampled each second; shared pages can be counted more than once. JS heap excludes Wasm memory. WebKit memory is omitted because its XPC processes are not descendants of the test process.",
-      "coldMs": 5164.100000008941,
-      "ticks": 6350,
+      "coldMs": 5070.9000000059605,
+      "ticks": 6365,
       "cases": 87,
       "maxDifference": 0.08773246467243577,
       "disagree": 2,
@@ -22,8 +22,8 @@
         "usedJSHeapSize": 10000000,
         "totalJSHeapSize": 10000000
       },
-      "p50Ms": 675.5999999940395,
-      "p95Ms": 899.7999999970198,
+      "p50Ms": 673,
+      "p95Ms": 898.8000000119209,
       "tokenizationCases": 691,
       "invalidCases": 18,
       "initializationRetry": true,

@@ -1,14 +1,18 @@
 {
-  "README.md": "031ee5bfaafb1da27685a274d33b8cdbdee4d62c73c3b053f320eb6237eb5899",
+  "README.md": "6ab529e0ee3f52fa0069febb4dbace62182a3555b238c29f0217b23d9ddc86f2",
   "index.d.ts": "6b69849e61eac8c1340aa3777e16508a6eaa6fbfda1a1e9c4a2a947aecb482e0",
   "index.html": "d9b5502261369fa7642226dad3de9991ea199e3aafa57bf71ebcf517a8a360d8",
   "index.js": "725ef4aec75dfc5b63a13f64510ed291d9e73725b2dd279e64f52c1ff0490d8c",
-  "manifest.json": "2b6297a55478704b6cd5f5a19870000076caf587edd272e17be4bd765b609dbd",
-  "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
+  "manifest.json": "09332141aaf5cc19700429caaa5a801f0a3d541196c6192e6a58d41f6e2ffbce",
+  "model.onnx": "79637eb4e731a0c7d5a5e87d5e28e0425b99ed3cfaa2ce279a9b81a3b49f1fc8",
   "ort-wasm-simd-threaded.mjs": "30dd851d9c00622940500f71ddd2ff8820c5cb65270816080175b958705385a8",
   "ort-wasm-simd-threaded.wasm": "71aef04959c5c1b6de461b6538e2058e306610034a85aad2742d0c7fd4533fe4",
   "package.json": "c7dc8112e9e5e708a4fe7d169e950b3828306e95dbbbf48e5dbb4bba2f496611",
-  "service-worker.js": "ddb53d7eea1ac14913026ca499b41379b2a83b0aaa749003d368550a69062228",
+  "service-worker.js": "b262b8df838abbdf79be3eb880b5e3ab2c474458bb8134bf8c524f6a1ad06333",
   "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
-  "worker.js": "d426247c8b0417dba1af0e9e1e668615eab03b33d4bd401bae2e320527201a05"
+  "weights-1.bin": "6b2fe2a507b1234caf3c07d18b212c94ecd1b2848037d2861a8f9720eef14b65",
+  "weights-2.bin": "a2f2a299cd2c678ed1afceded769aadac75705b9b6e04556365702a8922b8445",
+  "weights-3.bin": "7d1ec195f16edb48e3ccb930caab03ff0927ae3af857472ce26b9a9b03a490c8",
+  "weights-4.bin": "db2480a569fb7b208a7f5e11706a3e442be482c5827a295532f5f72fbaed1904",
+  "worker.js": "90bc6836fd2688e69c38bddfea91647408d722e1ffa7b07b3d4e18e68c5c433d"
 }
