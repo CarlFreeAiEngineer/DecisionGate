@@ -8,8 +8,8 @@
   "consumer": {
     "probability": 0.9969501025005845,
     "custom_probability": 0.9967090125587603,
-    "module": "/home/ace/.cache/uv/archive-v0/DFgRutUqBkyNWOnE/lib/python3.12/site-packages/decisiongator/__init__.py",
+    "module": "/home/ace/.cache/uv/archive-v0/wWBV06Z27fiMQI8K/lib/python3.12/site-packages/decisiongator/__init__.py",
     "concurrent_calls": 8
   },
-  "stderr": "Installed 1 package in 234ms\n"
+  "stderr": "Installed 1 package in 153ms\n"
 }

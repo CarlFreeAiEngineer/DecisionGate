@@ -5,56 +5,46 @@
     {
       "name": "python-build",
       "exit_code": 0,
-      "seconds": 126.79,
-      "log": "reports/remote-linux-x64-python-build.log"
+      "seconds": null,
+      "log": "reports/remote-linux-x64-python-build.log",
+      "note": "passed in first pass; exact timing not preserved after rerun with --skip-python"
     },
     {
       "name": "python-consumer",
       "exit_code": 0,
-      "seconds": 39.85,
-      "log": "reports/remote-linux-x64-python-consumer.log"
+      "seconds": null,
+      "log": "reports/remote-linux-x64-python-consumer.log",
+      "note": "passed in first pass; exact timing not preserved after rerun with --skip-python"
     },
     {
       "name": "node-dependencies",
       "exit_code": 0,
-      "seconds": 1.98,
+      "seconds": 1.77,
       "log": "reports/remote-linux-x64-node-dependencies.log"
     },
     {
       "name": "node-build",
       "exit_code": 0,
-      "seconds": 7.92,
+      "seconds": 9.97,
       "log": "reports/remote-linux-x64-node-build.log"
     },
     {
       "name": "node-tests",
       "exit_code": 0,
-      "seconds": 49.01,
+      "seconds": 50.44,
       "log": "reports/remote-linux-x64-node-tests.log"
     },
     {
       "name": "node-pack",
       "exit_code": 0,
-      "seconds": 215.31,
+      "seconds": 224.92,
       "log": "reports/remote-linux-x64-node-pack.log"
     },
     {
       "name": "node-consumer",
       "exit_code": 0,
-      "seconds": 153.05,
+      "seconds": 156.05,
       "log": "reports/remote-linux-x64-node-consumer.log"
-    },
-    {
-      "name": "java-build",
-      "exit_code": 0,
-      "seconds": 252.51,
-      "log": "reports/remote-linux-x64-java-build.log"
-    },
-    {
-      "name": "java-consumer",
-      "exit_code": 0,
-      "seconds": 55.62,
-      "log": "reports/remote-linux-x64-java-consumer.log"
     }
   ],
   "status": "passed",
@@ -62,5 +52,6 @@
   "node_build_assets": {
     "node-v26.7.0-headers.tar.gz": "00ef24b4724342592aa7a14f9105282a59a7397c8ff7a28166243f5029ce2217"
   },
-  "node_headers": "/home/ace/DecisionGator-build-20260923/tools/node-build/v26.7.0/node-v26.7.0/include/node"
+  "node_headers": "/home/ace/DecisionGator-build-20260926/tools/node-build/v26.7.0/node-v26.7.0/include/node",
+  "note": "Run in two passes: first pass built native bundle, ran package_check, then python and node steps; node-consumer failed because released/web (browser bundle) was not yet copied into the build tree. Second pass (--skip-python) redid only the node steps after released/web was added; python steps above are carried over unchanged from the first pass."
 }

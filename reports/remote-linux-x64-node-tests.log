@@ -1,14 +1,14 @@
-✔ concurrent first use, probability, inclusive boundaries, and event loop responsiveness (27265.042749ms)
-✔ criteria, Unicode, changing working directory (454.636227ms)
-✔ invalid input never becomes a negative answer (13.807549ms)
-✔ bounded queue (14579.64082ms)
-✔ addon boundary rejects invalid direct calls (3.5903ms)
-✔ chooseP ranks options best first with probabilities summing to one (1531.91256ms)
-✔ choose keeps caller order on ties (730.323217ms)
-✔ choose returns -1 when the best option is below threshold (780.495415ms)
-✔ chooseP validates content, question, options and opts (4.378393ms)
-✔ isYesP and chooseP share one queue under concurrent use (1751.894341ms)
-✔ worker environments finish native work and exit cleanly (876.079559ms)
+✔ concurrent first use, probability, inclusive boundaries, and event loop responsiveness (28143.093021ms)
+✔ criteria, Unicode, changing working directory (487.938989ms)
+✔ invalid input never becomes a negative answer (13.888819ms)
+✔ bounded queue (14570.335643ms)
+✔ addon boundary rejects invalid direct calls (3.528534ms)
+✔ chooseP ranks options best first with probabilities summing to one (1665.722868ms)
+✔ choose keeps caller order on ties (838.911971ms)
+✔ choose returns -1 when the best option is below threshold (860.301841ms)
+✔ chooseP validates content, question, options and opts (4.309551ms)
+✔ isYesP and chooseP share one queue under concurrent use (1984.353704ms)
+✔ worker environments finish native work and exit cleanly (866.244886ms)
 ℹ tests 11
 ℹ suites 0
 ℹ pass 11
@@ -16,4 +16,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 48728.057554
+ℹ duration_ms 50228.153987
