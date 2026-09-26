@@ -11,9 +11,9 @@
   "sha256": {
     "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
     "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
-    "libdecisiongator.dylib": "18d1e3cd39bf95bd986363941584aa906b58e6bd5dc3ddd75aba59247928246c",
-    "decisiongator.h": "0b832ea252babdcc320b456bbc79ce04924cb8f38e61fa32900fb9e2b2a15c48",
-    "libonnxruntime.dylib": "637c0aed2688fe886ea69adbb260bbad8af9bdd40ea45b879f692d0bd0c1e459"
+    "decisiongator.h": "6f9b76cd847d19a186bd41ca297d3aa06cc7e68796c93c8b93d76a95b3eac695",
+    "libonnxruntime.dylib": "637c0aed2688fe886ea69adbb260bbad8af9bdd40ea45b879f692d0bd0c1e459",
+    "libdecisiongator.dylib": "9ea0902591843c681f9ee2397e3a9e9af0d90f067b5b07313809f43e1a9d0c79"
   },
   "training": {
     "base": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
@@ -114,7 +114,7 @@
     "target": "aarch64-apple-darwin",
     "platform_id": "macos-arm64",
     "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
-    "cargo_lock_sha256": "cb1bea2b89e328227050ab1adf0195f67cd0e64dff0cdb0fd07b979d0fd8dd93",
+    "cargo_lock_sha256": "6aaba84697708a3e8a06698643937f8d52165aa50004b1c3f2d342e33c867115",
     "onnxruntime": "1.22.1",
     "status": "experimental native prototype",
     "build_host_libc": null,
