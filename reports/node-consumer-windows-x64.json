@@ -12,6 +12,6 @@
   "network_denied": false,
   "network_isolation": null,
   "original_native_bundle_reads_denied": false,
-  "tarball": "C:\\DecisionGator-build-20260919\\released\\node\\decisiongator-0.4.1-win32-x64.tgz",
-  "tarball_sha256": "6c48d1b533d0cc126ffb10854d28697e0b16a753615ebaffdee3a5985b2187c9"
+  "tarball": "C:\\DecisionGator-build\\released\\node\\decisiongator-0.4.1-win32-x64.tgz",
+  "tarball_sha256": "8356ca9645a05605c523e3bbee958f932782b018ac40aa0958bd831a3f53ba18"
 }

@@ -11,10 +11,10 @@
   "sha256": {
     "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
     "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
-    "decisiongator.dll": "22f025c8714b0184bf2b0c745e8c69b5a78e2810772f873dde398e8403f37fba",
-    "decisiongator.h": "0b832ea252babdcc320b456bbc79ce04924cb8f38e61fa32900fb9e2b2a15c48",
-    "decisiongator.lib": "ba8b41d46229768496de98d593fc5992041b31ce6352ead66c71d228ab8814e2",
-    "DEPLOYMENT.md": "91197285e86ffd60017e1c6fc9e10f1eb6b3f3e39e77cb771ff3c4a7bf8a2d79",
+    "decisiongator.dll": "3514683db91a9800277902e093d22ab46c9dd9a3470ac1a3f57a0154a55fed51",
+    "decisiongator.h": "6f9b76cd847d19a186bd41ca297d3aa06cc7e68796c93c8b93d76a95b3eac695",
+    "decisiongator.lib": "eddf09790ff2a904f6e425f835a9db1240dc72b7ace0622d7ede3528e3610f74",
+    "DEPLOYMENT.md": "543762f540a971bedc12f69f7112397548d09165786a8bbe229d42975155c138",
     "onnxruntime.dll": "c7151fd9844ad7c7d18525f1177e9ef62d91e4a6ac3583d0be700554a2b2b1d6",
     "onnxruntime_providers_shared.dll": "747c2ed0ca260a37d43bac97f6c60bda9f42daada3918ec991d9f6c6e0a01746"
   },
@@ -117,7 +117,7 @@
     "target": "x86_64-pc-windows-msvc",
     "platform_id": "windows-x64",
     "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
-    "cargo_lock_sha256": "cb1bea2b89e328227050ab1adf0195f67cd0e64dff0cdb0fd07b979d0fd8dd93",
+    "cargo_lock_sha256": "6aaba84697708a3e8a06698643937f8d52165aa50004b1c3f2d342e33c867115",
     "onnxruntime": "1.22.1",
     "status": "experimental native prototype",
     "build_host_libc": null,

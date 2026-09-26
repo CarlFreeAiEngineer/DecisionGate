@@ -1,0 +1,84 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260926060159
+Username: WIN-K1V0HGID0VK\ace
+RunAs User: WIN-K1V0HGID0VK\ace
+Configuration Name: 
+Machine: WIN-K1V0HGID0VK (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -NoProfile -ExecutionPolicy Bypass -File C:\DecisionGator-build\code\windows_build.ps1 -Root C:\DecisionGator-build
+Process ID: 60876
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\DecisionGator-build\reports\windows-resume-20260926-060159.log
+Running: C:\WINDOWS\system32\cmd.exe /d /c C:\DecisionGator-build\tools\windows-msvc-environment.cmd
+Passed: C:\WINDOWS\system32\cmd.exe (log: C:\DecisionGator-build\tools\windows-msvc-environment.txt)
+
+Reusing previously tested native bundle; pass -RebuildNative to rebuild.
+Running: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe run --python 3.12 tests/package_check.py --bundle released/windows-x64 --output reports/windows-package.json
+  File "C:\DecisionGator-build\tests\package_check.py", line 148, in <module>
+c_smoke.c
+C:\DecisionGator-build\examples\c_smoke.c(1): fatal error C1083: Cannot open include file: 'decisiongator.h': No such file or directory
+uv.exe : Traceback (most recent call last):
+At C:\DecisionGator-build\code\windows_build.ps1:46 char:9
++         & $Executable @Arguments *> $Log
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+  File "C:\DecisionGator-build\tests\package_check.py", line 148, in <module>
+    main()
+  File "C:\DecisionGator-build\tests\package_check.py", line 117, in main
+    host = compile_host(compilation, bundle)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\DecisionGator-build\tests\package_check.py", line 52, in compile_host
+    subprocess.run(command, check=True)
+  File "C:\Users\ace\AppData\Roaming\uv\python\cpython-3.12-windows-x86_64-none\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['cl.exe', '/nologo', '/W4', '/WX',
+'C:\\DecisionGator-build\\examples\\c_smoke.c',
+'/IC:\\Users\\ace\\AppData\\Local\\Temp\\decisiongator-relocation-ve0esm0w\\compile\\bundle',
+'/Fe:C:\\Users\\ace\\AppData\\Local\\Temp\\decisiongator-relocation-ve0esm0w\\compile\\bundle\\host.exe',
+'/Fo:C:\\Users\\ace\\AppData\\Local\\Temp\\decisiongator-relocation-ve0esm0w\\compile\\host.obj', '/link',
+'C:\\Users\\ace\\AppData\\Local\\Temp\\decisiongator-relocation-ve0esm0w\\compile\\bundle\\decisiongator.lib']'
+returned non-zero exit status 2.
+PS>TerminatingError(): "Native command failed with exit code 1: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGator-build\reports\windows-package.log)"
+Name        Source
+----        ------
+cl.exe      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64...
+dumpbin.exe C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64...
+uv.exe      C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe
+node.exe    C:\Program Files\nodejs\node.exe
+
+
+
+
+PSMessageDetails      :
+Exception             : System.Management.Automation.RuntimeException: Native command failed with exit code 1:
+                        C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log:
+                        C:\DecisionGator-build\reports\windows-package.log)
+TargetObject          : Native command failed with exit code 1:
+                        C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log:
+                        C:\DecisionGator-build\reports\windows-package.log)
+CategoryInfo          : OperationStopped: (Native command ...ws-package.log):String) [], RuntimeException
+FullyQualifiedErrorId : Native command failed with exit code 1:
+                        C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log:
+                        C:\DecisionGator-build\reports\windows-package.log)
+ErrorDetails          :
+InvocationInfo        : System.Management.Automation.InvocationInfo
+ScriptStackTrace      : at Invoke-NativeLogged, C:\DecisionGator-build\code\windows_build.ps1: line 53
+                        at <ScriptBlock>, C:\DecisionGator-build\code\windows_build.ps1: line 126
+PipelineIterationInfo : {}
+
+
+
+**********************
+Windows PowerShell transcript end
+End time: 20260926060236
+**********************

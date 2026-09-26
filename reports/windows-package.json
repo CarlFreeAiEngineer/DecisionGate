@@ -9,8 +9,8 @@
   "development_tools_on_path": false,
   "stdout": "p_yes=0.996950103\ntop=billing p=0.897617877",
   "native_process_peak_rss_bytes": null,
-  "bundle_bytes": 607297671,
-  "library_bytes": 4102144,
+  "bundle_bytes": 607295557,
+  "library_bytes": 4101120,
   "model_bytes": 577946966,
   "host_link_dependencies": [
     "    decisiongator.dll",

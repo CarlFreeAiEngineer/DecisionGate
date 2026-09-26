@@ -1,0 +1,27 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260926072025
+Username: WIN-K1V0HGID0VK\ace
+RunAs User: WIN-K1V0HGID0VK\ace
+Configuration Name: 
+Machine: WIN-K1V0HGID0VK (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -NoProfile -ExecutionPolicy Bypass -File C:\DecisionGator-build\run-with-cache.ps1
+Process ID: 64216
+PSVersion: 5.1.26100.7920
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.7920
+BuildVersion: 10.0.26100.7920
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\DecisionGator-build\reports\windows-resume-20260926-072024.log
+Running: C:\WINDOWS\system32\cmd.exe /d /c C:\DecisionGator-build\tools\windows-msvc-environment.cmd
+Passed: C:\WINDOWS\system32\cmd.exe (log: C:\DecisionGator-build\tools\windows-msvc-environment.txt)
+
+Reusing previously tested native bundle; pass -RebuildNative to rebuild.
+Running: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe run --python 3.12 tests/package_check.py --bundle released/windows-x64 --output reports/windows-package.json
+Passed: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGator-build\reports\windows-package.log)
+Running: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe run --python 3.12 code/remote_packages.py
+Passed: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGator-build\reports\windows-packages.log)
