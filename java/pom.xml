@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.decisiongate</groupId>
-  <artifactId>decisiongate-java</artifactId>
+  <groupId>org.decisiongator</groupId>
+  <artifactId>decisiongator-java</artifactId>
   <version>0.4.1</version>
-  <name>DecisionGate Java</name>
+  <name>DecisionGator Java</name>
   <description>Offline yes/no decisions through a normal Java API</description>
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.outputTimestamp>2026-09-17T00:00:00Z</project.build.outputTimestamp>
-    <decisiongate.bundle></decisiongate.bundle>
+    <decisiongator.bundle></decisiongator.bundle>
     <!-- The choose (dg_evaluate_choice) integration test uses the same bundle as the other
-         integration tests unless -Ddecisiongate.choose.bundle=PATH or the DECISIONGATE_CHOOSE_BUNDLE
+         integration tests unless -Ddecisiongator.choose.bundle=PATH or the DECISIONGATOR_CHOOSE_BUNDLE
          environment variable (checked first) points it elsewhere. -->
-    <decisiongate.choose.bundle>${decisiongate.bundle}</decisiongate.choose.bundle>
+    <decisiongator.choose.bundle>${decisiongator.bundle}</decisiongator.choose.bundle>
     <native.classifier>macos-arm64</native.classifier>
   </properties>
   <licenses><license><name>Apache License 2.0</name><url>https://www.apache.org/licenses/LICENSE-2.0</url></license></licenses>
@@ -28,13 +28,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.4</version>
         <configuration><systemPropertyVariables>
-          <decisiongate.bundle>${decisiongate.bundle}</decisiongate.bundle>
-          <decisiongate.choose.bundle>${decisiongate.choose.bundle}</decisiongate.choose.bundle>
+          <decisiongator.bundle>${decisiongator.bundle}</decisiongator.bundle>
+          <decisiongator.choose.bundle>${decisiongator.choose.bundle}</decisiongator.choose.bundle>
         </systemPropertyVariables></configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version>
-        <configuration><archive><manifestEntries><Automatic-Module-Name>org.decisiongate</Automatic-Module-Name></manifestEntries></archive></configuration>
+        <configuration><archive><manifestEntries><Automatic-Module-Name>org.decisiongator</Automatic-Module-Name></manifestEntries></archive></configuration>
       </plugin>
       <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-source-plugin</artifactId><version>3.3.1</version><executions><execution><id>sources</id><goals><goal>jar-no-fork</goal></goals></execution></executions></plugin>
       <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.11.2</version><executions><execution><id>javadoc</id><goals><goal>jar</goal></goals></execution></executions></plugin>
@@ -47,7 +47,7 @@
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version>
         <executions><execution><id>native-bundle</id><phase>package</phase><goals><goal>jar</goal></goals><configuration>
           <classifier>${native.classifier}</classifier><classesDirectory>${project.build.directory}/native-bundle</classesDirectory>
-          <archive><manifestEntries><Automatic-Module-Name>org.decisiongate.bundle</Automatic-Module-Name></manifestEntries></archive>
+          <archive><manifestEntries><Automatic-Module-Name>org.decisiongator.bundle</Automatic-Module-Name></manifestEntries></archive>
         </configuration></execution></executions>
       </plugin></plugins></build>
     </profile>

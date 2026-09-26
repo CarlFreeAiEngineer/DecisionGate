@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import com.sun.jna.Memory;
 import java.nio.charset.StandardCharsets;
@@ -20,16 +20,16 @@ final class Utf8 implements AutoCloseable {
 
     static void validate(String value, String name) {
         if (value == null || value.isBlank()) {
-            throw new DecisionGateException(1, name + " must be nonempty");
+            throw new DecisionGatorException(1, name + " must be nonempty");
         }
         for (int i = 0; i < value.length(); i++) {
             char c = value.charAt(i);
             if (Character.isHighSurrogate(c)) {
                 if (++i == value.length() || !Character.isLowSurrogate(value.charAt(i))) {
-                    throw new DecisionGateException(1, name + " contains an unpaired UTF-16 surrogate");
+                    throw new DecisionGatorException(1, name + " contains an unpaired UTF-16 surrogate");
                 }
             } else if (Character.isLowSurrogate(c)) {
-                throw new DecisionGateException(1, name + " contains an unpaired UTF-16 surrogate");
+                throw new DecisionGatorException(1, name + " contains an unpaired UTF-16 surrogate");
             }
         }
     }
@@ -37,14 +37,14 @@ final class Utf8 implements AutoCloseable {
     /** Validate the option list shape; each option's text is validated separately. */
     static void validateOptions(List<String> options) {
         if (options == null) {
-            throw new DecisionGateException(1, "options must not be null");
+            throw new DecisionGatorException(1, "options must not be null");
         }
         if (options.size() < 2) {
-            throw new DecisionGateException(1, "choose needs at least two options");
+            throw new DecisionGatorException(1, "choose needs at least two options");
         }
         for (String option : options) {
             if (option == null || option.isBlank()) {
-                throw new DecisionGateException(1, "options must be nonempty");
+                throw new DecisionGatorException(1, "options must be nonempty");
             }
         }
     }

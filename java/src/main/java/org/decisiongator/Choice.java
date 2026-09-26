@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 /**
  * One ranked option from a multiple-choice decision.

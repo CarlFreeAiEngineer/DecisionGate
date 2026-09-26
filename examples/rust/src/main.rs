@@ -1,8 +1,8 @@
-//! Call DecisionGate from Rust through its C interface.
+//! Call DecisionGator from Rust through its C interface.
 //! The library loads its model from the bundle beside it on the first call.
 use std::ffi::c_char;
 
-/// Optional descriptions of what counts as yes and as no (dg_criteria in decisiongate.h).
+/// Optional descriptions of what counts as yes and as no (dg_criteria in decisiongator.h).
 #[repr(C)]
 pub struct Criteria {
     yes: *const c_char,
@@ -17,7 +17,7 @@ impl Criteria {
     }
 }
 
-// Declarations matching decisiongate.h.
+// Declarations matching decisiongator.h.
 extern "C" {
     fn dg_is_yes_at_threshold(
         content: *const c_char, content_bytes: usize,

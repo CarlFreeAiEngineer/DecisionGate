@@ -12,31 +12,31 @@ if (namespace) {
   if (interfaces.length !== 1 || interfaces[0] !== 'lo') throw new Error('--network-namespace requires Linux with only loopback available');
 }
 const version = JSON.parse(readFileSync(resolve(root, 'javascript/package.json'), 'utf8')).version;
-const tarball=resolve(root,`released/node/decisiongate-${version}-${process.platform}-${process.arch}.tgz`);
-const temp = mkdtempSync(join(tmpdir(), 'decisiongate-node-'));
+const tarball=resolve(root,`released/node/decisiongator-${version}-${process.platform}-${process.arch}.tgz`);
+const temp = mkdtempSync(join(tmpdir(), 'decisiongator-node-'));
 try {
   writeFileSync(join(temp,'package.json'), JSON.stringify({name:'offline-consumer',private:true,type:'module'}));
   execFileSync(...npmCommand(['install','--offline','--ignore-scripts','--no-audit','--no-fund',tarball]),{cwd:temp,stdio:'inherit'});
   const script = `
 import assert from 'node:assert/strict';
 import {renameSync} from 'node:fs';
-import {isYes,isYesP,DecisionGateError} from 'decisiongate';
-import {isYes as browserIsYes} from 'decisiongate/web';
+import {isYes,isYesP,DecisionGatorError} from 'decisiongator';
+import {isYes as browserIsYes} from 'decisiongator/web';
 assert.equal(typeof browserIsYes, 'function');
 import {createRequire} from 'node:module';
 import {parse} from 'node:path';
 const require=createRequire(import.meta.url);
-const path=require.resolve('decisiongate').replace('index.cjs','native/${process.platform}-${process.arch}/manifest.json');
+const path=require.resolve('decisiongator').replace('index.cjs','native/${process.platform}-${process.arch}/manifest.json');
 renameSync(path,path+'.hold');
-try {await assert.rejects(isYes('Book a visit.','Is this asking for an appointment?'),e=>e instanceof DecisionGateError&&e.code==='DG_LOAD_ERROR');} finally {renameSync(path+'.hold',path);}
+try {await assert.rejects(isYes('Book a visit.','Is this asking for an appointment?'),e=>e instanceof DecisionGatorError&&e.code==='DG_LOAD_ERROR');} finally {renameSync(path+'.hold',path);}
 process.chdir(parse(process.cwd()).root);
 const p=await isYesP('Could I book an appointment for Tuesday?','Is this person asking for an appointment?');
 assert.equal(await isYes('Could I book an appointment for Tuesday?','Is this person asking for an appointment?'),p>=.5);
-assert.equal(await require('decisiongate').isYesP('Could I book an appointment for Tuesday?','Is this person asking for an appointment?'),p);
+assert.equal(await require('decisiongator').isYesP('Could I book an appointment for Tuesday?','Is this person asking for an appointment?'),p);
 console.log(JSON.stringify({node:process.version,pYes:p,retry:true,esm:true,cjs:true,offline:${process.platform === 'darwin' || namespace}}));
 `;
   writeFileSync(join(temp,'consumer.mjs'),script);
-  writeFileSync(join(temp,'consumer.ts'),"import {isYes,isYesP,DecisionGateError} from 'decisiongate';\nconst yes:boolean=await isYes('book','appointment?',{threshold:.9,criteria:{yes:'book',no:'other'}});\nconst p:number=await isYesP('book','appointment?');\nconst e:Error=new DecisionGateError('DG_INVALID_ARGUMENT','bad');\n");
+  writeFileSync(join(temp,'consumer.ts'),"import {isYes,isYesP,DecisionGatorError} from 'decisiongator';\nconst yes:boolean=await isYes('book','appointment?',{threshold:.9,criteria:{yes:'book',no:'other'}});\nconst p:number=await isYesP('book','appointment?');\nconst e:Error=new DecisionGatorError('DG_INVALID_ARGUMENT','bad');\n");
   execFileSync(process.execPath,[join(root,'javascript/node_modules/typescript/bin/tsc'),'--strict','--noEmit','--target','ES2022','--module','NodeNext','--moduleResolution','NodeNext',join(temp,'consumer.ts')],{cwd:temp,stdio:'inherit'});
   const profile='(version 1)(allow default)(deny network*)(deny file-read* (subpath '+JSON.stringify(join(root,'released/macos-arm64'))+'))(deny file-read* (subpath '+JSON.stringify(join(root,'javascript/native'))+'))';
   const result=process.platform==='darwin'?execFileSync('/usr/bin/sandbox-exec',['-p',profile,process.execPath,join(temp,'consumer.mjs')],{cwd:temp,encoding:'utf8'}):execFileSync(process.execPath,[join(temp,'consumer.mjs')],{cwd:temp,encoding:'utf8'});

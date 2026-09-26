@@ -8,9 +8,9 @@ import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { build } from 'esbuild';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-// DECISIONGATE_RELEASE_DIR lets a build be tested from a fresh staging directory
+// DECISIONGATOR_RELEASE_DIR lets a build be tested from a fresh staging directory
 // without touching released/web (e.g. `node web/build.mjs /tmp/staging`).
-const release=process.env.DECISIONGATE_RELEASE_DIR?path.resolve(process.env.DECISIONGATE_RELEASE_DIR):path.join(root,'released/web');
+const release=process.env.DECISIONGATOR_RELEASE_DIR?path.resolve(process.env.DECISIONGATOR_RELEASE_DIR):path.join(root,'released/web');
 const tokenFixtures=JSON.parse(await readFile(path.join(root,'web/tests/fixtures.json')));
 const fixtures=tokenFixtures.filter(f=>'pYes' in f);
 const choiceFixtures=JSON.parse(await readFile(path.join(root,'web/tests/fixtures-choice.json')));
@@ -22,9 +22,9 @@ let blockManifest=false;
 let corruptManifest=false;
 let denyTraffic=false;
 const requests=[];
-// DECISIONGATE_ISOLATED=1 serves every file with cross-origin isolation headers, which enables threaded WebAssembly.
-const suffix=process.env.DECISIONGATE_ISOLATED==='1'?'-threaded':'';
-const isolation=process.env.DECISIONGATE_ISOLATED==='1'?{'Cross-Origin-Opener-Policy':'same-origin','Cross-Origin-Embedder-Policy':'require-corp'}:{};
+// DECISIONGATOR_ISOLATED=1 serves every file with cross-origin isolation headers, which enables threaded WebAssembly.
+const suffix=process.env.DECISIONGATOR_ISOLATED==='1'?'-threaded':'';
+const isolation=process.env.DECISIONGATOR_ISOLATED==='1'?{'Cross-Origin-Opener-Policy':'same-origin','Cross-Origin-Embedder-Policy':'require-corp'}:{};
 const server=createServer(async(req,res)=>{
  try {
   if(denyTraffic){req.socket.destroy();return;}
@@ -47,7 +47,7 @@ const results=[];
 try {
 for(const name of (process.argv.slice(2).length?process.argv.slice(2):['chromium'])) {
  const launcher={chromium,firefox,webkit}[name];
- const profile=await mkdtemp(path.join(os.tmpdir(),'decisiongate-browser-'));
+ const profile=await mkdtemp(path.join(os.tmpdir(),'decisiongator-browser-'));
  let peakBrowserRssBytes=0;
  const memoryTimer=setInterval(()=>{if(process.platform==='win32')return;execFile('ps',['-axo','pid,ppid,rss'],(error,out)=>{if(error)return;const rows=out.trim().split('\n').slice(1).map(line=>line.trim().split(/\s+/).map(Number));const descendants=new Set([process.pid]);for(let i=0;i<8;i++)for(const [pid,ppid] of rows)if(descendants.has(ppid))descendants.add(pid);const rss=rows.filter(([pid])=>pid!==process.pid&&descendants.has(pid)).reduce((sum,row)=>sum+row[2]*1024,0);peakBrowserRssBytes=Math.max(peakBrowserRssBytes,rss);});},1000);
  const context=await launcher.launchPersistentContext(profile,{headless:true}).catch(async error=>{clearInterval(memoryTimer);await rm(profile,{recursive:true,force:true});throw error;});

@@ -194,9 +194,9 @@ Installed 9 packages in 410ms
    Compiling ort v2.0.0-rc.10
    Compiling onig v6.5.3
    Compiling tokenizers v0.21.4
-   Compiling decisiongate v0.1.0 (/home/ace/DecisionGate-build-20260917-1813/code)
+   Compiling decisiongator v0.1.0 (/home/ace/DecisionGator-build-20260917-1813/code)
     Finished `release` profile [optimized] target(s) in 2m 38s
-     Running unittests src/lib.rs (code/target/release/deps/decisiongate-9d56d0c4278d02cd)
+     Running unittests src/lib.rs (code/target/release/deps/decisiongator-9d56d0c4278d02cd)
 
 running 6 tests
 test tests::template_versions_preserve_pair_order_and_criteria ... ok
@@ -208,7 +208,7 @@ test tests::panic_is_contained_at_boundary ... ok
 
 test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
-   Doc-tests decisiongate
+   Doc-tests decisiongator
 
 running 0 tests
 
@@ -229,4 +229,4 @@ p_yes=0.995962204
   "boolean_disagreements": [],
   "seconds": 14.048014935106039
 }
-Built and tested bundle: /home/ace/DecisionGate-build-20260917-1813/released/linux-x64
+Built and tested bundle: /home/ace/DecisionGator-build-20260917-1813/released/linux-x64

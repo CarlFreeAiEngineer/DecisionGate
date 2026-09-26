@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 root = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(root))
-from decisiongate import Session
+from decisiongator import Session
 
 bundle = root / 'released/macos-arm64'
 cases = [

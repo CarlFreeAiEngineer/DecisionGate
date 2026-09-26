@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import com.sun.jna.IntegerType;
 import com.sun.jna.Library;

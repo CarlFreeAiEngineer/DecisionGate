@@ -1,11 +1,11 @@
-// P/Invoke declarations matching code/include/decisiongate.h. Applications use Decisions instead.
+// P/Invoke declarations matching code/include/decisiongator.h. Applications use Decisions instead.
 using System.Runtime.InteropServices;
 
-namespace DecisionGate;
+namespace DecisionGator;
 
 internal static unsafe class Native
 {
-    internal const string Library = "decisiongate";
+    internal const string Library = "decisiongator";
 
     [StructLayout(LayoutKind.Sequential)]
     internal struct Criteria
@@ -36,17 +36,17 @@ internal static unsafe class Native
     private static IntPtr Resolve(string name, System.Reflection.Assembly assembly, DllImportSearchPath? path)
     {
         if (name != Library) return IntPtr.Zero;
-        string file = OperatingSystem.IsWindows() ? "decisiongate.dll"
-                    : OperatingSystem.IsMacOS() ? "libdecisiongate.dylib"
-                    : "libdecisiongate.so";
+        string file = OperatingSystem.IsWindows() ? "decisiongator.dll"
+                    : OperatingSystem.IsMacOS() ? "libdecisiongator.dylib"
+                    : "libdecisiongator.so";
         foreach (string directory in Bundle.Candidates())
         {
             string full = Path.Combine(directory, file);
             if (File.Exists(full)) return NativeLibrary.Load(full);
         }
         throw new DllNotFoundException(
-            $"{file} not found. Set DECISIONGATE_BUNDLE or Bundle.Directory to the bundle folder, " +
-            "or copy the bundle into a 'decisiongate' folder next to the application.");
+            $"{file} not found. Set DECISIONGATOR_BUNDLE or Bundle.Directory to the bundle folder, " +
+            "or copy the bundle into a 'decisiongator' folder next to the application.");
     }
 
     internal static string LastErrorMessage()

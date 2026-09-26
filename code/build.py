@@ -3,7 +3,7 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Build and test the current host's native DecisionGate bundle.
+"""Build and test the current host's native DecisionGator bundle.
 
 Existing model exports need no training dependencies. Supply --runtime-dir with
 an extracted ONNX Runtime 1.22.1 CPU package, or let uv supply the runtime:
@@ -26,9 +26,9 @@ import tomllib
 ROOT = Path(__file__).resolve().parents[1]
 ORT_VERSION = '1.22.1'
 TARGETS = {
-    ('Darwin', 'arm64'): ('macos-arm64', 'aarch64-apple-darwin', 'libdecisiongate.dylib', 'libonnxruntime.dylib'),
-    ('Windows', 'x86_64'): ('windows-x64', 'x86_64-pc-windows-msvc', 'decisiongate.dll', 'onnxruntime.dll'),
-    ('Linux', 'x86_64'): ('linux-x64', 'x86_64-unknown-linux-gnu', 'libdecisiongate.so', 'libonnxruntime.so'),
+    ('Darwin', 'arm64'): ('macos-arm64', 'aarch64-apple-darwin', 'libdecisiongator.dylib', 'libonnxruntime.dylib'),
+    ('Windows', 'x86_64'): ('windows-x64', 'x86_64-pc-windows-msvc', 'decisiongator.dll', 'onnxruntime.dll'),
+    ('Linux', 'x86_64'): ('linux-x64', 'x86_64-unknown-linux-gnu', 'libdecisiongator.so', 'libonnxruntime.so'),
 }
 
 
@@ -140,9 +140,9 @@ def native_checks(output, env):
     source = ROOT / 'examples/c_smoke.c'
     executable = output / ('c_smoke.exe' if platform.system() == 'Windows' else 'c_smoke')
     if platform.system() == 'Windows':
-        command = ['cl.exe', '/nologo', '/W4', '/WX', str(source), '/I' + str(output), '/Fe:' + str(executable), '/Fo:' + str(ROOT / 'code/target/c_smoke.obj'), '/link', str(output / 'decisiongate.lib')]
+        command = ['cl.exe', '/nologo', '/W4', '/WX', str(source), '/I' + str(output), '/Fe:' + str(executable), '/Fo:' + str(ROOT / 'code/target/c_smoke.obj'), '/link', str(output / 'decisiongator.lib')]
     else:
-        command = ['cc', '-Wall', '-Wextra', '-Werror', '-I' + str(output), str(source), '-L' + str(output), '-ldecisiongate', '-Wl,-rpath,' + str(output), '-o', str(executable)]
+        command = ['cc', '-Wall', '-Wextra', '-Werror', '-I' + str(output), str(source), '-L' + str(output), '-ldecisiongator', '-Wl,-rpath,' + str(output), '-o', str(executable)]
     subprocess.run(command, env=env, check=True)
     subprocess.run([str(executable)], cwd=output, env=env, check=True)
     subprocess.run([sys.executable, str(ROOT / 'tests/native_check.py'), '--bundle', str(output)], env=env, check=True)
@@ -223,21 +223,21 @@ def main():
         subprocess.run(['codesign', '--force', '--sign', '-', str(output / library_name)], check=True)
     shutil.copy2(runtime, output / runtime_name)
     if platform.system() == 'Windows':
-        shutil.copy2(ROOT / 'code/target/release/decisiongate.dll.lib', output / 'decisiongate.lib')
+        shutil.copy2(ROOT / 'code/target/release/decisiongator.dll.lib', output / 'decisiongator.lib')
         (output / 'DEPLOYMENT.md').write_text('''# Windows deployment
 
-This bundle targets Windows x64. Keep the DLLs, model, tokenizer, and manifest together. C applications link against `decisiongate.lib` and load `decisiongate.dll`; place the DLLs beside the application executable or configure its DLL search directory explicitly.
+This bundle targets Windows x64. Keep the DLLs, model, tokenizer, and manifest together. C applications link against `decisiongator.lib` and load `decisiongator.dll`; place the DLLs beside the application executable or configure its DLL search directory explicitly.
 
 The destination machine needs the Microsoft Visual C++ 2015–2022 x64 Redistributable. These Microsoft runtime DLLs are system prerequisites and are not included in this bundle. Installing Visual Studio, Rust, Python, or Node is unnecessary for a C application using the bundle. Install the redistributable through your package manager (`winget install --id Microsoft.VCRedist.2015+.x64 --exact`) or use the [official Microsoft distribution](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
 
 See `system-dependencies.json` for DLL imports and the build host. A passing build or relocation check establishes behavior on that host; it does not certify older Windows releases. Relocation tests remove developer tools from PATH but retain installed Windows system runtimes.
 
-Do not unload DecisionGate with FreeLibrary. Join inference threads before process exit and do not call DecisionGate from exit hooks.
+Do not unload DecisionGator with FreeLibrary. Join inference threads before process exit and do not call DecisionGator from exit hooks.
 ''', encoding='utf-8')
     provider = runtime.parent / ('onnxruntime_providers_shared.dll' if platform.system() == 'Windows' else 'libonnxruntime_providers_shared.so')
     if provider.is_file():
         shutil.copy2(provider, output / provider.name)
-    shutil.copy2(ROOT / 'code/include/decisiongate.h', output / 'decisiongate.h')
+    shutil.copy2(ROOT / 'code/include/decisiongator.h', output / 'decisiongator.h')
     (output / 'notices').mkdir()
     for name in ('LICENSE', 'ThirdPartyNotices.txt'):
         candidate = runtime_root / name
@@ -246,7 +246,7 @@ Do not unload DecisionGate with FreeLibrary. Join inference threads before proce
         shutil.copy2(candidate, output / 'notices' / ('onnxruntime-' + name))
     if (ROOT / 'notices').exists():
         shutil.copytree(ROOT / 'notices', output / 'notices', dirs_exist_ok=True)
-    shutil.copy2(ROOT / 'LICENSE', output / 'notices/DecisionGate-LICENSE.txt')
+    shutil.copy2(ROOT / 'LICENSE', output / 'notices/DecisionGator-LICENSE.txt')
     crate_notices(output)
     for asset in output.iterdir():
         if asset.is_file():

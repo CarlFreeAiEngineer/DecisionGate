@@ -18,8 +18,8 @@ Numbers can differ slightly between computers and in the browser (see [why](../r
 The model files are too large for GitHub, so a script downloads just what your language needs and checks every file. It needs [uv](https://docs.astral.sh/uv/getting-started/installation/).
 
 ```sh
-git clone https://github.com/CarlFreeAiEngineer/DecisionGate.git
-cd DecisionGate
+git clone https://github.com/CarlFreeAiEngineer/DecisionGator.git
+cd DecisionGator
 uv run code/fetch_released.py --for java      # or python, c, rust, go, csharp, node, browser
 ```
 
@@ -46,7 +46,7 @@ C on a Mac:
 
 ```sh
 cd examples/c
-cc example.c -I../../code/include -L../../released/macos-arm64 -ldecisiongate -Wl,-rpath,@executable_path/../../released/macos-arm64 -o example
+cc example.c -I../../code/include -L../../released/macos-arm64 -ldecisiongator -Wl,-rpath,@executable_path/../../released/macos-arm64 -o example
 ./example
 ```
 
@@ -54,7 +54,7 @@ C on Linux:
 
 ```sh
 cd examples/c
-cc example.c -I../../code/include -L../../released/linux-x64 -ldecisiongate -Wl,-rpath,'$ORIGIN/../../released/linux-x64' -o example
+cc example.c -I../../code/include -L../../released/linux-x64 -ldecisiongator -Wl,-rpath,'$ORIGIN/../../released/linux-x64' -o example
 ./example
 ```
 
@@ -62,7 +62,7 @@ C on Windows, in a Visual Studio Developer Command Prompt:
 
 ```bat
 cd examples\c
-cl /nologo example.c /I..\..\code\include ..\..\released\windows-x64\decisiongate.lib
+cl /nologo example.c /I..\..\code\include ..\..\released\windows-x64\decisiongator.lib
 set PATH=%CD%\..\..\released\windows-x64;%PATH%
 example.exe
 ```

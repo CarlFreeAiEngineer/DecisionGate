@@ -8,7 +8,7 @@
   "firewall_rule_configured": false,
   "network_isolation": null,
   "original_bundle_read_denied": false,
-  "stdout": "Refund request: 0.994496\nInvoice request: 0.004278\nBundled Java inference passed; DecisionGate remains experimental.\n",
+  "stdout": "Refund request: 0.994496\nInvoice request: 0.004278\nBundled Java inference passed; DecisionGator remains experimental.\n",
   "stderr": "",
   "api_jar_bytes": 26229,
   "bundle_jar_bytes": 499498055

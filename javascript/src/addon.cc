@@ -4,7 +4,7 @@
 #include <vector>
 #include <mutex>
 #include <atomic>
-#include "../../code/include/decisiongate.h"
+#include "../../code/include/decisiongator.h"
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -59,7 +59,7 @@ static napi_value initialize(napi_env env, napi_callback_info info) {
 #endif
     auto eval = reinterpret_cast<EvaluateFn>(symbol("dg_is_yes_p"));
     auto error = reinterpret_cast<decltype(error_fn)>(symbol("dg_last_error"));
-    if (!eval || !error) { napi_throw_error(env, nullptr, "Cannot load matching DecisionGate native library"); return nullptr; }
+    if (!eval || !error) { napi_throw_error(env, nullptr, "Cannot load matching DecisionGator native library"); return nullptr; }
     // dg_choose_p may be absent from older native libraries; chooseP reports
     // DG_LOAD_ERROR at call time when so, without blocking isYesP/isYes.
     auto choose = reinterpret_cast<ChooseFn>(symbol("dg_choose_p"));
@@ -100,7 +100,7 @@ static void complete(napi_env env, napi_status status, void* data) {
 static napi_value evaluate(napi_env env, napi_callback_info info) {
   napi_value args[4], promise, resource; size_t count = 4;
   napi_get_cb_info(env, info, &count, args, nullptr, nullptr);
-  if (!evaluate_fn.load(std::memory_order_acquire) || count != 4) { napi_throw_error(env, nullptr, "Initialize DecisionGate first"); return nullptr; }
+  if (!evaluate_fn.load(std::memory_order_acquire) || count != 4) { napi_throw_error(env, nullptr, "Initialize DecisionGator first"); return nullptr; }
   for (size_t i = 0; i < 4; ++i) {
     napi_valuetype type;
     if (napi_typeof(env, args[i], &type) != napi_ok || (type != napi_string && !(i >= 2 && type == napi_null))) {
@@ -116,7 +116,7 @@ static napi_value evaluate(napi_env env, napi_callback_info info) {
   w->criteria = type == napi_string;
   if (w->criteria) { w->yes = read_string(env, args[2]); w->no = read_string(env, args[3]); }
   napi_create_promise(env, &w->deferred, &promise);
-  napi_create_string_utf8(env, "DecisionGate", NAPI_AUTO_LENGTH, &resource);
+  napi_create_string_utf8(env, "DecisionGator", NAPI_AUTO_LENGTH, &resource);
   if (napi_create_async_work(env, nullptr, resource, execute, complete, w, &w->work) != napi_ok) {
     delete w; napi_throw_error(env, nullptr, "Cannot create native work"); return nullptr;
   }
@@ -137,7 +137,7 @@ struct ChooseWork {
 static void execute_choose(napi_env, void* data) {
   auto* w = static_cast<ChooseWork*>(data);
   auto choose = choose_fn.load(std::memory_order_acquire);
-  if (!choose) { w->status = DG_LOAD_ERROR; w->error = "Loaded DecisionGate native library does not provide dg_choose_p"; return; }
+  if (!choose) { w->status = DG_LOAD_ERROR; w->error = "Loaded DecisionGator native library does not provide dg_choose_p"; return; }
   std::vector<const char*> option_ptrs(w->options.size());
   std::vector<size_t> option_bytes(w->options.size());
   for (size_t i = 0; i < w->options.size(); ++i) { option_ptrs[i] = w->options[i].data(); option_bytes[i] = w->options[i].size(); }
@@ -181,7 +181,7 @@ static void complete_choose(napi_env env, napi_status status, void* data) {
 static napi_value choose_p(napi_env env, napi_callback_info info) {
   napi_value args[5], promise, resource; size_t count = 5;
   napi_get_cb_info(env, info, &count, args, nullptr, nullptr);
-  if (!evaluate_fn.load(std::memory_order_acquire) || count != 5) { napi_throw_error(env, nullptr, "Initialize DecisionGate first"); return nullptr; }
+  if (!evaluate_fn.load(std::memory_order_acquire) || count != 5) { napi_throw_error(env, nullptr, "Initialize DecisionGator first"); return nullptr; }
   napi_valuetype type;
   for (size_t i = 0; i < 2; ++i) {
     if (napi_typeof(env, args[i], &type) != napi_ok || type != napi_string) { napi_throw_type_error(env, nullptr, "chooseP requires content and question strings"); return nullptr; }
@@ -209,7 +209,7 @@ static napi_value choose_p(napi_env env, napi_callback_info info) {
   w->criteria = yes_type == napi_string;
   if (w->criteria) { w->yes = read_string(env, args[3]); w->no = read_string(env, args[4]); }
   napi_create_promise(env, &w->deferred, &promise);
-  napi_create_string_utf8(env, "DecisionGate.choose", NAPI_AUTO_LENGTH, &resource);
+  napi_create_string_utf8(env, "DecisionGator.choose", NAPI_AUTO_LENGTH, &resource);
   if (napi_create_async_work(env, nullptr, resource, execute_choose, complete_choose, w, &w->work) != napi_ok) {
     delete w; napi_throw_error(env, nullptr, "Cannot create native work"); return nullptr;
   }

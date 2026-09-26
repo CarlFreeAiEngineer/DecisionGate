@@ -1,4 +1,4 @@
-"""Score the stock Laya checkpoint, unmodified, on DecisionGate's held-out test sets."""
+"""Score the stock Laya checkpoint, unmodified, on DecisionGator's held-out test sets."""
 import json, sys, time
 import numpy as np
 import laya

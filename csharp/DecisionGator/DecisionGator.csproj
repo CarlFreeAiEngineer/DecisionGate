@@ -4,8 +4,8 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>DecisionGate</RootNamespace>
-    <AssemblyName>DecisionGate</AssemblyName>
+    <RootNamespace>DecisionGator</RootNamespace>
+    <AssemblyName>DecisionGator</AssemblyName>
     <Version>0.3.0</Version>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>Offline yes/no and multiple-choice decisions about text, as an ordinary library call.</Description>

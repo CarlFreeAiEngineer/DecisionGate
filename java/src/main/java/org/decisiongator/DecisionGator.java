@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
@@ -21,12 +21,12 @@ import java.util.Map;
  * Use a stable application class loader; hot class-loader unloading is unsupported.
  * Finish inference before process exit, and do not call this API from exit hooks.
  */
-public final class DecisionGate implements AutoCloseable {
+public final class DecisionGator implements AutoCloseable {
     private static final Map<Path, NativeBindings> LIBRARIES = new HashMap<>();
     private final NativeBindings library;
     private Pointer handle;
 
-    private DecisionGate(NativeBindings library, Pointer handle) {
+    private DecisionGator(NativeBindings library, Pointer handle) {
         this.library = library;
         this.handle = handle;
     }
@@ -35,10 +35,10 @@ public final class DecisionGate implements AutoCloseable {
      * Extract and load platform assets packaged in the application class path.
      *
      * @return an open session owned by the caller
-     * @throws DecisionGateException if extraction or loading fails
+     * @throws DecisionGatorException if extraction or loading fails
      */
-    public static DecisionGate loadBundled() {
-        return loadBundled(Path.of(System.getProperty("user.home"), ".cache", "decisiongate"));
+    public static DecisionGator loadBundled() {
+        return loadBundled(Path.of(System.getProperty("user.home"), ".cache", "decisiongator"));
     }
 
     /**
@@ -46,9 +46,9 @@ public final class DecisionGate implements AutoCloseable {
      *
      * @param cacheDirectory directory used to cache extracted platform assets
      * @return an open session owned by the caller
-     * @throws DecisionGateException if extraction or loading fails
+     * @throws DecisionGatorException if extraction or loading fails
      */
-    public static DecisionGate loadBundled(Path cacheDirectory) {
+    public static DecisionGator loadBundled(Path cacheDirectory) {
         return BundledAssets.load(cacheDirectory);
     }
 
@@ -57,11 +57,11 @@ public final class DecisionGate implements AutoCloseable {
      *
      * @param bundle directory containing a complete native bundle
      * @return an open session owned by the caller
-     * @throws DecisionGateException if the bundle or platform is invalid, or loading fails
+     * @throws DecisionGatorException if the bundle or platform is invalid, or loading fails
      */
-    public static DecisionGate load(Path bundle) {
+    public static DecisionGator load(Path bundle) {
         if (bundle == null) {
-            throw new DecisionGateException(1, "bundle must not be null");
+            throw new DecisionGatorException(1, "bundle must not be null");
         }
         Path directory;
         Path binary;
@@ -72,16 +72,16 @@ public final class DecisionGate implements AutoCloseable {
             }
             binary = directory.resolve(libraryName()).toRealPath();
         } catch (IOException e) {
-            throw new DecisionGateException(2, "Cannot read DecisionGate bundle: " + bundle, e);
+            throw new DecisionGatorException(2, "Cannot read DecisionGator bundle: " + bundle, e);
         }
         NativeBindings library = library(binary);
         try (Utf8 path = new Utf8(directory.toString(), "bundle")) {
             PointerByReference model = new PointerByReference();
             check(library, library.dg_load(path.memory, path.length, model));
             if (model.getValue() == null) {
-                throw new DecisionGateException(6, "Native load returned a null session");
+                throw new DecisionGatorException(6, "Native load returned a null session");
             }
-            return new DecisionGate(library, model.getValue());
+            return new DecisionGator(library, model.getValue());
         }
     }
 
@@ -96,7 +96,7 @@ public final class DecisionGate implements AutoCloseable {
             LIBRARIES.put(binary, loaded);
             return loaded;
         } catch (LinkageError | SecurityException e) {
-            throw new DecisionGateException(2, "Cannot load native library: " + binary, e);
+            throw new DecisionGatorException(2, "Cannot load native library: " + binary, e);
         }
     }
 
@@ -105,10 +105,10 @@ public final class DecisionGate implements AutoCloseable {
         String arch = System.getProperty("os.arch", "").toLowerCase(Locale.ROOT);
         boolean arm64 = arch.equals("aarch64") || arch.equals("arm64");
         boolean x64 = arch.equals("amd64") || arch.equals("x86_64");
-        if (os.startsWith("mac") && arm64) return "libdecisiongate.dylib";
-        if (os.startsWith("windows") && x64) return "decisiongate.dll";
-        if (os.equals("linux") && x64) return "libdecisiongate.so";
-        throw new DecisionGateException(3, "Unsupported platform: " + os + " / " + arch);
+        if (os.startsWith("mac") && arm64) return "libdecisiongator.dylib";
+        if (os.startsWith("windows") && x64) return "decisiongator.dll";
+        if (os.equals("linux") && x64) return "libdecisiongator.so";
+        throw new DecisionGatorException(3, "Unsupported platform: " + os + " / " + arch);
     }
 
     /**
@@ -117,7 +117,7 @@ public final class DecisionGate implements AutoCloseable {
      * @param content nonblank content to evaluate
      * @param question nonblank yes/no question about the content
      * @return calibrated probability between zero and one, inclusive
-     * @throws DecisionGateException if the session is closed, input is invalid, or inference fails
+     * @throws DecisionGatorException if the session is closed, input is invalid, or inference fails
      */
     public synchronized double evaluate(String content, String question) {
         return evaluate(content, question, null);
@@ -130,7 +130,7 @@ public final class DecisionGate implements AutoCloseable {
      * @param question nonblank yes/no question about the content
      * @param criteria explicit answer descriptions, or null to use the default descriptions
      * @return calibrated probability between zero and one, inclusive
-     * @throws DecisionGateException if the session is closed, input is invalid, or inference fails
+     * @throws DecisionGatorException if the session is closed, input is invalid, or inference fails
      */
     public synchronized double evaluate(String content, String question, Criteria criteria) {
         requireOpen();
@@ -160,7 +160,7 @@ public final class DecisionGate implements AutoCloseable {
      * @param question nonblank question comparing the options
      * @param options at least two nonblank options, in the caller's order
      * @return every option ranked best first, as index/probability pairs summing to one
-     * @throws DecisionGateException if the session is closed, input is invalid, or inference fails
+     * @throws DecisionGatorException if the session is closed, input is invalid, or inference fails
      */
     public synchronized List<Choice> evaluateChoice(String content, String question, List<String> options) {
         return evaluateChoice(content, question, options, null);
@@ -174,7 +174,7 @@ public final class DecisionGate implements AutoCloseable {
      * @param options at least two nonblank options, in the caller's order
      * @param criteria explicit answer descriptions applied to every option, or null for defaults
      * @return every option ranked best first, as index/probability pairs summing to one
-     * @throws DecisionGateException if the session is closed, input is invalid, or inference fails
+     * @throws DecisionGatorException if the session is closed, input is invalid, or inference fails
      */
     public synchronized List<Choice> evaluateChoice(String content, String question, List<String> options,
             Criteria criteria) {
@@ -249,7 +249,7 @@ public final class DecisionGate implements AutoCloseable {
      * Return the bundle manifest as JSON without adding a JSON-library dependency.
      *
      * @return the loaded bundle manifest in JSON format
-     * @throws DecisionGateException if the session is closed or metadata retrieval fails
+     * @throws DecisionGatorException if the session is closed or metadata retrieval fails
      */
     public synchronized String metadataJson() {
         requireOpen();
@@ -273,14 +273,14 @@ public final class DecisionGate implements AutoCloseable {
     }
 
     private void requireOpen() {
-        if (handle == null) throw new DecisionGateException(1, "DecisionGate session is closed");
+        if (handle == null) throw new DecisionGatorException(1, "DecisionGator session is closed");
     }
 
     private static long readSize(Memory required) {
         long size = Native.SIZE_T_SIZE == 8 ? required.getLong(0)
                 : Integer.toUnsignedLong(required.getInt(0));
         if (size <= 0 || size > Integer.MAX_VALUE) {
-            throw new DecisionGateException(4, "Invalid native output buffer size: " + size);
+            throw new DecisionGatorException(4, "Invalid native output buffer size: " + size);
         }
         return size;
     }
@@ -302,9 +302,9 @@ public final class DecisionGate implements AutoCloseable {
                     }
                 }
             }
-        } catch (DecisionGateException ignored) {
+        } catch (DecisionGatorException ignored) {
             // Preserve the original native status if error retrieval is malformed.
         }
-        throw new DecisionGateException(status, message);
+        throw new DecisionGatorException(status, message);
     }
 }

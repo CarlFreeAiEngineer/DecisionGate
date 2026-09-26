@@ -1,14 +1,14 @@
 import * as ort from 'onnxruntime-web/wasm';
-import { createTokenizer, encode, DecisionGateError, validate, validateChoice, rank } from './core.js';
+import { createTokenizer, encode, DecisionGatorError, validate, validateChoice, rank } from './core.js';
 let initialization;
 let queue = Promise.resolve();
 async function checked(url, expected, onBytes) {
   // no-store: browsers refetch weights this large every visit anyway, so skip the cache and never meet stale files.
   const response = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
-  if (!response.ok) throw new DecisionGateError('DG_RESOURCE_ERROR', `Unable to read ${new URL(url).pathname}: HTTP ${response.status}`);
+  if (!response.ok) throw new DecisionGatorError('DG_RESOURCE_ERROR', `Unable to read ${new URL(url).pathname}: HTTP ${response.status}`);
   const bytes = await read(response, new URL(url).pathname.split('/').pop(), onBytes);
   const digest = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map(x => x.toString(16).padStart(2, '0')).join('');
-  if (digest !== expected) throw new DecisionGateError('DG_INCOMPATIBLE', `Integrity check failed for ${new URL(url).pathname}`);
+  if (digest !== expected) throw new DecisionGatorError('DG_INCOMPATIBLE', `Integrity check failed for ${new URL(url).pathname}`);
   return bytes;
 }
 // Reads the body while reporting progress to the page, straight into one buffer of the announced size,
@@ -38,8 +38,8 @@ async function read(response, file, onBytes) {
 async function initialize(assetBaseUrl) {
   const base = assetBaseUrl ? new URL(assetBaseUrl.endsWith('/') ? assetBaseUrl : `${assetBaseUrl}/`) : new URL('./', import.meta.url);
   const manifest = JSON.parse(new TextDecoder().decode(await checked(new URL('manifest.json', base), DG_MANIFEST_SHA)));
-  if (manifest.format_version !== 1 || ![1, 2].includes(manifest.template_version) || !Number.isSafeInteger(manifest.max_tokens) || manifest.max_tokens < 1 || !Number.isFinite(manifest.temperature) || manifest.temperature <= 0) throw new DecisionGateError('DG_INCOMPATIBLE', 'Unsupported component manifest');
-  if (manifest.choice_template_version !== undefined && manifest.choice_template_version !== 1) throw new DecisionGateError('DG_INCOMPATIBLE', 'Unsupported choice template version');
+  if (manifest.format_version !== 1 || ![1, 2].includes(manifest.template_version) || !Number.isSafeInteger(manifest.max_tokens) || manifest.max_tokens < 1 || !Number.isFinite(manifest.temperature) || manifest.temperature <= 0) throw new DecisionGatorError('DG_INCOMPATIBLE', 'Unsupported component manifest');
+  if (manifest.choice_template_version !== undefined && manifest.choice_template_version !== 1) throw new DecisionGatorError('DG_INCOMPATIBLE', 'Unsupported choice template version');
   const tokenizer = createTokenizer(JSON.parse(new TextDecoder().decode(await checked(new URL('tokenizer.json', base), manifest.sha256['tokenizer.json']))));
   // Threaded WebAssembly needs SharedArrayBuffer, which browsers allow only on cross-origin isolated pages;
   // elsewhere this stays single-threaded. Browsers do not say which cores are fast, so use them all.
@@ -68,9 +68,9 @@ async function runLogit(session, encoded, temperature) {
   try {
     result = await session.run(inputs);
     const logits = result.logits;
-    if (!logits || logits.dims.length !== 2 || logits.dims[0] !== 1 || logits.dims[1] !== 2 || !Array.from(logits.data).every(Number.isFinite)) throw new DecisionGateError('DG_INFERENCE_ERROR', 'Invalid component output');
+    if (!logits || logits.dims.length !== 2 || logits.dims[0] !== 1 || logits.dims[1] !== 2 || !Array.from(logits.data).every(Number.isFinite)) throw new DecisionGatorError('DG_INFERENCE_ERROR', 'Invalid component output');
     const z = (Number(logits.data[1]) - Number(logits.data[0])) / temperature;
-    if (!Number.isFinite(z)) throw new DecisionGateError('DG_INFERENCE_ERROR', 'Invalid logit');
+    if (!Number.isFinite(z)) throw new DecisionGatorError('DG_INFERENCE_ERROR', 'Invalid logit');
     return z;
   } finally {
     Object.values(inputs).forEach(value => value.dispose());
@@ -84,7 +84,7 @@ async function evaluate(message) {
   const encoded = encode(tokenizer, manifest, message.content, message.question, message.criteria);
   const z = await runLogit(session, encoded, manifest.temperature);
   const p = 1 / (1 + Math.exp(-z));
-  if (!Number.isFinite(p) || p < 0 || p > 1) throw new DecisionGateError('DG_INFERENCE_ERROR', 'Invalid yes probability');
+  if (!Number.isFinite(p) || p < 0 || p > 1) throw new DecisionGatorError('DG_INFERENCE_ERROR', 'Invalid yes probability');
   return p;
 }
 // Ranks options by calibrated probability; matches the native GateSession::choose / rank functions.
@@ -102,6 +102,6 @@ async function evaluateChoice(message) {
 self.onmessage = ({ data }) => {
   queue = queue.then(async () => {
     try { self.postMessage({ id: data.id, value: await (data.kind === 'choose' ? evaluateChoice(data) : evaluate(data)) }); }
-    catch (error) { self.postMessage({ id: data.id, error: { code: error.code ?? 'DG_RESOURCE_ERROR', message: error.message ?? 'DecisionGate failed' } }); }
+    catch (error) { self.postMessage({ id: data.id, error: { code: error.code ?? 'DG_RESOURCE_ERROR', message: error.message ?? 'DecisionGator failed' } }); }
   });
 };

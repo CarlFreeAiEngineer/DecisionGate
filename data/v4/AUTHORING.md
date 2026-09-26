@@ -11,7 +11,7 @@ This brief is for anyone (person or agent) writing new records. Read it fully be
 One JSON object per line, in a `.jsonl` file. Fields, all required:
 
 ```json
-{"schema_version": 1, "id": "refund_intent-017-2", "group_id": "refund_intent-017", "content": "I returned the boots last week. Please credit the purchase price back to the card I used.", "question": "Is the customer requesting a refund?", "criteria": null, "label": 1, "label_type": "binary", "task_family": "refund_intent", "source": "decisiongate-v4-authored", "provenance": {"type": "synthetic", "generator": "AI sub-agent", "generation_recipe": "Individually authored English content with contrasting questions or contrasting content in each group; explicit labels and rationales; no template expansion; no external examples copied.", "created": "2026-09-19"}, "license": "CC0-1.0", "rationale": "Asking to credit the purchase price back is a refund request even though the word refund is absent.", "review_status": "synthetic_unreviewed", "split": "train"}
+{"schema_version": 1, "id": "refund_intent-017-2", "group_id": "refund_intent-017", "content": "I returned the boots last week. Please credit the purchase price back to the card I used.", "question": "Is the customer requesting a refund?", "criteria": null, "label": 1, "label_type": "binary", "task_family": "refund_intent", "source": "decisiongator-v4-authored", "provenance": {"type": "synthetic", "generator": "AI sub-agent", "generation_recipe": "Individually authored English content with contrasting questions or contrasting content in each group; explicit labels and rationales; no template expansion; no external examples copied.", "created": "2026-09-19"}, "license": "CC0-1.0", "rationale": "Asking to credit the purchase price back is a refund request even though the word refund is absent.", "review_status": "synthetic_unreviewed", "split": "train"}
 ```
 
 - `id` is `<family>-<group number, three digits>-<k>`; `group_id` is `<family>-<group number>`. Every record in a group shares the group id and the split.
@@ -36,4 +36,4 @@ Most groups (about two thirds) hold one content with two questions that have dif
 
 ## Validation
 
-From the repository root, `uv run decisiongate-train validate --data data/v4/<file>.jsonl` checks the format, duplicate inputs, and group/split consistency. Fix every error before finishing.
+From the repository root, `uv run decisiongator-train validate --data data/v4/<file>.jsonl` checks the format, duplicate inputs, and group/split consistency. Fix every error before finishing.

@@ -2,7 +2,7 @@
   "format_version": 1,
   "template_version": 2,
   "choice_template_version": 1,
-  "model_id": "decisiongate-0.4.1",
+  "model_id": "decisiongator-0.4.1",
   "max_tokens": 256,
   "base_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
   "base_revision": "cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2",

@@ -9,7 +9,7 @@ const destination = join(root, '../released/node');
 mkdirSync(destination, {recursive:true});
 const [command, commandArgs] = npmCommand(['pack','--json','--pack-destination',destination]);
 const [packed] = JSON.parse(execFileSync(command, commandArgs, {cwd:root,encoding:'utf8',maxBuffer:1024*1024}));
-const name = `decisiongate-${packed.version}-${process.platform}-${process.arch}.tgz`;
+const name = `decisiongator-${packed.version}-${process.platform}-${process.arch}.tgz`;
 renameSync(join(destination,packed.filename),join(destination,name));
 const hash = createHash('sha256');
 for await (const chunk of createReadStream(join(destination,name))) hash.update(chunk);

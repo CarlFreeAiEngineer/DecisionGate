@@ -9,7 +9,7 @@ ONNX Runtime splits each operation evenly across its threads, so the slowest cor
 - **macOS and iOS:** the performance-cluster core count from the system (`hw.perflevel0.physicalcpu`), or the physical core count on Intel Macs.
 - **Linux and Android:** Intel hybrid chips list their performance cores in `/sys/devices/cpu_core/cpus`; ARM chips rate each core's capacity, and the big and middle clusters are kept. Physical cores are then counted once, ignoring hyperthreads.
 - **Windows:** cores with the highest efficiency class, from `GetLogicalProcessorInformationEx`.
-- **Everywhere:** never more than the process is allowed to use. `DECISIONGATE_THREADS` overrides the count when a model loads.
+- **Everywhere:** never more than the process is allowed to use. `DECISIONGATOR_THREADS` overrides the count when a model loads.
 - **Browsers:** browsers do not report which cores are fast, so a cross-origin isolated page uses `navigator.hardwareConcurrency` threads. Other pages stay on one thread, because threaded WebAssembly needs `SharedArrayBuffer`.
 
 ## Measurements

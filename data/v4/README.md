@@ -33,4 +33,4 @@ A blind audit on 2026-09-19 re-labelled a fixed-seed random sample of 232 record
 
 ## Loading
 
-Pass each file with `--extra-data` (see the reproduce section of [the version 0.4.0 report](../../reports/accuracy-v4.md)). `uv run decisiongate-train validate --data FILE` checks any file alone; adding `--extra-data` for the rest checks cross-file duplicates.
+Pass each file with `--extra-data` (see the reproduce section of [the version 0.4.0 report](../../reports/accuracy-v4.md)). `uv run decisiongator-train validate --data FILE` checks any file alone; adding `--extra-data` for the rest checks cross-file duplicates.

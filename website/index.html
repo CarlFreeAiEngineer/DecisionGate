@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DecisionGate</title>
-<meta name="description" content="DecisionGate: an offline yes/no decision component for your software. A library, some arguments, a return value. Not an AI.">
+<title>DecisionGator</title>
+<meta name="description" content="DecisionGator: an offline yes/no decision component for your software. A library, some arguments, a return value. Not an AI.">
 <style>
   :root {
     --bg: #fbfaf7; --ink: #1c1b18; --muted: #5d5a52; --accent: #b3361c;
@@ -49,7 +49,7 @@
 <body>
 <main>
 
-<h1>DecisionGate<small>Your software probably needs this.</small></h1>
+<h1>DecisionGator<small>Your software probably needs this.</small></h1>
 
 <p>You're building an application. A user types, <em>"Any chance I could come in next Tuesday?"</em> Your software needs to make one simple decision: is this person asking for an appointment?</p>
 
@@ -70,7 +70,7 @@ Please. I have a family. Just valid JSON... I'm begging you.</code></pre>
 
 <h2 class="shout">Now you can.</h2>
 
-<pre><code><span class="k">from</span> decisiongate <span class="k">import</span> is_yes
+<pre><code><span class="k">from</span> decisiongator <span class="k">import</span> is_yes
 
 appointment_requested = is_yes(
     <span class="c">"Any chance I could come in next Tuesday?",</span>
@@ -89,7 +89,7 @@ appointment_requested = is_yes(
 
 <p>Every language has one. You hand it a pattern and some text, and you get back a boolean. Nobody runs a regex server. Nobody has a regex API key. Nobody thinks of it as AI. You just call it, thousands of times a second, and get on with your day.</p>
 
-<p>DecisionGate is the same kind of thing, except the pattern is a question in plain English:</p>
+<p>DecisionGator is the same kind of thing, except the pattern is a question in plain English:</p>
 
 <pre><code>re.search(<span class="c">r"\b(appointment|come in|book|schedule)\b"</span>, text)   <span class="c"># the old way</span>
 is_yes(text, <span class="c">"Is this person asking for an appointment?"</span>)     <span class="c"># the new way</span></code></pre>
@@ -100,9 +100,9 @@ is_yes(text, <span class="c">"Is this person asking for an appointment?"</span>)
 
 <p>There is a famous set of experiments on people whose two brain hemispheres were surgically separated. Only one side can talk. The other side is silent, but it isn't stupid: ask it a question and it answers, correctly, by pointing. It just never explains itself. <a href="https://www.youtube.com/watch?v=wfYbgdo8e-8">CGP Grey has a lovely video about it.</a></p>
 
-<p>Large language models are the talking side. Wonderful at explaining, terrible at shutting up. DecisionGate is the silent side: it reads, it decides, it points at <em>yes</em> or <em>no</em> or one of your options, and it says nothing else. Give your code both halves and let each do what it's good at.</p>
+<p>Large language models are the talking side. Wonderful at explaining, terrible at shutting up. DecisionGator is the silent side: it reads, it decides, it points at <em>yes</em> or <em>no</em> or one of your options, and it says nothing else. Give your code both halves and let each do what it's good at.</p>
 
-<p class="muted">If you know <a href="https://www.jevai.org/">JEV</a> from TypeSafe AI, the brain under the hood is similar: a small classifier that takes some text and a question and returns a typed answer with a probability, instead of generating prose. But JEV is a paid API on somebody else's server. DecisionGate is a library file in your build. For a working programmer the two are as different as a web service and a function call: no account, no network, no bill, no one else's outage, and the model is yours to retrain.</p>
+<p class="muted">If you know <a href="https://www.jevai.org/">JEV</a> from TypeSafe AI, the brain under the hood is similar: a small classifier that takes some text and a question and returns a typed answer with a probability, instead of generating prose. But JEV is a paid API on somebody else's server. DecisionGator is a library file in your build. For a working programmer the two are as different as a web service and a function call: no account, no network, no bill, no one else's outage, and the model is yours to retrain.</p>
 
 <h2>In whatever language you already write</h2>
 
@@ -117,29 +117,29 @@ is_yes(text, <span class="c">"Is this person asking for an appointment?"</span>)
   <button role="tab" data-lang="other">Anything that can call a C library</button>
 </div>
 
-<pre class="snippet" data-lang="python"><code><span class="k">from</span> decisiongate <span class="k">import</span> is_yes
+<pre class="snippet" data-lang="python"><code><span class="k">from</span> decisiongator <span class="k">import</span> is_yes
 
 <span class="k">if</span> is_yes(text, <span class="c">"Is the customer asking to cancel?"</span>):
     route_to_cancellations()</code></pre>
 
-<pre class="snippet" data-lang="java" hidden><code><span class="k">import</span> org.decisiongate.Decisions;
+<pre class="snippet" data-lang="java" hidden><code><span class="k">import</span> org.decisiongator.Decisions;
 
 <span class="k">if</span> (Decisions.isYes(text, <span class="c">"Is the customer asking to cancel?"</span>)) {
     routeToCancellations();
 }</code></pre>
 
-<pre class="snippet" data-lang="ts" hidden><code><span class="k">import</span> { isYes } <span class="k">from</span> <span class="c">"decisiongate"</span>;
+<pre class="snippet" data-lang="ts" hidden><code><span class="k">import</span> { isYes } <span class="k">from</span> <span class="c">"decisiongator"</span>;
 
 <span class="k">if</span> (<span class="k">await</span> isYes(text, <span class="c">"Is the customer asking to cancel?"</span>)) {
     routeToCancellations();
 }</code></pre>
 
-<pre class="snippet" data-lang="csharp" hidden><code><span class="k">using</span> DecisionGate;
+<pre class="snippet" data-lang="csharp" hidden><code><span class="k">using</span> DecisionGator;
 
 <span class="k">if</span> (Decisions.IsYes(text, <span class="c">"Is the customer asking to cancel?"</span>))
     RouteToCancellations();</code></pre>
 
-<pre class="snippet" data-lang="c" hidden><code><span class="k">#include</span> <span class="c">"decisiongate.h"</span>
+<pre class="snippet" data-lang="c" hidden><code><span class="k">#include</span> <span class="c">"decisiongator.h"</span>
 
 uint8_t yes;
 <span class="k">if</span> (dg_is_yes(text, strlen(text), q, strlen(q), NULL, &amp;yes) == DG_OK &amp;&amp; yes)
@@ -152,7 +152,7 @@ uint8_t yes;
     Err(e) =&gt; eprintln!(<span class="c">"could not evaluate: {e}"</span>),
 }</code></pre>
 
-<pre class="snippet" data-lang="browser" hidden><code><span class="k">import</span> { isYes } <span class="k">from</span> <span class="c">"decisiongate/web"</span>;
+<pre class="snippet" data-lang="browser" hidden><code><span class="k">import</span> { isYes } <span class="k">from</span> <span class="c">"decisiongator/web"</span>;
 
 <span class="c">// Runs on the user's device. Their text never leaves the page.</span>
 <span class="k">if</span> (<span class="k">await</span> isYes(text, <span class="c">"Is the customer asking to cancel?"</span>)) {
@@ -174,7 +174,7 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
 <div class="tablewrap"><table>
 <thead><tr><th></th><th>Setup</th><th>The answer comes back as</th><th>Offline</th><th>Wrong answer?</th><th>License</th></tr></thead>
 <tbody>
-<tr><td>DecisionGate</td><td>Add a library</td><td>A boolean</td><td>Yes</td><td>Add data, retrain</td><td>Apache-2.0</td></tr>
+<tr><td>DecisionGator</td><td>Add a library</td><td>A boolean</td><td>Yes</td><td>Add data, retrain</td><td>Apache-2.0</td></tr>
 <tr><td>Regex / keywords</td><td>None</td><td>A boolean, for the cases you thought of</td><td>Yes</td><td>Add a pattern, break another</td><td>Yours</td></tr>
 <tr><td>LLM API</td><td>API key, billing, network</td><td>JSON, if you beg</td><td>No</td><td>Prompt harder and hope</td><td>Proprietary</td></tr>
 <tr><td>Local LLM<br><span class="muted">Ollama, llama.cpp</span></td><td>Runtime, model files, a GPU to wish for</td><td>JSON, if you beg</td><td>Yes</td><td>Prompt harder and hope</td><td>Varies</td></tr>
@@ -185,7 +185,7 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
 
 <p class="muted">Numbers come from each project's own published material as of September 2026 and will drift. Check the source before relying on any of them.</p>
 
-<p><strong>Regex and keyword matching</strong> is what most software actually does today, and it's the right tool until the day someone writes "no rush, but could I come in Tuesday?" Every fuzzy case becomes another pattern, and every new pattern breaks an old one. DecisionGate is for the decisions that were never really regular expressions.</p>
+<p><strong>Regex and keyword matching</strong> is what most software actually does today, and it's the right tool until the day someone writes "no rush, but could I come in Tuesday?" Every fuzzy case becomes another pattern, and every new pattern breaks an old one. DecisionGator is for the decisions that were never really regular expressions.</p>
 
 <p><strong>A hosted LLM</strong> is the most flexible and the best on hard cases. It is also an API key, a bill, a network dependency, your users' text on someone else's server, and an afternoon of begging for JSON. That is the reason this project exists.</p>
 
@@ -195,7 +195,7 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
 
 <p><strong>Needle 3</strong> is a remarkable piece of engineering aimed at a different job: tool calling, structured extraction, and embeddings on phones, wearables, and microcontrollers, in 8 to 29 MB. You can coax a classification out of it by defining one tool per label, but there is no <code>is_yes(text, question)</code>, and it ships as a Python package or C library rather than ready-made Java, Node, browser, and Rust interfaces. Read the license twice: the weights and Python package are Apache-2.0, but the engine that runs them is free only for individuals, nonprofits, and companies under $2M in funding and revenue. Above that, you need a commercial license from Cactus Compute. The engine binary also has telemetry on by default.</p>
 
-<p><strong>A zero-shot NLI model</strong> is free and open, and a fine choice if you already live in Python with PyTorch installed and want to write the tokenization, prompting, thresholds, calibration, and packaging yourself. It is also what DecisionGate is built from, one layer down. DecisionGate is that work, done once, shipped as a component for seven languages.</p>
+<p><strong>A zero-shot NLI model</strong> is free and open, and a fine choice if you already live in Python with PyTorch installed and want to write the tokenization, prompting, thresholds, calibration, and packaging yourself. It is also what DecisionGator is built from, one layer down. DecisionGator is that work, done once, shipped as a component for seven languages.</p>
 
 <h2>What if it gives a wrong answer?</h2>
 
@@ -209,11 +209,11 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
 
 <hr>
 
-<p style="text-align:center"><a class="cta" href="https://github.com/CarlFreeAiEngineer/DecisionGate">Get it on GitHub</a> &nbsp; <a class="cta" href="try.html">Try it in your browser</a></p>
+<p style="text-align:center"><a class="cta" href="https://github.com/CarlFreeAiEngineer/DecisionGator">Get it on GitHub</a> &nbsp; <a class="cta" href="try.html">Try it in your browser</a></p>
 <p class="muted" style="text-align:center">Clone it. Call it. Retrain it. Send us your examples. Or edit and run a live JavaScript example right here, with nothing leaving your device.</p>
 
 <footer>
-  <p>DecisionGate is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The name means what it says: a gate that your software's decisions pass through, one boolean at a time.</p>
+  <p>DecisionGator is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The name means what it says: a gate that your software's decisions pass through, one boolean at a time.</p>
 </footer>
 
 </main>
@@ -224,11 +224,11 @@ dg_status dg_is_yes(<span class="k">const char</span> *content, size_t content_b
     function show(lang) {
       tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.lang === lang ? 'true' : 'false'); });
       panes.forEach(function (p) { p.hidden = p.dataset.lang !== lang; });
-      try { localStorage.setItem('decisiongate-lang', lang); } catch (e) {}
+      try { localStorage.setItem('decisiongator-lang', lang); } catch (e) {}
     }
     tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.lang); }); });
     var saved = null;
-    try { saved = localStorage.getItem('decisiongate-lang'); } catch (e) {}
+    try { saved = localStorage.getItem('decisiongator-lang'); } catch (e) {}
     if (saved && document.querySelector('.snippet[data-lang="' + saved + '"]')) show(saved);
   })();
 </script>

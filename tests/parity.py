@@ -7,7 +7,7 @@ import time
 import numpy as np
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
-from decisiongate import Session
+from decisiongator import Session
 from training.pipeline import read_data, encode
 
 

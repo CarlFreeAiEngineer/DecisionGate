@@ -62,5 +62,5 @@
   "node_build_assets": {
     "node-v26.7.0-headers.tar.gz": "00ef24b4724342592aa7a14f9105282a59a7397c8ff7a28166243f5029ce2217"
   },
-  "node_headers": "/home/ace/DecisionGate-build-20260923/tools/node-build/v26.7.0/node-v26.7.0/include/node"
+  "node_headers": "/home/ace/DecisionGator-build-20260923/tools/node-build/v26.7.0/node-v26.7.0/include/node"
 }

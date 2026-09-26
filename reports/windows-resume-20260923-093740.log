@@ -5,7 +5,7 @@ Username: WIN-K1V0HGID0VK\ace
 RunAs User: WIN-K1V0HGID0VK\ace
 Configuration Name: 
 Machine: WIN-K1V0HGID0VK (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\system32\WindowsPowerShell\v1.0\PowerShell.exe -NoExit -ExecutionPolicy Bypass -File \\host.lan\Data\windows_build.ps1 -Root C:\DecisionGate-build-20260919 -UpdateArchive \\host.lan\Data\win-0.4.1.tar.gz -RebuildNative
+Host Application: C:\WINDOWS\system32\WindowsPowerShell\v1.0\PowerShell.exe -NoExit -ExecutionPolicy Bypass -File \\host.lan\Data\windows_build.ps1 -Root C:\DecisionGator-build-20260919 -UpdateArchive \\host.lan\Data\win-0.4.1.tar.gz -RebuildNative
 Process ID: 66940
 PSVersion: 5.1.26100.7920
 PSEdition: Desktop
@@ -16,50 +16,50 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Transcript started, output file is C:\DecisionGate-build-20260919\reports\windows-resume-20260923-093740.log
-Running: tar.exe -xzf \\host.lan\Data\win-0.4.1.tar.gz -C C:\DecisionGate-build-20260919
-Passed: tar.exe (log: C:\DecisionGate-build-20260919\reports\windows-update.log)
-Running: C:\WINDOWS\system32\cmd.exe /d /c C:\DecisionGate-build-20260919\tools\windows-msvc-environment.cmd
-Passed: C:\WINDOWS\system32\cmd.exe (log: C:\DecisionGate-build-20260919\tools\windows-msvc-environment.txt)
+Transcript started, output file is C:\DecisionGator-build-20260919\reports\windows-resume-20260923-093740.log
+Running: tar.exe -xzf \\host.lan\Data\win-0.4.1.tar.gz -C C:\DecisionGator-build-20260919
+Passed: tar.exe (log: C:\DecisionGator-build-20260919\reports\windows-update.log)
+Running: C:\WINDOWS\system32\cmd.exe /d /c C:\DecisionGator-build-20260919\tools\windows-msvc-environment.cmd
+Passed: C:\WINDOWS\system32\cmd.exe (log: C:\DecisionGator-build-20260919\tools\windows-msvc-environment.txt)
 
-Preserved previous/incomplete bundle: C:\DecisionGate-build-20260919\tools\windows-native-before-20260923-093740-0ee03159
+Preserved previous/incomplete bundle: C:\DecisionGator-build-20260919\tools\windows-native-before-20260923-093740-0ee03159
 Running: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe run --python 3.12 --with onnxruntime==1.22.1 code/build.py --model released/macos-arm64 --output released/windows-x64
-uv.exe :    Compiling decisiongate v0.1.0 (C:\DecisionGate-build-20260919\code)
+uv.exe :    Compiling decisiongator v0.1.0 (C:\DecisionGator-build-20260919\code)
 At \\host.lan\Data\windows_build.ps1:46 char:9
 +         & $Executable @Arguments *> $Log
 +         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (   Compiling de...-20260919\code):String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
     Finished `release` profile [optimized] target(s) in 5m 09s
-Passed: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGate-build-20260919\reports\windows-build.log)
+Passed: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGator-build-20260919\reports\windows-build.log)
 Running: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe run --python 3.12 tests/package_check.py --bundle released/windows-x64 --output reports/windows-package.json
-Passed: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGate-build-20260919\reports\windows-package.log)
+Passed: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGator-build-20260919\reports\windows-package.log)
 Running: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe run --python 3.12 code/remote_packages.py
-  File "C:\DecisionGate-build-20260919\code\remote_packages.py", line 173, in <module>
-python-build: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-python-build.log)
+  File "C:\DecisionGator-build-20260919\code\remote_packages.py", line 173, in <module>
+python-build: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-python-build.log)
 python-build: passed
-python-consumer: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-python-consumer.log)
+python-consumer: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-python-consumer.log)
 python-consumer: passed
-node-dependencies: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-dependencies.log)
+node-dependencies: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-node-dependencies.log)
 node-dependencies: passed
-node-build: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-build.log)
+node-build: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-node-build.log)
 node-build: passed
-node-tests: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-tests.log)
+node-tests: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-node-tests.log)
 node-tests: passed
-node-pack: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-pack.log)
+node-pack: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-node-pack.log)
 node-pack: passed
-node-consumer: running (log: C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-consumer.log)
+node-consumer: running (log: C:\DecisionGator-build-20260919\reports\remote-windows-x64-node-consumer.log)
 npm error A complete log of this run can be found in: C:\Users\ace\AppData\Local\npm-cache\_logs\2026-09-23T17_07_43_793Z-debug-0.log
 node:internal/errors:985
   const err = new Error(message);
               ^
 
-Error: Command failed: C:\Program Files\nodejs\node.EXE C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js install --offline --ignore-scripts --no-audit --no-fund C:\DecisionGate-build-20260919\released\node\decisiongate-0.4.1-win32-x64.tgz
+Error: Command failed: C:\Program Files\nodejs\node.EXE C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js install --offline --ignore-scripts --no-audit --no-fund C:\DecisionGator-build-20260919\released\node\decisiongator-0.4.1-win32-x64.tgz
     at genericNodeError (node:internal/errors:985:15)
     at wrappedFn (node:internal/errors:539:14)
     at checkExecSyncError (node:child_process:942:11)
     at execFileSync (node:child_process:978:15)
-    at file:///C:/DecisionGate-build-20260919/javascript/test/consumer.mjs:19:3
+    at file:///C:/DecisionGator-build-20260919/javascript/test/consumer.mjs:19:3
     at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
     at async node:internal/modules/esm/loader:643:26
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
@@ -80,14 +80,14 @@ At \\host.lan\Data\windows_build.ps1:46 char:9
     + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
 
-  File "C:\DecisionGate-build-20260919\code\remote_packages.py", line 173, in <module>
+  File "C:\DecisionGator-build-20260919\code\remote_packages.py", line 173, in <module>
     main()
-  File "C:\DecisionGate-build-20260919\code\remote_packages.py", line 155, in main
+  File "C:\DecisionGator-build-20260919\code\remote_packages.py", line 155, in main
     run('node-consumer', [node,ROOT/'javascript/test/consumer.mjs'])
-  File "C:\DecisionGate-build-20260919\code\remote_packages.py", line 128, in run
+  File "C:\DecisionGator-build-20260919\code\remote_packages.py", line 128, in run
     raise RuntimeError(f'{name} failed; see {log}')
-RuntimeError: node-consumer failed; see C:\DecisionGate-build-20260919\reports\remote-windows-x64-node-consumer.log
-PS>TerminatingError(): "Native command failed with exit code 1: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGate-build-20260919\reports\windows-packages.log)"
+RuntimeError: node-consumer failed; see C:\DecisionGator-build-20260919\reports\remote-windows-x64-node-consumer.log
+PS>TerminatingError(): "Native command failed with exit code 1: C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log: C:\DecisionGator-build-20260919\reports\windows-packages.log)"
 Name        Source
 ----        ------
 cl.exe      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\bin\HostX64\x64...
@@ -101,14 +101,14 @@ node.exe    C:\Program Files\nodejs\node.exe
 PSMessageDetails      :
 Exception             : System.Management.Automation.RuntimeException: Native command failed with exit code 1:
                         C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log:
-                        C:\DecisionGate-build-20260919\reports\windows-packages.log)
+                        C:\DecisionGator-build-20260919\reports\windows-packages.log)
 TargetObject          : Native command failed with exit code 1:
                         C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log:
-                        C:\DecisionGate-build-20260919\reports\windows-packages.log)
+                        C:\DecisionGator-build-20260919\reports\windows-packages.log)
 CategoryInfo          : OperationStopped: (Native command ...s-packages.log):String) [], RuntimeException
 FullyQualifiedErrorId : Native command failed with exit code 1:
                         C:\Users\ace\AppData\Local\Microsoft\WinGet\Links\uv.exe (log:
-                        C:\DecisionGate-build-20260919\reports\windows-packages.log)
+                        C:\DecisionGator-build-20260919\reports\windows-packages.log)
 ErrorDetails          :
 InvocationInfo        : System.Management.Automation.InvocationInfo
 ScriptStackTrace      : at Invoke-NativeLogged, \\host.lan\Data\windows_build.ps1: line 53

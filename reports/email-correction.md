@@ -14,20 +14,20 @@ Training used the existing checkpoint plus [36 new training examples](../data/co
 
 The exported candidate is in `models/email-correction-v1/`, its retrainable checkpoint in `runs/email-correction-v1/best/`, and its working Mac native bundle in `models/email-correction-v1-macos/`. The native build passed six Rust tests, 144 ABI/Python checks, and C loading, inference, and clean exit. [Native/export comparison](email-correction-native-parity.json) checks all 40 email test probabilities. No Windows, Linux, browser, or Java release packages were replaced.
 
-The editable Java example is `tmp/TryDecisionGate.java`; run it with `uv run --offline --no-project tmp/run_java.py`. It uses the current released Java package. To compare the current and retrained native versions using the question and text in `tmp/try_decisiongate.py`, run `uv run --offline --no-project tmp/compare_decisiongate.py`. These personal examples are gitignored.
+The editable Java example is `tmp/TryDecisionGator.java`; run it with `uv run --offline --no-project tmp/run_java.py`. It uses the current released Java package. To compare the current and retrained native versions using the question and text in `tmp/try_decisiongator.py`, run `uv run --offline --no-project tmp/compare_decisiongator.py`. These personal examples are gitignored.
 
 ## Reproduce
 
 Choose new output directories when repeating these commands. Existing run and export directories are protected.
 
 ```sh
-uv run --locked decisiongate-train validate --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl
-uv run --locked decisiongate-train train --start runs/v2-nli-expanded/best --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --learning-rate 0.00001 --epochs 10 --device mps --output runs/email-correction-v1
-uv run --locked decisiongate-train export --checkpoint runs/email-correction-v1/best --output models/email-correction-v1 --model-id email-correction-v1
-uv run --locked decisiongate-train calibrate --bundle models/email-correction-v1 --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --output reports/email-correction-calibration.json
-uv run --locked decisiongate-train evaluate --bundle models/email-correction-v1 --data data/email-address-test.jsonl --split test --output reports/email-correction-after-email-test.json
-uv run --locked decisiongate-train evaluate --bundle models/email-correction-v1 --data data/evaluation-v2.jsonl --split test --output reports/email-correction-after-general-test.json
-uv run --locked decisiongate-train evaluate --bundle models/email-correction-v1 --split test --output reports/email-correction-after-old-test.json
+uv run --locked decisiongator-train validate --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl
+uv run --locked decisiongator-train train --start runs/v2-nli-expanded/best --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --learning-rate 0.00001 --epochs 10 --device mps --output runs/email-correction-v1
+uv run --locked decisiongator-train export --checkpoint runs/email-correction-v1/best --output models/email-correction-v1 --model-id email-correction-v1
+uv run --locked decisiongator-train calibrate --bundle models/email-correction-v1 --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --output reports/email-correction-calibration.json
+uv run --locked decisiongator-train evaluate --bundle models/email-correction-v1 --data data/email-address-test.jsonl --split test --output reports/email-correction-after-email-test.json
+uv run --locked decisiongator-train evaluate --bundle models/email-correction-v1 --data data/evaluation-v2.jsonl --split test --output reports/email-correction-after-general-test.json
+uv run --locked decisiongator-train evaluate --bundle models/email-correction-v1 --split test --output reports/email-correction-after-old-test.json
 uv run --with onnxruntime==1.22.1 code/build.py --model models/email-correction-v1 --output models/email-correction-v1-macos
 ```
 

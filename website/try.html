@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Try DecisionGate</title>
-<meta name="description" content="Edit and run a DecisionGate example in your browser. The decision is made on your device; nothing you type leaves it.">
+<title>Try DecisionGator</title>
+<meta name="description" content="Edit and run a DecisionGator example in your browser. The decision is made on your device; nothing you type leaves it.">
 <style>
   :root {
     --bg: #fbfaf7; --ink: #1c1b18; --muted: #5d5a52; --accent: #b3361c;
@@ -48,9 +48,9 @@
 <body>
 <main>
 
-<h1>Try DecisionGate<small>Edit the code. Run it. Nothing you type leaves your browser.</small></h1>
+<h1>Try DecisionGator<small>Edit the code. Run it. Nothing you type leaves your browser.</small></h1>
 
-<p>This is the same component that ships in the <a href="https://github.com/CarlFreeAiEngineer/DecisionGate">repository</a>, compiled to WebAssembly and running on YOUR CPU, inside this page. No API key. No server. No network call carries your text anywhere. Change the text or the question, then press RUN.</p>
+<p>This is the same component that ships in the <a href="https://github.com/CarlFreeAiEngineer/DecisionGator">repository</a>, compiled to WebAssembly and running on YOUR CPU, inside this page. No API key. No server. No network call carries your text anywhere. Change the text or the question, then press RUN.</p>
 
 <p class="muted">The component is about 580 MB of weights and runtime, downloaded when the page opens. After that, each decision takes a fraction of a second on a laptop. Desktop Chromium, Firefox, and Safari are supported.</p>
 
@@ -66,14 +66,14 @@
 
 <h2>What you are looking at</h2>
 
-<p>That is the whole thing: one function, two strings, one boolean. Your code can also call <code>isYesP</code> for the probability instead of a boolean, <code>chooseP</code> and <code>choose</code> to rank several options, and pass <code>{ criteria: { yes, no } }</code> to spell out what counts; <code>print</code> writes to the box above. They are the same calls, with the same weights and the same answers, as the Python, Java, C#, C, Rust, and Node.js interfaces in the repository. See <a href="https://github.com/CarlFreeAiEngineer/DecisionGate/blob/main/EXAMPLE_USAGE.md">EXAMPLE_USAGE.md</a> for every language.</p>
+<p>That is the whole thing: one function, two strings, one boolean. Your code can also call <code>isYesP</code> for the probability instead of a boolean, <code>chooseP</code> and <code>choose</code> to rank several options, and pass <code>{ criteria: { yes, no } }</code> to spell out what counts; <code>print</code> writes to the box above. They are the same calls, with the same weights and the same answers, as the Python, Java, C#, C, Rust, and Node.js interfaces in the repository. See <a href="https://github.com/CarlFreeAiEngineer/DecisionGator/blob/main/EXAMPLE_USAGE.md">EXAMPLE_USAGE.md</a> for every language.</p>
 
-<p>To put this in your own page, copy the <code>web/</code> folder from a release into your site's assets and <code>import { isYes } from './web/index.js'</code>. That is all. <a href="https://github.com/CarlFreeAiEngineer/DecisionGate/blob/main/web/README.md">Hosting notes</a> cover headers and content security policy.</p>
+<p>To put this in your own page, copy the <code>web/</code> folder from a release into your site's assets and <code>import { isYes } from './web/index.js'</code>. That is all. <a href="https://github.com/CarlFreeAiEngineer/DecisionGator/blob/main/web/README.md">Hosting notes</a> cover headers and content security policy.</p>
 
-<p style="text-align:center; margin-top:2.5em"><a href="./">Back to DecisionGate</a> · <a href="https://github.com/CarlFreeAiEngineer/DecisionGate">Get it on GitHub</a></p>
+<p style="text-align:center; margin-top:2.5em"><a href="./">Back to DecisionGator</a> · <a href="https://github.com/CarlFreeAiEngineer/DecisionGator">Get it on GitHub</a></p>
 
 <footer>
-  <p>DecisionGate is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The model is experimental; measured accuracy is in the repository's reports.</p>
+  <p>DecisionGator is a project of <a href="https://ordinarydata.com/">Ordinary Data</a>. The model is experimental; measured accuracy is in the repository's reports.</p>
 </footer>
 
 </main>

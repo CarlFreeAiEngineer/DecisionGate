@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
@@ -11,11 +11,11 @@ class DecisionsTest {
     @Test
     void invalidTextIsRejectedBeforeLoadingAssets() {
         for (String invalid : new String[] {null, "", " \n", "\ud800", "\udfff"}) {
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.isYesP(invalid, "Is cancellation requested?")).statusCode());
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.isYes(invalid, "Is cancellation requested?")).statusCode());
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.isYesP("Cancel my subscription.", invalid,
                             new Criteria("A cancellation request.", "No cancellation request."))).statusCode());
         }
@@ -28,11 +28,11 @@ class DecisionsTest {
     @Test
     void invalidTextIsRejectedBeforeLoadingAssetsForChoose() {
         for (String invalid : new String[] {null, "", " \n", "\ud800", "\udfff"}) {
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.chooseP(invalid, QUESTION, TEAMS)).statusCode());
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.choose(invalid, QUESTION, TEAMS)).statusCode());
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.chooseP(CONTENT, invalid, TEAMS)).statusCode());
         }
     }
@@ -41,9 +41,9 @@ class DecisionsTest {
     void invalidOptionsAreRejectedBeforeLoadingAssets() {
         for (List<String> invalid : new List[] {null, List.of(), List.of("only one"),
                 Arrays.asList("billing", null), List.of("billing", " \t\n")}) {
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.chooseP(CONTENT, QUESTION, invalid)).statusCode());
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> Decisions.choose(CONTENT, QUESTION, invalid)).statusCode());
         }
     }
@@ -58,7 +58,7 @@ class DecisionsTest {
                     () -> Decisions.choose(null, null, null, new Criteria("Yes", "No"), threshold));
         }
         for (double threshold : new double[] {0.0, -0.0, 0.5, 1.0}) {
-            assertThrows(DecisionGateException.class,
+            assertThrows(DecisionGatorException.class,
                     () -> Decisions.choose(null, null, null, threshold));
         }
     }
@@ -73,7 +73,7 @@ class DecisionsTest {
                     () -> Decisions.isYes(null, null, new Criteria("Yes", "No"), threshold));
         }
         for (double threshold : new double[] {0.0, -0.0, 0.5, 1.0}) {
-            assertThrows(DecisionGateException.class,
+            assertThrows(DecisionGatorException.class,
                     () -> Decisions.isYes(null, null, threshold));
         }
     }
@@ -82,13 +82,13 @@ class DecisionsTest {
     void missingAssetsCanBeRetriedWithoutPoisoningClassInitialization() {
         ClassLoader loader = Decisions.class.getClassLoader();
         for (String platform : new String[] {"macos-arm64", "linux-x64", "windows-x64"}) {
-            assumeTrue(loader.getResource("META-INF/decisiongate/" + platform + "/bundle.index") == null,
+            assumeTrue(loader.getResource("META-INF/decisiongator/" + platform + "/bundle.index") == null,
                     "This test exercises the API without a platform bundle on the classpath");
         }
         for (int attempt = 0; attempt < 2; attempt++) {
             IllegalStateException failure = assertThrows(IllegalStateException.class,
                     () -> Decisions.isYesP("Cancel my subscription.", "Is cancellation requested?"));
-            assertTrue(failure.getMessage().contains("No DecisionGate bundle"));
+            assertTrue(failure.getMessage().contains("No DecisionGator bundle"));
             assertThrows(IllegalStateException.class,
                     () -> Decisions.isYes("Cancel my subscription.", "Is cancellation requested?"));
             assertThrows(IllegalStateException.class, () -> Decisions.chooseP(CONTENT, QUESTION, TEAMS));

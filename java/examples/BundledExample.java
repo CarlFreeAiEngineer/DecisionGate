@@ -1,11 +1,11 @@
-import org.decisiongate.Criteria;
-import org.decisiongate.DecisionGateException;
-import org.decisiongate.Decisions;
+import org.decisiongator.Criteria;
+import org.decisiongator.DecisionGatorException;
+import org.decisiongator.Decisions;
 
 /** Run with the API, JNA, and native bundle JARs on the classpath. */
 public final class BundledExample {
     public static void main(String[] args) {
-        if (args.length != 0) System.setProperty("decisiongate.cache", args[0]);
+        if (args.length != 0) System.setProperty("decisiongator.cache", args[0]);
         double yes = Decisions.isYesP("Please return my money. The item arrived broken.",
                 "Is the customer asking for a refund?");
         double no = Decisions.isYesP("Could you send me a copy of the invoice?",
@@ -42,9 +42,9 @@ public final class BundledExample {
         try {
             Decisions.isYes("x".repeat(1_048_577), question);
             throw new AssertionError("Native failure became a boolean answer");
-        } catch (DecisionGateException expected) {
+        } catch (DecisionGatorException expected) {
             if (expected.statusCode() != 7) throw expected;
         }
-        System.out.println("Bundled Java inference passed; DecisionGate remains experimental.");
+        System.out.println("Bundled Java inference passed; DecisionGator remains experimental.");
     }
 }

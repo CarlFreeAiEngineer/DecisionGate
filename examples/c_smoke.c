@@ -1,4 +1,4 @@
-#include "decisiongate.h"
+#include "decisiongator.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,8 +8,8 @@ static int report(dg_status status) {
     dg_last_error(NULL, 0, &required);
     char *message = malloc(required);
     if (message && dg_last_error(message, required, &required) == DG_OK)
-        fprintf(stderr, "DecisionGate error %d: %s\n", status, message);
-    else fprintf(stderr, "DecisionGate error %d\n", status);
+        fprintf(stderr, "DecisionGator error %d: %s\n", status, message);
+    else fprintf(stderr, "DecisionGator error %d\n", status);
     free(message);
     return 1;
 }

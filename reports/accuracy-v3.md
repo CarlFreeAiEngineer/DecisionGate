@@ -27,7 +27,7 @@ Peak memory rose because ONNX Runtime materializes the float32 copy of every flo
 - **Multiple choice.** Each option is scored as a yes/no proposition (`question`, a line break, `Answer: option`), and the softmax over the options' calibrated log-odds gives probabilities that sum to one. See [behavior](../specs/behavior.md). The runtime, C header, Python, Java, Node.js, and browser packages all expose `choose`/`choose_p` with identical rules; the manifest records `choice_template_version: 1`.
 - **Data.** [data/choices.jsonl](../data/choices.jsonl) adds 120 synthetic multiple-choice records (72 train, 18 validation, 10 calibration, 20 test), each expanded by the pipeline into one yes/no row per option. The yes/no data is unchanged from 0.2.0: 404 training, 96 validation, 52 calibration rows, plus the frozen 52-case and 80-case tests.
 - **Model.** Same foundation and recipe as 0.2.0 (`cross-encoder/nli-MiniLM2-L6-H768`, NLI head initialization, template 2, learning rate 0.00001, batch 16, seed 42, 10 epochs on the M1 Pro GPU, about 135 seconds). Best validation log loss at epoch 8. Temperature scaling on the 52 calibration rows gave 1.16145.
-- **Float16 storage.** The new `decisiongate-train compress` command stores every float32 tensor as float16 and inserts a cast back to float32, so all arithmetic stays float32. Against the float32 export, 560 fresh-test and choice predictions moved by at most 0.0017 (mean 0.00013) with no decision flips. Int8 alternatives were measured and rejected again: dynamic, static, and partial int8 all moved individual probabilities by 0.3 to 0.9 and flipped 6 to 27 decisions per split. See [the shrink report](shrink/README.md).
+- **Float16 storage.** The new `decisiongator-train compress` command stores every float32 tensor as float16 and inserts a cast back to float32, so all arithmetic stays float32. Against the float32 export, 560 fresh-test and choice predictions moved by at most 0.0017 (mean 0.00013) with no decision flips. Int8 alternatives were measured and rejected again: dynamic, static, and partial int8 all moved individual probabilities by 0.3 to 0.9 and flipped 6 to 27 decisions per split. See [the shrink report](shrink/README.md).
 - **Smaller foundations were tested and rejected.** MiniLM-L12-H384, bert-small, and the original base all scored 41 to 46 percent on the fresh test. DeBERTa-v3-xsmall reached 79 percent validation but its export needs pipeline changes and its vocabulary makes it no smaller in practice. See [the foundation report](small-foundation/README.md). A closed-engine alternative was also considered and set aside because its inference engine is not open source; the project keeps only Apache-2.0 and MIT dependencies.
 
 ## Verification
@@ -41,12 +41,12 @@ Windows and Linux bundles were not rebuilt in this release and remain at 0.2.0.
 ## Reproduce
 
 ```text
-uv run decisiongate-train train --output runs/v3-nli-choices --base cross-encoder/nli-MiniLM2-L6-H768 --revision b95119ce93d3e065de6214e38cd4a97b0f2f2c6d --nli-head --template 2 --learning-rate 1e-5 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl
-uv run decisiongate-train export --checkpoint runs/v3-nli-choices/best --output models/v3-nli-choices --model-id decisiongate-0.3.0-nli-choices-experimental
-uv run decisiongate-train compress --bundle models/v3-nli-choices --output models/v3-nli-choices-fp16 --model-id decisiongate-0.3.0-nli-choices-fp16-experimental
-uv run decisiongate-train calibrate --bundle models/v3-nli-choices-fp16 --output reports/v3/calibration.json --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl
-uv run decisiongate-train evaluate --bundle models/v3-nli-choices-fp16 --split test --output reports/v3/test.json --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl
-uv run decisiongate-train evaluate --bundle models/v3-nli-choices-fp16 --data data/evaluation-v2.jsonl --split test --output reports/v3/fresh-test.json
+uv run decisiongator-train train --output runs/v3-nli-choices --base cross-encoder/nli-MiniLM2-L6-H768 --revision b95119ce93d3e065de6214e38cd4a97b0f2f2c6d --nli-head --template 2 --learning-rate 1e-5 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl
+uv run decisiongator-train export --checkpoint runs/v3-nli-choices/best --output models/v3-nli-choices --model-id decisiongator-0.3.0-nli-choices-experimental
+uv run decisiongator-train compress --bundle models/v3-nli-choices --output models/v3-nli-choices-fp16 --model-id decisiongator-0.3.0-nli-choices-fp16-experimental
+uv run decisiongator-train calibrate --bundle models/v3-nli-choices-fp16 --output reports/v3/calibration.json --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl
+uv run decisiongator-train evaluate --bundle models/v3-nli-choices-fp16 --split test --output reports/v3/test.json --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl
+uv run decisiongator-train evaluate --bundle models/v3-nli-choices-fp16 --data data/evaluation-v2.jsonl --split test --output reports/v3/fresh-test.json
 uv run --python 3.12 --with onnxruntime==1.22.1 code/build.py --model models/v3-nli-choices-fp16 --output released/macos-arm64
 ```
 

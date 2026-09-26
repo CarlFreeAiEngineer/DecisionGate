@@ -19,7 +19,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 STRICT = {'probability': 1e-4, 'max_flip_fraction': 0.0}
 sys.path.insert(0, str(ROOT))
-from decisiongate import Session
+from decisiongator import Session
 
 
 def main():

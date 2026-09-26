@@ -1,8 +1,8 @@
-/* DecisionGate from C. Build and run commands are in examples/README.md. */
+/* DecisionGator from C. Build and run commands are in examples/README.md. */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "decisiongate.h"
+#include "decisiongator.h"
 
 static int fail(void) {
     char message[512];

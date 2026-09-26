@@ -1,6 +1,6 @@
 """Compare each candidate's evaluate() output JSON against the float reference.
 
-Reads reports/shrink/<name>-<split>.json (produced by `decisiongate-train evaluate`)
+Reads reports/shrink/<name>-<split>.json (produced by `decisiongator-train evaluate`)
 and reports/shrink/float-<split>.json, matches predictions by record id, and prints
 a compact table plus a JSON summary file per candidate.
 """

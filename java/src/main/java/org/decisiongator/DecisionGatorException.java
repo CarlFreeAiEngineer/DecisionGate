@@ -1,7 +1,7 @@
-package org.decisiongate;
+package org.decisiongator;
 
 /** A native component failure, or invalid input to the Java wrapper. */
-public final class DecisionGateException extends RuntimeException {
+public final class DecisionGatorException extends RuntimeException {
     /** Serialization format version. */
     private static final long serialVersionUID = 1L;
     /**
@@ -13,10 +13,10 @@ public final class DecisionGateException extends RuntimeException {
     /**
      * Create an exception with a native status code and explanation.
      *
-     * @param statusCode the DG_* status code from decisiongate.h
+     * @param statusCode the DG_* status code from decisiongator.h
      * @param message explanation of the failure
      */
-    public DecisionGateException(int statusCode, String message) {
+    public DecisionGatorException(int statusCode, String message) {
         super(message);
         this.statusCode = statusCode;
     }
@@ -24,11 +24,11 @@ public final class DecisionGateException extends RuntimeException {
     /**
      * Create an exception retaining the underlying failure.
      *
-     * @param statusCode the DG_* status code from decisiongate.h
+     * @param statusCode the DG_* status code from decisiongator.h
      * @param message explanation of the failure
      * @param cause underlying failure
      */
-    public DecisionGateException(int statusCode, String message, Throwable cause) {
+    public DecisionGatorException(int statusCode, String message, Throwable cause) {
         super(message, cause);
         this.statusCode = statusCode;
     }
@@ -36,7 +36,7 @@ public final class DecisionGateException extends RuntimeException {
     /**
      * Return the native status code.
      *
-     * @return the DG_* status code from decisiongate.h
+     * @return the DG_* status code from decisiongator.h
      */
     public int statusCode() {
         return statusCode;

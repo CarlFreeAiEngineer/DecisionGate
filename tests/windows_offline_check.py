@@ -89,7 +89,7 @@ def main():
     result = {'status': 'failed', 'network_denial_verified': False,
               'probe_endpoint': f'{args.probe_host}:{args.probe_port}'}
     try:
-        with tempfile.TemporaryDirectory(prefix='decisiongate-offline-') as directory:
+        with tempfile.TemporaryDirectory(prefix='decisiongator-offline-') as directory:
             temporary = Path(directory)
             bundle = temporary / 'bundle'
             shutil.copytree(args.bundle.resolve(), bundle)
@@ -98,7 +98,7 @@ def main():
             subprocess.run(['cl.exe', '/nologo', '/W4', '/WX', str(source),
                             '/I' + str(bundle), '/I' + str(ROOT / 'examples'),
                             '/Fe:' + str(executable), '/Fo:' + str(temporary / 'host.obj'),
-                            '/link', str(bundle / 'decisiongate.lib'), 'ws2_32.lib'], check=True)
+                            '/link', str(bundle / 'decisiongator.lib'), 'ws2_32.lib'], check=True)
             windows = Path(os.environ['SystemRoot'])
             environment = {'SystemRoot': str(windows), 'WINDIR': str(windows),
                            'PATH': str(windows / 'System32'), 'TEMP': directory, 'TMP': directory}
@@ -114,7 +114,7 @@ def main():
             result['before'] = {'exit_code': before.returncode, 'stdout': before.stdout.strip()}
             if before.returncode != 0:
                 raise RuntimeError('Baseline TCP connection failed; no firewall rule was added.')
-            rule = 'DecisionGate-offline-test-' + uuid.uuid4().hex
+            rule = 'DecisionGator-offline-test-' + uuid.uuid4().hex
             # Always remove our exact rule, even if rule creation partly succeeds.
             try:
                 powershell(f'New-NetFirewallRule -Name {quoted(rule)} -DisplayName {quoted(rule)} '

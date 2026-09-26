@@ -20,11 +20,11 @@ From the project root, with `uv` available:
 
 ```text
 uv sync --locked
-uv run --locked decisiongate-train validate
-uv run --locked decisiongate-train train --output runs/my-first-run --epochs 12
-uv run --locked decisiongate-train export --checkpoint runs/my-first-run/best --output models/my-first-model --model-id my-first-model
-uv run --locked decisiongate-train calibrate --bundle models/my-first-model --output reports/my-calibration.json
-uv run --locked decisiongate-train evaluate --bundle models/my-first-model --split test --output reports/my-test.json
+uv run --locked decisiongator-train validate
+uv run --locked decisiongator-train train --output runs/my-first-run --epochs 12
+uv run --locked decisiongator-train export --checkpoint runs/my-first-run/best --output models/my-first-model --model-id my-first-model
+uv run --locked decisiongator-train calibrate --bundle models/my-first-model --output reports/my-calibration.json
+uv run --locked decisiongator-train evaluate --bundle models/my-first-model --split test --output reports/my-test.json
 ```
 
 The initial run downloads the pinned upstream checkpoint and dependencies; afterward cached assets can be used offline. Set `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1` to require cached inputs. There is no hosted teacher or training API. `--device cpu`, `--device mps`, and `--device cuda` explicitly select the backend; CUDA is the Colab alternative. No Colab run has been tested yet.
@@ -36,8 +36,8 @@ For a short setup check, use `--epochs 1` and a separate output directory. Resum
 Copy a record from `data/plain-questions.jsonl` into a new JSONL file. Give it a new ID and group, edit the evidence/question/answer/rationale, and set `split` to `train`. Keep related records in that group and split. Use `data/local/my-examples.jsonl` for private data; that directory is ignored by Git. Publishable contributions can be separate files under `data/contributions/`.
 
 ```text
-uv run --locked decisiongate-train validate --extra-data data/local/my-examples.jsonl
-uv run --locked decisiongate-train train --start runs/my-first-run/best --extra-data data/local/my-examples.jsonl --output runs/my-correction --epochs 12
+uv run --locked decisiongator-train validate --extra-data data/local/my-examples.jsonl
+uv run --locked decisiongator-train train --start runs/my-first-run/best --extra-data data/local/my-examples.jsonl --output runs/my-correction --epochs 12
 ```
 
 `--start` fine-tunes a saved Transformers checkpoint. For reproducing the foundation recipe, omit it. Each epoch includes all original training examples and the explicitly supplied additions once, shuffled together. No file is uploaded. Existing output directories are protected unless resuming. Export to a new model ID and directory, calibrate, and evaluate both variants against the same untouched test set. Compare the JSON reports, especially per-family regressions. Do not count the correction used in training as independent evidence that the model generalized.
@@ -61,7 +61,7 @@ The shared build helper now supports macOS arm64, Linux x64/glibc, and Windows x
 Compile the C example on macOS:
 
 ```text
-clang examples/c_smoke.c -I released/my-mac-build -L released/my-mac-build -ldecisiongate -Wl,-rpath,@executable_path/../released/my-mac-build -o examples/c_smoke
+clang examples/c_smoke.c -I released/my-mac-build -L released/my-mac-build -ldecisiongator -Wl,-rpath,@executable_path/../released/my-mac-build -o examples/c_smoke
 ./examples/c_smoke released/my-mac-build
 ```
 

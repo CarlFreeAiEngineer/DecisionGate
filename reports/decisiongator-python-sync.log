@@ -1,0 +1,8 @@
+Resolved 50 packages in 10ms
+   Building decisiongator @ file:///Users/ace/Desktop/prjx/DecisionModel
+      Built decisiongator @ file:///Users/ace/Desktop/prjx/DecisionModel
+Prepared 1 package in 340ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 2ms
+ + decisiongator==0.1.0 (from file:///Users/ace/Desktop/prjx/DecisionModel)
+ - decisionmodel==0.1.0 (from file:///Users/ace/Desktop/prjx/DecisionModel)

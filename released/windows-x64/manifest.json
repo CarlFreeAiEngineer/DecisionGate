@@ -2,7 +2,7 @@
   "format_version": 1,
   "template_version": 2,
   "choice_template_version": 1,
-  "model_id": "decisiongate-0.4.1",
+  "model_id": "decisiongator-0.4.1",
   "max_tokens": 256,
   "base_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
   "base_revision": "cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2",
@@ -11,9 +11,9 @@
   "sha256": {
     "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
     "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
-    "decisiongate.dll": "22f025c8714b0184bf2b0c745e8c69b5a78e2810772f873dde398e8403f37fba",
-    "decisiongate.h": "0b832ea252babdcc320b456bbc79ce04924cb8f38e61fa32900fb9e2b2a15c48",
-    "decisiongate.lib": "ba8b41d46229768496de98d593fc5992041b31ce6352ead66c71d228ab8814e2",
+    "decisiongator.dll": "22f025c8714b0184bf2b0c745e8c69b5a78e2810772f873dde398e8403f37fba",
+    "decisiongator.h": "0b832ea252babdcc320b456bbc79ce04924cb8f38e61fa32900fb9e2b2a15c48",
+    "decisiongator.lib": "ba8b41d46229768496de98d593fc5992041b31ce6352ead66c71d228ab8814e2",
     "DEPLOYMENT.md": "91197285e86ffd60017e1c6fc9e10f1eb6b3f3e39e77cb771ff3c4a7bf8a2d79",
     "onnxruntime.dll": "c7151fd9844ad7c7d18525f1177e9ef62d91e4a6ac3583d0be700554a2b2b1d6",
     "onnxruntime_providers_shared.dll": "747c2ed0ca260a37d43bac97f6c60bda9f42daada3918ec991d9f6c6e0a01746"

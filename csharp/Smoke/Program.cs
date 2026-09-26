@@ -1,6 +1,6 @@
-// Calls the component the way an application would. Point DECISIONGATE_BUNDLE at a
+// Calls the component the way an application would. Point DECISIONGATOR_BUNDLE at a
 // release bundle (for example released/macos-arm64) or set Bundle.Directory first.
-using DecisionGate;
+using DecisionGator;
 
 var cases = new[]
 {
@@ -25,5 +25,5 @@ foreach (var c in Decisions.ChooseP("My card was charged twice for last month's 
     Console.WriteLine($"  {c.P:F3} {teams[c.Index]}");
 
 try { Decisions.IsYes("", "empty content?"); }
-catch (DecisionGateException e) { Console.WriteLine($"error reported as exception (status {e.StatusCode}): {e.Message}"); }
+catch (DecisionGatorException e) { Console.WriteLine($"error reported as exception (status {e.StatusCode}): {e.Message}"); }
 Console.WriteLine("Synthetic-benchmark model: about 91% on held-out tests; measure on your own data before relying on it.");

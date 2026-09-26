@@ -32,8 +32,8 @@ classes=ROOT/'java/target/example-classes'
 classes.mkdir(parents=True,exist_ok=True)
 # Follow java/pom.xml rather than a hard-coded version, so a release bump reaches this check.
 version=args.version or re.search(r'<version>([^<]+)</version>',(ROOT/'java/pom.xml').read_text(encoding='utf-8')).group(1)
-api=ROOT/f'released/java/decisiongate-java-{version}.jar'
-bundle=ROOT/f'released/java/decisiongate-java-{version}-{classifier}.jar'
+api=ROOT/f'released/java/decisiongator-java-{version}.jar'
+bundle=ROOT/f'released/java/decisiongator-java-{version}-{classifier}.jar'
 for jar in (api,bundle):
     if not jar.is_file(): raise SystemExit(f'Missing released artifact: {jar}')
 jna=args.jna.resolve()
@@ -59,7 +59,7 @@ if platform.system()=='Darwin':
     # JAR paths are allowed; original native bundle directory is denied.
     policy='(version 1)(allow default)(deny network*)(deny file-read* (subpath '+json.dumps(str(ROOT/'released'/classifier))+'))'
     command=['sandbox-exec','-p',policy,*command]
-firewall_name='DecisionGate-test-'+uuid.uuid4().hex
+firewall_name='DecisionGator-test-'+uuid.uuid4().hex
 firewall_created=False
 
 def powershell(script):

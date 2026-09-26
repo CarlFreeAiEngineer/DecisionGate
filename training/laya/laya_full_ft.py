@@ -1,4 +1,4 @@
-"""Fine-tune the whole Laya model (encoder + its own decision head) on DecisionGate data, then score the test sets.
+"""Fine-tune the whole Laya model (encoder + its own decision head) on DecisionGator data, then score the test sets.
 Plain cross-entropy over option markers (the log score, Laya's main proper scoring rule). usage: laya_full_ft.py OUT LR"""
 import glob, json, random, sys, time
 from pathlib import Path

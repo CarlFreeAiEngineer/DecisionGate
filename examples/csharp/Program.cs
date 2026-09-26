@@ -1,10 +1,10 @@
-// DecisionGate from C#. Run from examples/csharp: dotnet run
+// DecisionGator from C#. Run from examples/csharp: dotnet run
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using DecisionGate;
+using DecisionGator;
 
 // Use this checkout's bundle. A deployed application ships the bundle in a
-// "decisiongate" folder beside the executable and sets nothing.
+// "decisiongator" folder beside the executable and sets nothing.
 Bundle.Directory = Path.Combine(SourceDirectory(), "..", "..", "released",
     RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "windows-x64"
     : RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? "macos-arm64" : "linux-x64");

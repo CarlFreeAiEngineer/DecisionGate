@@ -1,4 +1,4 @@
-# DecisionGate
+# DecisionGator
 
 ## Your software probably needs this.
 
@@ -28,7 +28,7 @@ You're thinking: “I wish I could just load a normal library and call a normal 
 **NOW YOU CAN!** In MANY languages and platforms; python example:
 
 ```python
-from decisiongate import is_yes
+from decisiongator import is_yes
 
 appointment_requested = is_yes(
     "Any chance I could come in next Tuesday?",
@@ -36,17 +36,17 @@ appointment_requested = is_yes(
 )
 ```
 
-**Don't take our word for it: [try it in your browser](https://62-84-178-253.sslip.io/DecisionGate/try.html).** Change the text or the question, press Run, and it answers on your own CPU. Nothing you type leaves the page.
+**Don't take our word for it: [try it in your browser](https://62-84-178-253.sslip.io/DecisionGator/try.html).** Change the text or the question, press Run, and it answers on your own CPU. Nothing you type leaves the page.
 
-**DecisionGate is a SOFTWARE COMPONENT, not an AI!** OK, there is a small trained model inside, but it is so small and insulated that you don't need to know about it. There is no chat, no prompt, no agent, and nothing to "talk to": it's a function that takes text and a question and returns a boolean. Ship it with your application and call a function. The same way your grandfather used software components: a library, some arguments, a return value. The kind of thing you did back in the 1990s.
+**DecisionGator is a SOFTWARE COMPONENT, not an AI!** OK, there is a small trained model inside, but it is so small and insulated that you don't need to know about it. There is no chat, no prompt, no agent, and nothing to "talk to": it's a function that takes text and a question and returns a boolean. Ship it with your application and call a function. The same way your grandfather used software components: a library, some arguments, a return value. The kind of thing you did back in the 1990s.
 
 **No Ollama. No llama.cpp. No TenserFlow, No agent harness. No network! Just a goddamn software component!**
 
-**It's like a regex library.** Every language has one. You hand it a pattern and some text, and you get back a boolean. Nobody runs a regex server, nobody has a regex API key, and nobody thinks of it as AI. DecisionGate is the same kind of thing, except the pattern is a question in plain English: `is_yes(text, "Is this person asking for an appointment?")`. Reach for it on the day the regex stops working. Which, for human language input, is TODAY.
+**It's like a regex library.** Every language has one. You hand it a pattern and some text, and you get back a boolean. Nobody runs a regex server, nobody has a regex API key, and nobody thinks of it as AI. DecisionGator is the same kind of thing, except the pattern is a question in plain English: `is_yes(text, "Is this person asking for an appointment?")`. Reach for it on the day the regex stops working. Which, for human language input, is TODAY.
 
-**The silent half of the brain.** In split-brain patients only one hemisphere can talk; the other still answers questions correctly, by pointing, and never explains itself ([CGP Grey explains](https://www.youtube.com/watch?v=wfYbgdo8e-8)). Language models are the talking half. DecisionGate is the silent half: it reads, decides, points at yes or no or one of your options, and says nothing else. Give your code both.
+**The silent half of the brain.** In split-brain patients only one hemisphere can talk; the other still answers questions correctly, by pointing, and never explains itself ([CGP Grey explains](https://www.youtube.com/watch?v=wfYbgdo8e-8)). Language models are the talking half. DecisionGator is the silent half: it reads, decides, points at yes or no or one of your options, and says nothing else. Give your code both.
 
-**If you know [JEV](https://www.jevai.org/)** from TypeSafe AI: the brain under the hood is similar, a small classifier that takes text plus a question and returns a typed answer with a probability instead of generating prose ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). But JEV is a paid API on someone else's server. DecisionGate is a library file in your build. For a working programmer that is a night-and-day difference: no account, no network, no bill, no one else's outage, and the model is yours to retrain.
+**If you know [JEV](https://www.jevai.org/)** from TypeSafe AI: the brain under the hood is similar, a small classifier that takes text plus a question and returns a typed answer with a probability instead of generating prose ([LangChain's write-up](https://www.langchain.com/blog/building-a-harness-with-jev)). But JEV is a paid API on someone else's server. DecisionGator is a library file in your build. For a working programmer that is a night-and-day difference: no account, no network, no bill, no one else's outage, and the model is yours to retrain.
 
 ## Languages and platforms
 
@@ -92,7 +92,7 @@ IsYes(text, "Is the customer asking to cancel?", nil, 0.5)       // Go, via cgo
 **Even inside a web browser**, with the text never leaving the user's device:
 
 ```javascript
-import { isYes } from "decisiongate/web";
+import { isYes } from "decisiongator/web";
 ```
 
 Complete, runnable examples for every language, including probabilities, criteria, thresholds, and multiple-choice decisions, are in [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md).
@@ -114,7 +114,7 @@ Supply different content and a yes/no question on each call. Optional criteria l
 **Several options instead of yes or no?** `choose` returns the index of the best option and `choose_p` the whole ranking, best first, with probabilities that sum to one:
 
 ```python
-from decisiongate import choose, choose_p
+from decisiongator import choose, choose_p
 
 teams = ["billing", "technical support", "sales"]
 message = "My card was charged twice for last month's invoice."
@@ -133,12 +133,12 @@ Java is `Decisions.choose(...)` and `Decisions.chooseP(...)`, JavaScript `choose
 **Getting started takes three commands and no compiler.** Clone the repository, download the prebuilt binaries for your platform (or all of them), then install the package for your language from `released/`:
 
 ```text
-git clone https://github.com/CarlFreeAiEngineer/DecisionGate.git
-cd DecisionGate
+git clone https://github.com/CarlFreeAiEngineer/DecisionGator.git
+cd DecisionGator
 uv run code/fetch_released.py --only python --only macos-arm64   # or linux-x64, windows-x64, java, node, web; omit --only for everything
 ```
 
-To try it first, [examples/](examples/README.md) has a small program for every language that runs with one command after the download (`--for java`, `--for node`, and so on fetch only what that example needs). To use it in your project, install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust/) or [Go](examples/go/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [62-84-178-253.sslip.io/DecisionGate](https://62-84-178-253.sslip.io/DecisionGate/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
+To try it first, [examples/](examples/README.md) has a small program for every language that runs with one command after the download (`--for java`, `--for node`, and so on fetch only what that example needs). To use it in your project, install a [Python wheel](released/python/README.md), add the [Java JARs](java/README.md), install a [Node.js package](javascript/README.md), reference the [C# project](csharp/README.md), link the [C library](code/README.md), or call it from [Rust](examples/rust/) or [Go](examples/go/). The prebuilt bundles are too large for GitHub, so fetch them into `released/` with `uv run code/fetch_released.py` (they come from [62-84-178-253.sslip.io/DecisionGator](https://62-84-178-253.sslip.io/DecisionGator/), checksum-verified). Registry publication comes later. For custom bundles and explicit resource management, see [the interface specification](specs/component-api.md).
 
 ## How it compares
 
@@ -146,7 +146,7 @@ Every row below can answer "is this person asking for an appointment?" The diffe
 
 | | Setup | The answer comes back as | Offline | Wrong answer? |
 | --- | --- | --- | --- | --- |
-| **DecisionGate** | Add a library | A boolean | Yes | Add data, retrain |
+| **DecisionGator** | Add a library | A boolean | Yes | Add data, retrain |
 | **Jev** (TypeSafe AI) | API key, waitlist, network | Typed answer + probability | No | Can't; it's hosted |
 | **Laya** (Convai Innovations) | Python package, PyTorch | Typed answer + probability | Yes | Fine-tune in a notebook |
 | **Regex / keywords** | None | A boolean, for cases you thought of | Yes | Add a pattern, break another |
@@ -161,13 +161,13 @@ Numbers are from each project's own published material as of September 2026 and 
 
 What the table hides:
 
-- **Jev** answers the way DecisionGate does: a typed answer with a probability, no begging. But it is a hosted service with a waitlist and a per-call bill, your users' text leaves your machine every time, and you cannot retrain it.
-- **Laya** is the free, open version of Jev, and it runs on your own machine. In [our side-by-side test](reports/laya-comparison.md) on a laptop CPU it was less accurate (69% against DecisionGate's 90.6%) and no faster on yes/no questions. It needs Python and PyTorch, and downloads its model from Hugging Face on first use. DecisionGate is a file you drop into your project; any programming language.
+- **Jev** answers the way DecisionGator does: a typed answer with a probability, no begging. But it is a hosted service with a waitlist and a per-call bill, your users' text leaves your machine every time, and you cannot retrain it.
+- **Laya** is the free, open version of Jev, and it runs on your own machine. In [our side-by-side test](reports/laya-comparison.md) on a laptop CPU it was less accurate (69% against DecisionGator's 90.6%) and no faster on yes/no questions. It needs Python and PyTorch, and downloads its model from Hugging Face on first use. DecisionGator is a file you drop into your project; any programming language.
 - **Regex and keyword matching** works until someone writes "no rush, but could I come in Tuesday?" Every odd case needs another pattern, and each new pattern breaks an old one.
 - **A hosted LLM** is the most flexible option. It also means an API key, a bill, a network connection, your users' text on someone else's server, and begging for JSON.
 - **A local LLM** (Ollama, llama.cpp) removes the network and the bill, but you still install a runtime, manage model files, want a GPU, and beg for JSON.
 - **Needle 3** is built for a different job: tool calling on phones and small devices. You can force a yes/no out of it, but there is no simple yes/no function. Its engine is free only for small companies and sends usage data unless you turn that off.
-- **A zero-shot NLI model** such as `facebook/bart-large-mnli` is free, but you write the setup, thresholds, and packaging yourself, in Python. DecisionGate is that work done once, for seven languages.
+- **A zero-shot NLI model** such as `facebook/bart-large-mnli` is free, but you write the setup, thresholds, and packaging yourself, in Python. DecisionGator is that work done once, for seven languages.
 
 ## What if this gives a wrong answer?
 

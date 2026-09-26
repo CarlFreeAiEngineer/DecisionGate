@@ -1,4 +1,4 @@
-"""Small, explicit training pipeline. Run with uv run decisiongate-train --help."""
+"""Small, explicit training pipeline. Run with uv run decisiongator-train --help."""
 import argparse
 import hashlib
 import inspect

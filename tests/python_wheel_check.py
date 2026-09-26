@@ -16,8 +16,8 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 CONSUMER = '''
-import concurrent.futures, json, pathlib, decisiongate
-from decisiongate import is_yes, is_yes_p, DecisionGateError
+import concurrent.futures, json, pathlib, decisiongator
+from decisiongator import is_yes, is_yes_p, DecisionGatorError
 text = "Please cancel my subscription before the next renewal."
 question = "Is the customer asking to cancel their subscription?"
 with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
@@ -33,13 +33,13 @@ for threshold in (True, -1, 2, float('nan'), float('inf')):
     except ValueError: pass
     else: raise AssertionError('invalid threshold accepted')
 try: is_yes('', question)
-except DecisionGateError: pass
+except DecisionGatorError: pass
 else: raise AssertionError('empty text accepted')
 custom = is_yes_p(text, question, {'yes': 'An explicit cancellation request.', 'no': 'Anything else.'})
 assert 0 <= custom <= 1
-bundle = pathlib.Path(decisiongate.__file__).parent / '_bundle'
+bundle = pathlib.Path(decisiongator.__file__).parent / '_bundle'
 assert (bundle / 'model.onnx').is_file()
-print(json.dumps({'probability': p, 'custom_probability': custom, 'module': decisiongate.__file__, 'concurrent_calls': 8}))
+print(json.dumps({'probability': p, 'custom_probability': custom, 'module': decisiongator.__file__, 'concurrent_calls': 8}))
 '''
 
 
@@ -51,7 +51,7 @@ def main():
     args = parser.parse_args()
     if args.network_namespace and (platform.system() != 'Linux' or {name for _,name in socket.if_nameindex()} != {'lo'}):
         raise SystemExit('--network-namespace requires Linux with only loopback available')
-    with tempfile.TemporaryDirectory(prefix='decisiongate-wheel-') as temporary:
+    with tempfile.TemporaryDirectory(prefix='decisiongator-wheel-') as temporary:
         directory = Path(temporary)
         wheel = directory / args.wheel.name
         shutil.copy2(args.wheel, wheel)

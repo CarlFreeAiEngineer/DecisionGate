@@ -3,12 +3,12 @@
 # requires-python = ">=3.10"
 # dependencies = []
 # ///
-"""DecisionGate from Python. Run from the repository: uv run examples/python/example.py"""
+"""DecisionGator from Python. Run from the repository: uv run examples/python/example.py"""
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # this checkout's decisiongate package
-from decisiongate import choose_p, is_yes, is_yes_p
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))  # this checkout's decisiongator package
+from decisiongator import choose_p, is_yes, is_yes_p
 
 ticket = "Our whole warehouse can't print shipping labels and trucks leave in an hour."
 question = "Is the customer describing an urgent problem?"

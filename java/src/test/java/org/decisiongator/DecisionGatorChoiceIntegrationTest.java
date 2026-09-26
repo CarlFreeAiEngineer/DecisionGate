@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
@@ -13,22 +13,22 @@ import org.junit.jupiter.api.Test;
 /**
  * Exercises dg_evaluate_choice against a bundle that has the multiple-choice native functions.
  * The pom points this at the released bundle. Override the bundle location with the
- * DECISIONGATE_CHOOSE_BUNDLE environment variable, or -Ddecisiongate.choose.bundle=PATH;
- * this leaves the -Ddecisiongate.bundle default used for released-bundle testing unchanged.
+ * DECISIONGATOR_CHOOSE_BUNDLE environment variable, or -Ddecisiongator.choose.bundle=PATH;
+ * this leaves the -Ddecisiongator.bundle default used for released-bundle testing unchanged.
  */
-class DecisionGateChoiceIntegrationTest {
+class DecisionGatorChoiceIntegrationTest {
     private static final String CONTENT = "My card was charged twice for last month's invoice.";
     private static final String QUESTION = "Which team should handle this message?";
     private static final List<String> TEAMS = List.of("billing", "technical support", "sales");
-    private static DecisionGate model;
+    private static DecisionGator model;
 
     @BeforeAll
     static void open() {
         Path bundle = resolveBundle();
         assumeTrue(bundle != null && Files.isRegularFile(bundle.resolve("manifest.json")),
-                "No choose-capable DecisionGate bundle configured; set DECISIONGATE_CHOOSE_BUNDLE "
-                        + "or -Ddecisiongate.choose.bundle=PATH to a bundle built with dg_evaluate_choice");
-        model = DecisionGate.load(bundle);
+                "No choose-capable DecisionGator bundle configured; set DECISIONGATOR_CHOOSE_BUNDLE "
+                        + "or -Ddecisiongator.choose.bundle=PATH to a bundle built with dg_evaluate_choice");
+        model = DecisionGator.load(bundle);
     }
 
     @AfterAll
@@ -37,9 +37,9 @@ class DecisionGateChoiceIntegrationTest {
     }
 
     private static Path resolveBundle() {
-        String override = System.getenv("DECISIONGATE_CHOOSE_BUNDLE");
+        String override = System.getenv("DECISIONGATOR_CHOOSE_BUNDLE");
         if (override == null || override.isBlank()) {
-            override = System.getProperty("decisiongate.choose.bundle");
+            override = System.getProperty("decisiongator.choose.bundle");
         }
         return override == null || override.isBlank() ? null : Path.of(override);
     }
@@ -90,15 +90,15 @@ class DecisionGateChoiceIntegrationTest {
 
     @Test
     void invalidOptionsRejectedWithoutPartialResult() {
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> model.evaluateChoice(CONTENT, QUESTION, List.of("only one"))).statusCode());
     }
 
     @Test
     void closedSessionRejectsChoice() {
-        DecisionGate disposable = DecisionGate.load(resolveBundle());
+        DecisionGator disposable = DecisionGator.load(resolveBundle());
         disposable.close();
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> disposable.evaluateChoice(CONTENT, QUESTION, TEAMS)).statusCode());
     }
 }

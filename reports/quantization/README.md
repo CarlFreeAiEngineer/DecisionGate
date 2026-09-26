@@ -45,8 +45,8 @@ The disagreements are cases the model is unsure about. Accuracy stays above 90% 
 
 ```text
 uv run --locked python training/quant/mixed_quant.py models/v4-large models/v4-large-mixed 6 17 [--reduce-range]
-uv run --locked decisiongate-train calibrate --bundle models/v4-large-mixed --output reports/quantization/mixed-calibration.json <training --extra-data list>
-uv run --locked decisiongate-train evaluate --bundle models/v4-large-mixed --data data/v4/test-1.jsonl ... --split test --output ...
+uv run --locked decisiongator-train calibrate --bundle models/v4-large-mixed --output reports/quantization/mixed-calibration.json <training --extra-data list>
+uv run --locked decisiongator-train evaluate --bundle models/v4-large-mixed --data data/v4/test-1.jsonl ... --split test --output ...
 ```
 
-`decisiongate-train quantize` gained `--keep-float FRAGMENT` for 8-bit with chosen layers left float. `training/quant/` also holds the 4-bit script, the layer scan, the CPU benchmark, a standalone scorer used on Linux, and a quick browser timing script. `web/build.mjs` accepts `DECISIONGATE_NATIVE_DIR` to stage a browser build from another bundle.
+`decisiongator-train quantize` gained `--keep-float FRAGMENT` for 8-bit with chosen layers left float. `training/quant/` also holds the 4-bit script, the layer scan, the CPU benchmark, a standalone scorer used on Linux, and a quick browser timing script. `web/build.mjs` accepts `DECISIONGATOR_NATIVE_DIR` to stage a browser build from another bundle.

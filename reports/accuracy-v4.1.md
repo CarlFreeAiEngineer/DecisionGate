@@ -43,7 +43,7 @@ Single-threaded browser calls are about 20% slower than 0.4.0's 570 ms because W
 
 ```text
 uv run --locked python training/quant/mixed_quant.py models/v4-large models/v4.1 6 17 --reduce-range
-uv run --locked decisiongate-train calibrate --bundle models/v4.1 --output reports/v4.1/calibration.json <training --extra-data list>
+uv run --locked decisiongator-train calibrate --bundle models/v4.1 --output reports/v4.1/calibration.json <training --extra-data list>
 uv run --python 3.12 --with onnxruntime==1.22.1 code/build.py --model models/v4.1 --output released/macos-arm64
 ```
 

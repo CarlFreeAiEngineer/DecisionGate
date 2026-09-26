@@ -13,7 +13,7 @@ An independently authored [32-record test](../spam-comments-test.jsonl) is separ
 Validate the combined material:
 
 ```sh
-uv run --locked decisiongate-train validate --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --extra-data data/contributions/spam-comments.jsonl
+uv run --locked decisiongator-train validate --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --extra-data data/contributions/spam-comments.jsonl
 ```
 
 For a future training run, pass both correction files and `data/expansion-v2.jsonl` explicitly with `--extra-data`, retain the earlier data, choose a new output directory, and select using validation only. Freeze and calibrate the candidate before evaluating this test and the existing general tests. No training or default-release changes were made when this dataset was added.

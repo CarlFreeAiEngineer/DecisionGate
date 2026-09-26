@@ -572,7 +572,7 @@ fn load(directory: &str) -> Result<GateSession> {
                 .to_str()
                 .ok_or_else(|| failure(INVALID, "runtime path is not UTF-8"))?;
             ort::init_from(runtime_path)
-                .with_name("DecisionGate")
+                .with_name("DecisionGator")
                 .with_telemetry(false)
                 .commit()
                 .map_err(|e| failure(LOAD, e))?;
@@ -735,7 +735,7 @@ impl GateSession {
     }
 }
 
-/// See decisiongate.h for the caller's pointer and lifetime obligations.
+/// See decisiongator.h for the caller's pointer and lifetime obligations.
 #[no_mangle]
 pub unsafe extern "C" fn dg_load(
     path: *const c_char,
@@ -876,9 +876,9 @@ pub unsafe extern "C" fn dg_release(model: *mut GateSession) {
 
 /// Threads for one inference call. ONNX Runtime splits each operation evenly across its threads, so one
 /// slow efficiency core holds all the others up: use only the fastest cores, one thread per physical core.
-/// DECISIONGATE_THREADS overrides this for applications that need cores for other work.
+/// DECISIONGATOR_THREADS overrides this for applications that need cores for other work.
 fn inference_threads() -> usize {
-    if let Some(n) = std::env::var("DECISIONGATE_THREADS")
+    if let Some(n) = std::env::var("DECISIONGATOR_THREADS")
         .ok()
         .and_then(|v| v.trim().parse::<usize>().ok())
         .filter(|n| *n > 0)
@@ -997,11 +997,11 @@ mod tests {
         if let Some(fast) = fast_cores() {
             assert!(detected <= fast.max(1));
         }
-        std::env::set_var("DECISIONGATE_THREADS", "3");
+        std::env::set_var("DECISIONGATOR_THREADS", "3");
         assert_eq!(inference_threads(), 3);
-        std::env::set_var("DECISIONGATE_THREADS", "zero");
+        std::env::set_var("DECISIONGATOR_THREADS", "zero");
         assert_eq!(inference_threads(), detected);
-        std::env::remove_var("DECISIONGATE_THREADS");
+        std::env::remove_var("DECISIONGATOR_THREADS");
     }
     #[test]
     fn template_versions_preserve_pair_order_and_criteria() {

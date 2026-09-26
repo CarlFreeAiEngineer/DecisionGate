@@ -3,10 +3,10 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Download the prebuilt DecisionGate release bundles into released/.
+"""Download the prebuilt DecisionGator release bundles into released/.
 
 The bundles (weights, native libraries, wheels, JARs, npm tarballs) are too
-large for GitHub, so they live at https://62-84-178-253.sslip.io/DecisionGate/files/.
+large for GitHub, so they live at https://62-84-178-253.sslip.io/DecisionGator/files/.
 This script fetches a version's SHA256SUMS.txt, downloads every listed file
 (or only the parts you ask for), verifies each hash, and skips files that are
 already present and correct.
@@ -27,7 +27,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = 'https://62-84-178-253.sslip.io/DecisionGate/files'
+BASE_URL = 'https://62-84-178-253.sslip.io/DecisionGator/files'
 DEFAULT_VERSION = '0.4.1'
 CHUNK = 1 << 20
 
@@ -71,10 +71,10 @@ def needed_for(language, version):
     if native is None:
         sys.exit(f'no prebuilt bundle for {system} {machine}; the browser example still works')
     if language == 'java':
-        return [f'java/decisiongate-java-{version}.jar', f'java/decisiongate-java-{version}-{native}.jar']
+        return [f'java/decisiongator-java-{version}.jar', f'java/decisiongator-java-{version}-{native}.jar']
     if language == 'node':
         node = native.replace('macos', 'darwin').replace('windows', 'win32')
-        return [f'node/decisiongate-{version}-{node}.tgz']
+        return [f'node/decisiongator-{version}-{node}.tgz']
     return [f'{native}/']
 
 
@@ -83,7 +83,7 @@ def download(url, target, expected, size_hint=''):
     partial = target.with_suffix(target.suffix + '.part')
     digest = hashlib.sha256()
     done = 0
-    request = urllib.request.Request(url, headers={'User-Agent': 'decisiongate-fetch'})
+    request = urllib.request.Request(url, headers={'User-Agent': 'decisiongator-fetch'})
     with urllib.request.urlopen(request, timeout=120) as response, partial.open('wb') as out:
         total = int(response.headers.get('Content-Length') or 0)
         while chunk := response.read(CHUNK):

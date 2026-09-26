@@ -6,9 +6,9 @@
   "manifest_hashes_verified": {
     "model.onnx": "fa57f3fe2ce816d8a58ae69fac098ab2a6c2ab41d2902421ac91ea1fed7c51ad",
     "tokenizer.json": "7b62d797c95d1563d3467f48daad0eca3e150f2d587e7e687b557c9ef1b25473",
-    "decisiongate.dll": "644179aa63b7a74da318ccf1263fc918b8da58713d22353889167c784efe0a45",
-    "decisiongate.h": "71fb7bfe894355de751e626fc3ac3b884135f6298ceb0e7ff201b73399b1a678",
-    "decisiongate.lib": "e7cf80c9e13cf4a07c746a694f156b9b3cc59e6aa3e4aacda0afec739501aa39",
+    "decisiongator.dll": "644179aa63b7a74da318ccf1263fc918b8da58713d22353889167c784efe0a45",
+    "decisiongator.h": "71fb7bfe894355de751e626fc3ac3b884135f6298ceb0e7ff201b73399b1a678",
+    "decisiongator.lib": "e7cf80c9e13cf4a07c746a694f156b9b3cc59e6aa3e4aacda0afec739501aa39",
     "DEPLOYMENT.md": "91197285e86ffd60017e1c6fc9e10f1eb6b3f3e39e77cb771ff3c4a7bf8a2d79",
     "onnxruntime.dll": "c7151fd9844ad7c7d18525f1177e9ef62d91e4a6ac3583d0be700554a2b2b1d6",
     "onnxruntime_providers_shared.dll": "747c2ed0ca260a37d43bac97f6c60bda9f42daada3918ec991d9f6c6e0a01746"

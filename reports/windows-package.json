@@ -13,7 +13,7 @@
   "library_bytes": 4102144,
   "model_bytes": 577946966,
   "host_link_dependencies": [
-    "    decisiongate.dll",
+    "    decisiongator.dll",
     "    KERNEL32.dll"
   ]
 }

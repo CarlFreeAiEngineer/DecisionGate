@@ -1,5 +1,5 @@
 
-> decisiongate@0.3.0 test
+> decisiongator@0.3.0 test
 > node --test test/*.test.mjs
 
 ✔ concurrent first use, probability, inclusive boundaries, and event loop responsiveness (2151.410208ms)

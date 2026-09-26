@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,22 +14,22 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
-@EnabledIfSystemProperty(named = "decisiongate.bundle", matches = ".+")
-class DecisionGateIntegrationTest {
+@EnabledIfSystemProperty(named = "decisiongator.bundle", matches = ".+")
+class DecisionGatorIntegrationTest {
     private static final String CONTENT = "Please cancel my subscription before the next renewal.";
     private static final String QUESTION = "Is the customer asking to cancel their subscription?";
     // Release goldens remain the default; alternate bundles supply independent native results.
     private static final double EXPECTED = Double.parseDouble(
-            System.getProperty("decisiongate.expectedProbability", "0.9969299857604682"));
+            System.getProperty("decisiongator.expectedProbability", "0.9969299857604682"));
     private static final double EXPECTED_UNICODE = Double.parseDouble(
-            System.getProperty("decisiongate.expectedUnicodeProbability", "0.994877095049259"));
+            System.getProperty("decisiongator.expectedUnicodeProbability", "0.994877095049259"));
     // The quantized 0.4.1 model rounds slightly differently on each processor; these confident cases stay within 0.005.
     private static final double GOLDEN_TOLERANCE = 5e-3;
-    private static DecisionGate model;
+    private static DecisionGator model;
 
     @BeforeAll
     static void open() {
-        model = DecisionGate.load(Path.of(System.getProperty("decisiongate.bundle")));
+        model = DecisionGator.load(Path.of(System.getProperty("decisiongator.bundle")));
     }
 
     @AfterAll
@@ -60,7 +60,7 @@ class DecisionGateIntegrationTest {
     @Test
     void metadataIsBundleManifest() throws Exception {
         String metadata = model.metadataJson();
-        String manifest = Files.readString(Path.of(System.getProperty("decisiongate.bundle"), "manifest.json"));
+        String manifest = Files.readString(Path.of(System.getProperty("decisiongator.bundle"), "manifest.json"));
         // Native metadata preserves the loaded manifest, including formatting.
         assertEquals(manifest, metadata);
     }
@@ -69,28 +69,28 @@ class DecisionGateIntegrationTest {
     void invalidTextAndNativeErrorsRemainErrors() {
         double beforeErrors = model.evaluate(CONTENT, QUESTION);
         for (String invalid : new String[] {null, "", " \t\n", "\ud800", "\udfff", "a\ud800b"}) {
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> model.evaluate(invalid, QUESTION)).statusCode());
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> model.evaluate(CONTENT, invalid)).statusCode());
         }
-        DecisionGateException tooLong = assertThrows(DecisionGateException.class,
+        DecisionGatorException tooLong = assertThrows(DecisionGatorException.class,
                 () -> model.evaluate("x".repeat(1_048_577), QUESTION));
         assertEquals(7, tooLong.statusCode());
         assertFalse(tooLong.getMessage().isBlank());
-        assertEquals(7, assertThrows(DecisionGateException.class,
+        assertEquals(7, assertThrows(DecisionGatorException.class,
                 () -> model.evaluate("word ".repeat(600), QUESTION)).statusCode());
         assertEquals(beforeErrors, model.evaluate(CONTENT, QUESTION), 1e-7);
     }
 
     @Test
     void repeatedCloseAndPostCloseAccess() {
-        DecisionGate disposable = DecisionGate.load(Path.of(System.getProperty("decisiongate.bundle")));
+        DecisionGator disposable = DecisionGator.load(Path.of(System.getProperty("decisiongator.bundle")));
         disposable.close();
         disposable.close();
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> disposable.evaluate(CONTENT, QUESTION)).statusCode());
-        assertThrows(DecisionGateException.class, disposable::metadataJson);
+        assertThrows(DecisionGatorException.class, disposable::metadataJson);
     }
 
     @Test

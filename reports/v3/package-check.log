@@ -13,7 +13,7 @@
   "library_bytes": 3679120,
   "model_bytes": 164387295,
   "host_link_dependencies": [
-    "\t@rpath/libdecisiongate.dylib (compatibility version 0.0.0, current version 0.0.0)",
+    "\t@rpath/libdecisiongator.dylib (compatibility version 0.0.0, current version 0.0.0)",
     "\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)"
   ]
 }

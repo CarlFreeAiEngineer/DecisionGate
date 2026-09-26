@@ -56,11 +56,11 @@ Windows and Linux bundles were not rebuilt in this release and remain at 0.2.0.
 ## Reproduce
 
 ```text
-uv run decisiongate-train train --output runs/v4-large --base MoritzLaurer/deberta-v3-large-zeroshot-v2.0 --revision cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2 --nli-head --template 2 --learning-rate 1e-5 --epochs 5 --batch-size 16 --seed 42 --device cuda --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl --extra-data data/v4/appointment_intent.jsonl ... --extra-data data/v4/urgency.jsonl
-uv run decisiongate-train export --checkpoint runs/v4-large/best --output models/v4-large --model-id decisiongate-0.4.0-large-experimental
-uv run decisiongate-train compress --bundle models/v4-large --output models/v4-large-fp16 --model-id decisiongate-0.4.0-large-fp16-experimental
-uv run decisiongate-train calibrate --bundle models/v4-large-fp16 --output reports/v4/colab/large-best-fp16-calibration.json <same --extra-data list>
-uv run decisiongate-train evaluate --bundle models/v4-large-fp16 --data data/v4/test-1.jsonl --data data/v4/test-2.jsonl --data data/v4/test-3.jsonl --data data/v4/test-4.jsonl --split test --output reports/v4/colab/large-best-fp16-v4test.json
+uv run decisiongator-train train --output runs/v4-large --base MoritzLaurer/deberta-v3-large-zeroshot-v2.0 --revision cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2 --nli-head --template 2 --learning-rate 1e-5 --epochs 5 --batch-size 16 --seed 42 --device cuda --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl --extra-data data/v4/appointment_intent.jsonl ... --extra-data data/v4/urgency.jsonl
+uv run decisiongator-train export --checkpoint runs/v4-large/best --output models/v4-large --model-id decisiongator-0.4.0-large-experimental
+uv run decisiongator-train compress --bundle models/v4-large --output models/v4-large-fp16 --model-id decisiongator-0.4.0-large-fp16-experimental
+uv run decisiongator-train calibrate --bundle models/v4-large-fp16 --output reports/v4/colab/large-best-fp16-calibration.json <same --extra-data list>
+uv run decisiongator-train evaluate --bundle models/v4-large-fp16 --data data/v4/test-1.jsonl --data data/v4/test-2.jsonl --data data/v4/test-3.jsonl --data data/v4/test-4.jsonl --split test --output reports/v4/colab/large-best-fp16-v4test.json
 uv run --python 3.12 --with onnxruntime==1.22.1 code/build.py --model models/v4-large-fp16 --output released/macos-arm64
 ```
 

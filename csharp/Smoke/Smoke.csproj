@@ -7,6 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../DecisionGate/DecisionGate.csproj" />
+    <ProjectReference Include="../DecisionGator/DecisionGator.csproj" />
   </ItemGroup>
 </Project>

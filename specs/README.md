@@ -1,4 +1,4 @@
-# DecisionGate developer specifications
+# DecisionGator developer specifications
 
 Status: experimental component v0.4, 2026-09-19 (Mac and browser); Windows and Linux bundles remain v0.2 until rebuilt on those platforms. Native builds, Python, Java, Node.js/TypeScript, browser WebAssembly, open training data, and the training pipeline are implemented. Platform qualification is recorded in the [release inventory](../released/README.md) and test reports. Version 0.4 reached 92% on a 480-case held-out synthetic test; the decision-quality requirements below still lack a human-reviewed benchmark. Start with [the v0.4 results](../reports/accuracy-v4.md), then [the earlier recipe](accuracy-v2.md), [the v0.3 results](../reports/accuracy-v3.md), and [the v0.2 results](../reports/accuracy-v2.md). The [first-version recipe](first-version.md) remains available for reproducing the original experiment.
 

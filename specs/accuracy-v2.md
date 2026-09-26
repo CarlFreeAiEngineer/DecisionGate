@@ -26,11 +26,11 @@ Reproduce the selected training run and export into new directories:
 
 ```text
 uv sync --locked
-uv run --locked decisiongate-train validate --extra-data data/expansion-v2.jsonl
-uv run --locked decisiongate-train train --base cross-encoder/nli-MiniLM2-L6-H768 --revision b95119ce93d3e065de6214e38cd4a97b0f2f2c6d --nli-head --template 2 --learning-rate 0.00001 --epochs 10 --extra-data data/expansion-v2.jsonl --output runs/my-v2
-uv run --locked decisiongate-train export --checkpoint runs/my-v2/best --output models/my-v2 --model-id my-v2
-uv run --locked decisiongate-train calibrate --bundle models/my-v2 --extra-data data/expansion-v2.jsonl --output reports/my-v2-calibration.json
-uv run --locked decisiongate-train evaluate --bundle models/my-v2 --data data/evaluation-v2.jsonl --split test --output reports/my-v2-fresh-test.json
+uv run --locked decisiongator-train validate --extra-data data/expansion-v2.jsonl
+uv run --locked decisiongator-train train --base cross-encoder/nli-MiniLM2-L6-H768 --revision b95119ce93d3e065de6214e38cd4a97b0f2f2c6d --nli-head --template 2 --learning-rate 0.00001 --epochs 10 --extra-data data/expansion-v2.jsonl --output runs/my-v2
+uv run --locked decisiongator-train export --checkpoint runs/my-v2/best --output models/my-v2 --model-id my-v2
+uv run --locked decisiongator-train calibrate --bundle models/my-v2 --extra-data data/expansion-v2.jsonl --output reports/my-v2-calibration.json
+uv run --locked decisiongator-train evaluate --bundle models/my-v2 --data data/evaluation-v2.jsonl --split test --output reports/my-v2-fresh-test.json
 uv run code/build.py --model models/my-v2 --output released/my-v2-mac
 uv run tests/native_check.py --bundle released/my-v2-mac
 ```
@@ -39,4 +39,4 @@ The `evaluate` command also accepts `--split train` for measuring fitting accura
 
 To adapt the current model to your own examples, use `--start runs/v2-nli-expanded/best`, include `--extra-data data/expansion-v2.jsonl` and your correction file, and choose a fresh run directory. The saved checkpoint retains its base-model identity and template order. Native ONNX files are deployment assets; use the saved training checkpoint or reproduce it for further training. Compare the new candidate with the current release and retain both until gains are demonstrated.
 
-Quantization is available experimentally through `decisiongate-train quantize --bundle SOURCE --output NEW_DIRECTORY --model-id NEW_ID`; `--quantize-embeddings` additionally compresses embedding tables. It resets calibration. Always evaluate prediction changes, recalibrate the chosen variant, and verify native parity before considering it for use. Neither quantized variant tested in this experiment was accepted. Version 0.3.0 instead ships float16 weight storage through `decisiongate-train compress --bundle SOURCE --output NEW_DIRECTORY --model-id NEW_ID`, which keeps float32 arithmetic and moved no test decision; see [the v0.3 report](../reports/accuracy-v3.md).
+Quantization is available experimentally through `decisiongator-train quantize --bundle SOURCE --output NEW_DIRECTORY --model-id NEW_ID`; `--quantize-embeddings` additionally compresses embedding tables. It resets calibration. Always evaluate prediction changes, recalibrate the chosen variant, and verify native parity before considering it for use. Neither quantized variant tested in this experiment was accepted. Version 0.3.0 instead ships float16 weight storage through `decisiongator-train compress --bundle SOURCE --output NEW_DIRECTORY --model-id NEW_ID`, which keeps float32 arithmetic and moved no test decision; see [the v0.3 report](../reports/accuracy-v3.md).

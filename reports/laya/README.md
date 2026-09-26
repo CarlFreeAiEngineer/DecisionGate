@@ -11,8 +11,8 @@ Held-out tests are the same ones used in [the v0.4 report](../accuracy-v4.md). T
 | 0.4.0 shipped, DeBERTa-v3-large | 92.3% | 92.5% | 94.2% | 95% |
 | Laya as downloaded, no training | 69.0% | 80.0% | 57.7% | 70% |
 | Laya, whole model fine-tuned, its own head | 80.8% | 86.3% | 86.5% | 65% |
-| Laya encoder, DecisionGate head, lr 1e-5 | 79.8% | 83.8% | 84.6% | 85% |
-| Laya encoder, DecisionGate head, lr 3e-5 | 79.8% | 90.0% | 80.8% | 90% |
+| Laya encoder, DecisionGator head, lr 1e-5 | 79.8% | 83.8% | 84.6% | 85% |
+| Laya encoder, DecisionGator head, lr 3e-5 | 79.8% | 90.0% | 80.8% | 90% |
 
 Validation accuracy told the same story before any test was scored: 81 to 86% for every Laya run against 93 to 95% for DeBERTa-v3-large. The whole-model run kept Laya's input format (question, option markers, then content) and trained with cross-entropy over the option markers, which is the log-score part of Laya's own training rule. Its weakest families on the new test were permissions (63%), eligibility, numeric criteria, and urgency (70%).
 

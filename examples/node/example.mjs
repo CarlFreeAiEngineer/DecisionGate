@@ -1,16 +1,16 @@
-// DecisionGate from Node.js 24 or later. Run from examples/node: node example.mjs
+// DecisionGator from Node.js 24 or later. Run from examples/node: node example.mjs
 // It installs the package for this computer from released/node/ on first run; an application
 // would run `npm install` on that .tgz file once instead.
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 
 const here = new URL('.', import.meta.url);
-if (!existsSync(new URL('node_modules/decisiongate', here))) {
-  const archive = `../../released/node/decisiongate-0.4.1-${process.platform}-${process.arch}.tgz`;
+if (!existsSync(new URL('node_modules/decisiongator', here))) {
+  const archive = `../../released/node/decisiongator-0.4.1-${process.platform}-${process.arch}.tgz`;
   execFileSync('npm', ['install', '--no-save', '--no-package-lock', archive],
                { cwd: here, stdio: 'inherit', shell: process.platform === 'win32' });
 }
-const { isYes, isYesP, chooseP } = await import('decisiongate');
+const { isYes, isYesP, chooseP } = await import('decisiongator');
 
 const ticket = "Our whole warehouse can't print shipping labels and trucks leave in an hour.";
 const question = 'Is the customer describing an urgent problem?';

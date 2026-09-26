@@ -27,7 +27,7 @@ class Criteria(c.Structure):
 
 
 def check(bundle: Path) -> dict:
-    name = {"Darwin": "libdecisiongate.dylib", "Windows": "decisiongate.dll", "Linux": "libdecisiongate.so"}[platform.system()]
+    name = {"Darwin": "libdecisiongator.dylib", "Windows": "decisiongator.dll", "Linux": "libdecisiongator.so"}[platform.system()]
     lib = c.CDLL(str(bundle / name))
     handle = c.c_void_p
     size = c.c_size_t
@@ -104,7 +104,7 @@ def check(bundle: Path) -> dict:
     expect(lib.dg_is_yes(b"\xff", 1, b"Q?", 2, None, c.byref(decision)) == 1 and decision.value == 42, "boolean UTF-8 error preserves output")
     expect("UTF-8" in error(), "boolean call preserves inner error text")
     lib.dg_release(None)
-    with tempfile.TemporaryDirectory(prefix="decisiongate-invalid-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="decisiongator-invalid-") as temporary:
         directory = Path(temporary)
         (directory / "manifest.json").write_text('{"format_version": 999}', encoding="utf-8")
         status, invalid = load(directory)
@@ -201,7 +201,7 @@ def check(bundle: Path) -> dict:
         finally:
             lib.dg_release(model)
 
-    from decisiongate import Session
+    from decisiongator import Session
     wrapped = Session.load(str(bundle))
     try:
         wrapped_probability = wrapped.evaluate(content=content.decode(), question=question.decode(), criteria={"yes": yes.decode(), "no": no.decode()})
@@ -218,7 +218,7 @@ def check(bundle: Path) -> dict:
     # First lazy call happens from a directory containing none of the model's
     # assets. Parallel callers must share one initialization and produce parity.
     previous = Path.cwd()
-    with tempfile.TemporaryDirectory(prefix="decisiongate-cwd-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="decisiongator-cwd-") as temporary:
         try:
             os.chdir(temporary)
             with ThreadPoolExecutor(max_workers=3) as workers:
@@ -248,9 +248,9 @@ def check(bundle: Path) -> dict:
     expect(lib.dg_choose(routing, len(routing), which, len(which), pointers, lengths, 3, None, 1.0, c.byref(chosen)) == 0 and chosen.value == -1, "choose defers below threshold")
     chosen.value = 7
     expect(lib.dg_choose(routing, len(routing), which, len(which), pointers, lengths, 3, None, 1.5, c.byref(chosen)) == 1 and chosen.value == 7, "choose rejects invalid threshold")
-    from decisiongate import choose, choose_p
-    import decisiongate
-    if decisiongate._bundled_directory().resolve() == bundle:
+    from decisiongator import choose, choose_p
+    import decisiongator
+    if decisiongator._bundled_directory().resolve() == bundle:
         expect(choose_p(routing.decode(), which.decode(), [t.decode() for t in teams])[0][0] == 0, "Python choose_p")
         expect(choose(routing.decode(), which.decode(), [t.decode() for t in teams], threshold=1.0) is None, "Python choose defers")
     # A subprocess gets an independent lazy singleton. An initially missing
@@ -272,7 +272,7 @@ assert lib.dg_is_yes_p(content, len(content), question, len(question), None, c.b
 assert 0 <= value.value <= 1
 '''
     runtime_name = {"Darwin": "libonnxruntime.dylib", "Windows": "onnxruntime.dll", "Linux": "libonnxruntime.so"}[platform.system()]
-    with tempfile.TemporaryDirectory(prefix="decisiongate-retry-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="decisiongator-retry-") as temporary:
         target = Path(temporary)
         shutil.copy2(bundle / name, target / name)
         retry = subprocess.run([sys.executable, "-c", retry_program, str(bundle), str(target), name, runtime_name], capture_output=True, text=True)

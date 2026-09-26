@@ -2,7 +2,7 @@ export interface Criteria { yes: string; no: string }
 export interface Options { criteria?: Criteria | null }
 export interface BooleanOptions extends Options { threshold?: number }
 export interface Choice { index: number; p: number }
-export class DecisionGateError extends Error { readonly code: string; constructor(code: string, message: string) }
+export class DecisionGatorError extends Error { readonly code: string; constructor(code: string, message: string) }
 /** Returns the estimated chance of yes. Initializes the local component on first use. */
 export function isYesP(content: string, question: string, options?: Options): Promise<number>;
 /** Inclusive comparison: isYesP(...) >= threshold (default 0.5). */

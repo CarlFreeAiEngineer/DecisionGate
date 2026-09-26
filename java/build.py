@@ -43,14 +43,14 @@ def main():
         raise SystemExit('Missing local JDK or Maven. See java/README.md for setup.')
     source=(args.bundle or ROOT/'released'/args.classifier).resolve()
     if not (source/'manifest.json').is_file(): raise SystemExit('A built native bundle is required')
-    library={'macos-arm64':'libdecisiongate.dylib','linux-x64':'libdecisiongate.so','windows-x64':'decisiongate.dll'}[args.classifier]
+    library={'macos-arm64':'libdecisiongator.dylib','linux-x64':'libdecisiongator.so','windows-x64':'decisiongator.dll'}[args.classifier]
     if not (source/library).is_file(): raise SystemExit(f'Missing matching native library: {library}')
     target=ROOT/'java/target'
     # Clear compiled/resources output, keeping other completed platform JARs in released/.
     if target.exists(): shutil.rmtree(target)
     resource_root=target/'native-bundle'
     if resource_root.exists(): shutil.rmtree(resource_root)
-    resource=resource_root/'META-INF/decisiongate'/args.classifier
+    resource=resource_root/'META-INF/decisiongator'/args.classifier
     shutil.copytree(source,resource)
     index=[]
     for path in sorted(resource.rglob('*')):
@@ -65,21 +65,21 @@ def main():
     env['PATH']=str(jdk/'bin')+os.pathsep+env.get('PATH','')
     command=[str(maven),'-B','-f',str(ROOT/'java/pom.xml'),
              '-Dmaven.repo.local='+str(ROOT/'tools/maven-repository'),
-             '-Ddecisiongate.bundle='+str(source),'-Dnative.classifier='+args.classifier,
+             '-Ddecisiongator.bundle='+str(source),'-Dnative.classifier='+args.classifier,
              '-Pbundle','install' if args.install else 'package']
     if args.package_only:
         command.append('-DskipTests')
     if args.expected_probability is not None:
-        command.extend(['-Ddecisiongate.expectedProbability='+str(args.expected_probability),
-                        '-Ddecisiongate.expectedUnicodeProbability='+str(args.expected_unicode_probability)])
+        command.extend(['-Ddecisiongator.expectedProbability='+str(args.expected_probability),
+                        '-Ddecisiongator.expectedUnicodeProbability='+str(args.expected_unicode_probability)])
     subprocess.run(command,env=env,check=True)
     released=args.output.resolve()
     released.mkdir(parents=True,exist_ok=True)
     for suffix in ['', '-sources', '-javadoc', '-'+args.classifier]:
-        jar=target/('decisiongate-java-0.4.1'+suffix+'.jar')
+        jar=target/('decisiongator-java-0.4.1'+suffix+'.jar')
         if not jar.is_file(): raise SystemExit(f'Missing built artifact: {jar}')
         shutil.copy2(jar,released/jar.name)
-    shutil.copy2(ROOT/'java/pom.xml',released/'decisiongate-java-0.4.1.pom')
+    shutil.copy2(ROOT/'java/pom.xml',released/'decisiongator-java-0.4.1.pom')
     print('Java artifacts:',released)
 
 if __name__=='__main__': main()

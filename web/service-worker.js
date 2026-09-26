@@ -1,5 +1,5 @@
 // Example host-owned offline cache. The build inserts a digest of this release.
-const PREFIX = `decisiongate-web:${self.registration.scope}:`;
+const PREFIX = `decisiongator-web:${self.registration.scope}:`;
 const VERSION = PREFIX + '__RELEASE_DIGEST__';
 const FILES = ['./', './index.html', './index.js', './worker.js', './manifest.json', './model.onnx', './tokenizer.json', './ort-wasm-simd-threaded.mjs', './ort-wasm-simd-threaded.wasm'];
 // The weight files are named in the manifest.

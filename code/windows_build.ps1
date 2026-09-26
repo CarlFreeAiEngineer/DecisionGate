@@ -12,7 +12,7 @@ checked here with `java/check_bundle.py --classifier windows-x64`.
 
 Start it detached so it survives an SSH disconnect, for example:
 
-  schtasks /create /tn DGBuild /sc once /st 00:00 /f /tr "powershell -NoProfile -ExecutionPolicy Bypass -File C:\DecisionGate-build\code\windows_build.ps1 -Root C:\DecisionGate-build"
+  schtasks /create /tn DGBuild /sc once /st 00:00 /f /tr "powershell -NoProfile -ExecutionPolicy Bypass -File C:\DecisionGator-build\code\windows_build.ps1 -Root C:\DecisionGator-build"
   schtasks /run /tn DGBuild
 
 Processes started directly from an SSH session are killed when it closes.

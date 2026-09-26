@@ -1,7 +1,7 @@
 {
   "laya_version": "0.3.20",
   "results": {
-    "decisiongate": {
+    "decisiongator": {
       "new-480": {
         "count": 480,
         "correct": 435,

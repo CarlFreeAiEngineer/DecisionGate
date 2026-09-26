@@ -1,7 +1,7 @@
 {
   "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
   "binaries": {
-    "libdecisiongate.so": {
+    "libdecisiongator.so": {
       "minimum_symbol_versions": {
         "GLIBC": "2.34",
         "GLIBCXX": null,

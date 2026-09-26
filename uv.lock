@@ -94,7 +94,7 @@ wheels = [
 ]
 
 [[package]]
-name = "decisiongate"
+name = "decisiongator"
 version = "0.1.0"
 source = { editable = "." }
 

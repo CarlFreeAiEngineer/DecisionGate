@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.List;
  * the native libraries remain loaded until process exit.
  * No caller cleanup is needed. Hot class-loader replacement is unsupported;
  * finish inference before process exit and do not call from exit hooks.
- * Set the optional {@code decisiongate.cache} system property before first use
- * to choose the extraction directory instead of {@code ~/.cache/decisiongate}.
+ * Set the optional {@code decisiongator.cache} system property before first use
+ * to choose the extraction directory instead of {@code ~/.cache/decisiongator}.
  */
 public final class Decisions {
-    private static DecisionGate model;
+    private static DecisionGator model;
     private static boolean shuttingDown;
 
     private Decisions() { }
@@ -26,7 +26,7 @@ public final class Decisions {
      * @param content nonblank content to evaluate
      * @param question nonblank yes/no question about the content
      * @return whether the probability is at least 0.5
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static boolean isYes(String content, String question) {
@@ -41,7 +41,7 @@ public final class Decisions {
      * @param threshold finite probability between zero and one, inclusive
      * @return whether the probability is greater than or equal to the threshold
      * @throws IllegalArgumentException if the threshold is invalid
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static boolean isYes(String content, String question, double threshold) {
@@ -55,7 +55,7 @@ public final class Decisions {
      * @param question nonblank yes/no question about the content
      * @param criteria explicit answer descriptions, or null for defaults
      * @return whether the probability is at least 0.5
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static boolean isYes(String content, String question, Criteria criteria) {
@@ -72,7 +72,7 @@ public final class Decisions {
      * @param threshold finite probability between zero and one, inclusive
      * @return whether the probability is greater than or equal to the threshold
      * @throws IllegalArgumentException if the threshold is invalid
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static boolean isYes(String content, String question, Criteria criteria, double threshold) {
@@ -88,7 +88,7 @@ public final class Decisions {
      * @param content nonblank content to evaluate
      * @param question nonblank yes/no question about the content
      * @return calibrated probability between zero and one, inclusive
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static double isYesP(String content, String question) {
@@ -102,7 +102,7 @@ public final class Decisions {
      * @param question nonblank yes/no question about the content
      * @param criteria explicit answer descriptions, or null for defaults
      * @return calibrated probability between zero and one, inclusive
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static double isYesP(String content, String question, Criteria criteria) {
@@ -118,7 +118,7 @@ public final class Decisions {
      * @param question nonblank question comparing the options
      * @param options at least two nonblank options, in the caller's order
      * @return every option ranked best first, as index/probability pairs summing to one
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static List<Choice> chooseP(String content, String question, List<String> options) {
@@ -133,7 +133,7 @@ public final class Decisions {
      * @param options at least two nonblank options, in the caller's order
      * @param criteria explicit answer descriptions applied to every option, or null for defaults
      * @return every option ranked best first, as index/probability pairs summing to one
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static List<Choice> chooseP(String content, String question, List<String> options, Criteria criteria) {
@@ -150,7 +150,7 @@ public final class Decisions {
      * @param question nonblank question comparing the options
      * @param options at least two nonblank options, in the caller's order
      * @return the best option's index into the caller's options list
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static int choose(String content, String question, List<String> options) {
@@ -166,7 +166,7 @@ public final class Decisions {
      * @param threshold finite probability between zero and one, inclusive
      * @return the best option's index, or -1 when its probability is below the threshold
      * @throws IllegalArgumentException if the threshold is invalid
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static int choose(String content, String question, List<String> options, double threshold) {
@@ -181,7 +181,7 @@ public final class Decisions {
      * @param options at least two nonblank options, in the caller's order
      * @param criteria explicit answer descriptions applied to every option, or null for defaults
      * @return the best option's index into the caller's options list
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static int choose(String content, String question, List<String> options, Criteria criteria) {
@@ -199,7 +199,7 @@ public final class Decisions {
      * @param threshold finite probability between zero and one, inclusive
      * @return the best option's index, or -1 when its probability is below the threshold
      * @throws IllegalArgumentException if the threshold is invalid
-     * @throws DecisionGateException if input is invalid or native inference fails
+     * @throws DecisionGatorException if input is invalid or native inference fails
      * @throws IllegalStateException if packaged assets cannot be prepared
      */
     public static int choose(String content, String question, List<String> options, Criteria criteria,
@@ -211,19 +211,19 @@ public final class Decisions {
         return best.p() >= threshold ? best.index() : -1;
     }
 
-    private static synchronized DecisionGate sharedModel() {
+    private static synchronized DecisionGator sharedModel() {
         if (shuttingDown) {
-            throw new IllegalStateException("DecisionGate is shutting down");
+            throw new IllegalStateException("DecisionGator is shutting down");
         }
         if (model == null) {
-            String cache = System.getProperty("decisiongate.cache");
-            DecisionGate loaded = cache == null ? DecisionGate.loadBundled()
-                    : DecisionGate.loadBundled(Path.of(cache));
+            String cache = System.getProperty("decisiongator.cache");
+            DecisionGator loaded = cache == null ? DecisionGator.loadBundled()
+                    : DecisionGator.loadBundled(Path.of(cache));
             try {
                 // Java hooks run before the native atexit callback releases the
                 // ONNX environment. Release only; never initialize or infer here.
                 Runtime.getRuntime().addShutdownHook(
-                        new Thread(Decisions::closeAtShutdown, "decisiongate-release"));
+                        new Thread(Decisions::closeAtShutdown, "decisiongator-release"));
             } catch (RuntimeException | Error failure) {
                 loaded.close();
                 throw failure;

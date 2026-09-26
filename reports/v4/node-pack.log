@@ -1,5 +1,5 @@
 
-> decisiongate@0.4.0 pack:release
+> decisiongator@0.4.0 pack:release
 > node pack.mjs
 
-{"file":"decisiongate-0.4.0-darwin-arm64.tgz","bytes":1630653803,"unpackedBytes":1835921536,"sha256":"08d471074900f5f79c7036f7de51fb25005a15340afbe8ba5a0ce38bf186b675"}
+{"file":"decisiongator-0.4.0-darwin-arm64.tgz","bytes":1630653803,"unpackedBytes":1835921536,"sha256":"08d471074900f5f79c7036f7de51fb25005a15340afbe8ba5a0ce38bf186b675"}

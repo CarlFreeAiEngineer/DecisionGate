@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 /**
  * Descriptions of what counts as a yes answer and a no answer.
@@ -12,7 +12,7 @@ public record Criteria(String yes, String no) {
      *
      * @param yes description of a yes answer
      * @param no description of a no answer
-     * @throws DecisionGateException if either description is null, blank, or has an unpaired surrogate
+     * @throws DecisionGatorException if either description is null, blank, or has an unpaired surrogate
      */
     public Criteria {
         Utf8.validate(yes, "criteria.yes");

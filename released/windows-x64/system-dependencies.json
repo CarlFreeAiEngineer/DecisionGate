@@ -1,7 +1,7 @@
 {
   "platform": "Windows-11-10.0.26200-SP0",
   "binaries": {
-    "decisiongate.dll": {
+    "decisiongator.dll": {
       "needed_libraries": [
         "KERNEL32.dll",
         "bcryptprimitives.dll",

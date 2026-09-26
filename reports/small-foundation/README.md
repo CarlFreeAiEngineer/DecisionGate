@@ -31,38 +31,38 @@ Rows marked with `*` are the raw training-loop validation numbers from `history.
 
 ## Quantization
 
-Dynamic int8 quantization (`decisiongate-train quantize`) was run on the best exported small candidate, bert-small lr 3e-5, since it had the lowest validation log loss (0.604) of the candidates with working bundles. `model.onnx` shrank from 115,147,542 to 76,772,077 bytes (33.3% smaller). After recalibrating, validation accuracy went from 66.7% to 65.6% and fresh test moved from 33/80 to 35/80; both changes are within noise for an 80-96 example split and do not change the overall conclusion that this foundation underperforms the release by a wide margin.
+Dynamic int8 quantization (`decisiongator-train quantize`) was run on the best exported small candidate, bert-small lr 3e-5, since it had the lowest validation log loss (0.604) of the candidates with working bundles. `model.onnx` shrank from 115,147,542 to 76,772,077 bytes (33.3% smaller). After recalibrating, validation accuracy went from 66.7% to 65.6% and fresh test moved from 33/80 to 35/80; both changes are within noise for an 80-96 example split and do not change the overall conclusion that this foundation underperforms the release by a wide margin.
 
 ## Exact commands
 
 ```
-uv run --locked decisiongate-train validate --extra-data data/expansion-v2.jsonl
+uv run --locked decisiongator-train validate --extra-data data/expansion-v2.jsonl
 
 # MiniLM-L12-H384-uncased (project default base, MIT)
-uv run --locked decisiongate-train train --template 2 --learning-rate 0.00001 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-minilm-l12-lr1e5
-uv run --locked decisiongate-train train --template 2 --learning-rate 0.00003 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-minilm-l12-lr3e5
+uv run --locked decisiongator-train train --template 2 --learning-rate 0.00001 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-minilm-l12-lr1e5
+uv run --locked decisiongator-train train --template 2 --learning-rate 0.00003 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-minilm-l12-lr3e5
 
 # prajjwal1/bert-small (MIT)
-uv run --locked decisiongate-train train --base prajjwal1/bert-small --revision 0ec5f86f27c1a77d704439db5e01c307ea11b9d4 --template 2 --learning-rate 0.00001 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-bert-small-lr1e5
-uv run --locked decisiongate-train train --base prajjwal1/bert-small --revision 0ec5f86f27c1a77d704439db5e01c307ea11b9d4 --template 2 --learning-rate 0.00003 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-bert-small-lr3e5
+uv run --locked decisiongator-train train --base prajjwal1/bert-small --revision 0ec5f86f27c1a77d704439db5e01c307ea11b9d4 --template 2 --learning-rate 0.00001 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-bert-small-lr1e5
+uv run --locked decisiongator-train train --base prajjwal1/bert-small --revision 0ec5f86f27c1a77d704439db5e01c307ea11b9d4 --template 2 --learning-rate 0.00003 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-bert-small-lr3e5
 
 # microsoft/deberta-v3-xsmall (MIT foundation behind cross-encoder/nli-deberta-v3-xsmall, Apache-2.0)
 # needs sentencepiece + protobuf, added transiently, not persisted to pyproject.toml/uv.lock
-uv run --with sentencepiece --with protobuf --locked decisiongate-train train --base microsoft/deberta-v3-xsmall --revision 4b419818330868dff6a60ad3e6b1c730f8b8c0c6 --template 2 --learning-rate 0.00001 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-deberta-v3-xsmall-lr1e5
-uv run --with sentencepiece --with protobuf --locked decisiongate-train train --base microsoft/deberta-v3-xsmall --revision 4b419818330868dff6a60ad3e6b1c730f8b8c0c6 --template 2 --learning-rate 0.00003 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-deberta-v3-xsmall-lr3e5
+uv run --with sentencepiece --with protobuf --locked decisiongator-train train --base microsoft/deberta-v3-xsmall --revision 4b419818330868dff6a60ad3e6b1c730f8b8c0c6 --template 2 --learning-rate 0.00001 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-deberta-v3-xsmall-lr1e5
+uv run --with sentencepiece --with protobuf --locked decisiongator-train train --base microsoft/deberta-v3-xsmall --revision 4b419818330868dff6a60ad3e6b1c730f8b8c0c6 --template 2 --learning-rate 0.00003 --epochs 10 --batch-size 16 --seed 42 --device mps --extra-data data/expansion-v2.jsonl --output runs/small-deberta-v3-xsmall-lr3e5
 # export then fails for both: onnxruntime.capi.onnxruntime_pybind11_state.InvalidArgument: Invalid input name: token_type_ids
 
 # export, calibrate, evaluate (repeat --checkpoint/--bundle/--output for each successful run)
-uv run --locked decisiongate-train export --checkpoint runs/small-bert-small-lr3e5/best --output models/small-bert-small-lr3e5 --model-id small-bert-small-lr3e5
-uv run --locked decisiongate-train calibrate --bundle models/small-bert-small-lr3e5 --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-calibration.json
-uv run --locked decisiongate-train evaluate --bundle models/small-bert-small-lr3e5 --split validation --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-validation.json
-uv run --locked decisiongate-train evaluate --bundle models/small-bert-small-lr3e5 --data data/evaluation-v2.jsonl --split test --output reports/small-foundation/small-bert-small-lr3e5-fresh-test.json
+uv run --locked decisiongator-train export --checkpoint runs/small-bert-small-lr3e5/best --output models/small-bert-small-lr3e5 --model-id small-bert-small-lr3e5
+uv run --locked decisiongator-train calibrate --bundle models/small-bert-small-lr3e5 --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-calibration.json
+uv run --locked decisiongator-train evaluate --bundle models/small-bert-small-lr3e5 --split validation --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-validation.json
+uv run --locked decisiongator-train evaluate --bundle models/small-bert-small-lr3e5 --data data/evaluation-v2.jsonl --split test --output reports/small-foundation/small-bert-small-lr3e5-fresh-test.json
 
 # quantization of the best exported small candidate
-uv run --locked decisiongate-train quantize --bundle models/small-bert-small-lr3e5 --output models/small-bert-small-lr3e5-int8 --model-id small-bert-small-lr3e5-int8
-uv run --locked decisiongate-train calibrate --bundle models/small-bert-small-lr3e5-int8 --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-int8-calibration.json
-uv run --locked decisiongate-train evaluate --bundle models/small-bert-small-lr3e5-int8 --split validation --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-int8-validation.json
-uv run --locked decisiongate-train evaluate --bundle models/small-bert-small-lr3e5-int8 --data data/evaluation-v2.jsonl --split test --output reports/small-foundation/small-bert-small-lr3e5-int8-fresh-test.json
+uv run --locked decisiongator-train quantize --bundle models/small-bert-small-lr3e5 --output models/small-bert-small-lr3e5-int8 --model-id small-bert-small-lr3e5-int8
+uv run --locked decisiongator-train calibrate --bundle models/small-bert-small-lr3e5-int8 --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-int8-calibration.json
+uv run --locked decisiongator-train evaluate --bundle models/small-bert-small-lr3e5-int8 --split validation --extra-data data/expansion-v2.jsonl --output reports/small-foundation/small-bert-small-lr3e5-int8-validation.json
+uv run --locked decisiongator-train evaluate --bundle models/small-bert-small-lr3e5-int8 --data data/evaluation-v2.jsonl --split test --output reports/small-foundation/small-bert-small-lr3e5-int8-fresh-test.json
 ```
 
 Full epoch histories, initial-validation baselines and training configs are in `runs/small-*/history.json` and `runs/small-*/config.json`. Exported bundles are in `models/small-*/`. Per-candidate calibration/validation/fresh-test JSON (including per-question predictions) are alongside this file in `reports/small-foundation/`.

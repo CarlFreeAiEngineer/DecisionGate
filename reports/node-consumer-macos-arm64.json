@@ -12,6 +12,6 @@
   "network_denied": true,
   "network_isolation": "macOS sandbox",
   "original_native_bundle_reads_denied": true,
-  "tarball": "/Users/ace/Desktop/prjx/DecisionModel/released/node/decisiongate-0.4.1-darwin-arm64.tgz",
+  "tarball": "/Users/ace/Desktop/prjx/DecisionModel/released/node/decisiongator-0.4.1-darwin-arm64.tgz",
   "tarball_sha256": "392fff30c4ca26ef37151731b220a9c7b2357455cb56d6fab045b8bdfe230aec"
 }

@@ -3,7 +3,7 @@
 # requires-python = ">=3.11"
 # dependencies = []
 # ///
-"""Publish the local released/ tree to https://62-84-178-253.sslip.io/DecisionGate/files/<version>/.
+"""Publish the local released/ tree to https://62-84-178-253.sslip.io/DecisionGator/files/<version>/.
 
 Maintainers only: needs SSH access to the web host. Writes SHA256SUMS.txt from
 the local files, then copies everything with rsync into a versioned folder.
@@ -25,8 +25,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_HOST = 'ace@62.84.178.253'
-DEFAULT_REMOTE_DIR = '/var/www/textautomationlib/DecisionGate/files'
-SITE_PAGES = {'index.html': 'index.html', 'try.html': 'try.html', 'files-index.html': 'files/index.html'}  # website/ name -> path under DecisionGate/
+DEFAULT_REMOTE_DIR = '/var/www/textautomationlib/DecisionGator/files'
+SITE_PAGES = {'index.html': 'index.html', 'try.html': 'try.html', 'files-index.html': 'files/index.html'}  # website/ name -> path under DecisionGator/
 SKIP_DIRS = {'__pycache__', 'node_modules'}
 
 
@@ -39,7 +39,7 @@ def sha256(path):
 
 
 def write_sums(source):
-    lines = [f'# DecisionGate release files. Verify with: sha256sum -c SHA256SUMS.txt']
+    lines = [f'# DecisionGator release files. Verify with: sha256sum -c SHA256SUMS.txt']
     for path in sorted(source.rglob('*')):
         if not path.is_file() or path.name == 'SHA256SUMS.txt' or path.suffix == '.part':
             continue
@@ -93,7 +93,7 @@ def main():
         command.append('--dry-run')
     command += [f'{args.source}/', destination]
     subprocess.run(command, check=True)
-    print(f'published {args.version} to https://62-84-178-253.sslip.io/DecisionGate/files/{args.version}/')
+    print(f'published {args.version} to https://62-84-178-253.sslip.io/DecisionGator/files/{args.version}/')
     if args.site:
         publish_site(args.host, args.remote_dir, args.dry_run)
 

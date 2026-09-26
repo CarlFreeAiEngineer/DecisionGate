@@ -26,8 +26,8 @@ def _bundled_directory():
     checkout = package.parent / 'released' / (target or 'unsupported')
     if target and checkout.is_dir():
         return checkout
-    raise DecisionGateError(2, 'No bundled DecisionGate component for this platform. '
-                             'Install platform assets in decisiongate/_bundle, '
+    raise DecisionGatorError(2, 'No bundled DecisionGator component for this platform. '
+                             'Install platform assets in decisiongator/_bundle, '
                              'or use Session.load(path) for a custom bundle.')
 
 
@@ -98,7 +98,7 @@ def _close_default():
 atexit.register(_close_default)
 
 
-class DecisionGateError(RuntimeError):
+class DecisionGatorError(RuntimeError):
     def __init__(self, status, message):
         super().__init__(message)
         self.status = status
@@ -117,7 +117,7 @@ class Session:
         self._lock = threading.RLock()
         self._handle = C.c_void_p()
         directory = Path(path).resolve()
-        name = {'Darwin':'libdecisiongate.dylib','Linux':'libdecisiongate.so','Windows':'decisiongate.dll'}[platform.system()]
+        name = {'Darwin':'libdecisiongator.dylib','Linux':'libdecisiongator.so','Windows':'decisiongator.dll'}[platform.system()]
         self._lib = C.CDLL(str(directory/name))
         lib = self._lib
         lib.dg_load.argtypes = [C.c_char_p, C.c_size_t, C.POINTER(C.c_void_p)]
@@ -140,10 +140,10 @@ class Session:
             self._lib.dg_last_error(None,0,C.byref(required))
             buf = C.create_string_buffer(max(1,required.value))
             self._lib.dg_last_error(buf,len(buf),C.byref(required))
-            raise DecisionGateError(status,buf.value.decode('utf-8',errors='replace'))
+            raise DecisionGatorError(status,buf.value.decode('utf-8',errors='replace'))
 
     def _open(self):
-        if not self._handle: raise DecisionGateError(1,'Session is closed')
+        if not self._handle: raise DecisionGatorError(1,'Session is closed')
 
     @staticmethod
     def _criteria(criteria):

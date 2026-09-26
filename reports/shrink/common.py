@@ -1,6 +1,6 @@
 """Shared helpers for the ONNX shrink experiments (reports/shrink/).
 
-Read-only with respect to released/, code/, decisiongate/, specs/, README.md and
+Read-only with respect to released/, code/, decisiongator/, specs/, README.md and
 training/pipeline.py. This module duplicates the tiny bits of pipeline.py logic
 we need (prompt building, data loading) instead of importing/modifying it, so
 outputs live entirely under reports/shrink/ and models/shrink-*/.

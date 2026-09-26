@@ -16,7 +16,7 @@ Build the library as a Rust `cdylib`, the output intended for loading from other
 
 ## Portable local tools
 
-Follow the layout inspected in KitchenSync's `code/build.py` and `specs/DEVELOPMENT.md`: use a local Rust toolchain under `tools/rust/`, put its `bin/` first on the build process's `PATH`, and set `CARGO_HOME` to this project's `tools/cargo-home/`. DecisionGate must be self-contained; do not link to or depend on KitchenSync's installed tools.
+Follow the layout inspected in KitchenSync's `code/build.py` and `specs/DEVELOPMENT.md`: use a local Rust toolchain under `tools/rust/`, put its `bin/` first on the build process's `PATH`, and set `CARGO_HOME` to this project's `tools/cargo-home/`. DecisionGator must be self-contained; do not link to or depend on KitchenSync's installed tools.
 
 Pin the compiler version and record per-platform toolchain sources and checksums when implementing setup. Keep tools and caches out of Git. Each machine obtains its own matching toolchain; portable here means local to the checkout, not that one toolchain binary works on every OS. Do not change the user's global compiler or shell configuration.
 
@@ -58,4 +58,4 @@ The Node-API addon and JavaScript/TypeScript interfaces live in `javascript/`. F
 
 Browser sources live in `web/`. From the project root, run `npm ci --prefix web`, `node web/build.mjs`, and `node web/tests/tokens.mjs`. This produces the self-contained browser component and demo in `released/web/`, using the same weights through ONNX Runtime Web. Use Node 22 or 24 for browser test tooling. Install test browsers with `node web/node_modules/playwright/cli.js install chromium firefox webkit`, then run `node web/tests/browser.mjs chromium firefox webkit`. Tests use temporary browser profiles, compare native outputs, and verify cached offline execution.
 
-Build the browser release before packaging Node if the combined package should include `decisiongate/web`. Browser hosting must preserve worker and asset paths or supply the documented overrides. Read [JavaScript architecture and verification](javascript-and-webassembly.md) and [browser deployment instructions](../web/README.md).
+Build the browser release before packaging Node if the combined package should include `decisiongator/web`. Browser hosting must preserve worker and asset paths or supply the documented overrides. Read [JavaScript architecture and verification](javascript-and-webassembly.md) and [browser deployment instructions](../web/README.md).

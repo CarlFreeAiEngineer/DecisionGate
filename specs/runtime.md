@@ -20,13 +20,13 @@ The native interface must provide explicit load, evaluate, metadata, and release
 
 Report load, compatibility, input, resource, and inference errors separately. Never return success with NaN, infinity, or an out-of-range value. A caller must be able to distinguish an ordinary negative prediction from a failed operation.
 
-Define thread-safety before release. At minimum, separate model handles must be usable independently; document whether calls on one handle are serialized or concurrent. Each inference uses one thread per fast physical core: performance cores only on chips that mix fast and slow cores, and no hyperthreads, because ONNX Runtime splits every operation evenly and one slow thread holds up the rest. The `DECISIONGATE_THREADS` environment variable, read when a model loads, sets a different count so the component can coexist with its host application. Make resource release explicit and test repeated load/unload cycles.
+Define thread-safety before release. At minimum, separate model handles must be usable independently; document whether calls on one handle are serialized or concurrent. Each inference uses one thread per fast physical core: performance cores only on chips that mix fast and slow cores, and no hyperthreads, because ONNX Runtime splits every operation evenly and one slow thread holds up the rest. The `DECISIONGATOR_THREADS` environment variable, read when a model loads, sets a different count so the component can coexist with its host application. Make resource release explicit and test repeated load/unload cycles.
 
 A Python binding is the first convenience layer and must preserve the native semantics. Other language bindings follow the same interface. The deployed native package must not require Python, PyTorch, a shell process, or a local HTTP server.
 
 ### Experimental C surface
 
-The README's C example uses the following declarations. The implemented [header](../code/include/decisiongate.h) defines criteria, status codes, metadata, ownership, and lifetime rules. The interface remains experimental rather than a stable binary contract. The Mac prototype requires the library to remain loaded until process exit; individual model handles can be released normally.
+The README's C example uses the following declarations. The implemented [header](../code/include/decisiongator.h) defines criteria, status codes, metadata, ownership, and lifetime rules. The interface remains experimental rather than a stable binary contract. The Mac prototype requires the library to remain loaded until process exit; individual model handles can be released normally.
 
 ```c
 #include <stddef.h>

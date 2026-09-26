@@ -1,16 +1,16 @@
-# Contributing to DecisionGate
+# Contributing to DecisionGator
 
 The most valuable contribution is a wrong answer with the right answer attached. You do not need a GPU or machine-learning experience. This page is the short path; [the open training specification](specs/open-training.md) has the full rules.
 
 ## 1. Clone and get the prebuilt component
 
 ```text
-git clone https://github.com/CarlFreeAiEngineer/DecisionGate.git
-cd DecisionGate
+git clone https://github.com/CarlFreeAiEngineer/DecisionGator.git
+cd DecisionGator
 uv run code/fetch_released.py --only macos-arm64    # or linux-x64, windows-x64, web, python, java, node
 ```
 
-The prebuilt bundles are too large for GitHub, so they are downloaded from `https://62-84-178-253.sslip.io/DecisionGate/files/` and verified by checksum into `released/`. After that, [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) shows the calls in every language and `uv run examples/python_smoke.py` proves it works.
+The prebuilt bundles are too large for GitHub, so they are downloaded from `https://62-84-178-253.sslip.io/DecisionGator/files/` and verified by checksum into `released/`. After that, [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) shows the calls in every language and `uv run examples/python_smoke.py` proves it works.
 
 ## 2. Record the wrong answer
 
@@ -19,7 +19,7 @@ Copy [data/contributions/example-correction.jsonl](data/contributions/example-co
 Check it:
 
 ```text
-uv run --locked decisiongate-train validate --extra-data data/contributions/my-fix.jsonl
+uv run --locked decisiongator-train validate --extra-data data/contributions/my-fix.jsonl
 ```
 
 ## 3. Retrain locally
@@ -27,18 +27,18 @@ uv run --locked decisiongate-train validate --extra-data data/contributions/my-f
 Start from the current release checkpoint and add your file. Training runs on an ordinary laptop CPU; the recipe and timings are in [the v0.3 report](reports/accuracy-v3.md).
 
 ```text
-uv run --locked decisiongate-train train \
+uv run --locked decisiongator-train train \
   --base cross-encoder/nli-MiniLM2-L6-H768 --revision b95119ce93d3e065de6214e38cd4a97b0f2f2c6d \
   --nli-head --template 2 --learning-rate 1e-5 --epochs 10 \
   --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl \
   --extra-data data/contributions/my-fix.jsonl \
   --output runs/my-fix
-uv run --locked decisiongate-train export --checkpoint runs/my-fix/best --output models/my-fix --model-id my-fix
-uv run --locked decisiongate-train calibrate --bundle models/my-fix --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl --output reports/my-fix-calibration.json
-uv run --locked decisiongate-train evaluate --bundle models/my-fix --data data/evaluation-v2.jsonl --split test --output reports/my-fix-test.json
+uv run --locked decisiongator-train export --checkpoint runs/my-fix/best --output models/my-fix --model-id my-fix
+uv run --locked decisiongator-train calibrate --bundle models/my-fix --extra-data data/expansion-v2.jsonl --extra-data data/choices.jsonl --output reports/my-fix-calibration.json
+uv run --locked decisiongator-train evaluate --bundle models/my-fix --data data/evaluation-v2.jsonl --split test --output reports/my-fix-test.json
 ```
 
-Then build a native bundle for your platform and use it from your language of choice; see [native builds](code/README.md). Point `DECISIONGATE_BUNDLE` at the new bundle to test it without replacing the release.
+Then build a native bundle for your platform and use it from your language of choice; see [native builds](code/README.md). Point `DECISIONGATOR_BUNDLE` at the new bundle to test it without replacing the release.
 
 You can stop here and ship your private variant. Nothing is uploaded anywhere.
 
@@ -50,4 +50,4 @@ Reviewers check the rights statement, the question wording, the label, and wheth
 
 ## Code changes
 
-Code is Apache-2.0. Keep the C interface in `code/include/decisiongate.h` and every language wrapper in agreement; `tests/` and the per-language READMEs describe the checks each change must pass. Run the smoke tests for any language you touch before opening the pull request.
+Code is Apache-2.0. Keep the C interface in `code/include/decisiongator.h` and every language wrapper in agreement; `tests/` and the per-language READMEs describe the checks each change must pass. Run the smoke tests for any language you touch before opening the pull request.

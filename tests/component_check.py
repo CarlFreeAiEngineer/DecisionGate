@@ -13,15 +13,15 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import decisiongate as dg
+import decisiongator as dg
 
 content = 'Please return my money. The item arrived broken.'
 question = 'Is the customer asking for a refund?'
 # A failed initialization must not poison subsequent calls.
-with patch.object(dg.Session, 'load', side_effect=dg.DecisionGateError(2, 'test failure')):
+with patch.object(dg.Session, 'load', side_effect=dg.DecisionGatorError(2, 'test failure')):
     try:
         dg.is_yes_p(content, question)
-    except dg.DecisionGateError as error:
+    except dg.DecisionGatorError as error:
         assert error.status == 2
     else:
         raise AssertionError('Expected initialization failure')
@@ -42,10 +42,10 @@ with patch.object(dg, 'is_yes_p', return_value=0.5) as estimate:
         else:
             raise AssertionError('Invalid threshold accepted')
         estimate.assert_not_called()
-with patch.object(dg, 'is_yes_p', side_effect=dg.DecisionGateError(5, 'test failure')):
+with patch.object(dg, 'is_yes_p', side_effect=dg.DecisionGatorError(5, 'test failure')):
     try:
         dg.is_yes(content, question)
-    except dg.DecisionGateError as error:
+    except dg.DecisionGatorError as error:
         assert error.status == 5
     else:
         raise AssertionError('Boolean helper hid an inference error')
@@ -66,7 +66,7 @@ with tempfile.TemporaryDirectory() as directory:
         assert dg.is_yes(content, question, threshold=1) is False
         try:
             dg.is_yes('', question)
-        except dg.DecisionGateError:
+        except dg.DecisionGatorError:
             pass
         else:
             raise AssertionError('Invalid input must raise, not return a probability')

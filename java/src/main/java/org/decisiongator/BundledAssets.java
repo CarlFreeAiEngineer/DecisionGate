@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,15 +19,15 @@ import java.util.Locale;
 final class BundledAssets {
     private BundledAssets() { }
 
-    static synchronized DecisionGate load(Path cacheDirectory) {
+    static synchronized DecisionGator load(Path cacheDirectory) {
         String platform = platform();
-        String prefix = "META-INF/decisiongate/" + platform + "/";
+        String prefix = "META-INF/decisiongator/" + platform + "/";
         try {
             byte[] index;
             try (InputStream stream = BundledAssets.class.getClassLoader().getResourceAsStream(prefix + "bundle.index")) {
                 if (stream == null) {
-                    throw new IllegalStateException("No DecisionGate bundle for " + platform
-                        + " on the classpath. Add the matching native classifier dependency, or use DecisionGate.load(Path).");
+                    throw new IllegalStateException("No DecisionGator bundle for " + platform
+                        + " on the classpath. Add the matching native classifier dependency, or use DecisionGator.load(Path).");
                 }
                 index = stream.readAllBytes();
             }
@@ -52,7 +52,7 @@ final class BundledAssets {
                     if (Files.isRegularFile(target, LinkOption.NOFOLLOW_LINKS)
                             && hash(target).equals(fields[0])) continue;
                     Files.createDirectories(target.getParent());
-                    Path staged = Files.createTempFile(target.getParent(), ".decisiongate-", ".part");
+                    Path staged = Files.createTempFile(target.getParent(), ".decisiongator-", ".part");
                     try {
                         try (InputStream resource = BundledAssets.class.getClassLoader().getResourceAsStream(prefix + relative)) {
                             if (resource == null) throw new IOException("Missing bundled asset: " + relative);
@@ -65,9 +65,9 @@ final class BundledAssets {
                     }
                 }
             }
-            return DecisionGate.load(directory);
+            return DecisionGator.load(directory);
         } catch (IOException e) {
-            throw new IllegalStateException("Could not prepare local DecisionGate bundle", e);
+            throw new IllegalStateException("Could not prepare local DecisionGator bundle", e);
         }
     }
 
@@ -78,7 +78,7 @@ final class BundledAssets {
         if ((os.contains("mac") || os.contains("darwin")) && (arch.equals("aarch64") || arch.equals("arm64"))) return "macos-arm64";
         if (os.startsWith("windows") && x64) return "windows-x64";
         if (os.contains("linux") && x64) return "linux-x64";
-        throw new UnsupportedOperationException("Unsupported DecisionGate platform: " + os + " / " + arch);
+        throw new UnsupportedOperationException("Unsupported DecisionGator platform: " + os + " / " + arch);
     }
 
     private static MessageDigest sha256() {

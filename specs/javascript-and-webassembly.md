@@ -5,7 +5,7 @@ Implemented in `javascript/` and `web/`. The Node package wraps the native libra
 ## Public interface
 
 ```typescript
-import { isYes, isYesP } from 'decisiongate';
+import { isYes, isYesP } from 'decisiongator';
 
 if (await isYes(content, 'Is this person asking for an appointment?')) {
     routeToAppointments();
@@ -22,9 +22,9 @@ const team = await choose(message, 'Which team should handle this message?', ['b
 // -1 when the best option is below the threshold.
 ```
 
-Browser applications import the same functions from `decisiongate/web`, or directly from the staged browser `index.js`. `isYes` returns `Promise<boolean>`; `isYesP` returns `Promise<number>`. Always await them: a Promise itself is truthy. JavaScript needs no TypeScript compiler; declarations are supplied for TypeScript applications.
+Browser applications import the same functions from `decisiongator/web`, or directly from the staged browser `index.js`. `isYes` returns `Promise<boolean>`; `isYesP` returns `Promise<number>`. Always await them: a Promise itself is truthy. JavaScript needs no TypeScript compiler; declarations are supplied for TypeScript applications.
 
-Criteria can be omitted or null. When supplied, both `yes` and `no` must be nonempty strings. `isYes` uses an inclusive threshold of 0.5 by default; an explicit threshold must be a finite number in [0,1]. Empty text, unmatched UTF-16 surrogates, invalid criteria, excessive length, missing assets, and execution failures reject with `DecisionGateError`, never false. Its constructor is `(code, message)`. Each text argument has the native 1 MiB UTF-8 byte limit, and the combined encoded pair has a 256-token limit. Nothing is silently truncated.
+Criteria can be omitted or null. When supplied, both `yes` and `no` must be nonempty strings. `isYes` uses an inclusive threshold of 0.5 by default; an explicit threshold must be a finite number in [0,1]. Empty text, unmatched UTF-16 surrogates, invalid criteria, excessive length, missing assets, and execution failures reject with `DecisionGatorError`, never false. Its constructor is `(code, message)`. Each text argument has the native 1 MiB UTF-8 byte limit, and the combined encoded pair has a 256-token limit. Nothing is silently truncated.
 
 Both implementations initialize lazily, share initialization across simultaneous calls, serialize evaluation, retry failed initialization, and bound the pending queue at 64 requests. A full queue rejects with `DG_RESOURCE_ERROR`. Content is neither logged nor sent to an inference service.
 
@@ -38,7 +38,7 @@ Node 24 is the baseline; development dependencies pin Node 24.14.0 and TypeScrip
 
 Build and test instructions are in [the Node guide](../javascript/README.md). [Mac verification](../reports/node-package.md) covers concurrent use, validation, event-loop responsiveness, thresholds, worker threads, and a fresh offline consumer using ESM, CommonJS, and TypeScript from a changed working directory. Platform qualification follows the actual per-platform reports and [release inventory](../released/README.md).
 
-When the browser release is present, the Node build includes it under the `decisiongate/web` export. Native and browser assets currently duplicate the weights, making the combined Mac tarball about 627 MB compressed. Registry hosting and publication remain separate work; distribution must not introduce an inference API or runtime CDN dependency.
+When the browser release is present, the Node build includes it under the `decisiongator/web` export. Native and browser assets currently duplicate the weights, making the combined Mac tarball about 627 MB compressed. Registry hosting and publication remain separate work; distribution must not introduce an inference API or runtime CDN dependency.
 
 ## Browser implementation
 

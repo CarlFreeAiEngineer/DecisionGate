@@ -1,4 +1,4 @@
-package org.decisiongate;
+package org.decisiongator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,14 +10,14 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-class DecisionGateTest {
+class DecisionGatorTest {
     @Test
     void validatesCriteria() {
         assertEquals("Yes", new Criteria("Yes", "No").yes());
         for (String invalid : new String[] {null, "", " \n\t", "\ud800", "\udfff", "a\ud800b"}) {
-            assertEquals(1, assertThrows(DecisionGateException.class,
+            assertEquals(1, assertThrows(DecisionGatorException.class,
                     () -> new Criteria(invalid, "No")).statusCode());
-            assertThrows(DecisionGateException.class, () -> new Criteria("Yes", invalid));
+            assertThrows(DecisionGatorException.class, () -> new Criteria("Yes", invalid));
         }
         assertDoesNotThrow(() -> new Criteria("Café ☕ 😀", "不存在"));
     }
@@ -42,12 +42,12 @@ class DecisionGateTest {
 
     @Test
     void missingBundleIsLoadError(@TempDir Path temporary) {
-        assertEquals(2, assertThrows(DecisionGateException.class,
-                () -> DecisionGate.load(temporary.resolve("missing"))).statusCode());
-        assertEquals(2, assertThrows(DecisionGateException.class,
-                () -> DecisionGate.load(temporary)).statusCode());
-        assertEquals(1, assertThrows(DecisionGateException.class,
-                () -> DecisionGate.load(null)).statusCode());
+        assertEquals(2, assertThrows(DecisionGatorException.class,
+                () -> DecisionGator.load(temporary.resolve("missing"))).statusCode());
+        assertEquals(2, assertThrows(DecisionGatorException.class,
+                () -> DecisionGator.load(temporary)).statusCode());
+        assertEquals(1, assertThrows(DecisionGatorException.class,
+                () -> DecisionGator.load(null)).statusCode());
     }
 
     @Test
@@ -60,15 +60,15 @@ class DecisionGateTest {
     @Test
     void validatesOptionShape() {
         assertDoesNotThrow(() -> Utf8.validateOptions(List.of("billing", "sales")));
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> Utf8.validateOptions(null)).statusCode());
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> Utf8.validateOptions(List.of())).statusCode());
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> Utf8.validateOptions(List.of("only one"))).statusCode());
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> Utf8.validateOptions(Arrays.asList("billing", null))).statusCode());
-        assertEquals(1, assertThrows(DecisionGateException.class,
+        assertEquals(1, assertThrows(DecisionGatorException.class,
                 () -> Utf8.validateOptions(List.of("billing", " \t\n"))).statusCode());
     }
 }

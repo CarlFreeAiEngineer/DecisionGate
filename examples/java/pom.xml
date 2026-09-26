@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- DecisionGate from Java. Run from this directory: mvn -q compile exec:java
+<!-- DecisionGator from Java. Run from this directory: mvn -q compile exec:java
      Uses the JARs in released/java/ from this checkout; an application would use the normal
      Maven coordinates shown in java/README.md instead of these file paths. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.decisiongate.examples</groupId>
-  <artifactId>decisiongate-java-example</artifactId>
+  <groupId>org.decisiongator.examples</groupId>
+  <artifactId>decisiongator-java-example</artifactId>
   <version>1.0</version>
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
@@ -15,12 +15,12 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.decisiongate</groupId><artifactId>decisiongate-java</artifactId><version>0.4.1</version>
-      <scope>system</scope><systemPath>${released}/decisiongate-java-0.4.1.jar</systemPath>
+      <groupId>org.decisiongator</groupId><artifactId>decisiongator-java</artifactId><version>0.4.1</version>
+      <scope>system</scope><systemPath>${released}/decisiongator-java-0.4.1.jar</systemPath>
     </dependency>
     <dependency>
-      <groupId>org.decisiongate</groupId><artifactId>decisiongate-java-bundle</artifactId><version>0.4.1</version>
-      <scope>system</scope><systemPath>${released}/decisiongate-java-0.4.1-${platform}.jar</systemPath>
+      <groupId>org.decisiongator</groupId><artifactId>decisiongator-java-bundle</artifactId><version>0.4.1</version>
+      <scope>system</scope><systemPath>${released}/decisiongator-java-0.4.1-${platform}.jar</systemPath>
     </dependency>
     <dependency><groupId>net.java.dev.jna</groupId><artifactId>jna</artifactId><version>5.19.1</version></dependency>
   </dependencies>

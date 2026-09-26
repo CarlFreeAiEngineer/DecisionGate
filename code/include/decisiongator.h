@@ -1,5 +1,5 @@
-#ifndef DECISIONGATE_H
-#define DECISIONGATE_H
+#ifndef DECISIONGATOR_H
+#define DECISIONGATOR_H
 #include <stddef.h>
 #include <stdint.h>
 #if defined(_WIN32)

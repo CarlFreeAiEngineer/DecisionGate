@@ -1,17 +1,17 @@
-# DecisionGate for Python
+# DecisionGator for Python
 
 Fetch the wheels with `uv run code/fetch_released.py --only python` if they are not already here, then install the wheel for your platform into your application. It includes the native component, weights, tokenizer, and license notices. Inference needs no Python dependencies, downloads, server, or development tools.
 
 From this checkout, add the Mac package to a Python project:
 
 ```console
-uv add /path/to/DecisionGate/released/python/decisiongate-0.4.1-py3-none-macosx_14_0_arm64.whl
+uv add /path/to/DecisionGator/released/python/decisiongator-0.4.1-py3-none-macosx_14_0_arm64.whl
 ```
 
 Then use it normally:
 
 ```python
-from decisiongate import is_yes
+from decisiongator import is_yes
 
 if is_yes("Please send me a replacement lid.", "Is a replacement part requested?"):
     arrange_replacement()

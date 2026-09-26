@@ -1,13 +1,13 @@
 # Shrinking the ONNX export
 
-Goal: find the smallest ONNX export of the released yes/no model whose predictions stay close to the float32 reference (`released/macos-arm64`, `model.onnx` = 328,609,581 bytes, template_version 2), so the shipped bundle can shrink below 394 MB. Nothing under `released/`, `code/`, `decisiongate/`, `specs/`, `README.md`, or `training/pipeline.py` was modified. All scripts live in `reports/shrink/`, all candidate bundles live in `models/shrink-*/`.
+Goal: find the smallest ONNX export of the released yes/no model whose predictions stay close to the float32 reference (`released/macos-arm64`, `model.onnx` = 328,609,581 bytes, template_version 2), so the shipped bundle can shrink below 394 MB. Nothing under `released/`, `code/`, `decisiongator/`, `specs/`, `README.md`, or `training/pipeline.py` was modified. All scripts live in `reports/shrink/`, all candidate bundles live in `models/shrink-*/`.
 
 The float reference used for building/evaluating candidates is `models/v2-nli-expanded`, which is byte-identical to `released/macos-arm64/model.onnx` (same sha256 `fa57f3fe...`) and carries the same calibrated temperature (1.1350108156723155). Evaluation used `training/pipeline.py`'s own `evaluate`/`calibrate` commands unmodified (CPUExecutionProvider, 4 intra-op threads, ONNX Runtime 1.22.1, matching the pinned version) so results are directly comparable to how the project already measures the released model. Two frozen splits were used throughout: the 96-record `validation` split (seed+plain-questions+expansion-v2) and the 80-record frozen `test` split from `data/evaluation-v2.jsonl`.
 
 For every candidate two variants were measured:
 
 - **default**: the quantized/converted bundle as produced, manifest `temperature` reset to 1.0 (matching the existing project convention in `quantize()`, which also resets calibration after quantization).
-- **recal**: a copy of the same bundle recalibrated with `decisiongate-train calibrate` on the 52-record `calibration` split, to see whether refitting the temperature restores agreement with the float reference.
+- **recal**: a copy of the same bundle recalibrated with `decisiongator-train calibrate` on the 52-record `calibration` split, to see whether refitting the temperature restores agreement with the float reference.
 
 "maxdiff"/"meandiff" are the max/mean absolute difference in `p_yes` versus the float reference on the same records; "flips" counts records whose 0.5-threshold decision differs from the float reference.
 
@@ -62,11 +62,11 @@ For every candidate two variants were measured:
 | C5 default  | 0.725 | 0.639   | 0.208 | 1.000 | 0.614   | 0.092    | 11/80 | 10.2  | 14.0  |
 | C5 recal    | 0.725 | 0.627   | 0.207 | 1.035 | 0.606   | 0.091    | 11/80 | 10.3  | 13.6  |
 
-Raw `decisiongate-train evaluate` outputs (with per-record predictions) are in `reports/shrink/<name>-<split>.json` and `reports/shrink/<name>-recal-<split>.json`; the merged comparison numbers are in `reports/shrink/compare-summary.json`.
+Raw `decisiongator-train evaluate` outputs (with per-record predictions) are in `reports/shrink/<name>-<split>.json` and `reports/shrink/<name>-recal-<split>.json`; the merged comparison numbers are in `reports/shrink/compare-summary.json`.
 
 ## Load checks and op inventory (ONNX Runtime 1.22.1, CPUExecutionProvider, 4 threads)
 
-Every candidate above loaded and ran successfully under the pinned onnxruntime 1.22.1 via `decisiongate-train evaluate` (that command builds the session with `CPUExecutionProvider` and `intra_op_num_threads = 4`, so a successful evaluate run is the load/run confirmation). Op inventory per candidate (all opset 17, same as the float export):
+Every candidate above loaded and ran successfully under the pinned onnxruntime 1.22.1 via `decisiongator-train evaluate` (that command builds the session with `CPUExecutionProvider` and `intra_op_num_threads = 4`, so a successful evaluate run is the load/run confirmation). Op inventory per candidate (all opset 17, same as the float export):
 
 - **C1/C2/C5** (dynamic int8): add `DynamicQuantizeLinear`, `MatMulInteger`, and (C2 only) `DequantizeLinear` for the quantized `Gather` embedding tables. All are standard ONNX ops available in onnxruntime-web 1.22's wasm backend; nothing exotic.
 - **C3a/C3b/C3c** (static QDQ int8): add `QuantizeLinear`/`DequantizeLinear` pairs around `MatMul`/`Gemm`. Also standard ops, wasm-safe.
@@ -89,17 +89,17 @@ No candidate introduces a custom/contrib op, so none of them should need anythin
 
 ```sh
 # Float reference (identical to released/macos-arm64), used as the source bundle for every candidate
-.venv/bin/decisiongate-train evaluate --bundle models/v2-nli-expanded --extra-data data/expansion-v2.jsonl \
+.venv/bin/decisiongator-train evaluate --bundle models/v2-nli-expanded --extra-data data/expansion-v2.jsonl \
   --split validation --output reports/shrink/float-validation.json
-.venv/bin/decisiongate-train evaluate --bundle models/v2-nli-expanded --data data/evaluation-v2.jsonl \
+.venv/bin/decisiongator-train evaluate --bundle models/v2-nli-expanded --data data/evaluation-v2.jsonl \
   --split test --output reports/shrink/float-test.json
 
 # C1: dynamic int8, MatMul/Gemm only
-.venv/bin/decisiongate-train quantize --bundle models/v2-nli-expanded --output models/shrink-1-int8-matmul \
+.venv/bin/decisiongator-train quantize --bundle models/v2-nli-expanded --output models/shrink-1-int8-matmul \
   --model-id decisionmodel-shrink-1-int8-matmul
 
 # C2: dynamic int8, MatMul/Gemm + Gather/embeddings
-.venv/bin/decisiongate-train quantize --bundle models/v2-nli-expanded --output models/shrink-2-int8-matmul-embed \
+.venv/bin/decisiongator-train quantize --bundle models/v2-nli-expanded --output models/shrink-2-int8-matmul-embed \
   --quantize-embeddings --model-id decisionmodel-shrink-2-int8-matmul-embed
 
 # C3a/C3b/C3c: static QDQ int8 (custom script, calibrates on the 52-record calibration split)
@@ -117,18 +117,18 @@ No candidate introduces a custom/contrib op, so none of them should need anythin
 .venv/bin/python reports/shrink/partial_int8.py
 
 # For every candidate <name>: evaluate at the built-in temperature (reset to 1.0 by quantize()/our scripts)
-.venv/bin/decisiongate-train evaluate --bundle models/<name> --extra-data data/expansion-v2.jsonl \
+.venv/bin/decisiongator-train evaluate --bundle models/<name> --extra-data data/expansion-v2.jsonl \
   --split validation --output reports/shrink/<name>-validation.json
-.venv/bin/decisiongate-train evaluate --bundle models/<name> --data data/evaluation-v2.jsonl \
+.venv/bin/decisiongator-train evaluate --bundle models/<name> --data data/evaluation-v2.jsonl \
   --split test --output reports/shrink/<name>-test.json
 
 # ...and a recalibrated copy of every candidate
 cp models/<name>/model.onnx models/<name>/tokenizer.json models/<name>/manifest.json models/<name>-recal/
-.venv/bin/decisiongate-train calibrate --bundle models/<name>-recal --extra-data data/expansion-v2.jsonl \
+.venv/bin/decisiongator-train calibrate --bundle models/<name>-recal --extra-data data/expansion-v2.jsonl \
   --output reports/shrink/<name>-recal-calibration.json
-.venv/bin/decisiongate-train evaluate --bundle models/<name>-recal --extra-data data/expansion-v2.jsonl \
+.venv/bin/decisiongator-train evaluate --bundle models/<name>-recal --extra-data data/expansion-v2.jsonl \
   --split validation --output reports/shrink/<name>-recal-validation.json
-.venv/bin/decisiongate-train evaluate --bundle models/<name>-recal --data data/evaluation-v2.jsonl \
+.venv/bin/decisiongator-train evaluate --bundle models/<name>-recal --data data/evaluation-v2.jsonl \
   --split test --output reports/shrink/<name>-recal-test.json
 
 # Merge every candidate's predictions against the float reference (max/mean abs diff, flips)

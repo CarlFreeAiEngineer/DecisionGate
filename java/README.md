@@ -1,9 +1,9 @@
-# DecisionGate for Java
+# DecisionGator for Java
 
 A normal Java 17+ API, with Maven/Gradle dependencies and no application-written JNI. The Java wrapper calls the same Rust component as Python and C. Mac arm64, Linux x64 and Windows x64 classifier JARs are built and tested with OpenJDK 17.
 
 ```java
-import org.decisiongate.Decisions;
+import org.decisiongator.Decisions;
 
 boolean refundRequested = Decisions.isYes(
     "Please return my money. The item arrived broken.",
@@ -28,7 +28,7 @@ Thresholds must be finite and between `0` and `1`, inclusive; invalid values thr
 Optional criteria are a typed Java value:
 
 ```java
-import org.decisiongate.Criteria;
+import org.decisiongator.Criteria;
 
 var criteria = new Criteria(
     "The customer explicitly asks for money back.",
@@ -42,7 +42,7 @@ boolean yesAtCutoff = Decisions.isYes(content, question, criteria, 0.90);
 Multiple choice ranks options instead of answering yes or no:
 
 ```java
-import org.decisiongate.Choice;
+import org.decisiongator.Choice;
 import java.util.List;
 
 List<String> teams = List.of("billing", "technical support", "sales");
@@ -54,9 +54,9 @@ int team = Decisions.choose(content, "Which team should handle this message?", t
 
 `chooseP` returns every option ranked best first, as index/probability pairs that sum to one; ties keep the caller's option order. `choose` returns the best option's index, or `-1` when its probability is below the threshold (default `0`, so plain `choose` never returns `-1`); equal to the threshold counts as chosen. Both accept an optional trailing `Criteria` and, for `choose`, an optional trailing threshold, the same way `isYes` does.
 
-Native errors throw `DecisionGateException` with a `statusCode()` and readable message. Invalid text, including unmatched UTF-16 surrogates, is rejected. Missing packaged assets produce an `IllegalStateException` explaining the missing dependency. Keep the component loaded for the JVM's lifetime; hot class-loader replacement is not supported by this native prototype. Finish inference before JVM exit and do not call it from shutdown hooks.
+Native errors throw `DecisionGatorException` with a `statusCode()` and readable message. Invalid text, including unmatched UTF-16 surrogates, is rejected. Missing packaged assets produce an `IllegalStateException` explaining the missing dependency. Keep the component loaded for the JVM's lifetime; hot class-loader replacement is not supported by this native prototype. Finish inference before JVM exit and do not call it from shutdown hooks.
 
-DecisionGate's accuracy is unchanged by the Java wrapper. It remains experimental: [current accuracy and limitations](../reports/accuracy-v2.md).
+DecisionGator's accuracy is unchanged by the Java wrapper. It remains experimental: [current accuracy and limitations](../reports/accuracy-v2.md).
 
 ## Dependencies
 
@@ -66,13 +66,13 @@ Maven:
 
 ```xml
 <dependency>
-  <groupId>org.decisiongate</groupId>
-  <artifactId>decisiongate-java</artifactId>
+  <groupId>org.decisiongator</groupId>
+  <artifactId>decisiongator-java</artifactId>
   <version>0.4.1</version>
 </dependency>
 <dependency>
-  <groupId>org.decisiongate</groupId>
-  <artifactId>decisiongate-java</artifactId>
+  <groupId>org.decisiongator</groupId>
+  <artifactId>decisiongator-java</artifactId>
   <version>0.4.1</version>
   <classifier>macos-arm64</classifier>
   <scope>runtime</scope>
@@ -82,15 +82,15 @@ Maven:
 Gradle, Kotlin DSL:
 
 ```kotlin
-implementation("org.decisiongate:decisiongate-java:0.4.1")
-runtimeOnly("org.decisiongate:decisiongate-java:0.4.1:macos-arm64")
+implementation("org.decisiongator:decisiongator-java:0.4.1")
+runtimeOnly("org.decisiongator:decisiongator-java:0.4.1:macos-arm64")
 ```
 
 Choose `macos-arm64`, `linux-x64` or `windows-x64` for the platform classifier.
 
 The small API JAR brings JNA 5.19.1 as a normal transitive dependency. The separate platform JAR contains the native libraries, model, tokenizer, manifest, and notices. Applications do not need Rust, C tooling, Python, ONNX installation, or a server. Sources and Javadoc JARs are included for IDEs.
 
-Dependency resolution happens during application setup/build as usual. The first `Decisions.isYes(...)` or `Decisions.isYesP(...)` call makes no downloads or network calls. It extracts the packaged assets into a versioned local cache under `~/.cache/decisiongate`, verifies SHA-256 hashes, and loads the library. The unpacked 0.4.1 bundle needs about 900 MB; keep both archive and extraction space in mind when packaging an application. Set `-Ddecisiongate.cache=/your/cache/path` before the first call to choose another cache directory. Extraction is protected by a file lock and interrupted extraction can be retried.
+Dependency resolution happens during application setup/build as usual. The first `Decisions.isYes(...)` or `Decisions.isYesP(...)` call makes no downloads or network calls. It extracts the packaged assets into a versioned local cache under `~/.cache/decisiongator`, verifies SHA-256 hashes, and loads the library. The unpacked 0.4.1 bundle needs about 900 MB; keep both archive and extraction space in mind when packaging an application. Set `-Ddecisiongator.cache=/your/cache/path` before the first call to choose another cache directory. Extraction is protected by a file lock and interrupted extraction can be retried.
 
 Missing platform assets give a clear error, never a download fallback.
 
@@ -98,19 +98,19 @@ The Java source is Apache-2.0; model weights and native dependencies retain the 
 
 ## Explicit sessions and bundle files
 
-For applications that need separate sessions, bundle metadata, or a chosen bundle directory, `DecisionGate` provides explicit ownership:
+For applications that need separate sessions, bundle metadata, or a chosen bundle directory, `DecisionGator` provides explicit ownership:
 
 ```java
 import java.nio.file.Path;
-import org.decisiongate.DecisionGate;
+import org.decisiongator.DecisionGator;
 
-try (var gate = DecisionGate.load(Path.of("components/decisiongate"))) {
+try (var gate = DecisionGator.load(Path.of("components/decisiongator"))) {
     double pYes = gate.evaluate(content, question);
     String manifest = gate.metadataJson();
 }
 ```
 
-Ordinary bundle files need no classifier JAR. `DecisionGate.loadBundled()` opens a separate session from packaged assets, and `loadBundled(Path cacheDirectory)` chooses its extraction cache. These explicit sessions implement `AutoCloseable`; close each one when finished. Calls on a session are synchronized, including `close()`. Closing twice is harmless; use after close throws `DecisionGateException`. Closing a session releases its inference resources; native libraries stay loaded until process exit.
+Ordinary bundle files need no classifier JAR. `DecisionGator.loadBundled()` opens a separate session from packaged assets, and `loadBundled(Path cacheDirectory)` chooses its extraction cache. These explicit sessions implement `AutoCloseable`; close each one when finished. Calls on a session are synchronized, including `close()`. Closing twice is harmless; use after close throws `DecisionGatorException`. Closing a session releases its inference resources; native libraries stay loaded until process exit.
 
 ## Build this repository's Java artifacts
 
@@ -118,11 +118,11 @@ Ordinary bundle files need no classifier JAR. `DecisionGate.loadBundled()` opens
 
 The helper expects a platform-appropriate JDK at `tools/jdk/` and Maven at `tools/maven/`, with their `bin/` directories inside. On this Mac, OpenJDK 17 and Maven were installed through Homebrew and copied as ordinary files from their `libexec` distributions into these project-local directories. The copies use the host's normal OS dependencies. No shell profile or system Java selection was changed. Other machines need their own JDK/Maven distributions; these tools are not shipped to application users.
 
-To use an existing Java development environment directly, run Maven against `java/pom.xml`. Without a `decisiongate.bundle` property, native integration tests are skipped; the build helper supplies it. For project-local dependency resolution, pass `-Dmaven.repo.local=/absolute/path/to/DecisionGate/tools/maven-repository`. A standalone Java consumer using that repository can resolve the normal coordinates above.
+To use an existing Java development environment directly, run Maven against `java/pom.xml`. Without a `decisiongator.bundle` property, native integration tests are skipped; the build helper supplies it. For project-local dependency resolution, pass `-Dmaven.repo.local=/absolute/path/to/DecisionGator/tools/maven-repository`. A standalone Java consumer using that repository can resolve the normal coordinates above.
 
 The helper chooses the current platform's bundle under `released/`; `--bundle PATH --classifier NAME` selects a different already built platform bundle. Do not label a Mac library as a Windows/Linux artifact.
 
-For experimental weights, select `--bundle models/spam-email-v1-macos --output models/spam-email-v1-java` and supply both `--expected-probability NUMBER` and `--expected-unicode-probability NUMBER`, independently evaluated through the native API for the two fixtures in `DecisionGateIntegrationTest.java`. Release fixture probabilities remain the default. The output directory defaults to `released/java/`; omit `--install` to keep experimental artifacts out of the shared local Maven repository. Integration tests check native prediction agreement and API behavior with the selected bundle, including repeatability, Unicode inputs, errors and concurrent calls; prediction accuracy is evaluated separately.
+For experimental weights, select `--bundle models/spam-email-v1-macos --output models/spam-email-v1-java` and supply both `--expected-probability NUMBER` and `--expected-unicode-probability NUMBER`, independently evaluated through the native API for the two fixtures in `DecisionGatorIntegrationTest.java`. Release fixture probabilities remain the default. The output directory defaults to `released/java/`; omit `--install` to keep experimental artifacts out of the shared local Maven repository. Integration tests check native prediction agreement and API behavior with the selected bundle, including repeatability, Unicode inputs, errors and concurrent calls; prediction accuracy is evaluated separately.
 
 Run `uv run java/check_bundle.py` to compile the standalone [Java example](examples/BundledExample.java), load only the packaged JAR assets with networking denied on macOS, and verify agreement with native predictions. This checks the bundled path as well as the direct-directory path exercised by the JUnit tests.
 

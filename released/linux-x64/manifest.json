@@ -2,7 +2,7 @@
   "format_version": 1,
   "template_version": 2,
   "choice_template_version": 1,
-  "model_id": "decisiongate-0.4.1",
+  "model_id": "decisiongator-0.4.1",
   "max_tokens": 256,
   "base_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
   "base_revision": "cf44676c28ba7312e5c5f8f8d2c22b3e0c9cdae2",
@@ -11,10 +11,10 @@
   "sha256": {
     "model.onnx": "261c72fd3da5da73392a86bec9be09c5aa2a91cf58ede001b2efa3e9bd8d951f",
     "tokenizer.json": "4b4f60231058db4b5794e7b124bb7945bc8ade6719282de4d2e0372ee527b929",
-    "libdecisiongate.so": "6156c08061f29eef0216a2a94d667b01feb51400b558e9870d077cfffd9acc39",
+    "libdecisiongator.so": "6156c08061f29eef0216a2a94d667b01feb51400b558e9870d077cfffd9acc39",
     "libonnxruntime.so": "ad9665887025474170d3e71cd28021e7e811c5bf201bc365f953e34a2c4989cc",
     "libonnxruntime_providers_shared.so": "e4706ea02be3999167f000bb1ff7391c86e95d2d96f78eb33225c14b172a8451",
-    "decisiongate.h": "0b832ea252babdcc320b456bbc79ce04924cb8f38e61fa32900fb9e2b2a15c48"
+    "decisiongator.h": "0b832ea252babdcc320b456bbc79ce04924cb8f38e61fa32900fb9e2b2a15c48"
   },
   "training": {
     "base": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",

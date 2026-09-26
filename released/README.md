@@ -1,6 +1,6 @@
 # Release bundles
 
-This directory holds installable local DecisionGate releases. Every target is meant to use the same weights, tokenizer, input rules, and calibration. Packaging does not improve or reduce decision accuracy, though the quantized 0.4.1 weights round slightly differently on each processor, so borderline cases can differ between platforms. Version 0.4.1 answered 435/480 held-out yes/no cases, 74/80 fresh cases, and 18/20 held-out multiple-choice cases correctly on the Mac. See [the 0.4.1 report](../reports/accuracy-v4.1.md).
+This directory holds installable local DecisionGator releases. Every target is meant to use the same weights, tokenizer, input rules, and calibration. Packaging does not improve or reduce decision accuracy, though the quantized 0.4.1 weights round slightly differently on each processor, so borderline cases can differ between platforms. Version 0.4.1 answered 435/480 held-out yes/no cases, 74/80 fresh cases, and 18/20 held-out multiple-choice cases correctly on the Mac. See [the 0.4.1 report](../reports/accuracy-v4.1.md).
 
 **Version status by platform.** All three native bundles (Mac, Windows x64, Linux x64), their Python wheels, Node tarballs, and Java classifier JARs, and the browser assets are version 0.4.1: the 0.4.0 DeBERTa-v3-large model stored as 8-bit and 4-bit integers, using one thread per fast core. All were built on 23 September 2026 from the same model file. The frozen cross-platform comparison cases must agree within the tolerance in each manifest (probability difference at most 0.25, changed decisions on at most 5% of cases).
 
@@ -8,9 +8,9 @@ Native bundles:
 
 | Platform | Bundle directory | Native library |
 | --- | --- | --- |
-| Windows x64 | `windows-x64/` | `decisiongate.dll` |
-| Mac M1 and newer (Apple silicon) | `macos-arm64/` | `libdecisiongate.dylib` |
-| Linux x64, glibc | `linux-x64/` | `libdecisiongate.so` (ELF) |
+| Windows x64 | `windows-x64/` | `decisiongator.dll` |
+| Mac M1 and newer (Apple silicon) | `macos-arm64/` | `libdecisiongator.dylib` |
+| Linux x64, glibc | `linux-x64/` | `libdecisiongator.so` (ELF) |
 
 Each native bundle contains the component, its CPU runtime, weights, tokenizer, C header, checksums, and license notices. Windows packaging also includes the import library for C applications. No separate inference service or consumer-side compiler is needed.
 
@@ -29,6 +29,6 @@ The [Windows verification report](../reports/windows-release.md) records native,
 
 The 0.4.1 browser bundle is approximately 580 MB and each 0.4.1 native bundle approximately 600 to 620 MB (weights 578 MB). A running process holds about 1.5 GB. The published 0.4.0 bundles (float16, 872 MB weights, about 5 GB in memory) remain downloadable with `--version 0.4.0`. The previous 0.3.0 Mac bundle (229 MB) is preserved at `models/macos-arm64-v3/` for anyone who prefers size over accuracy. The combined npm tarball contains separate native and browser assets, including two copies of the weights, so it is larger. Browser use requires the web app's initial asset delivery and sufficient storage for offline installation. See [browser measurements and limitations](../reports/browser-webassembly.md).
 
-The binaries in this directory are not committed to Git; only the `.md` and `.json` records are. Published versions live at `https://62-84-178-253.sslip.io/DecisionGate/files/<version>/` with a `SHA256SUMS.txt`. `uv run code/fetch_released.py` downloads and verifies them into this directory (`--only macos-arm64` and similar select parts). Maintainers publish a new version with `uv run code/publish_released.py --version X.Y.Z`, which writes the checksum file and copies this directory to the server.
+The binaries in this directory are not committed to Git; only the `.md` and `.json` records are. Published versions live at `https://62-84-178-253.sslip.io/DecisionGator/files/<version>/` with a `SHA256SUMS.txt`. `uv run code/fetch_released.py` downloads and verifies them into this directory (`--only macos-arm64` and similar select parts). Maintainers publish a new version with `uv run code/publish_released.py --version X.Y.Z`, which writes the checksum file and copies this directory to the server.
 
 No artifacts have been published to PyPI, Maven Central, or npm. Local installation and packaging are implemented independently of that future publishing decision.

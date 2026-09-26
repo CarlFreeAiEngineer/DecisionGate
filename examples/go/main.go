@@ -1,4 +1,4 @@
-// Call DecisionGate from Go through its C interface (cgo).
+// Call DecisionGator from Go through its C interface (cgo).
 // The library loads its model from the bundle beside it on the first call.
 // By default this links the bundle for this platform under released/; to use
 // another bundle, set CGO_LDFLAGS="-L/path/to/bundle -Wl,-rpath,/path/to/bundle".
@@ -6,12 +6,12 @@ package main
 
 /*
 #cgo CFLAGS: -I${SRCDIR}/../../code/include
-#cgo LDFLAGS: -ldecisiongate
+#cgo LDFLAGS: -ldecisiongator
 #cgo darwin LDFLAGS: -L${SRCDIR}/../../released/macos-arm64 -Wl,-rpath,${SRCDIR}/../../released/macos-arm64
 #cgo linux LDFLAGS: -L${SRCDIR}/../../released/linux-x64 -Wl,-rpath,${SRCDIR}/../../released/linux-x64
 #cgo windows LDFLAGS: -L${SRCDIR}/../../released/windows-x64
 #include <stdlib.h>
-#include "decisiongate.h"
+#include "decisiongator.h"
 */
 import "C"
 
@@ -41,11 +41,11 @@ func lastError(status C.dg_status) error {
 	var required C.size_t
 	C.dg_last_error(nil, 0, &required)
 	if required == 0 {
-		return fmt.Errorf("DecisionGate error %d", int(status))
+		return fmt.Errorf("DecisionGator error %d", int(status))
 	}
 	buffer := make([]byte, int(required))
 	C.dg_last_error((*C.char)(unsafe.Pointer(&buffer[0])), required, &required)
-	return fmt.Errorf("DecisionGate error %d: %s", int(status), buffer[:len(buffer)-1])
+	return fmt.Errorf("DecisionGator error %d: %s", int(status), buffer[:len(buffer)-1])
 }
 
 // withCriteria passes nil for no criteria, or a C struct borrowing the strings.

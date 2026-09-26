@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { parse } from 'node:path';
-import { isYes, isYesP, choose, chooseP, DecisionGateError } from '../index.mjs';
+import { isYes, isYesP, choose, chooseP, DecisionGatorError } from '../index.mjs';
 const text = 'Could I book an appointment for Tuesday?';
 const question = 'Is this person asking for an appointment?';
 test('concurrent first use, probability, inclusive boundaries, and event loop responsiveness', async () => {
@@ -27,7 +27,7 @@ test('criteria, Unicode, changing working directory', async () => {
 });
 test('invalid input never becomes a negative answer', async () => {
   for (const [content, q, options] of [['',question,{}], ['\ud800',question,{}], [text,'',{}], [text,question,{threshold:NaN}], [text,question,{threshold:2}], [text,question,{criteria:{yes:'ok',no:''}}], [text,question,null]]) {
-    await assert.rejects(isYes(content,q,options), e => e instanceof DecisionGateError && e.code === 'DG_INVALID_ARGUMENT');
+    await assert.rejects(isYes(content,q,options), e => e instanceof DecisionGatorError && e.code === 'DG_INVALID_ARGUMENT');
   }
   await assert.rejects(isYes('word '.repeat(1000), question), e => e.code === 'DG_INPUT_TOO_LONG');
 });
@@ -38,7 +38,7 @@ test('bounded queue', async () => {
   assert.equal(all[64].reason.code,'DG_RESOURCE_ERROR');
 });
 test('addon boundary rejects invalid direct calls', () => {
-  const addon=createRequire(import.meta.url)(`../native/${process.platform}-${process.arch}/decisiongate.node`);
+  const addon=createRequire(import.meta.url)(`../native/${process.platform}-${process.arch}/decisiongator.node`);
   assert.throws(()=>addon.initialize());
   assert.throws(()=>addon.initialize(123));
   assert.throws(()=>addon.evaluate());
@@ -86,10 +86,10 @@ test('chooseP validates content, question, options and opts', async () => {
     [routingContent, routingQuestion, routingOptions, { criteria: { yes: 'ok', no: '' } }],
   ];
   for (const [content, q, opts, extra] of cases) {
-    await assert.rejects(chooseP(content, q, opts, extra), e => e instanceof DecisionGateError && e.code === 'DG_INVALID_ARGUMENT');
+    await assert.rejects(chooseP(content, q, opts, extra), e => e instanceof DecisionGatorError && e.code === 'DG_INVALID_ARGUMENT');
   }
   for (const [content, q, opts, extra] of cases) {
-    await assert.rejects(choose(content, q, opts, extra), e => e instanceof DecisionGateError && e.code === 'DG_INVALID_ARGUMENT');
+    await assert.rejects(choose(content, q, opts, extra), e => e instanceof DecisionGatorError && e.code === 'DG_INVALID_ARGUMENT');
   }
 });
 test('isYesP and chooseP share one queue under concurrent use', async () => {

@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from decisiongate import is_yes_p, is_yes, choose, choose_p
+from decisiongator import is_yes_p, is_yes, choose, choose_p
 for content, question in [
         ('Please return my money. The item arrived broken.', 'Is the customer asking for a refund?'),
         ('Could you send me a copy of the invoice?', 'Is the customer asking for a refund?'),

@@ -6,7 +6,7 @@ Usage:
 
 Calibration data: the 52-record calibration split (seed+plain-questions+expansion-v2), optionally
 extended with a slice of train records. Does not modify training/pipeline.py or anything under
-released/, code/, decisiongate/, specs/.
+released/, code/, decisiongator/, specs/.
 """
 import argparse
 import json

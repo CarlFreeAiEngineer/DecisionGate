@@ -12,6 +12,6 @@
   "network_denied": false,
   "network_isolation": null,
   "original_native_bundle_reads_denied": false,
-  "tarball": "C:\\DecisionGate-build-20260919\\released\\node\\decisiongate-0.4.1-win32-x64.tgz",
+  "tarball": "C:\\DecisionGator-build-20260919\\released\\node\\decisiongator-0.4.1-win32-x64.tgz",
   "tarball_sha256": "6c48d1b533d0cc126ffb10854d28697e0b16a753615ebaffdee3a5985b2187c9"
 }

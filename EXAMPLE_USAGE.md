@@ -1,6 +1,6 @@
-# DecisionGate examples
+# DecisionGator examples
 
-DecisionGate is a software component: include it, call a function, use the answer. These examples show the same three calls in every supported language. To run a complete program in your language right away, see [examples/](examples/README.md). Install and packaging details live in each language's own guide: [Python](released/python/README.md), [Java](java/README.md), [Node.js](javascript/README.md), [browser](web/README.md), [C](code/README.md), [Rust](examples/rust/), and [Go](examples/go/).
+DecisionGator is a software component: include it, call a function, use the answer. These examples show the same three calls in every supported language. To run a complete program in your language right away, see [examples/](examples/README.md). Install and packaging details live in each language's own guide: [Python](released/python/README.md), [Java](java/README.md), [Node.js](javascript/README.md), [browser](web/README.md), [C](code/README.md), [Rust](examples/rust/), and [Go](examples/go/).
 
 Every language offers the same three ideas:
 
@@ -19,7 +19,7 @@ The model is experimental. See [measured accuracy](reports/accuracy-v4.md) befor
 ## Python
 
 ```python
-from decisiongate import is_yes, is_yes_p, choose
+from decisiongator import is_yes, is_yes_p, choose
 
 # A yes/no decision.
 if is_yes("Any chance I could come in next Tuesday?",
@@ -53,14 +53,14 @@ team = choose(
 )   # 0, meaning "billing"
 ```
 
-Failures raise `DecisionGateError`, never return `False` or `None`; `choose` returns `None` only when the best option is below a threshold you passed. Invalid thresholds raise `ValueError`.
+Failures raise `DecisionGatorError`, never return `False` or `None`; `choose` returns `None` only when the best option is below a threshold you passed. Invalid thresholds raise `ValueError`.
 
 ## Java
 
 ```java
 import java.util.List;
-import org.decisiongate.Criteria;
-import org.decisiongate.Decisions;
+import org.decisiongator.Criteria;
+import org.decisiongator.Decisions;
 
 // A yes/no decision.
 if (Decisions.isYes(
@@ -90,12 +90,12 @@ int team = Decisions.choose(
     List.of("billing", "technical support", "sales"));   // 0, meaning "billing"
 ```
 
-Failures throw `DecisionGateException`; invalid thresholds throw `IllegalArgumentException`. `Decisions.chooseP` returns the full ranking as a list of `Choice` values with `index()` and `p()`.
+Failures throw `DecisionGatorException`; invalid thresholds throw `IllegalArgumentException`. `Decisions.chooseP` returns the full ranking as a list of `Choice` values with `index()` and `p()`.
 
 ## TypeScript and JavaScript on Node.js
 
 ```typescript
-import { isYes, isYesP, choose } from "decisiongate";
+import { isYes, isYesP, choose } from "decisiongator";
 
 // A yes/no decision. Always await; a Promise itself is truthy.
 if (await isYes(
@@ -128,14 +128,14 @@ const team = await choose(
   ["billing", "technical support", "sales"]);   // 0, meaning "billing"
 ```
 
-Failures reject with `DecisionGateError`, which carries a `code`. `chooseP` resolves to the full ranking as `{ index, p }` objects, best first.
+Failures reject with `DecisionGatorError`, which carries a `code`. `chooseP` resolves to the full ranking as `{ index, p }` objects, best first.
 
 ## In a web browser
 
 The same functions run inside the browser, on the user's device, from a WebAssembly build. The text never leaves the page.
 
 ```javascript
-import { isYes, isYesP } from "decisiongate/web";
+import { isYes, isYesP } from "decisiongator/web";
 
 const needsReply = await isYes(
   "Could you let me know when my order will arrive?",
@@ -153,7 +153,7 @@ Your web app bundles the WebAssembly component and its assets. Offline use requi
 ## C# and .NET
 
 ```csharp
-using DecisionGate;
+using DecisionGator;
 
 // A yes/no decision.
 if (Decisions.IsYes("Any chance I could come in next Tuesday?",
@@ -179,14 +179,14 @@ int team = Decisions.Choose(
     new[] { "billing", "technical support", "sales" });   // 0, meaning "billing"
 ```
 
-Failures throw `DecisionGateException` with a `StatusCode`; invalid thresholds throw `ArgumentOutOfRangeException`. `Decisions.ChooseP` returns every option as a `Choice(Index, P)` ranked best first. Point the wrapper at a bundle with `Bundle.Directory` or `DECISIONGATE_BUNDLE`, or ship the bundle in a `decisiongate` folder beside the executable; see [the C# guide](csharp/README.md).
+Failures throw `DecisionGatorException` with a `StatusCode`; invalid thresholds throw `ArgumentOutOfRangeException`. `Decisions.ChooseP` returns every option as a `Choice(Index, P)` ranked best first. Point the wrapper at a bundle with `Bundle.Directory` or `DECISIONGATOR_BUNDLE`, or ship the bundle in a `decisiongator` folder beside the executable; see [the C# guide](csharp/README.md).
 
 ## C
 
 ```c
 #include <stdio.h>
 #include <string.h>
-#include "decisiongate.h"
+#include "decisiongator.h"
 
 int main(void) {
     const char *content =
@@ -225,16 +225,16 @@ int main(void) {
 }
 ```
 
-The status code is separate from the answer: on any error the output variable is left untouched. Call `dg_last_error` for a readable message. `dg_choose` and `dg_choose_p` rank several options; `dg_load`, `dg_evaluate`, and `dg_release` give explicit control of sessions and bundle paths. See [the header](code/include/decisiongate.h) and [the interface specification](specs/component-api.md).
+The status code is separate from the answer: on any error the output variable is left untouched. Call `dg_last_error` for a readable message. `dg_choose` and `dg_choose_p` rank several options; `dg_load`, `dg_evaluate`, and `dg_release` give explicit control of sessions and bundle paths. See [the header](code/include/decisiongator.h) and [the interface specification](specs/component-api.md).
 
 ## Rust
 
-The component is itself a Rust library that exposes a C interface, so Rust calls it through `extern "C"` declarations. A working project with its `build.rs` is in [`examples/rust`](examples/rust); run it with `cargo run --release` from that directory. It links the bundle under `released/<platform>/` by default, or the directory named by `DECISIONGATE_BUNDLE`.
+The component is itself a Rust library that exposes a C interface, so Rust calls it through `extern "C"` declarations. A working project with its `build.rs` is in [`examples/rust`](examples/rust); run it with `cargo run --release` from that directory. It links the bundle under `released/<platform>/` by default, or the directory named by `DECISIONGATOR_BUNDLE`.
 
 ```rust
 use std::ffi::{c_char, c_void};
 
-// Declarations matching decisiongate.h.
+// Declarations matching decisiongator.h.
 #[repr(C)]
 struct DgCriteria {
     yes: *const c_char, yes_bytes: usize,
@@ -337,12 +337,12 @@ package main
 
 /*
 #cgo CFLAGS: -I${SRCDIR}/../../code/include
-#cgo LDFLAGS: -ldecisiongate
+#cgo LDFLAGS: -ldecisiongator
 #cgo darwin LDFLAGS: -L${SRCDIR}/../../released/macos-arm64 -Wl,-rpath,${SRCDIR}/../../released/macos-arm64
 #cgo linux LDFLAGS: -L${SRCDIR}/../../released/linux-x64 -Wl,-rpath,${SRCDIR}/../../released/linux-x64
 #cgo windows LDFLAGS: -L${SRCDIR}/../../released/windows-x64
 #include <stdlib.h>
-#include "decisiongate.h"
+#include "decisiongator.h"
 */
 import "C"
 
@@ -372,11 +372,11 @@ func lastError(status C.dg_status) error {
 	var required C.size_t
 	C.dg_last_error(nil, 0, &required)
 	if required == 0 {
-		return fmt.Errorf("DecisionGate error %d", int(status))
+		return fmt.Errorf("DecisionGator error %d", int(status))
 	}
 	buffer := make([]byte, int(required))
 	C.dg_last_error((*C.char)(unsafe.Pointer(&buffer[0])), required, &required)
-	return fmt.Errorf("DecisionGate error %d: %s", int(status), buffer[:len(buffer)-1])
+	return fmt.Errorf("DecisionGator error %d: %s", int(status), buffer[:len(buffer)-1])
 }
 
 // withCriteria passes nil for no criteria, or a C struct borrowing the strings.

@@ -1,12 +1,12 @@
 {
   "platform": "macOS-26.6.2-arm64-arm-64bit",
   "binaries": {
-    "libdecisiongate.dylib": {
+    "libdecisiongator.dylib": {
       "minimum_macos": [
         "11.0"
       ],
       "linked_libraries": [
-        "\t@rpath/libdecisiongate.dylib (compatibility version 0.0.0, current version 0.0.0)",
+        "\t@rpath/libdecisiongator.dylib (compatibility version 0.0.0, current version 0.0.0)",
         "\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1359.0.0)",
         "\t/usr/lib/libiconv.2.dylib (compatibility version 7.0.0, current version 7.0.0)"
       ]

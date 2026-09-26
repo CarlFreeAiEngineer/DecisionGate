@@ -1,9 +1,9 @@
 import java.util.List;
-import org.decisiongate.Choice;
-import org.decisiongate.Criteria;
-import org.decisiongate.Decisions;
+import org.decisiongator.Choice;
+import org.decisiongator.Criteria;
+import org.decisiongator.Decisions;
 
-/** DecisionGate from Java. Run from examples/java: mvn -q compile exec:java */
+/** DecisionGator from Java. Run from examples/java: mvn -q compile exec:java */
 public final class Example {
     public static void main(String[] args) {
         String ticket = "Our whole warehouse can't print shipping labels and trucks leave in an hour.";

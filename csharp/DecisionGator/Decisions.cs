@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace DecisionGate;
+namespace DecisionGator;
 
 /// <summary>Optional descriptions of what counts as yes and what counts as no.</summary>
 public sealed record Criteria(string Yes, string No);
@@ -9,10 +9,10 @@ public sealed record Criteria(string Yes, string No);
 public readonly record struct Choice(int Index, double P);
 
 /// <summary>A native failure. Never returned as a false decision.</summary>
-public sealed class DecisionGateException : Exception
+public sealed class DecisionGatorException : Exception
 {
     public int StatusCode { get; }
-    internal DecisionGateException(int status, string message) : base(message) { StatusCode = status; }
+    internal DecisionGatorException(int status, string message) : base(message) { StatusCode = status; }
 }
 
 /// <summary>Where the native bundle (library, model, tokenizer, manifest) lives.</summary>
@@ -24,9 +24,9 @@ public static class Bundle
     internal static IEnumerable<string> Candidates()
     {
         if (Directory is not null) yield return Directory;
-        var env = Environment.GetEnvironmentVariable("DECISIONGATE_BUNDLE");
+        var env = Environment.GetEnvironmentVariable("DECISIONGATOR_BUNDLE");
         if (!string.IsNullOrEmpty(env)) yield return env;
-        yield return Path.Combine(AppContext.BaseDirectory, "decisiongate");
+        yield return Path.Combine(AppContext.BaseDirectory, "decisiongator");
         yield return AppContext.BaseDirectory;
     }
 }
@@ -131,6 +131,6 @@ public static unsafe class Decisions
 
     private static void Check(int status)
     {
-        if (status != 0) throw new DecisionGateException(status, Native.LastErrorMessage());
+        if (status != 0) throw new DecisionGatorException(status, Native.LastErrorMessage());
     }
 }

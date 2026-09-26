@@ -1,14 +1,14 @@
 {
   "status": "passed",
   "platform": "Linux-7.1.8-arch1-3-x86_64-with-glibc2.44",
-  "wheel": "decisiongate-0.4.1-py3-none-linux_x86_64.whl",
+  "wheel": "decisiongator-0.4.1-py3-none-linux_x86_64.whl",
   "network_denied": false,
   "checkout_read_denied": false,
   "network_isolation": null,
   "consumer": {
     "probability": 0.9969501025005845,
     "custom_probability": 0.9967090125587603,
-    "module": "/home/ace/.cache/uv/archive-v0/DFgRutUqBkyNWOnE/lib/python3.12/site-packages/decisiongate/__init__.py",
+    "module": "/home/ace/.cache/uv/archive-v0/DFgRutUqBkyNWOnE/lib/python3.12/site-packages/decisiongator/__init__.py",
     "concurrent_calls": 8
   },
   "stderr": "Installed 1 package in 234ms\n"

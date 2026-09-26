@@ -1,3 +1,3 @@
-module decisiongate-go-example
+module decisiongator-go-example
 
 go 1.21

@@ -2,7 +2,7 @@
 
 Completed on 17 September 2026. The local Java example now uses the retrained candidate. Its answers to the user's six comments are NO, YES, NO, NO, YES, YES. It fixes the two clear spam misses; the fifth answer concerns the agreed borderline personal invitation and is not counted as a known correct label. These examples inspired training material and are development checks, not independent evidence of generalization.
 
-Run `uv run --offline --no-project tmp/run_java.py` to use the candidate, or add `--released` to compare with the original release. Edit `tmp/TryDecisionGate.java` as before. The Java source itself was not changed. The candidate JARs are in `models/spam-email-v1-java/`, and the native Mac bundle is in `models/spam-email-v1-macos/`. Existing `released/` packages and the ordinary Python example still use the original version. The temporary Python comparison script from the earlier experiment still compares against the email-only candidate.
+Run `uv run --offline --no-project tmp/run_java.py` to use the candidate, or add `--released` to compare with the original release. Edit `tmp/TryDecisionGator.java` as before. The Java source itself was not changed. The candidate JARs are in `models/spam-email-v1-java/`, and the native Mac bundle is in `models/spam-email-v1-macos/`. Existing `released/` packages and the ordinary Python example still use the original version. The temporary Python comparison script from the earlier experiment still compares against the email-only candidate.
 
 ## Evaluation
 
@@ -32,11 +32,11 @@ Java's build helper now accepts `--output` for an isolated artifact directory an
 Use new output paths for another run. The actual training command also set `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1`; the existing checkpoint and dependencies were cached locally.
 
 ```sh
-uv run --locked decisiongate-train train --start runs/v2-nli-expanded/best --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --extra-data data/contributions/spam-comments.jsonl --learning-rate 0.00001 --epochs 10 --device mps --output runs/spam-email-v1
-uv run --locked decisiongate-train export --checkpoint runs/spam-email-v1/best --output models/spam-email-v1 --model-id spam-email-v1
-uv run --locked decisiongate-train calibrate --bundle models/spam-email-v1 --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --extra-data data/contributions/spam-comments.jsonl --output reports/spam-email-calibration.json
+uv run --locked decisiongator-train train --start runs/v2-nli-expanded/best --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --extra-data data/contributions/spam-comments.jsonl --learning-rate 0.00001 --epochs 10 --device mps --output runs/spam-email-v1
+uv run --locked decisiongator-train export --checkpoint runs/spam-email-v1/best --output models/spam-email-v1 --model-id spam-email-v1
+uv run --locked decisiongator-train calibrate --bundle models/spam-email-v1 --extra-data data/expansion-v2.jsonl --extra-data data/contributions/email-address-correction.jsonl --extra-data data/contributions/spam-comments.jsonl --output reports/spam-email-calibration.json
 uv run --with onnxruntime==1.22.1 code/build.py --model models/spam-email-v1 --output models/spam-email-v1-macos
 uv run java/build.py --bundle models/spam-email-v1-macos --output models/spam-email-v1-java --expected-probability 0.986122636194813 --expected-unicode-probability 0.29462769048942045
 ```
 
-Evaluate each test separately with `decisiongate-train evaluate --bundle models/spam-email-v1 --data PATH --split test --output REPORT`: use `data/spam-comments-test.jsonl`, `data/email-address-test.jsonl`, or `data/evaluation-v2.jsonl`; omit `--data` for the original test. The unchanged original release provides the baseline. See [plan](spam-email-plan.md), [configuration](spam-email-config.json), [epoch history](spam-email-history.json), [native build log](spam-email-native-build.log), and [Java build log](spam-email-java-build.log).
+Evaluate each test separately with `decisiongator-train evaluate --bundle models/spam-email-v1 --data PATH --split test --output REPORT`: use `data/spam-comments-test.jsonl`, `data/email-address-test.jsonl`, or `data/evaluation-v2.jsonl`; omit `--data` for the original test. The unchanged original release provides the baseline. See [plan](spam-email-plan.md), [configuration](spam-email-config.json), [epoch history](spam-email-history.json), [native build log](spam-email-native-build.log), and [Java build log](spam-email-java-build.log).

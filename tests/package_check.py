@@ -43,12 +43,12 @@ def compile_host(temporary, bundle):
         host = bundle / 'host.exe'
         command = ['cl.exe', '/nologo', '/W4', '/WX', str(source), '/I' + str(bundle),
                    '/Fe:' + str(host), '/Fo:' + str(temporary / 'host.obj'), '/link',
-                   str(bundle / 'decisiongate.lib')]
+                   str(bundle / 'decisiongator.lib')]
     else:
         host = temporary / 'host'
         origin = '@executable_path/bundle' if system == 'Darwin' else '$ORIGIN/bundle'
         command = ['cc', '-Wall', '-Wextra', '-Werror', str(source), '-I', str(bundle),
-                   '-L', str(bundle), '-ldecisiongate', '-Wl,-rpath,' + origin, '-o', str(host)]
+                   '-L', str(bundle), '-ldecisiongator', '-Wl,-rpath,' + origin, '-o', str(host)]
     subprocess.run(command, check=True)
     return host
 
@@ -57,18 +57,18 @@ def check_links(host, original_bundle, compile_directory):
     system = platform.system()
     if system == 'Darwin':
         links = subprocess.check_output(['otool', '-L', str(host)], text=True)
-        if '@rpath/libdecisiongate.dylib' not in links:
+        if '@rpath/libdecisiongator.dylib' not in links:
             raise AssertionError(f'C host does not use the relative native library: {links}')
         details = links.splitlines()[1:]  # Exclude tool's heading containing host path.
     elif system == 'Linux':
         links = subprocess.check_output(['readelf', '-d', str(host)], text=True)
-        if '$ORIGIN/bundle' not in links or '[libdecisiongate.so]' not in links:
+        if '$ORIGIN/bundle' not in links or '[libdecisiongator.so]' not in links:
             raise AssertionError(f'C host is missing its relative library lookup: {links}')
         details = links.splitlines()
     else:
         links = subprocess.check_output(['dumpbin.exe', '/dependents', str(host)], text=True)
-        if 'decisiongate.dll' not in links.lower():
-            raise AssertionError(f'C host does not import decisiongate.dll: {links}')
+        if 'decisiongator.dll' not in links.lower():
+            raise AssertionError(f'C host does not import decisiongator.dll: {links}')
         details = [line for line in links.splitlines() if re.match(r'^\s+[^\s]+\.dll\s*$', line, re.I)]
     for location in (ROOT, original_bundle, compile_directory):
         if any(str(location) in line for line in details):
@@ -102,11 +102,11 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     original_bundle = args.bundle.resolve()
-    names = {'Darwin': 'libdecisiongate.dylib', 'Linux': 'libdecisiongate.so', 'Windows': 'decisiongate.dll'}
+    names = {'Darwin': 'libdecisiongator.dylib', 'Linux': 'libdecisiongator.so', 'Windows': 'decisiongator.dll'}
     if platform.system() not in names:
         raise SystemExit('Supported check hosts: Mac, Linux, and Windows')
     library_name = names[platform.system()]
-    with tempfile.TemporaryDirectory(prefix='decisiongate-relocation-') as directory:
+    with tempfile.TemporaryDirectory(prefix='decisiongator-relocation-') as directory:
         temporary = Path(directory)
         # Compile first, then move the complete tree. A retained absolute path
         # to the compilation directory cannot satisfy the later execution.

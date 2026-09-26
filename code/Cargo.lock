@@ -181,7 +181,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "decisiongate"
+name = "decisiongator"
 version = "0.1.0"
 dependencies = [
  "ort",

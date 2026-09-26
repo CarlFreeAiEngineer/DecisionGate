@@ -136,7 +136,7 @@ def main():
             run('python-build', script('code/build_python.py', '--target', target))
             tags = {'macos-arm64':'macosx_14_0_arm64','linux-x64':'linux_x86_64','windows-x64':'win_amd64'}
             version = re.search(r"^VERSION = '([^']+)'", (ROOT / 'code/build_python.py').read_text(encoding='utf-8'), re.M).group(1)
-            wheel = ROOT / 'released/python' / f'decisiongate-{version}-py3-none-{tags[target]}.whl'
+            wheel = ROOT / 'released/python' / f'decisiongator-{version}-py3-none-{tags[target]}.whl'
             run('python-consumer', script('tests/python_wheel_check.py', wheel, '--output', reports / f'python-wheel-{target}.json'))
         if not args.skip_node:
             node = shutil.which('node')
